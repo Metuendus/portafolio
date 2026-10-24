@@ -1,0 +1,175 @@
+---
+import Icon from './Icon.astro';
+import { ui, homePath, type Lang } from '../i18n/ui';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const h = ui[lang].hero;
+const home = homePath(lang);
+const projects = lang === 'es' ? '#proyectos' : '#projects';
+const contact = lang === 'es' ? '#contacto' : '#contact';
+---
+<section class="hero page-x" data-hero data-accepted={h.accepted} data-dismissed={h.dismissed}>
+  <h1>{h.h1a}<span class="target" data-target>{h.h1b}</span>{h.h1c}</h1>
+  <p class="sub">{h.sub}</p>
+  <div class="ctas">
+    <a class="btn btn--primary btn--lg" href={`${home}${projects}`}>{h.cta1}<Icon name="arrow" /></a>
+    <a class="btn btn--secondary btn--lg" href={`${home}${contact}`}>{h.cta2}</a>
+  </div>
+
+  <div class="cursor" aria-hidden="true" data-cursor>
+    <Icon name="cursor" size={22} />
+    <span class="who">{h.agent}</span>
+  </div>
+
+  <div class="pop" role="group" aria-labelledby="pop-label" data-pop hidden>
+    <div class="ask" data-ask>
+      <span class="pop-label" id="pop-label">{h.popLabel}</span>
+      <span class="pop-text">{h.popText}</span>
+      <div class="pop-actions">
+        <button type="button" class="pa pa--yes" data-accept>{h.accept}</button>
+        <button type="button" class="pa pa--no" data-dismiss>{h.dismiss}</button>
+      </div>
+    </div>
+    <div class="done" data-done hidden>
+      <span class="done-text"><Icon name="check" class="ok" /><span data-done-text aria-live="polite"></span></span>
+      <button type="button" class="again" data-again>{h.replay}</button>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero { position: relative; padding-top: 128px; padding-bottom: 136px; display: flex; flex-direction: column; }
+  h1 {
+    max-width: 1000px; font: 600 var(--jc-fs-hero)/1.05 var(--jc-font-sans); letter-spacing: var(--jc-ls-hero);
+    text-wrap: pretty;
+  }
+  .target {
+    border-radius: 6px; -webkit-box-decoration-break: clone; box-decoration-break: clone;
+    text-decoration: underline; text-decoration-color: transparent; text-decoration-thickness: 5px; text-underline-offset: 10px;
+    transition: background-color var(--jc-dur-base) var(--jc-ease), text-decoration-color var(--jc-dur-slow) var(--jc-ease);
+  }
+  .hero[data-state='proposing'] .target { background: var(--jc-accent-soft); }
+  .hero[data-state='accepted'] .target { text-decoration-color: var(--jc-accent); }
+  .sub { margin-top: 32px; max-width: 720px; font: 400 20px/1.55 var(--jc-font-sans); color: var(--jc-text-2); }
+  .ctas { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 44px; }
+
+  .cursor {
+    position: absolute; left: 0; top: 0; z-index: 3; pointer-events: none; opacity: 0;
+    display: flex; align-items: flex-start; gap: 2px;
+    transition: left 700ms var(--jc-ease), top 700ms var(--jc-ease), opacity var(--jc-dur-base) var(--jc-ease);
+  }
+  .who {
+    margin-top: 16px; padding: 4px 8px; border-radius: var(--jc-radius-pill);
+    background: var(--jc-accent); color: var(--jc-on-accent); font: 400 11px/1 var(--jc-font-mono);
+  }
+  .pop {
+    position: absolute; z-index: 4; width: 300px; padding: 16px; border-radius: var(--jc-radius-md);
+    border: 1px solid var(--jc-hairline-strong); background: var(--jc-card); box-shadow: var(--jc-shadow-2);
+    animation: pop-in var(--jc-dur-base) var(--jc-ease);
+  }
+  .pop[hidden], .done[hidden], .ask[hidden] { display: none; }
+  @keyframes pop-in { from { opacity: 0; transform: translateY(4px); } }
+  .ask { display: flex; flex-direction: column; gap: 12px; }
+  .pop-label { font: 400 11px/1 var(--jc-font-mono); color: var(--jc-accent); }
+  .pop-text { font: 500 15px/1.45 var(--jc-font-sans); color: var(--jc-ink); }
+  .pop-actions { display: flex; gap: 8px; }
+  .pa {
+    height: 40px; padding: 0 18px; border-radius: var(--jc-radius-pill); font: 600 14px/1 var(--jc-font-sans); cursor: pointer;
+    transition: background-color var(--jc-dur-fast) var(--jc-ease), color var(--jc-dur-fast) var(--jc-ease);
+  }
+  .pa--yes { border: 0; background: var(--jc-ink); color: var(--jc-canvas); }
+  .pa--yes:hover { background: var(--jc-accent); color: var(--jc-on-accent); }
+  .pa--no { padding: 0 16px; border: 1px solid var(--jc-hairline-strong); background: transparent; color: var(--jc-ink); }
+  .pa--no:hover { background: var(--jc-surface); }
+  .done { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+  .done-text { display: inline-flex; align-items: center; gap: 8px; font: 500 14px/1.4 var(--jc-font-sans); color: var(--jc-ink); }
+  .done-text :global(.ok) { color: var(--jc-accent); flex-shrink: 0; }
+  .again {
+    flex-shrink: 0; height: 36px; padding: 0 12px; border: 0; border-radius: var(--jc-radius-pill);
+    background: var(--jc-surface); color: var(--jc-ink); font: 500 13px/1 var(--jc-font-sans); cursor: pointer;
+  }
+
+  @media (max-width: 640px) {
+    .hero { padding-top: 40px; padding-bottom: 48px; }
+    h1 { text-wrap: pretty; }
+    .target { border-radius: 4px; }
+    .sub { margin-top: 20px; font-size: 17px; }
+    .ctas { flex-direction: column; gap: 10px; margin-top: 20px; }
+    .ctas .btn { height: 48px; font-size: 15px; width: 100%; }
+    .cursor { display: none; }
+    .pop { position: static; width: auto; margin-top: 20px; }
+    .pop-actions { display: grid; grid-template-columns: 1fr 1fr; }
+    .pa { height: 44px; }
+    .again { height: 44px; }
+  }
+</style>
+
+<script>
+  const hero = document.querySelector<HTMLElement>('[data-hero]');
+  if (hero) {
+    const target = hero.querySelector<HTMLElement>('[data-target]')!;
+    const cursor = hero.querySelector<HTMLElement>('[data-cursor]')!;
+    const pop = hero.querySelector<HTMLElement>('[data-pop]')!;
+    const ask = pop.querySelector<HTMLElement>('[data-ask]')!;
+    const done = pop.querySelector<HTMLElement>('[data-done]')!;
+    const doneText = pop.querySelector<HTMLElement>('[data-done-text]')!;
+    const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+    const mobile = matchMedia('(max-width: 640px)');
+    let timers: number[] = [];
+    const later = (fn: () => void, ms: number) => timers.push(window.setTimeout(fn, ms));
+    const clear = () => { timers.forEach(clearTimeout); timers = []; };
+
+    const place = (x: number, y: number, animate: boolean) => {
+      cursor.style.transition = animate ? '' : 'none';
+      cursor.style.left = `${x}px`;
+      cursor.style.top = `${y}px`;
+    };
+    const anchor = () => {
+      const c = hero.getBoundingClientRect();
+      const rects = target.getClientRects();
+      const b = rects[rects.length - 1] ?? target.getBoundingClientRect();
+      return { x: b.right - c.left - 14, y: b.bottom - c.top - 10, w: hero.offsetWidth };
+    };
+    const showPop = () => {
+      pop.hidden = false;
+      if (mobile.matches) { pop.style.left = ''; pop.style.top = ''; return; }
+      const a = anchor();
+      pop.style.left = `${Math.max(0, Math.min(a.x - 12, a.w - 300 - 20))}px`;
+      pop.style.top = `${a.y + 34}px`;
+    };
+    const set = (s: string) => { hero.dataset.state = s; };
+
+    const run = (delay: number) => {
+      clear();
+      set('hidden');
+      pop.hidden = true; ask.hidden = false; done.hidden = true;
+      cursor.style.opacity = '0';
+      place(hero.offsetWidth - 90, hero.offsetHeight - 50, false);
+      const still = reduced.matches || mobile.matches;
+      later(() => {
+        const a = anchor();
+        set('moving');
+        if (!mobile.matches) { cursor.style.opacity = '1'; place(a.x, a.y, !still); }
+      }, delay);
+      later(() => { set('proposing'); showPop(); }, delay + (still ? 0 : 850));
+    };
+    const finish = (s: 'accepted' | 'dismissed') => {
+      set(s);
+      ask.hidden = true; done.hidden = false;
+      doneText.textContent = hero.dataset[s] ?? '';
+      done.querySelector<HTMLButtonElement>('[data-again]')?.focus();
+    };
+    pop.querySelector('[data-accept]')!.addEventListener('click', () => finish('accepted'));
+    pop.querySelector('[data-dismiss]')!.addEventListener('click', () => finish('dismissed'));
+    pop.querySelector('[data-again]')!.addEventListener('click', () => run(250));
+    addEventListener('resize', () => {
+      if (hero.dataset.state === 'hidden' || hero.dataset.state === 'moving') return;
+      const a = anchor();
+      if (!mobile.matches) { place(a.x, a.y, false); showPop(); }
+    });
+
+    const start = () => run(mobile.matches ? 2000 : 1400);
+    (document.fonts?.ready ?? Promise.resolve()).then(start);
+  }
+</script>

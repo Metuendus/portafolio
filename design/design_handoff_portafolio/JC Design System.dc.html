@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Fragment+Mono&display=swap">
+<link rel="stylesheet" href="tokens/jc-tokens.css">
+<style>
+body{margin:0;background:#E9E9E6}
+a{color:var(--jc-accent)}a:hover{color:var(--jc-accent-hover)}
+@keyframes jcspin{to{transform:rotate(360deg)}}
+</style>
+</helmet>
+
+<div data-theme="{{ theme }}" data-screen-label="Design system" style="width:1440px;box-sizing:border-box;padding:64px;display:flex;flex-direction:column;gap:96px;background:var(--jc-canvas);color:var(--jc-ink);font-family:var(--jc-font-sans);transition:background-color var(--jc-dur-slow) var(--jc-ease),color var(--jc-dur-slow) var(--jc-ease)">
+
+  <!-- 00 PORTADA -->
+  <header style="display:flex;justify-content:space-between;align-items:flex-end;gap:32px;padding-bottom:40px;border-bottom:1px solid var(--jc-hairline)">
+    <div style="display:flex;flex-direction:column;gap:16px;max-width:760px">
+      <div style="display:flex;align-items:center;gap:12px">
+        <div style="width:40px;height:40px;border-radius:10px;background:var(--jc-ink);color:var(--jc-canvas);display:flex;align-items:center;justify-content:center;font:600 18px/1 var(--jc-font-sans);letter-spacing:-1px">JC</div>
+        <span style="font:400 14px/1 var(--jc-font-mono);color:var(--jc-text-3)">josecarloscorona.dev · design system v0.1</span>
+      </div>
+      <h1 style="margin:0;font:600 56px/1.05 var(--jc-font-sans);letter-spacing:-1.8px">Ficha técnica</h1>
+      <p style="margin:0;font-size:17px;line-height:1.6;color:var(--jc-text-2);text-wrap:pretty">Identidad casi monocroma con un solo acento, pino, para que las capturas de Iterum, Domi y Vocatio pongan el color. Tokens en <span style="font-family:var(--jc-font-mono);font-size:15px">tokens/jc-tokens.css</span> con prefijo <span style="font-family:var(--jc-font-mono);font-size:15px">--jc-</span>. Usa el botón de tema de la navegación (sección 13) para ver todo en oscuro.</p>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:8px;align-items:flex-end">
+      <span style="font:400 12px/1 var(--jc-font-mono);color:var(--jc-text-3)">TEMA</span>
+      <div role="group" aria-label="Tema" style="display:flex;padding:4px;gap:4px;border-radius:var(--jc-radius-pill);background:var(--jc-surface);border:1px solid var(--jc-hairline)">
+        <button onClick="{{ setLight }}" aria-pressed="{{ isLight }}" style="height:36px;padding:0 16px;border:0;border-radius:var(--jc-radius-pill);background:{{ lightBg }};color:{{ lightFg }};font:500 14px/1 var(--jc-font-sans);cursor:pointer;box-shadow:{{ lightShadow }}">Claro</button>
+        <button onClick="{{ setDark }}" aria-pressed="{{ isDark }}" style="height:36px;padding:0 16px;border:0;border-radius:var(--jc-radius-pill);background:{{ darkBg }};color:{{ darkFg }};font:500 14px/1 var(--jc-font-sans);cursor:pointer;box-shadow:{{ darkShadow }}">Oscuro</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- 01 COLOR -->
+  <section data-screen-label="01 Color" style="display:flex;flex-direction:column;gap:32px">
+    <div style="display:flex;flex-direction:column;gap:6px"><span style="font:400 12px/1 var(--jc-font-mono);color:var(--jc-text-3)">01</span><h2 style="margin:0;font:600 28px/1.15 var(--jc-font-sans);letter-spacing:-.6px">Color</h2><p style="margin:0;font-size:15px;line-height:1.55;color:var(--jc-text-2);max-width:720px">Tinta, superficies y un acento. Los estados siempre van con ícono y palabra; el color solo refuerza.</p></div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px">
+      <div style="background:#FFFFFF;border:1px solid #E3E5E8;border-radius:16px;padding:24px;display:flex;flex-direction:column;gap:16px;color:#0B0D0E">
+        <span style="font:400 12px/1 var(--jc-font-mono);color:#5B6168">:root · claro</span>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;font:400 12px/1.35 var(--jc-font-mono)">
+          <div style="display:flex;flex-direction:column;gap:6px"><div style="height:56px;border-radius:12px;background:#0B0D0E"></div>ink<br><span style="color:#5B6168">#0B0D0E</span></div>
+          <div style="display:flex;flex-direction:column;gap:6px"><div style="height:56px;border-radius:12px;background:#3A3F44"></div>text-2<br><span style="color:#5B6168">#3A3F44</span></div>
+          <div style="display:flex;flex-direction:column;gap:6px"><div style="height:56px;border-radius:12px;background:#5B6168"></div>text-3<br><span style="color:#5B6168">#5B6168</span></div>
+          <div style="display:flex;flex-direction:column;gap:6px"><div style="height:56px;border-radius:12px;background:#1D5C47"></div>accent<br><span style="color:#5B6168">#1D5C47</span></div>
+          <div style="display:flex;flex-direction:column;gap:6px"><div style="height:56px;border-radius:12px;background:#FFFFFF;border:1px solid #E3E5E8;box-sizing:border-box"></div>canvas · card<br><span style="color:#5B6168">#FFFFFF</span></div>
+          <div style="display:flex;flex-direction:column;gap:6px"><div style="height:56px;border-radius:12px;background:#F5F6F7;border:1px solid #E3E5E8;box-sizing:border-box"></div>surface<br><span style="color:#5B6168">#F5F6F7</span></div>
+          <div style="display:flex;flex-direction:column;gap:6px"><div style="height:56px;border-radius:12px;background:#FFFFFF;border:1px solid #E3E5E8;box-sizing:border-box;display:flex;flex-direction:column;justify-content:center;gap:10px;padding:0 10px"><div style="height:1px;background:#E3E5E8"></div><div style="height:1px;background:#C9CDD2"></div></div>hairline · strong<br><span style="color:#5B6168">#E3E5E8 · #C9CDD2</span></div>
+          <div style="display:flex;flex-direction:column;gap:6px"><div style="height:56px;border-radius:12px;background:#E6F0EC;display:flex;align-items:center;justify-content:center"><div style="width:28px;height:28px;border-radius:8px;background:#FFFFFF;box-shadow:0 0 0 2px #FFFFFF,0 0 0 4px #1D5C47"></div></div>accent-soft · focus<br><span style="color:#5B6168">#E6F0EC · #1D5C47</span></div>
+        </div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <span style="display:inline-flex;align-items:center;gap:6px;height:28px;padding:0 10px;border-radius:9999px;background:#E4F3EA;color:#176B3F;font:500 13px/1 var(--jc-font-sans)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="m8 12 3 3 5-6"></path></svg>ok #176B3F</span>
+          <span style="display:inline-flex;align-items:center;gap:6px;height:28px;padding:0 10px;border-radius:9999px;background:#FAF0D7;color:#835000;font:500 13px/1 var(--jc-font-sans)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M12 3 2 21h20L12 3z"></path><path d="M12 10v5M12 18h.01"></path></svg>warn #835000</span>
+          <span style="display:inline-flex;align-items:center;gap:6px;height:28px;padding:0 10px;border-radius:9999px;background:#F9E3E0;color:#A3261B;font:500 13px/1 var(--jc-font-sans)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="m9 9 6 6M15 9l-6 6"></path></svg>risk #A3261B</span>
+          <span style="display:inline-flex;align-items:center;gap:6px;height:28px;padding:0 10px;border-radius:9999px;background:#EEF0F2;color:#3A3F44;font:500 13px/1 var(--jc-font-sans)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><rect width="20" height="5" x="2" y="3" rx="1"></rect><path d="M4 8v11a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8M10 12h4"></path></svg>neutral #3A3F44</span>
+        </div>
+      </div>
+      <div style="background:#0E1011;border:1px solid #2A2F33;border-radius:16px;padding:24px;display:flex;flex-direction:column;gap:16px;color:#F2F3F4">
+        <span style="font:400 12px/1 var(--jc-font-mono);color:#959CA3">[data-theme="dark"]</span>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;font:400 12px/1.35 var(--jc-font-mono)">
+          <div style="display:flex;flex-direction:column;gap:6px"><div style="height:56px;border-radius:12px;background:#F2F3F4"></div>ink<br><span style="color:#959CA3">#F2F3F4</span></div>
+          <div style="display:flex;flex-direction:column;gap:6px"><div style="height:56px;border-radius:12px;background:#B8BEC4"></div>text-2<br><span style="color:#959CA3">#B8BEC4</span></div>
+          <div style="display:flex;flex-direction:column;gap:6px"><div style="height:56px;border-radius:12px;background:#959CA3"></div>text-3<br><span style="color:#959CA3">#959CA3</span></div>
+          <div style="display:flex;flex-direction:column;gap:6px"><div style="height:56px;border-radius:12px;background:#6CC5A0"></div>accent<br><span style="color:#959CA3">#6CC5A0</span></div>
+          <div style="display:flex;flex-direction:column;gap:6px"><div style="height:56px;border-radius:12px;background:#0E1011;border:1px solid #2A2F33;box-sizing:border-box"></div>canvas<br><span style="color:#959CA3">#0E1011</span></div>
+          <div style="display:flex;flex-direction:column;gap:6px"><div style="height:56px;border-radius:12px;background:#16191B;border:1px solid #2A2F33;box-sizing:border-box"></div>surface · card<br><span style="color:#959CA3">#16191B · #1A1D20</span></div>
+          <div style="display:flex;flex-direction:column;gap:6px"><div style="height:56px;border-radius:12px;background:#0E1011;border:1px solid #2A2F33;box-sizing:border-box;display:flex;flex-direction:column;justify-content:center;gap:10px;padding:0 10px"><div style="height:1px;background:#2A2F33"></div><div style="height:1px;background:#3D4349"></div></div>hairline · strong<br><span style="color:#959CA3">#2A2F33 · #3D4349</span></div>
+          <div style="display:flex;flex-direction:column;gap:6px"><div style="height:56px;border-radius:12px;background:#16302A;display:flex;align-items:center;justify-content:center"><div style="width:28px;height:28px;border-radius:8px;background:#1A1D20;box-shadow:0 0 0 2px #0E1011,0 0 0 4px #6CC5A0"></div></div>accent-soft · focus<br><span style="color:#959CA3">#16302A · #6CC5A0</span></div>
+        </div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <span style="display:inline-flex;align-items:center;gap:6px;height:28px;padding:0 10px;border-radius:9999px;background:#12301F;color:#6DD39A;font:500 13px/1 var(--jc-font-sans)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="m8 12 3 3 5-6"></path></svg>ok #6DD39A</span>
+          <span style="display:inline-flex;align-items:center;gap:6px;height:28px;padding:0 10px;border-radius:9999px;background:#33260F;color:#F0B95A;font:500 13px/1 var(--jc-font-sans)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M12 3 2 21h20L12 3z"></path><path d="M12 10v5M12 18h.01"></path></svg>warn #F0B95A</span>
+          <span style="display:inline-flex;align-items:center;gap:6px;height:28px;padding:0 10px;border-radius:9999px;background:#3A1A17;color:#F2877B;font:500 13px/1 var(--jc-font-sans)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="m9 9 6 6M15 9l-6 6"></path></svg>risk #F2877B</span>
+          <span style="display:inline-flex;align-items:center;gap:6px;height:28px;padding:0 10px;border-radius:9999px;background:#23272B;color:#B8BEC4;font:500 13px/1 var(--jc-font-sans)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><rect width="20" height="5" x="2" y="3" rx="1"></rect><path d="M4 8v11a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8M10 12h4"></path></svg>neutral #B8BEC4</span>
+        </div>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:280px 1fr;gap:24px;align-items:center">
+      <div style="display:flex;height:40px;border-radius:9999px;overflow:hidden"><div style="flex:1;background:#0B0D0E"></div><div style="flex:1;background:#1D5C47"></div><div style="flex:1;background:#1456F0"></div><div style="flex:1;background:#D4421F"></div><div style="flex:1;background:#2E3F9E"></div></div>
+      <p style="margin:0;font-size:14px;line-height:1.5;color:var(--jc-text-2)">Junto a Iterum, Domi y Vocatio: el pino queda lejos del rojo y se separa del azul y del añil por tono y luminosidad. Contraste del acento: 7,6:1 sobre blanco; #6CC5A0 da 9,8:1 sobre #0E1011.</p>
+    </div>
+  </section>
+
+  <!-- 02 TIPOGRAFIA -->
+  <section data-screen-label="02 Tipografía" style="display:flex;flex-direction:column;gap:32px">
+    <div style="display:flex;flex-direction:column;gap:6px"><span style="font:400 12px/1 var(--jc-font-mono);color:var(--jc-text-3)">02</span><h2 style="margin:0;font:600 28px/1.15 var(--jc-font-sans);letter-spacing:-.6px">Tipografía</h2><p style="margin:0;font-size:15px;line-height:1.55;color:var(--jc-text-2);max-width:720px">Instrument Sans para todo; Fragment Mono para fuentes de datos, stack y detalles técnicos. Cifras siempre con tabular-nums. En móvil, display baja a 40 y h1 a 32.</p></div>
+    <div style="display:flex;flex-direction:column;border-top:1px solid var(--jc-hairline)">
+      <div style="display:grid;grid-template-columns:200px 1fr;gap:32px;align-items:baseline;padding:20px 0;border-bottom:1px solid var(--jc-hairline)"><span style="font:400 12px/1.5 var(--jc-font-mono);color:var(--jc-text-3)">display · 56/1.05 · 600<br>−1.8 px</span><span style="font:600 56px/1.05 var(--jc-font-sans);letter-spacing:-1.8px;text-wrap:pretty">Construyo sistemas de IA que la gente usa todos los días, no demos.</span></div>
+      <div style="display:grid;grid-template-columns:200px 1fr;gap:32px;align-items:baseline;padding:20px 0;border-bottom:1px solid var(--jc-hairline)"><span style="font:400 12px/1.5 var(--jc-font-mono);color:var(--jc-text-3)">h1 · 40/1.1 · 600<br>−1.2 px</span><span style="font:600 40px/1.1 var(--jc-font-sans);letter-spacing:-1.2px">Proyectos en producción</span></div>
+      <div style="display:grid;grid-template-columns:200px 1fr;gap:32px;align-items:baseline;padding:20px 0;border-bottom:1px solid var(--jc-hairline)"><span style="font:400 12px/1.5 var(--jc-font-mono);color:var(--jc-text-3)">h2 · 28/1.15 · 600<br>−0.6 px</span><span style="font:600 28px/1.15 var(--jc-font-sans);letter-spacing:-.6px">Qué decidí y por qué</span></div>
+      <div style="display:grid;grid-template-columns:200px 1fr;gap:32px;align-items:baseline;padding:20px 0;border-bottom:1px solid var(--jc-hairline)"><span style="font:400 12px/1.5 var(--jc-font-mono);color:var(--jc-text-3)">h3 · 20/1.25 · 600<br>−0.3 px</span><span style="font:600 20px/1.25 var(--jc-font-sans);letter-spacing:-.3px">Arquitectura en Google Cloud</span></div>
+      <div style="display:grid;grid-template-columns:200px 1fr;gap:32px;align-items:baseline;padding:20px 0;border-bottom:1px solid var(--jc-hairline)"><span style="font:400 12px/1.5 var(--jc-font-mono);color:var(--jc-text-3)">cuerpo · 17/1.6 · 400</span><span style="font:400 17px/1.6 var(--jc-font-sans);color:var(--jc-text-2);max-width:680px">Lidero datos e IA en una agencia de marketing digital en CDMX. Acentos y eñes sin sorpresas: año, información, diseño, ¿qué sigue?</span></div>
+      <div style="display:grid;grid-template-columns:200px 1fr;gap:32px;align-items:baseline;padding:20px 0;border-bottom:1px solid var(--jc-hairline)"><span style="font:400 12px/1.5 var(--jc-font-mono);color:var(--jc-text-3)">meta · 14/1.45 · 500</span><span style="font:500 14px/1.45 var(--jc-font-sans);color:var(--jc-text-2)">Caso EPA · 6 min de lectura · Actualizado oct 2026</span></div>
+      <div style="display:grid;grid-template-columns:200px 1fr;gap:32px;align-items:baseline;padding:20px 0;border-bottom:1px solid var(--jc-hairline)"><span style="font:400 12px/1.5 var(--jc-font-mono);color:var(--jc-text-3)">micro · 12/1.4 · mono</span><span style="font:400 12px/1.4 var(--jc-font-mono);color:var(--jc-text-3)">FUENTE: LINKEDIN, OCT 2026</span></div>
+      <div style="display:grid;grid-template-columns:200px 1fr;gap:32px;align-items:baseline;padding:20px 0;border-bottom:1px solid var(--jc-hairline)"><span style="font:400 12px/1.5 var(--jc-font-mono);color:var(--jc-text-3)">cifras · tabular-nums</span><span style="font:600 40px/1 var(--jc-font-sans);letter-spacing:-1px;font-variant-numeric:tabular-nums">0123456789 · 1,111 · 12,4 %</span></div>
+    </div>
+  </section>
+
+  <!-- 03 ESPACIADO RADIOS SOMBRAS MOVIMIENTO -->
+  <section data-screen-label="03 Espacio y forma" style="display:flex;flex-direction:column;gap:32px">
+    <div style="display:flex;flex-direction:column;gap:6px"><span style="font:400 12px/1 var(--jc-font-mono);color:var(--jc-text-3)">03</span><h2 style="margin:0;font:600 28px/1.15 var(--jc-font-sans);letter-spacing:-.6px">Espacio, forma y movimiento</h2></div>
+    <div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px">
+      <div style="border:1px solid var(--jc-hairline);border-radius:16px;padding:24px;display:flex;flex-direction:column;gap:10px">
+        <span style="font:600 15px/1 var(--jc-font-sans)">Espaciado · base 4</span>
+        <div style="display:flex;flex-direction:column;gap:8px;font:400 12px/1 var(--jc-font-mono);color:var(--jc-text-3)">
+          <div style="display:flex;align-items:center;gap:12px"><span style="width:56px">space-1</span><div style="width:4px;height:12px;background:var(--jc-ink)"></div>4</div>
+          <div style="display:flex;align-items:center;gap:12px"><span style="width:56px">space-2</span><div style="width:8px;height:12px;background:var(--jc-ink)"></div>8</div>
+          <div style="display:flex;align-items:center;gap:12px"><span style="width:56px">space-3</span><div style="width:12px;height:12px;background:var(--jc-ink)"></div>12</div>
+          <div style="display:flex;align-items:center;gap:12px"><span style="width:56px">space-4</span><div style="width:16px;height:12px;background:var(--jc-ink)"></div>16</div>
+          <div style="display:flex;align-items:center;gap:12px"><span style="width:56px">space-6</span><div style="width:24px;height:12px;background:var(--jc-ink)"></div>24</div>
+          <div style="display:flex;align-items:center;gap:12px"><span style="width:56px">space-8</span><div style="width:32px;height:12px;background:var(--jc-ink)"></div>32</div>
+          <div style="display:flex;align-items:center;gap:12px"><span style="width:56px">space-12</span><div style="width:48px;height:12px;background:var(--jc-ink)"></div>48</div>
+          <div style="display:flex;align-items:center;gap:12px"><span style="width:56px">space-16</span><div style="width:64px;height:12px;background:var(--jc-ink)"></div>64</div>
+          <div style="display:flex;align-items:center;gap:12px"><span style="width:56px">space-24</span><div style="width:96px;height:12px;background:var(--jc-ink)"></div>96</div>
+        </div>
+        <span style="font:400 12px/1.4 var(--jc-font-mono);color:var(--jc-text-3);padding-top:6px">tap mínimo: 44 · contenedor 1200 · gutter 32 / 20</span>
+      </div>
+      <div style="border:1px solid var(--jc-hairline);border-radius:16px;padding:24px;display:flex;flex-direction:column;gap:12px">
+        <span style="font:600 15px/1 var(--jc-font-sans)">Radios</span>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;font:400 12px/1.3 var(--jc-font-mono);color:var(--jc-text-3)">
+          <div style="display:flex;flex-direction:column;gap:6px"><div style="height:48px;border:1.5px solid var(--jc-ink);border-radius:4px"></div>xs 4 · foco</div>
+          <div style="display:flex;flex-direction:column;gap:6px"><div style="height:48px;border:1.5px solid var(--jc-ink);border-radius:8px"></div>sm 8 · inputs</div>
+          <div style="display:flex;flex-direction:column;gap:6px"><div style="height:48px;border:1.5px solid var(--jc-ink);border-radius:12px"></div>md 12 · captura</div>
+          <div style="display:flex;flex-direction:column;gap:6px"><div style="height:48px;border:1.5px solid var(--jc-ink);border-radius:16px"></div>lg 16 · tarjeta</div>
+          <div style="display:flex;flex-direction:column;gap:6px"><div style="height:48px;border:1.5px solid var(--jc-ink);border-radius:24px"></div>xl 24 · video</div>
+          <div style="display:flex;flex-direction:column;gap:6px"><div style="height:48px;border:1.5px solid var(--jc-ink);border-radius:9999px"></div>pill · botón, chip</div>
+        </div>
+      </div>
+      <div style="border:1px solid var(--jc-hairline);border-radius:16px;padding:24px;display:flex;flex-direction:column;gap:12px;background:var(--jc-surface)">
+        <span style="font:600 15px/1 var(--jc-font-sans)">Sombras</span>
+        <div style="display:flex;flex-direction:column;gap:16px;font:400 12px/1.3 var(--jc-font-mono);color:var(--jc-text-3)">
+          <div style="height:56px;border-radius:12px;background:var(--jc-card);box-shadow:var(--jc-shadow-1);display:flex;align-items:center;padding:0 14px">shadow-1 · reposo</div>
+          <div style="height:56px;border-radius:12px;background:var(--jc-card);box-shadow:var(--jc-shadow-2);display:flex;align-items:center;padding:0 14px">shadow-2 · menús</div>
+          <div style="height:56px;border-radius:12px;background:var(--jc-card);box-shadow:var(--jc-shadow-3);display:flex;align-items:center;padding:0 14px">shadow-3 · hover tarjeta</div>
+        </div>
+      </div>
+      <div style="border:1px solid var(--jc-hairline);border-radius:16px;padding:24px;display:flex;flex-direction:column;gap:12px">
+        <span style="font:600 15px/1 var(--jc-font-sans)">Movimiento</span>
+        <div style="display:flex;flex-direction:column;gap:12px;font-size:14px;line-height:1.45;color:var(--jc-text-2)">
+          <div style="display:flex;flex-direction:column;gap:2px"><span style="font:400 12px/1 var(--jc-font-mono);color:var(--jc-ink)">fast · 150 ms</span>Color de botones, links y chips.</div>
+          <div style="display:flex;flex-direction:column;gap:2px"><span style="font:400 12px/1 var(--jc-font-mono);color:var(--jc-ink)">base · 200 ms</span>Tarjeta: sombra, flecha, captura.</div>
+          <div style="display:flex;flex-direction:column;gap:2px"><span style="font:400 12px/1 var(--jc-font-mono);color:var(--jc-ink)">slow · 250 ms</span>Menú móvil y cambio de tema.</div>
+          <div style="display:flex;flex-direction:column;gap:2px"><span style="font:400 12px/1 var(--jc-font-mono);color:var(--jc-ink)">ease · (.2, 0, 0, 1)</span>Sale rápido, llega suave. Sin rebotes.</div>
+          <div style="padding:10px 12px;border-radius:8px;background:var(--jc-surface);font-size:13px">Con prefers-reduced-motion todas las duraciones van a 0 y los cambios son instantáneos.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 MARCA -->
+  <section data-screen-label="04 Marca" style="display:flex;flex-direction:column;gap:32px">
+    <div style="display:flex;flex-direction:column;gap:6px"><span style="font:400 12px/1 var(--jc-font-mono);color:var(--jc-text-3)">04</span><h2 style="margin:0;font:600 28px/1.15 var(--jc-font-sans);letter-spacing:-.6px">Monograma y wordmark</h2><p style="margin:0;font-size:15px;line-height:1.55;color:var(--jc-text-2);max-width:720px">La línea pino solo aparece a 96 px o más. A 32 y 16 px el monograma es una tinta pura.</p></div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px">
+      <div style="background:#FFFFFF;border:1px solid #E3E5E8;border-radius:16px;padding:32px;display:flex;gap:20px;align-items:flex-end;color:#0B0D0E">
+        <div style="width:96px;height:96px;border-radius:24px;background:#0B0D0E;color:#fff;display:flex;align-items:center;justify-content:center;font:600 44px/1 var(--jc-font-sans);letter-spacing:-2.5px;position:relative">JC<span style="position:absolute;left:28px;right:28px;bottom:20px;height:3px;background:#2A7D5F;border-radius:2px"></span></div>
+        <div style="width:96px;height:96px;border-radius:24px;border:1.5px solid #0B0D0E;box-sizing:border-box;display:flex;align-items:center;justify-content:center;font:600 44px/1 var(--jc-font-sans);letter-spacing:-2.5px">JC</div>
+        <div style="width:32px;height:32px;border-radius:8px;background:#0B0D0E;color:#fff;display:flex;align-items:center;justify-content:center;font:600 15px/1 var(--jc-font-sans);letter-spacing:-.8px">JC</div>
+        <div style="width:16px;height:16px;border-radius:4px;background:#0B0D0E;color:#fff;display:flex;align-items:center;justify-content:center;font:700 8px/1 var(--jc-font-sans);letter-spacing:-.4px">JC</div>
+        <span style="font:400 12px/1.4 var(--jc-font-mono);color:#5B6168">96 · 96 una tinta · 32 · 16 favicon</span>
+      </div>
+      <div style="background:#0E1011;border:1px solid #2A2F33;border-radius:16px;padding:32px;display:flex;gap:20px;align-items:flex-end;color:#F2F3F4">
+        <div style="width:96px;height:96px;border-radius:24px;background:#F2F3F4;color:#0B0D0E;display:flex;align-items:center;justify-content:center;font:600 44px/1 var(--jc-font-sans);letter-spacing:-2.5px;position:relative">JC<span style="position:absolute;left:28px;right:28px;bottom:20px;height:3px;background:#1D5C47;border-radius:2px"></span></div>
+        <div style="width:96px;height:96px;border-radius:24px;border:1.5px solid #F2F3F4;box-sizing:border-box;display:flex;align-items:center;justify-content:center;font:600 44px/1 var(--jc-font-sans);letter-spacing:-2.5px">JC</div>
+        <div style="width:32px;height:32px;border-radius:8px;background:#F2F3F4;color:#0B0D0E;display:flex;align-items:center;justify-content:center;font:600 15px/1 var(--jc-font-sans);letter-spacing:-.8px">JC</div>
+        <div style="width:16px;height:16px;border-radius:4px;background:#F2F3F4;color:#0B0D0E;display:flex;align-items:center;justify-content:center;font:700 8px/1 var(--jc-font-sans);letter-spacing:-.4px">JC</div>
+        <span style="font:400 12px/1.4 var(--jc-font-mono);color:#959CA3">sobre oscuro</span>
+      </div>
+    </div>
+    <div style="display:flex;gap:64px;align-items:center;flex-wrap:wrap;padding:24px 0;border-top:1px solid var(--jc-hairline);border-bottom:1px solid var(--jc-hairline)">
+      <div style="display:flex;align-items:center;gap:12px"><div style="width:32px;height:32px;border-radius:8px;background:var(--jc-ink);color:var(--jc-canvas);display:flex;align-items:center;justify-content:center;font:600 15px/1 var(--jc-font-sans);letter-spacing:-.8px">JC</div><span style="font:600 20px/1 var(--jc-font-sans);letter-spacing:-.4px">José Carlos Corona</span></div>
+      <div style="display:flex;flex-direction:column;gap:6px"><span style="font:600 28px/1 var(--jc-font-sans);letter-spacing:-.7px">José Carlos Corona Chablé</span><span style="font:400 12px/1 var(--jc-font-mono);color:var(--jc-text-3)">variante larga · Sobre mí</span></div>
+      <span style="font:400 15px/1 var(--jc-font-mono);color:var(--jc-text-2)">josecarloscorona.dev</span>
+    </div>
+  </section>
+
+  <!-- 05 BOTONES -->
+  <section data-screen-label="05 Botones" style="display:flex;flex-direction:column;gap:32px">
+    <div style="display:flex;flex-direction:column;gap:6px"><span style="font:400 12px/1 var(--jc-font-mono);color:var(--jc-text-3)">05</span><h2 style="margin:0;font:600 28px/1.15 var(--jc-font-sans);letter-spacing:-.6px">Botones</h2><p style="margin:0;font-size:15px;line-height:1.55;color:var(--jc-text-2);max-width:720px">Alto 44 en escritorio y móvil (52 en el hero). En móvil, primario y secundario ocupan el ancho completo.</p></div>
+    <div style="display:grid;grid-template-columns:140px repeat(5,minmax(0,1fr));gap:16px 24px;align-items:center">
+      <span></span>
+      <span style="font:400 12px/1 var(--jc-font-mono);color:var(--jc-text-3)">REPOSO</span><span style="font:400 12px/1 var(--jc-font-mono);color:var(--jc-text-3)">HOVER</span><span style="font:400 12px/1 var(--jc-font-mono);color:var(--jc-text-3)">PRESIONADO</span><span style="font:400 12px/1 var(--jc-font-mono);color:var(--jc-text-3)">FOCO (TECLADO)</span><span style="font:400 12px/1 var(--jc-font-mono);color:var(--jc-text-3)">DESHABILITADO</span>
+
+      <span style="font:500 14px/1 var(--jc-font-sans)">Primario</span>
+      <span style="justify-self:start;height:44px;padding:0 22px;border-radius:9999px;background:var(--jc-ink);color:var(--jc-canvas);display:inline-flex;align-items:center;font:600 15px/1 var(--jc-font-sans)">Hablemos</span>
+      <span style="justify-self:start;height:44px;padding:0 22px;border-radius:9999px;background:var(--jc-accent);color:var(--jc-on-accent);display:inline-flex;align-items:center;font:600 15px/1 var(--jc-font-sans)">Hablemos</span>
+      <span style="justify-self:start;height:44px;padding:0 22px;border-radius:9999px;background:var(--jc-accent-hover);color:var(--jc-on-accent);display:inline-flex;align-items:center;font:600 15px/1 var(--jc-font-sans)">Hablemos</span>
+      <span style="justify-self:start;height:44px;padding:0 22px;border-radius:9999px;background:var(--jc-ink);color:var(--jc-canvas);display:inline-flex;align-items:center;font:600 15px/1 var(--jc-font-sans);box-shadow:var(--jc-focus-ring)">Hablemos</span>
+      <span style="justify-self:start;height:44px;padding:0 22px;border-radius:9999px;background:var(--jc-hairline);color:var(--jc-text-3);display:inline-flex;align-items:center;font:600 15px/1 var(--jc-font-sans)">Hablemos</span>
+
+      <span style="font:500 14px/1 var(--jc-font-sans)">Secundario</span>
+      <span style="justify-self:start;height:44px;padding:0 22px;border-radius:9999px;border:1px solid var(--jc-ink);box-sizing:border-box;color:var(--jc-ink);display:inline-flex;align-items:center;font:600 15px/1 var(--jc-font-sans)">Descargar CV</span>
+      <span style="justify-self:start;height:44px;padding:0 22px;border-radius:9999px;border:1px solid var(--jc-ink);box-sizing:border-box;background:var(--jc-surface);color:var(--jc-ink);display:inline-flex;align-items:center;font:600 15px/1 var(--jc-font-sans)">Descargar CV</span>
+      <span style="justify-self:start;height:44px;padding:0 22px;border-radius:9999px;border:1px solid var(--jc-ink);box-sizing:border-box;background:var(--jc-hairline);color:var(--jc-ink);display:inline-flex;align-items:center;font:600 15px/1 var(--jc-font-sans)">Descargar CV</span>
+      <span style="justify-self:start;height:44px;padding:0 22px;border-radius:9999px;border:1px solid var(--jc-ink);box-sizing:border-box;color:var(--jc-ink);display:inline-flex;align-items:center;font:600 15px/1 var(--jc-font-sans);box-shadow:var(--jc-focus-ring)">Descargar CV</span>
+      <span style="justify-self:start;height:44px;padding:0 22px;border-radius:9999px;border:1px solid var(--jc-hairline);box-sizing:border-box;color:var(--jc-text-3);display:inline-flex;align-items:center;font:600 15px/1 var(--jc-font-sans)">Descargar CV</span>
+
+      <span style="font:500 14px/1 var(--jc-font-sans)">Link</span>
+      <span style="justify-self:start;height:44px;display:inline-flex;align-items:center;gap:6px;color:var(--jc-accent);font:600 15px/1 var(--jc-font-sans);text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:1px">Leer el caso<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
+      <span style="justify-self:start;height:44px;display:inline-flex;align-items:center;gap:6px;color:var(--jc-accent-hover);font:600 15px/1 var(--jc-font-sans);text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:2px">Leer el caso<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" style="transform:translateX(3px)"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
+      <span style="justify-self:start;height:44px;display:inline-flex;align-items:center;gap:6px;color:var(--jc-accent-hover);font:600 15px/1 var(--jc-font-sans);text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:2px;background:var(--jc-accent-soft);padding:0 6px;border-radius:4px">Leer el caso<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
+      <span style="justify-self:start;height:44px;display:inline-flex;align-items:center;gap:6px;color:var(--jc-accent);font:600 15px/1 var(--jc-font-sans);text-decoration:underline;text-underline-offset:4px;padding:0 6px;border-radius:4px;box-shadow:var(--jc-focus-ring)">Leer el caso<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
+      <span style="justify-self:start;height:44px;display:inline-flex;align-items:center;gap:6px;color:var(--jc-text-3);font:600 15px/1 var(--jc-font-sans)">Leer el caso<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
+    </div>
+    <div style="display:flex;gap:16px;align-items:center;flex-wrap:wrap;padding:20px 24px;border-radius:16px;background:var(--jc-surface)">
+      <span style="font:400 12px/1 var(--jc-font-mono);color:var(--jc-text-3)">PRUEBA EN VIVO →</span>
+      <button style="height:44px;padding:0 22px;border:0;border-radius:9999px;background:var(--jc-ink);color:var(--jc-canvas);font:600 15px/1 var(--jc-font-sans);cursor:pointer;transition:background-color var(--jc-dur-fast) var(--jc-ease),color var(--jc-dur-fast) var(--jc-ease)" style-hover="background-color:var(--jc-accent);color:var(--jc-on-accent)" style-active="background-color:var(--jc-accent-hover)">Hablemos</button>
+      <button style="height:44px;padding:0 22px;border:1px solid var(--jc-ink);border-radius:9999px;background:transparent;color:var(--jc-ink);font:600 15px/1 var(--jc-font-sans);cursor:pointer;transition:background-color var(--jc-dur-fast) var(--jc-ease)" style-hover="background-color:var(--jc-canvas)" style-active="background-color:var(--jc-hairline)">Descargar CV</button>
+      <a href="#casos" style="height:44px;display:inline-flex;align-items:center;gap:6px;color:var(--jc-accent);font:600 15px/1 var(--jc-font-sans);text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:1px" style-hover="color:var(--jc-accent-hover);text-decoration-thickness:2px">Leer el caso<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+      <button disabled="" style="height:44px;padding:0 22px;border:0;border-radius:9999px;background:var(--jc-hairline);color:var(--jc-text-3);font:600 15px/1 var(--jc-font-sans);cursor:not-allowed">Enviando…</button>
+      <span style="font-size:13px;color:var(--jc-text-3)">Usa Tab para ver el foco.</span>
+    </div>
+  </section>
+
+  <!-- 06 CHIPS -->
+  <section data-screen-label="06 Chips" style="display:flex;flex-direction:column;gap:32px">
+    <div style="display:flex;flex-direction:column;gap:6px"><span style="font:400 12px/1 var(--jc-font-mono);color:var(--jc-text-3)">06</span><h2 style="margin:0;font:600 28px/1.15 var(--jc-font-sans);letter-spacing:-.6px">Chips</h2><p style="margin:0;font-size:15px;line-height:1.55;color:var(--jc-text-2);max-width:720px">Siempre ícono y palabra; nunca solo color. Son informativos y no interactivos: no tienen hover ni foco.</p></div>
+    <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px">
+      <div style="border:1px solid var(--jc-hairline);border-radius:16px;padding:24px;display:flex;flex-direction:column;gap:16px">
+        <span style="font:400 12px/1 var(--jc-font-mono);color:var(--jc-text-3)">ORIGEN</span>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <span style="display:inline-flex;align-items:center;gap:6px;height:28px;padding:0 10px;border:1px solid var(--jc-hairline-strong);border-radius:9999px;font:500 13px/1 var(--jc-font-sans)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="4" y="2" width="16" height="20" rx="2"></rect><path d="M9 22v-4h6v4M8 6h.01M12 6h.01M16 6h.01M8 10h.01M12 10h.01M16 10h.01M8 14h.01M12 14h.01M16 14h.01"></path></svg>EPA</span>
+          <span style="display:inline-flex;align-items:center;gap:6px;height:28px;padding:0 10px;border:1px solid var(--jc-hairline-strong);border-radius:9999px;font:500 13px/1 var(--jc-font-sans)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="8" r="5"></circle><path d="M20 21a8 8 0 0 0-16 0"></path></svg>Propia</span>
+        </div>
+        <span style="font-size:13px;line-height:1.45;color:var(--jc-text-3)">Contorno neutro: el origen es contexto, no estado.</span>
+      </div>
+      <div style="border:1px solid var(--jc-hairline);border-radius:16px;padding:24px;display:flex;flex-direction:column;gap:16px">
+        <span style="font:400 12px/1 var(--jc-font-mono);color:var(--jc-text-3)">ESTADO</span>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <span style="display:inline-flex;align-items:center;gap:6px;height:28px;padding:0 10px;border-radius:9999px;background:var(--jc-ok-bg);color:var(--jc-ok);font:500 13px/1 var(--jc-font-sans)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="m8 12 3 3 5-6"></path></svg>En producción</span>
+          <span style="display:inline-flex;align-items:center;gap:6px;height:28px;padding:0 10px;border-radius:9999px;background:var(--jc-warn-bg);color:var(--jc-warn);font:500 13px/1 var(--jc-font-sans)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg>En construcción</span>
+          <span style="display:inline-flex;align-items:center;gap:6px;height:28px;padding:0 10px;border-radius:9999px;background:var(--jc-neutral-bg);color:var(--jc-neutral);font:500 13px/1 var(--jc-font-sans)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><rect width="20" height="5" x="2" y="3" rx="1"></rect><path d="M4 8v11a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8M10 12h4"></path></svg>Postmortem</span>
+        </div>
+        <span style="font-size:13px;line-height:1.45;color:var(--jc-text-3)">Postmortem va en neutro: es aprendizaje, no alarma. Risk queda para errores de formulario.</span>
+      </div>
+      <div style="border:1px solid var(--jc-hairline);border-radius:16px;padding:24px;display:flex;flex-direction:column;gap:16px">
+        <span style="font:400 12px/1 var(--jc-font-mono);color:var(--jc-text-3)">STACK · MÁX. 3</span>
+        <div style="display:flex;gap:6px;flex-wrap:wrap">
+          <span style="display:inline-flex;align-items:center;height:24px;padding:0 8px;border-radius:6px;background:var(--jc-surface);color:var(--jc-text-2);font:400 12px/1 var(--jc-font-mono)">Vertex AI</span>
+          <span style="display:inline-flex;align-items:center;height:24px;padding:0 8px;border-radius:6px;background:var(--jc-surface);color:var(--jc-text-2);font:400 12px/1 var(--jc-font-mono)">Cloud Run</span>
+          <span style="display:inline-flex;align-items:center;height:24px;padding:0 8px;border-radius:6px;background:var(--jc-surface);color:var(--jc-text-2);font:400 12px/1 var(--jc-font-mono)">BigQuery</span>
+        </div>
+        <span style="font-size:13px;line-height:1.45;color:var(--jc-text-3)">Mono, sin ícono: es dato técnico. Un cuarto elemento se omite, no se trunca.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 07 TARJETA DE CASO -->
+  <section id="casos" data-screen-label="07 Tarjeta de caso" style="display:flex;flex-direction:column;gap:32px">
+    <div style="display:flex;flex-direction:column;gap:6px"><span style="font:400 12px/1 var(--jc-font-mono);color:var(--jc-text-3)">07</span><h2 style="margin:0;font:600 28px/1.15 var(--jc-font-sans);letter-spacing:-.6px">Tarjeta de caso</h2><p style="margin:0;font-size:15px;line-height:1.55;color:var(--jc-text-2);max-width:720px">Toda la tarjeta es un link. Al pasar el cursor o enfocar: sombra 3, borde más fuerte, la captura crece 3 % dentro de su marco y la flecha avanza 4 px (200 ms). Pasa el cursor por las de abajo. Contenido de muestra.</p></div>
+    <div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px">
+      <a href="#casos" onMouseEnter="{{ c0.enter }}" onMouseLeave="{{ c0.leave }}" onFocus="{{ c0.enter }}" onBlur="{{ c0.leave }}" style="display:flex;flex-direction:column;padding:8px;border-radius:16px;border:1px solid {{ c0.border }};background:var(--jc-card);box-shadow:{{ c0.shadow }};color:var(--jc-ink);text-decoration:none;transition:box-shadow var(--jc-dur-base) var(--jc-ease),border-color var(--jc-dur-base) var(--jc-ease)">
+        <div style="aspect-ratio:16/10;border-radius:12px;overflow:hidden"><div style="width:100%;height:100%;background:#1456F0;display:flex;align-items:flex-end;padding:12px;box-sizing:border-box;color:#fff;font:400 12px/1 var(--jc-font-mono);transform:{{ c0.shot }};transition:transform var(--jc-dur-base) var(--jc-ease)">captura Iterum · 16:10</div></div>
+        <div style="padding:16px 10px 10px;display:flex;flex-direction:column;gap:10px">
+          <div style="display:flex;gap:6px;flex-wrap:wrap">
+            <span style="display:inline-flex;align-items:center;gap:5px;height:26px;padding:0 9px;border:1px solid var(--jc-hairline-strong);border-radius:9999px;font:500 12px/1 var(--jc-font-sans)"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><circle cx="12" cy="8" r="5"></circle><path d="M20 21a8 8 0 0 0-16 0"></path></svg>Propia</span>
+            <span style="display:inline-flex;align-items:center;gap:5px;height:26px;padding:0 9px;border-radius:9999px;background:var(--jc-ok-bg);color:var(--jc-ok);font:500 12px/1 var(--jc-font-sans)"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="m8 12 3 3 5-6"></path></svg>En producción</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:8px"><h3 style="margin:0;font:600 20px/1.25 var(--jc-font-sans);letter-spacing:-.3px">Iterum</h3><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--jc-accent)" stroke-width="2" aria-hidden="true" style="transform:{{ c0.arrow }};transition:transform var(--jc-dur-base) var(--jc-ease)"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></div>
+          <p style="margin:0;font-size:15px;line-height:1.5;color:var(--jc-text-2)">Gancho de una línea sobre el problema que resuelve.</p>
+          <div style="display:flex;gap:6px;flex-wrap:wrap"><span style="height:24px;display:inline-flex;align-items:center;padding:0 8px;border-radius:6px;background:var(--jc-surface);color:var(--jc-text-2);font:400 12px/1 var(--jc-font-mono)">Vertex AI</span><span style="height:24px;display:inline-flex;align-items:center;padding:0 8px;border-radius:6px;background:var(--jc-surface);color:var(--jc-text-2);font:400 12px/1 var(--jc-font-mono)">Cloud Run</span></div>
+        </div>
+      </a>
+      <a href="#casos" onMouseEnter="{{ c1.enter }}" onMouseLeave="{{ c1.leave }}" onFocus="{{ c1.enter }}" onBlur="{{ c1.leave }}" style="display:flex;flex-direction:column;padding:8px;border-radius:16px;border:1px solid {{ c1.border }};background:var(--jc-card);box-shadow:{{ c1.shadow }};color:var(--jc-ink);text-decoration:none;transition:box-shadow var(--jc-dur-base) var(--jc-ease),border-color var(--jc-dur-base) var(--jc-ease)">
+        <div style="aspect-ratio:16/10;border-radius:12px;overflow:hidden"><div style="width:100%;height:100%;background:#D4421F;display:flex;align-items:flex-end;padding:12px;box-sizing:border-box;color:#fff;font:400 12px/1 var(--jc-font-mono);transform:{{ c1.shot }};transition:transform var(--jc-dur-base) var(--jc-ease)">captura Domi · 16:10</div></div>
+        <div style="padding:16px 10px 10px;display:flex;flex-direction:column;gap:10px">
+          <div style="display:flex;gap:6px;flex-wrap:wrap">
+            <span style="display:inline-flex;align-items:center;gap:5px;height:26px;padding:0 9px;border:1px solid var(--jc-hairline-strong);border-radius:9999px;font:500 12px/1 var(--jc-font-sans)"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><circle cx="12" cy="8" r="5"></circle><path d="M20 21a8 8 0 0 0-16 0"></path></svg>Propia</span>
+            <span style="display:inline-flex;align-items:center;gap:5px;height:26px;padding:0 9px;border-radius:9999px;background:var(--jc-warn-bg);color:var(--jc-warn);font:500 12px/1 var(--jc-font-sans)"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg>En construcción</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:8px"><h3 style="margin:0;font:600 20px/1.25 var(--jc-font-sans);letter-spacing:-.3px">Domi</h3><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--jc-accent)" stroke-width="2" aria-hidden="true" style="transform:{{ c1.arrow }};transition:transform var(--jc-dur-base) var(--jc-ease)"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></div>
+          <p style="margin:0;font-size:15px;line-height:1.5;color:var(--jc-text-2)">Gancho de una línea sobre el problema que resuelve.</p>
+          <div style="display:flex;gap:6px;flex-wrap:wrap"><span style="height:24px;display:inline-flex;align-items:center;padding:0 8px;border-radius:6px;background:var(--jc-surface);color:var(--jc-text-2);font:400 12px/1 var(--jc-font-mono)">Gemini</span><span style="height:24px;display:inline-flex;align-items:center;padding:0 8px;border-radius:6px;background:var(--jc-surface);color:var(--jc-text-2);font:400 12px/1 var(--jc-font-mono)">Firestore</span><span style="height:24px;display:inline-flex;align-items:center;padding:0 8px;border-radius:6px;background:var(--jc-surface);color:var(--jc-text-2);font:400 12px/1 var(--jc-font-mono)">Astro</span></div>
+        </div>
+      </a>
+      <a href="#casos" onMouseEnter="{{ c2.enter }}" onMouseLeave="{{ c2.leave }}" onFocus="{{ c2.enter }}" onBlur="{{ c2.leave }}" style="display:flex;flex-direction:column;padding:8px;border-radius:16px;border:1px solid {{ c2.border }};background:var(--jc-card);box-shadow:{{ c2.shadow }};color:var(--jc-ink);text-decoration:none;transition:box-shadow var(--jc-dur-base) var(--jc-ease),border-color var(--jc-dur-base) var(--jc-ease)">
+        <div style="aspect-ratio:16/10;border-radius:12px;overflow:hidden"><div style="width:100%;height:100%;background:#2E3F9E;display:flex;align-items:flex-end;padding:12px;box-sizing:border-box;color:#fff;font:400 12px/1 var(--jc-font-mono);transform:{{ c2.shot }};transition:transform var(--jc-dur-base) var(--jc-ease)">captura Vocatio · 16:10</div></div>
+        <div style="padding:16px 10px 10px;display:flex;flex-direction:column;gap:10px">
+          <div style="display:flex;gap:6px;flex-wrap:wrap">
+            <span style="display:inline-flex;align-items:center;gap:5px;height:26px;padding:0 9px;border:1px solid var(--jc-hairline-strong);border-radius:9999px;font:500 12px/1 var(--jc-font-sans)"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><circle cx="12" cy="8" r="5"></circle><path d="M20 21a8 8 0 0 0-16 0"></path></svg>Propia</span>
+            <span style="display:inline-flex;align-items:center;gap:5px;height:26px;padding:0 9px;border-radius:9999px;background:var(--jc-ok-bg);color:var(--jc-ok);font:500 12px/1 var(--jc-font-sans)"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="m8 12 3 3 5-6"></path></svg>En producción</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:8px"><h3 style="margin:0;font:600 20px/1.25 var(--jc-font-sans);letter-spacing:-.3px">Vocatio</h3><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--jc-accent)" stroke-width="2" aria-hidden="true" style="transform:{{ c2.arrow }};transition:transform var(--jc-dur-base) var(--jc-ease)"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></div>
+          <p style="margin:0;font-size:15px;line-height:1.5;color:var(--jc-text-2)">Gancho de una línea sobre el problema que resuelve.</p>
+          <div style="display:flex;gap:6px;flex-wrap:wrap"><span style="height:24px;display:inline-flex;align-items:center;padding:0 8px;border-radius:6px;background:var(--jc-surface);color:var(--jc-text-2);font:400 12px/1 var(--jc-font-mono)">Agentes</span><span style="height:24px;display:inline-flex;align-items:center;padding:0 8px;border-radius:6px;background:var(--jc-surface);color:var(--jc-text-2);font:400 12px/1 var(--jc-font-mono)">pgvector</span></div>
+        </div>
+      </a>
+      <a href="#casos" onMouseEnter="{{ c3.enter }}" onMouseLeave="{{ c3.leave }}" onFocus="{{ c3.enter }}" onBlur="{{ c3.leave }}" style="display:flex;flex-direction:column;padding:8px;border-radius:16px;border:1px solid {{ c3.border }};background:var(--jc-card);box-shadow:{{ c3.shadow }};color:var(--jc-ink);text-decoration:none;transition:box-shadow var(--jc-dur-base) var(--jc-ease),border-color var(--jc-dur-base) var(--jc-ease)">
+        <div style="aspect-ratio:16/10;border-radius:12px;overflow:hidden"><div style="width:100%;height:100%;background:var(--jc-surface);display:flex;align-items:flex-end;padding:12px;box-sizing:border-box;color:var(--jc-text-3);font:400 12px/1 var(--jc-font-mono);transform:{{ c3.shot }};transition:transform var(--jc-dur-base) var(--jc-ease)">captura proyecto EPA · 16:10</div></div>
+        <div style="padding:16px 10px 10px;display:flex;flex-direction:column;gap:10px">
+          <div style="display:flex;gap:6px;flex-wrap:wrap">
+            <span style="display:inline-flex;align-items:center;gap:5px;height:26px;padding:0 9px;border:1px solid var(--jc-hairline-strong);border-radius:9999px;font:500 12px/1 var(--jc-font-sans)"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><rect x="4" y="2" width="16" height="20" rx="2"></rect><path d="M9 22v-4h6v4M8 6h.01M12 6h.01M16 6h.01M8 10h.01M12 10h.01M16 10h.01"></path></svg>EPA</span>
+            <span style="display:inline-flex;align-items:center;gap:5px;height:26px;padding:0 9px;border-radius:9999px;background:var(--jc-neutral-bg);color:var(--jc-neutral);font:500 12px/1 var(--jc-font-sans)"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><rect width="20" height="5" x="2" y="3" rx="1"></rect><path d="M4 8v11a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8M10 12h4"></path></svg>Postmortem</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:8px"><h3 style="margin:0;font:600 20px/1.25 var(--jc-font-sans);letter-spacing:-.3px">El cerebro de la agencia</h3><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--jc-accent)" stroke-width="2" aria-hidden="true" style="flex-shrink:0;transform:{{ c3.arrow }};transition:transform var(--jc-dur-base) var(--jc-ease)"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></div>
+          <p style="margin:0;font-size:15px;line-height:1.5;color:var(--jc-text-2)">Gancho de una línea sobre el problema que resuelve.</p>
+          <div style="display:flex;gap:6px;flex-wrap:wrap"><span style="height:24px;display:inline-flex;align-items:center;padding:0 8px;border-radius:6px;background:var(--jc-surface);color:var(--jc-text-2);font:400 12px/1 var(--jc-font-mono)">RAG</span><span style="height:24px;display:inline-flex;align-items:center;padding:0 8px;border-radius:6px;background:var(--jc-surface);color:var(--jc-text-2);font:400 12px/1 var(--jc-font-mono)">BigQuery</span></div>
+        </div>
+      </a>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px">
+      <div style="display:flex;flex-direction:column;gap:10px"><span style="font:400 12px/1 var(--jc-font-mono);color:var(--jc-text-3)">REPOSO</span><div style="height:12px;border-radius:16px;border:1px solid var(--jc-hairline);background:var(--jc-card)"></div><span style="font-size:13px;color:var(--jc-text-2)">Borde hairline, sin sombra.</span></div>
+      <div style="display:flex;flex-direction:column;gap:10px"><span style="font:400 12px/1 var(--jc-font-mono);color:var(--jc-text-3)">HOVER</span><div style="height:12px;border-radius:16px;border:1px solid var(--jc-hairline-strong);background:var(--jc-card);box-shadow:var(--jc-shadow-3)"></div><span style="font-size:13px;color:var(--jc-text-2)">Borde fuerte, sombra 3, captura 103 %, flecha +4 px.</span></div>
+      <div style="display:flex;flex-direction:column;gap:10px"><span style="font:400 12px/1 var(--jc-font-mono);color:var(--jc-text-3)">FOCO</span><div style="height:12px;border-radius:16px;border:1px solid var(--jc-hairline-strong);background:var(--jc-card);box-shadow:var(--jc-focus-ring)"></div><span style="font-size:13px;color:var(--jc-text-2)">Igual que hover más anillo de foco de 2 px.</span></div>
+    </div>
+  </section>
+
+  <!-- 08 CIFRA -->
+  <section data-screen-label="08 Bloque de cifra" style="display:flex;flex-direction:column;gap:32px">
+    <div style="display:flex;flex-direction:column;gap:6px"><span style="font:400 12px/1 var(--jc-font-mono);color:var(--jc-text-3)">08</span><h2 style="margin:0;font:600 28px/1.15 var(--jc-font-sans);letter-spacing:-.6px">Bloque de cifra</h2><p style="margin:0;font-size:15px;line-height:1.55;color:var(--jc-text-2);max-width:720px">Toda cifra lleva fuente. La variante "(falta)" marca un dato pendiente y no se publica en producción: cambia el modo en Tweaks.</p></div>
+    <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;border-top:1px solid var(--jc-hairline);border-bottom:1px solid var(--jc-hairline)">
+      <div style="padding:32px 32px 32px 0;display:flex;flex-direction:column;gap:8px">
+        <span style="font:600 56px/1 var(--jc-font-sans);letter-spacing:-1.8px;font-variant-numeric:tabular-nums">~190</span>
+        <span style="font-size:15px;line-height:1.45;color:var(--jc-text-2)">personas en la agencia donde lidero datos e IA</span>
+        <span style="font:400 12px/1.4 var(--jc-font-mono);color:var(--jc-text-3)">Fuente: LinkedIn, oct 2026</span>
+      </div>
+      <div style="padding:32px;display:flex;flex-direction:column;gap:8px;border-left:1px solid var(--jc-hairline)">
+        <span style="font:600 56px/1 var(--jc-font-sans);letter-spacing:-1.8px;font-variant-numeric:tabular-nums">3</span>
+        <span style="font-size:15px;line-height:1.45;color:var(--jc-text-2)">productos propios con agentes en Google Cloud</span>
+        <span style="font:400 12px/1.4 var(--jc-font-mono);color:var(--jc-text-3)">Fuente: este sitio, oct 2026</span>
+      </div>
+      <sc-if value="{{ showMissing }}" hint-placeholder-val="{{ true }}">
+        <div style="padding:24px;margin:8px 0 8px 0;display:flex;flex-direction:column;gap:8px;border:1.5px dashed var(--jc-warn);border-radius:12px;background:var(--jc-warn-bg)">
+          <span style="display:inline-flex;align-self:flex-start;align-items:center;gap:6px;font:500 12px/1 var(--jc-font-sans);color:var(--jc-warn)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M12 3 2 21h20L12 3z"></path><path d="M12 10v5M12 18h.01"></path></svg>Falta dato · oculto en producción</span>
+          <span style="font:600 56px/1 var(--jc-font-sans);letter-spacing:-1.8px;color:var(--jc-text-3)">(falta)</span>
+          <span style="font-size:15px;line-height:1.45;color:var(--jc-text-2)">usuarios activos diarios de Iterum</span>
+          <span style="font:400 12px/1.4 var(--jc-font-mono);color:var(--jc-text-3)">Fuente: pendiente</span>
+        </div>
+      </sc-if>
+    </div>
+  </section>
+
+  <!-- 09 VIDEO -->
+  <section data-screen-label="09 Video" style="display:flex;flex-direction:column;gap:32px">
+    <div style="display:flex;flex-direction:column;gap:6px"><span style="font:400 12px/1 var(--jc-font-mono);color:var(--jc-text-3)">09</span><h2 style="margin:0;font:600 28px/1.15 var(--jc-font-sans);letter-spacing:-.6px">Reproductor con fachada</h2><p style="margin:0;font-size:15px;line-height:1.55;color:var(--jc-text-2);max-width:720px">Solo se pinta el póster. El reproductor (iframe de youtube-nocookie) se crea al hacer clic, con autoplay. Botón de 72 px, foco visible y nombre accesible "Reproducir: título, duración". Pruébalo.</p></div>
+    <div style="display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr);gap:24px;align-items:start">
+      <div style="position:relative;aspect-ratio:16/9;border-radius:24px;overflow:hidden;background:#0B0D0E">
+        <sc-if value="{{ videoIdle }}" hint-placeholder-val="{{ true }}">
+          <button onClick="{{ playVideo }}" aria-label="Reproducir: Iterum en una semana real, 3 min 42 s" style="position:absolute;inset:0;width:100%;height:100%;border:0;padding:0;cursor:pointer;background:#1456F0;display:flex;flex-direction:column;justify-content:space-between;text-align:left;color:#fff">
+            <span style="padding:24px;font:400 12px/1 var(--jc-font-mono);opacity:.9">póster · captura del video</span>
+            <span style="position:absolute;left:50%;top:50%;width:72px;height:72px;margin:-36px 0 0 -36px;border-radius:50%;background:#FFFFFF;color:#0B0D0E;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(0,0,0,.25);transition:transform var(--jc-dur-fast) var(--jc-ease)" style-hover="transform:scale(1.06)"><svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="margin-left:3px"><path d="M7 4.5v15a1 1 0 0 0 1.5.86l12.5-7.5a1 1 0 0 0 0-1.72L8.5 3.64A1 1 0 0 0 7 4.5z"></path></svg></span>
+            <span style="display:flex;justify-content:space-between;align-items:flex-end;gap:16px;padding:24px;background:linear-gradient(transparent,rgba(0,0,0,.55))"><span style="font:600 22px/1.2 var(--jc-font-sans);letter-spacing:-.3px">Iterum en una semana real</span><span style="font:400 13px/1 var(--jc-font-mono);background:rgba(0,0,0,.6);padding:6px 8px;border-radius:6px;font-variant-numeric:tabular-nums">3:42</span></span>
+          </button>
+        </sc-if>
+        <sc-if value="{{ videoLoading }}">
+          <div role="status" style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;color:#fff;background:#0B0D0E">
+            <span style="width:32px;height:32px;border-radius:50%;border:3px solid rgba(255,255,255,.25);border-top-color:#fff;animation:jcspin 800ms linear infinite"></span>
+            <span style="font:400 13px/1 var(--jc-font-mono)">Cargando reproductor…</span>
+          </div>
+        </sc-if>
+        <sc-if value="{{ videoLoaded }}">
+          <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;color:#B8BEC4;background:#000;text-align:center;padding:24px">
+            <span style="font:400 13px/1.5 var(--jc-font-mono)">iframe youtube-nocookie.com/embed/…?autoplay=1<br>creado al hacer clic</span>
+            <button onClick="{{ resetVideo }}" style="height:44px;padding:0 20px;border:1px solid #3D4349;border-radius:9999px;background:transparent;color:#F2F3F4;font:600 14px/1 var(--jc-font-sans);cursor:pointer">Volver al póster</button>
+          </div>
+        </sc-if>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:16px">
+        <div style="display:flex;flex-direction:column;gap:8px"><span style="font:400 12px/1 var(--jc-font-mono);color:var(--jc-text-3)">REPOSO · HOVER · FOCO</span>
+          <div style="display:flex;gap:16px;align-items:center;padding:16px;border-radius:12px;background:#1456F0">
+            <span style="width:56px;height:56px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center"><svg width="20" height="20" viewBox="0 0 24 24" fill="#0B0D0E" aria-hidden="true" style="margin-left:2px"><path d="M7 4.5v15a1 1 0 0 0 1.5.86l12.5-7.5a1 1 0 0 0 0-1.72L8.5 3.64A1 1 0 0 0 7 4.5z"></path></svg></span>
+            <span style="width:60px;height:60px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(0,0,0,.25)"><svg width="20" height="20" viewBox="0 0 24 24" fill="#0B0D0E" aria-hidden="true" style="margin-left:2px"><path d="M7 4.5v15a1 1 0 0 0 1.5.86l12.5-7.5a1 1 0 0 0 0-1.72L8.5 3.64A1 1 0 0 0 7 4.5z"></path></svg></span>
+            <span style="width:56px;height:56px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 3px #1456F0,0 0 0 5px #fff"><svg width="20" height="20" viewBox="0 0 24 24" fill="#0B0D0E" aria-hidden="true" style="margin-left:2px"><path d="M7 4.5v15a1 1 0 0 0 1.5.86l12.5-7.5a1 1 0 0 0 0-1.72L8.5 3.64A1 1 0 0 0 7 4.5z"></path></svg></span>
+          </div>
+          <span style="font-size:13px;line-height:1.45;color:var(--jc-text-2)">Botón blanco sobre cualquier póster. El foco es un anillo doble, visible sobre cualquier color de captura.</span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:6px;padding-top:16px;border-top:1px solid var(--jc-hairline);font-size:13px;line-height:1.5;color:var(--jc-text-2)">
+          <span style="font:400 12px/1 var(--jc-font-mono);color:var(--jc-text-3)">ESTADOS</span>
+          <span>1 · Póster con título y duración</span><span>2 · Cargando (spinner, role="status")</span><span>3 · Reproduciendo (iframe)</span><span>Sin JS: el póster es un link al video.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10 DECISION + 11 CITA -->
+  <section data-screen-label="10 Decisión y cita" style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:48px;align-items:start">
+    <div style="display:flex;flex-direction:column;gap:24px">
+      <div style="display:flex;flex-direction:column;gap:6px"><span style="font:400 12px/1 var(--jc-font-mono);color:var(--jc-text-3)">10</span><h2 style="margin:0;font:600 28px/1.15 var(--jc-font-sans);letter-spacing:-.6px">Bloque de decisión</h2></div>
+      <div style="border:1px solid var(--jc-hairline);border-radius:16px;padding:28px;display:flex;flex-direction:column;gap:20px;background:var(--jc-card)">
+        <span style="display:inline-flex;align-items:center;gap:6px;font:400 12px/1 var(--jc-font-mono);color:var(--jc-accent)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 3v12M18 9a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM6 21a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM18 9a9 9 0 0 1-9 9"></path></svg>DECISIÓN</span>
+        <p style="margin:0;font:500 22px/1.4 var(--jc-font-sans);letter-spacing:-.2px;text-wrap:pretty">Decidí <strong style="font-weight:700">Cloud Run</strong> en lugar de <span style="color:var(--jc-text-3);text-decoration:line-through;text-decoration-thickness:1.5px">GKE</span> porque somos tres personas y nadie iba a operar un clúster de noche.</p>
+        <div style="display:grid;grid-template-columns:1fr auto 1fr;gap:12px;align-items:stretch">
+          <div style="padding:16px;border-radius:12px;background:var(--jc-surface);display:flex;flex-direction:column;gap:6px"><span style="font:400 12px/1 var(--jc-font-mono);color:var(--jc-text-3)">ANTES</span><span style="font-size:15px;line-height:1.45;color:var(--jc-text-2)">Clúster con nodos siempre encendidos y un on-call informal.</span></div>
+          <div style="display:flex;align-items:center;color:var(--jc-text-3)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></div>
+          <div style="padding:16px;border-radius:12px;background:var(--jc-accent-soft);display:flex;flex-direction:column;gap:6px"><span style="font:400 12px/1 var(--jc-font-mono);color:var(--jc-accent)">DESPUÉS</span><span style="font-size:15px;line-height:1.45;color:var(--jc-ink)">Servicios que escalan a cero y despliegan en un comando.</span></div>
+        </div>
+        <span style="font-size:13px;color:var(--jc-text-3)">Ejemplo de contenido. Estructura: decisión, alternativa tachada, razón; luego antes → después.</span>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:24px">
+      <div style="display:flex;flex-direction:column;gap:6px"><span style="font:400 12px/1 var(--jc-font-mono);color:var(--jc-text-3)">11</span><h2 style="margin:0;font:600 28px/1.15 var(--jc-font-sans);letter-spacing:-.6px">Cita o momento clave</h2></div>
+      <figure style="margin:0;padding:40px 0;border-top:2px solid var(--jc-ink);display:flex;flex-direction:column;gap:24px">
+        <blockquote style="margin:0;font:600 40px/1.12 var(--jc-font-sans);letter-spacing:-1.2px;text-wrap:pretty"><span style="color:var(--jc-accent)">“</span>Construimos el cerebro de la agencia y nadie lo usó. Ni nosotros tres.<span style="color:var(--jc-accent)">”</span></blockquote>
+        <figcaption style="display:flex;align-items:center;gap:12px;font-size:14px;color:var(--jc-text-2)"><span style="width:24px;height:1px;background:var(--jc-text-3)"></span>Postmortem · El cerebro de la agencia</figcaption>
+      </figure>
+      <span style="font-size:13px;color:var(--jc-text-3)">h1 (40 px), comillas en pino. Una por caso, como máximo.</span>
+    </div>
+  </section>
+
+  <!-- 12 DIAGRAMA -->
+  <section data-screen-label="12 Diagrama" style="display:flex;flex-direction:column;gap:32px">
+    <div style="display:flex;flex-direction:column;gap:6px"><span style="font:400 12px/1 var(--jc-font-mono);color:var(--jc-text-3)">12</span><h2 style="margin:0;font:600 28px/1.15 var(--jc-font-sans);letter-spacing:-.6px">Diagrama de arquitectura</h2><p style="margin:0;font-size:15px;line-height:1.55;color:var(--jc-text-2);max-width:720px">Cuatro tipos de caja y una flecha. El pino marca la pieza de la que trata el caso; solo una por diagrama.</p></div>
+    <div style="border:1px solid var(--jc-hairline);border-radius:16px;padding:40px;background-color:var(--jc-surface);background-image:radial-gradient(var(--jc-hairline-strong) 1px,transparent 1px);background-size:16px 16px;display:flex;flex-direction:column;gap:40px">
+      <div style="display:flex;align-items:center">
+        <div style="width:170px;flex-shrink:0;padding:14px 16px;border-radius:12px;border:1.5px dashed var(--jc-hairline-strong);background:var(--jc-canvas);display:flex;flex-direction:column;gap:4px"><span style="font:600 15px/1.2 var(--jc-font-sans)">Equipo de cuentas</span><span style="font:400 12px/1.3 var(--jc-font-mono);color:var(--jc-text-3)">externo · Slack</span></div>
+        <div style="flex:1;min-width:48px;display:flex;flex-direction:column;align-items:stretch;gap:4px;padding:0 6px"><span style="font:400 11px/1 var(--jc-font-mono);color:var(--jc-text-3);text-align:center">pregunta</span><div style="display:flex;align-items:center"><div style="flex:1;height:1.5px;background:var(--jc-text-3)"></div><svg width="8" height="10" viewBox="0 0 8 10" aria-hidden="true"><path d="M0 0l8 5-8 5z" fill="var(--jc-text-3)"></path></svg></div></div>
+        <div style="width:170px;flex-shrink:0;padding:14px 16px;border-radius:12px;border:1px solid var(--jc-hairline-strong);background:var(--jc-card);display:flex;flex-direction:column;gap:4px"><span style="font:600 15px/1.2 var(--jc-font-sans)">API</span><span style="font:400 12px/1.3 var(--jc-font-mono);color:var(--jc-text-3)">Cloud Run</span></div>
+        <div style="flex:1;min-width:48px;display:flex;flex-direction:column;align-items:stretch;gap:4px;padding:0 6px"><span style="font:400 11px/1 var(--jc-font-mono);color:var(--jc-text-3);text-align:center">contexto</span><div style="display:flex;align-items:center"><div style="flex:1;height:1.5px;background:var(--jc-text-3)"></div><svg width="8" height="10" viewBox="0 0 8 10" aria-hidden="true"><path d="M0 0l8 5-8 5z" fill="var(--jc-text-3)"></path></svg></div></div>
+        <div style="width:170px;flex-shrink:0;padding:14px 16px;border-radius:12px;border:2px solid var(--jc-accent);background:var(--jc-accent-soft);display:flex;flex-direction:column;gap:4px"><span style="font:600 15px/1.2 var(--jc-font-sans)">Agente</span><span style="font:400 12px/1.3 var(--jc-font-mono);color:var(--jc-accent)">Vertex AI · Gemini</span></div>
+        <div style="flex:1;min-width:48px;display:flex;flex-direction:column;align-items:stretch;gap:4px;padding:0 6px"><span style="font:400 11px/1 var(--jc-font-mono);color:var(--jc-text-3);text-align:center">SQL</span><div style="display:flex;align-items:center"><div style="flex:1;height:1.5px;background:var(--jc-text-3)"></div><svg width="8" height="10" viewBox="0 0 8 10" aria-hidden="true"><path d="M0 0l8 5-8 5z" fill="var(--jc-text-3)"></path></svg></div></div>
+        <div style="width:170px;flex-shrink:0;padding:14px 16px;border-radius:12px;border:1px solid var(--jc-hairline-strong);background:var(--jc-surface);display:flex;gap:10px;align-items:center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true" style="flex-shrink:0"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5M3 12c0 1.66 4 3 9 3s9-1.34 9-3"></path></svg><span style="display:flex;flex-direction:column;gap:4px"><span style="font:600 15px/1.2 var(--jc-font-sans)">Datos</span><span style="font:400 12px/1.3 var(--jc-font-mono);color:var(--jc-text-3)">BigQuery</span></span></div>
+      </div>
+      <div style="display:flex;gap:32px;flex-wrap:wrap;padding-top:24px;border-top:1px solid var(--jc-hairline-strong);font-size:13px;color:var(--jc-text-2)">
+        <span style="display:inline-flex;align-items:center;gap:8px"><span style="width:20px;height:14px;border-radius:4px;border:1px solid var(--jc-hairline-strong);background:var(--jc-card)"></span>Servicio</span>
+        <span style="display:inline-flex;align-items:center;gap:8px"><span style="width:20px;height:14px;border-radius:4px;border:2px solid var(--jc-accent);background:var(--jc-accent-soft);box-sizing:border-box"></span>Foco del caso</span>
+        <span style="display:inline-flex;align-items:center;gap:8px"><span style="width:20px;height:14px;border-radius:4px;border:1.5px dashed var(--jc-hairline-strong);background:var(--jc-canvas);box-sizing:border-box"></span>Externo / personas</span>
+        <span style="display:inline-flex;align-items:center;gap:8px"><span style="width:20px;height:14px;border-radius:4px;border:1px solid var(--jc-hairline-strong);background:var(--jc-surface)"></span>Almacén de datos</span>
+        <span style="display:inline-flex;align-items:center;gap:8px"><span style="width:24px;height:1.5px;background:var(--jc-text-3)"></span>Flujo, etiqueta en mono 11</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 13 NAVEGACION -->
+  <section data-screen-label="13 Navegación" style="display:flex;flex-direction:column;gap:32px">
+    <div style="display:flex;flex-direction:column;gap:6px"><span style="font:400 12px/1 var(--jc-font-mono);color:var(--jc-text-3)">13</span><h2 style="margin:0;font:600 28px/1.15 var(--jc-font-sans);letter-spacing:-.6px">Navegación</h2><p style="margin:0;font-size:15px;line-height:1.55;color:var(--jc-text-2);max-width:720px">Barra fija de 72 px con hairline inferior. ES/EN y el botón de tema funcionan aquí: el tema cambia toda la página.</p></div>
+    <div style="border:1px solid var(--jc-hairline);border-radius:16px;overflow:hidden">
+      <nav aria-label="Principal" style="height:72px;padding:0 32px;display:flex;align-items:center;justify-content:space-between;gap:24px;background:var(--jc-canvas);border-bottom:1px solid var(--jc-hairline)">
+        <a href="#" style="display:flex;align-items:center;gap:10px;height:44px;color:var(--jc-ink);text-decoration:none"><span style="width:32px;height:32px;border-radius:8px;background:var(--jc-ink);color:var(--jc-canvas);display:flex;align-items:center;justify-content:center;font:600 15px/1 var(--jc-font-sans);letter-spacing:-.8px">JC</span><span style="font:600 17px/1 var(--jc-font-sans);letter-spacing:-.3px">José Carlos Corona</span></a>
+        <div style="display:flex;align-items:center;gap:8px">
+          <sc-if value="{{ isEs }}" hint-placeholder-val="{{ true }}">
+            <div style="display:flex;gap:4px">
+              <a href="#" aria-current="page" style="height:44px;padding:0 14px;display:flex;align-items:center;font:500 15px/1 var(--jc-font-sans);color:var(--jc-ink);text-decoration:underline;text-decoration-color:var(--jc-accent);text-decoration-thickness:2px;text-underline-offset:8px">Proyectos</a>
+              <a href="#" style="height:44px;padding:0 14px;display:flex;align-items:center;font:500 15px/1 var(--jc-font-sans);color:var(--jc-text-2);text-decoration:none;border-radius:9999px;transition:background-color var(--jc-dur-fast) var(--jc-ease),color var(--jc-dur-fast)" style-hover="background-color:var(--jc-surface);color:var(--jc-ink)">Escritos</a>
+              <a href="#" style="height:44px;padding:0 14px;display:flex;align-items:center;font:500 15px/1 var(--jc-font-sans);color:var(--jc-text-2);text-decoration:none;border-radius:9999px;transition:background-color var(--jc-dur-fast) var(--jc-ease),color var(--jc-dur-fast)" style-hover="background-color:var(--jc-surface);color:var(--jc-ink)">Sobre mí</a>
+              <a href="#" style="height:44px;padding:0 14px;display:flex;align-items:center;font:500 15px/1 var(--jc-font-sans);color:var(--jc-text-2);text-decoration:none;border-radius:9999px;transition:background-color var(--jc-dur-fast) var(--jc-ease),color var(--jc-dur-fast)" style-hover="background-color:var(--jc-surface);color:var(--jc-ink)">Contacto</a>
+            </div>
+          </sc-if>
+          <sc-if value="{{ isEn }}">
+            <div style="display:flex;gap:4px">
+              <a href="#" aria-current="page" style="height:44px;padding:0 14px;display:flex;align-items:center;font:500 15px/1 var(--jc-font-sans);color:var(--jc-ink);text-decoration:underline;text-decoration-color:var(--jc-accent);text-decoration-thickness:2px;text-underline-offset:8px">Projects</a>
+              <a href="#" style="height:44px;padding:0 14px;display:flex;align-items:center;font:500 15px/1 var(--jc-font-sans);color:var(--jc-text-2);text-decoration:none;border-radius:9999px" style-hover="background-color:var(--jc-surface);color:var(--jc-ink)">Writing</a>
+              <a href="#" style="height:44px;padding:0 14px;display:flex;align-items:center;font:500 15px/1 var(--jc-font-sans);color:var(--jc-text-2);text-decoration:none;border-radius:9999px" style-hover="background-color:var(--jc-surface);color:var(--jc-ink)">About</a>
+              <a href="#" style="height:44px;padding:0 14px;display:flex;align-items:center;font:500 15px/1 var(--jc-font-sans);color:var(--jc-text-2);text-decoration:none;border-radius:9999px" style-hover="background-color:var(--jc-surface);color:var(--jc-ink)">Contact</a>
+            </div>
+          </sc-if>
+          <div style="width:1px;height:24px;background:var(--jc-hairline);margin:0 8px"></div>
+          <div role="group" aria-label="Idioma" style="display:flex;padding:3px;border-radius:9999px;border:1px solid var(--jc-hairline)">
+            <button onClick="{{ setEs }}" aria-pressed="{{ isEs }}" lang="es" style="min-width:44px;height:36px;border:0;border-radius:9999px;background:{{ esBg }};color:{{ esFg }};font:600 13px/1 var(--jc-font-sans);cursor:pointer">ES</button>
+            <button onClick="{{ setEn }}" aria-pressed="{{ isEn }}" lang="en" style="min-width:44px;height:36px;border:0;border-radius:9999px;background:{{ enBg }};color:{{ enFg }};font:600 13px/1 var(--jc-font-sans);cursor:pointer">EN</button>
+          </div>
+          <button onClick="{{ toggleTheme }}" aria-label="{{ themeLabel }}" style="width:44px;height:44px;border:1px solid var(--jc-hairline);border-radius:50%;background:transparent;color:var(--jc-ink);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background-color var(--jc-dur-fast)" style-hover="background-color:var(--jc-surface)">
+            <sc-if value="{{ isLight }}" hint-placeholder-val="{{ true }}"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path></svg></sc-if>
+            <sc-if value="{{ isDark }}"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path></svg></sc-if>
+          </button>
+        </div>
+      </nav>
+      <div style="padding:16px 32px;display:flex;gap:40px;flex-wrap:wrap;background:var(--jc-surface);font-size:13px;color:var(--jc-text-2)">
+        <span><span style="font-family:var(--jc-font-mono);color:var(--jc-ink)">actual</span> · tinta + subrayado pino 2 px</span>
+        <span><span style="font-family:var(--jc-font-mono);color:var(--jc-ink)">hover</span> · fondo surface en píldora</span>
+        <span><span style="font-family:var(--jc-font-mono);color:var(--jc-ink)">foco</span> · anillo de 2 px</span>
+        <span><span style="font-family:var(--jc-font-mono);color:var(--jc-ink)">ES/EN</span> · aria-pressed, lang en cada botón</span>
+      </div>
+    </div>
+
+    <div style="display:flex;gap:40px;align-items:flex-start;flex-wrap:wrap">
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <span style="font:400 12px/1 var(--jc-font-mono);color:var(--jc-text-3)">MÓVIL 402 × 874 · CERRADO (toca el menú)</span>
+        <div style="position:relative;width:402px;height:874px;border-radius:40px;border:1px solid var(--jc-hairline-strong);overflow:hidden;background:var(--jc-canvas);display:flex;flex-direction:column">
+          <div style="height:44px;flex-shrink:0"></div>
+          <div style="height:60px;padding:0 12px 0 20px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--jc-hairline);flex-shrink:0">
+            <span style="display:flex;align-items:center;gap:10px"><span style="width:32px;height:32px;border-radius:8px;background:var(--jc-ink);color:var(--jc-canvas);display:flex;align-items:center;justify-content:center;font:600 15px/1 var(--jc-font-sans);letter-spacing:-.8px">JC</span><span style="font:600 16px/1 var(--jc-font-sans);letter-spacing:-.3px">José Carlos Corona</span></span>
+            <button onClick="{{ toggleMenu }}" aria-expanded="{{ menuOpen }}" aria-label="Abrir menú" style="width:44px;height:44px;border:0;border-radius:50%;background:transparent;color:var(--jc-ink);display:flex;align-items:center;justify-content:center;cursor:pointer"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"></path></svg></button>
+          </div>
+          <div style="padding:32px 20px;display:flex;flex-direction:column;gap:20px">
+            <span style="display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:500;color:var(--jc-ok)"><span style="width:8px;height:8px;border-radius:50%;background:var(--jc-ok)"></span>Abierto a roles de Applied AI</span>
+            <h1 style="margin:0;font:600 40px/1.05 var(--jc-font-sans);letter-spacing:-1.2px;text-wrap:pretty">Construyo sistemas de IA que la gente usa todos los días, no demos.</h1>
+            <div style="display:flex;flex-direction:column;gap:10px">
+              <span style="height:44px;border-radius:9999px;background:var(--jc-ink);color:var(--jc-canvas);display:flex;align-items:center;justify-content:center;font:600 15px/1 var(--jc-font-sans)">Hablemos</span>
+              <span style="height:44px;border-radius:9999px;border:1px solid var(--jc-ink);box-sizing:border-box;display:flex;align-items:center;justify-content:center;font:600 15px/1 var(--jc-font-sans)">Ver proyectos</span>
+            </div>
+            <div style="display:flex;flex-direction:column;padding:8px;border-radius:16px;border:1px solid var(--jc-hairline);margin-top:8px">
+              <div style="aspect-ratio:16/10;border-radius:12px;background:#1456F0;display:flex;align-items:flex-end;padding:10px;color:#fff;font:400 11px/1 var(--jc-font-mono)">captura Iterum</div>
+              <div style="padding:14px 8px 8px;display:flex;flex-direction:column;gap:8px">
+                <div style="display:flex;gap:6px"><span style="display:inline-flex;align-items:center;gap:5px;height:26px;padding:0 9px;border:1px solid var(--jc-hairline-strong);border-radius:9999px;font:500 12px/1 var(--jc-font-sans)"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><circle cx="12" cy="8" r="5"></circle><path d="M20 21a8 8 0 0 0-16 0"></path></svg>Propia</span><span style="display:inline-flex;align-items:center;gap:5px;height:26px;padding:0 9px;border-radius:9999px;background:var(--jc-ok-bg);color:var(--jc-ok);font:500 12px/1 var(--jc-font-sans)"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="m8 12 3 3 5-6"></path></svg>En producción</span></div>
+                <span style="font:600 20px/1.2 var(--jc-font-sans);letter-spacing:-.3px">Iterum</span>
+              </div>
+            </div>
+          </div>
+          <sc-if value="{{ menuOpen }}">
+            <div role="dialog" aria-label="Menú" style="position:absolute;inset:0;background:var(--jc-canvas);display:flex;flex-direction:column">
+              <div style="height:44px;flex-shrink:0"></div>
+              <div style="height:60px;padding:0 12px 0 20px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--jc-hairline)">
+                <span style="display:flex;align-items:center;gap:10px"><span style="width:32px;height:32px;border-radius:8px;background:var(--jc-ink);color:var(--jc-canvas);display:flex;align-items:center;justify-content:center;font:600 15px/1 var(--jc-font-sans);letter-spacing:-.8px">JC</span><span style="font:600 16px/1 var(--jc-font-sans);letter-spacing:-.3px">José Carlos Corona</span></span>
+                <button onClick="{{ toggleMenu }}" aria-label="Cerrar menú" style="width:44px;height:44px;border:0;border-radius:50%;background:var(--jc-surface);color:var(--jc-ink);display:flex;align-items:center;justify-content:center;cursor:pointer"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"></path></svg></button>
+              </div>
+              <div style="padding:16px 20px;display:flex;flex-direction:column">
+                <a href="#" aria-current="page" style="height:64px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--jc-hairline);font:600 28px/1 var(--jc-font-sans);letter-spacing:-.6px;color:var(--jc-ink);text-decoration:none">Proyectos<span style="width:8px;height:8px;border-radius:50%;background:var(--jc-accent)"></span></a>
+                <a href="#" style="height:64px;display:flex;align-items:center;border-bottom:1px solid var(--jc-hairline);font:600 28px/1 var(--jc-font-sans);letter-spacing:-.6px;color:var(--jc-ink);text-decoration:none">Escritos</a>
+                <a href="#" style="height:64px;display:flex;align-items:center;border-bottom:1px solid var(--jc-hairline);font:600 28px/1 var(--jc-font-sans);letter-spacing:-.6px;color:var(--jc-ink);text-decoration:none">Sobre mí</a>
+                <a href="#" style="height:64px;display:flex;align-items:center;border-bottom:1px solid var(--jc-hairline);font:600 28px/1 var(--jc-font-sans);letter-spacing:-.6px;color:var(--jc-ink);text-decoration:none">Contacto</a>
+              </div>
+              <div style="margin-top:auto;padding:20px 20px 40px;display:flex;justify-content:space-between;align-items:center">
+                <div role="group" aria-label="Idioma" style="display:flex;padding:3px;border-radius:9999px;border:1px solid var(--jc-hairline)">
+                  <button onClick="{{ setEs }}" aria-pressed="{{ isEs }}" style="min-width:52px;height:44px;border:0;border-radius:9999px;background:{{ esBg }};color:{{ esFg }};font:600 14px/1 var(--jc-font-sans);cursor:pointer">ES</button>
+                  <button onClick="{{ setEn }}" aria-pressed="{{ isEn }}" style="min-width:52px;height:44px;border:0;border-radius:9999px;background:{{ enBg }};color:{{ enFg }};font:600 14px/1 var(--jc-font-sans);cursor:pointer">EN</button>
+                </div>
+                <button onClick="{{ toggleTheme }}" aria-label="{{ themeLabel }}" style="height:44px;padding:0 16px;border:1px solid var(--jc-hairline);border-radius:9999px;background:transparent;color:var(--jc-ink);display:flex;align-items:center;gap:8px;font:500 14px/1 var(--jc-font-sans);cursor:pointer"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path></svg>Tema</button>
+              </div>
+            </div>
+          </sc-if>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px;max-width:420px;padding-top:28px;font-size:14px;line-height:1.55;color:var(--jc-text-2)">
+        <span style="font:400 12px/1 var(--jc-font-mono);color:var(--jc-text-3)">MENÚ MÓVIL</span>
+        <span>Pantalla completa sobre canvas; entra con fundido de 250 ms (instantáneo con reduced-motion).</span>
+        <span>Filas de 64 px en h2; la sección actual lleva un punto pino.</span>
+        <span>ES/EN y tema abajo, al alcance del pulgar, con 44 px de alto.</span>
+        <span>Al abrir: foco al botón cerrar, Esc cierra, el foco no sale del menú y el scroll de la página se bloquea.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 14 PIE -->
+  <section data-screen-label="14 Pie" style="display:flex;flex-direction:column;gap:32px">
+    <div style="display:flex;flex-direction:column;gap:6px"><span style="font:400 12px/1 var(--jc-font-mono);color:var(--jc-text-3)">14</span><h2 style="margin:0;font:600 28px/1.15 var(--jc-font-sans);letter-spacing:-.6px">Pie</h2></div>
+    <footer style="border-top:1px solid var(--jc-hairline);padding:48px 0 0;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:32px;align-items:end">
+      <div style="display:flex;flex-direction:column;gap:20px">
+        <span style="font:600 40px/1.1 var(--jc-font-sans);letter-spacing:-1.2px">¿Tienes algo que debería usarse todos los días?</span>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <a href="mailto:hola@josecarloscorona.dev" style="height:44px;padding:0 18px;display:inline-flex;align-items:center;gap:8px;border-radius:9999px;background:var(--jc-ink);color:var(--jc-canvas);font:600 15px/1 var(--jc-font-sans);text-decoration:none;transition:background-color var(--jc-dur-fast) var(--jc-ease)" style-hover="background-color:var(--jc-accent);color:var(--jc-on-accent)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg>hola@josecarloscorona.dev</a>
+          <a href="https://www.linkedin.com/" style="height:44px;padding:0 18px;display:inline-flex;align-items:center;gap:8px;border-radius:9999px;border:1px solid var(--jc-ink);color:var(--jc-ink);font:600 15px/1 var(--jc-font-sans);text-decoration:none;transition:background-color var(--jc-dur-fast) var(--jc-ease)" style-hover="background-color:var(--jc-surface)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"></path><rect width="4" height="12" x="2" y="9"></rect><circle cx="4" cy="4" r="2"></circle></svg>LinkedIn</a>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px;align-items:flex-end;text-align:right;font:400 13px/1.5 var(--jc-font-mono);color:var(--jc-text-3)">
+        <span>Hecho con Astro en Google Cloud</span>
+        <span>© 2026 José Carlos Corona · CDMX</span>
+      </div>
+    </footer>
+  </section>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;theme&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;light&quot;,&quot;dark&quot;],&quot;default&quot;:&quot;light&quot;,&quot;tsType&quot;:&quot;'light'|'dark'&quot;,&quot;section&quot;:&quot;Vista&quot;},&quot;mode&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;borrador&quot;,&quot;produccion&quot;],&quot;default&quot;:&quot;borrador&quot;,&quot;tsType&quot;:&quot;'borrador'|'produccion'&quot;,&quot;section&quot;:&quot;Vista&quot;}}">
+class Component extends DCLogic {
+  state = { themeOverride: null, lang: 'es', menu: false, video: 'idle', hov: -1 };
+  componentWillUnmount() { clearTimeout(this._t); }
+  renderVals() {
+    const theme = this.state.themeOverride ?? this.props.theme ?? 'light';
+    const isDark = theme === 'dark', isLight = !isDark;
+    const isEs = this.state.lang === 'es';
+    const on = { bg: 'var(--jc-ink)', fg: 'var(--jc-canvas)' };
+    const off = { bg: 'transparent', fg: 'var(--jc-text-2)' };
+    const seg = (a) => (a ? { bg: 'var(--jc-card)', fg: 'var(--jc-ink)', sh: 'var(--jc-shadow-1)' } : { bg: 'transparent', fg: 'var(--jc-text-2)', sh: 'none' });
+    const L = seg(isLight), D = seg(isDark);
+    const card = (i) => {
+      const h = this.state.hov === i;
+      return {
+        enter: () => this.setState({ hov: i }),
+        leave: () => this.setState((s) => (s.hov === i ? { hov: -1 } : null)),
+        border: h ? 'var(--jc-hairline-strong)' : 'var(--jc-hairline)',
+        shadow: h ? 'var(--jc-shadow-3)' : 'none',
+        arrow: h ? 'translateX(4px)' : 'translateX(0)',
+        shot: h ? 'scale(1.03)' : 'scale(1)',
+      };
+    };
+    return {
+      theme, isDark, isLight,
+      themeLabel: isDark ? 'Cambiar a tema claro' : 'Cambiar a tema oscuro',
+      toggleTheme: () => this.setState({ themeOverride: isDark ? 'light' : 'dark' }),
+      setLight: () => this.setState({ themeOverride: 'light' }),
+      setDark: () => this.setState({ themeOverride: 'dark' }),
+      lightBg: L.bg, lightFg: L.fg, lightShadow: L.sh,
+      darkBg: D.bg, darkFg: D.fg, darkShadow: D.sh,
+      isEs, isEn: !isEs,
+      setEs: () => this.setState({ lang: 'es' }),
+      setEn: () => this.setState({ lang: 'en' }),
+      esBg: isEs ? on.bg : off.bg, esFg: isEs ? on.fg : off.fg,
+      enBg: !isEs ? on.bg : off.bg, enFg: !isEs ? on.fg : off.fg,
+      menuOpen: this.state.menu,
+      toggleMenu: () => this.setState((s) => ({ menu: !s.menu })),
+      showMissing: (this.props.mode ?? 'borrador') !== 'produccion',
+      videoIdle: this.state.video === 'idle',
+      videoLoading: this.state.video === 'loading',
+      videoLoaded: this.state.video === 'loaded',
+      playVideo: () => { this.setState({ video: 'loading' }); this._t = setTimeout(() => this.setState({ video: 'loaded' }), 900); },
+      resetVideo: () => this.setState({ video: 'idle' }),
+      c0: card(0), c1: card(1), c2: card(2), c3: card(3),
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,15 @@
+---
+import Base from '../../layouts/Base.astro';
+import CasePage from '../../components/CasePage.astro';
+import { cases, details } from '../../data/cases';
+import { casePath } from '../../i18n/ui';
+
+export function getStaticPaths() {
+  return Object.keys(details).map((slug) => ({ params: { slug } }));
+}
+const { slug } = Astro.params;
+const c = cases.find((x) => x.id === slug)!;
+---
+<Base lang="es" title={`${c.name.es} · José Carlos Corona`} description={c.hook.es} altHref={casePath('en', slug)} current="projects">
+  <CasePage lang="es" id={slug} />
+</Base>

@@ -1,0 +1,157 @@
+/* josecarloscorona.dev — design tokens · Dirección 2b "Ficha técnica"
+   Fuentes (Google Fonts): Instrument Sans 400/500/600/700, Fragment Mono 400 */
+
+:root {
+  color-scheme: light;
+
+  /* Tinta y texto */
+  --jc-ink: #0B0D0E;
+  --jc-text-2: #3A3F44;
+  --jc-text-3: #5B6168;
+  --jc-text-inverse: #FFFFFF;
+
+  /* Superficies */
+  --jc-canvas: #FFFFFF;
+  --jc-surface: #F5F6F7;
+  --jc-card: #FFFFFF;
+  --jc-hairline: #E3E5E8;
+  --jc-hairline-strong: #C9CDD2;
+
+  /* Acento: pino */
+  --jc-accent: #1D5C47;
+  --jc-accent-hover: #154635;
+  --jc-accent-soft: #E6F0EC;
+  --jc-on-accent: #FFFFFF;
+
+  /* Foco */
+  --jc-focus: #1D5C47;
+  --jc-focus-ring: 0 0 0 2px var(--jc-canvas), 0 0 0 4px var(--jc-focus);
+
+  /* Estados */
+  --jc-ok: #176B3F;     --jc-ok-bg: #E4F3EA;
+  --jc-warn: #835000;   --jc-warn-bg: #FAF0D7;
+  --jc-risk: #A3261B;   --jc-risk-bg: #F9E3E0;
+  --jc-neutral: #3A3F44; --jc-neutral-bg: #EEF0F2;
+
+  /* Tipografía */
+  --jc-font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif;
+  --jc-font-mono: 'Fragment Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+  --jc-fs-display: 56px; --jc-lh-display: 1.05; --jc-ls-display: -1.8px;
+  --jc-fs-h1: 40px;      --jc-lh-h1: 1.1;       --jc-ls-h1: -1.2px;
+  --jc-fs-h2: 28px;      --jc-lh-h2: 1.15;      --jc-ls-h2: -0.6px;
+  --jc-fs-h3: 20px;      --jc-lh-h3: 1.25;      --jc-ls-h3: -0.3px;
+  --jc-fs-body: 17px;    --jc-lh-body: 1.6;
+  --jc-fs-meta: 14px;    --jc-lh-meta: 1.45;
+  --jc-fs-micro: 12px;   --jc-lh-micro: 1.4;
+  --jc-fw-regular: 400; --jc-fw-medium: 500; --jc-fw-semibold: 600; --jc-fw-bold: 700;
+  --jc-numeric: tabular-nums;
+
+  /* Espaciado (base 4) */
+  --jc-space-1: 4px;  --jc-space-2: 8px;  --jc-space-3: 12px; --jc-space-4: 16px;
+  --jc-space-5: 20px; --jc-space-6: 24px; --jc-space-8: 32px; --jc-space-10: 40px;
+  --jc-space-12: 48px; --jc-space-16: 64px; --jc-space-20: 80px; --jc-space-24: 96px;
+  --jc-tap: 44px;
+  --jc-container: 1200px;
+  --jc-gutter: 32px;
+
+  /* Radios */
+  --jc-radius-xs: 4px;
+  --jc-radius-sm: 8px;
+  --jc-radius-md: 12px;
+  --jc-radius-lg: 16px;
+  --jc-radius-xl: 24px;
+  --jc-radius-pill: 9999px;
+
+  /* Sombras */
+  --jc-shadow-1: 0 1px 2px rgba(11, 13, 14, .05);
+  --jc-shadow-2: 0 4px 8px rgba(11, 13, 14, .08);
+  --jc-shadow-3: 0 12px 16px -4px rgba(36, 36, 36, .10);
+
+  /* Movimiento */
+  --jc-dur-fast: 150ms;
+  --jc-dur-base: 200ms;
+  --jc-dur-slow: 250ms;
+  --jc-ease: cubic-bezier(.2, 0, 0, 1);
+}
+
+[data-theme="dark"] {
+  color-scheme: dark;
+
+  --jc-ink: #F2F3F4;
+  --jc-text-2: #B8BEC4;
+  --jc-text-3: #959CA3;
+  --jc-text-inverse: #0B0D0E;
+
+  --jc-canvas: #0E1011;
+  --jc-surface: #16191B;
+  --jc-card: #1A1D20;
+  --jc-hairline: #2A2F33;
+  --jc-hairline-strong: #3D4349;
+
+  --jc-accent: #6CC5A0;
+  --jc-accent-hover: #8AD6B5;
+  --jc-accent-soft: #16302A;
+  --jc-on-accent: #0B0D0E;
+
+  --jc-focus: #6CC5A0;
+
+  --jc-ok: #6DD39A;     --jc-ok-bg: #12301F;
+  --jc-warn: #F0B95A;   --jc-warn-bg: #33260F;
+  --jc-risk: #F2877B;   --jc-risk-bg: #3A1A17;
+  --jc-neutral: #B8BEC4; --jc-neutral-bg: #23272B;
+
+  --jc-shadow-1: 0 1px 2px rgba(0, 0, 0, .40);
+  --jc-shadow-2: 0 4px 8px rgba(0, 0, 0, .45);
+  --jc-shadow-3: 0 12px 20px -4px rgba(0, 0, 0, .55);
+}
+
+/* Móvil (≤ 640 px): la escala de títulos se compacta */
+@media (max-width: 640px) {
+  :root {
+    --jc-fs-display: 40px; --jc-ls-display: -1.2px;
+    --jc-fs-h1: 32px;      --jc-ls-h1: -0.9px;
+    --jc-fs-h2: 24px;
+    --jc-gutter: 20px;
+  }
+}
+
+/* Base */
+html { background: var(--jc-canvas); color: var(--jc-ink); font-family: var(--jc-font-sans); font-size: var(--jc-fs-body); line-height: var(--jc-lh-body); -webkit-font-smoothing: antialiased; }
+a { color: var(--jc-accent); text-underline-offset: 3px; }
+a:hover { color: var(--jc-accent-hover); }
+:focus { outline: none; }
+:focus-visible { outline: 2px solid var(--jc-focus); outline-offset: 2px; border-radius: var(--jc-radius-xs); }
+.jc-num, [data-num] { font-variant-numeric: tabular-nums; }
+
+@media (prefers-reduced-motion: reduce) {
+  :root { --jc-dur-fast: 0ms; --jc-dur-base: 0ms; --jc-dur-slow: 0ms; }
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+}
+
+/* ───────────────────────────────────────────────────────────────
+   Extensiones del sitio (no son del handoff). Todo lo nuestro va aquí.
+   ─────────────────────────────────────────────────────────────── */
+:root {
+  /* Colores de producto: solo en capturas, pósters y diagrama (README §1) */
+  --jc-brand-iterum: #1456F0;
+  --jc-brand-domi: #D4421F;
+  --jc-brand-vocatio: #2E3F9E;
+  --jc-brand-fundamentum: #0B0D0E;
+  --jc-poster-fundamentum: #1D5C47;
+  --jc-poster-einstein: #23272B;
+  --jc-on-poster: #FFFFFF;
+  --jc-poster-scrim: rgba(0, 0, 0, .6);
+  --jc-poster-fade: rgba(0, 0, 0, .55);
+
+  /* Rayado de capturas placeholder: fijo en claro y oscuro para mostrar ambos temas */
+  --jc-ph-light-a: #F5F6F7; --jc-ph-light-b: #EEF0F2; --jc-ph-light-line: #E3E5E8; --jc-ph-light-tag: #FFFFFF; --jc-ph-light-ink: #0B0D0E;
+  --jc-ph-dark-a: #16191B;  --jc-ph-dark-b: #1A1D20;  --jc-ph-dark-line: #2A2F33;  --jc-ph-dark-tag: #0E1011;  --jc-ph-dark-ink: #F2F3F4;
+
+  /* Escala del sitio fuera de los tokens base */
+  --jc-fs-hero: 64px; --jc-ls-hero: -2.2px;
+  --jc-page-x: clamp(20px, 8.34vw, 120px);
+}
+
+@media (max-width: 640px) {
+  :root { --jc-fs-hero: 40px; --jc-ls-hero: -1.2px; --jc-page-x: 20px; }
+}

@@ -1,0 +1,40 @@
+---
+import '../styles/global.css';
+import Nav from '../components/Nav.astro';
+import { type Lang } from '../i18n/ui';
+
+interface Props { lang: Lang; title: string; description: string; altHref: string; current?: string }
+const { lang, title, description, altHref, current } = Astro.props;
+const skip = lang === 'es' ? 'Saltar al contenido' : 'Skip to content';
+---
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="alternate" hreflang={lang === 'es' ? 'en' : 'es'} href={altHref} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta name="theme-color" content="#FFFFFF" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0E1011" media="(prefers-color-scheme: dark)" />
+    <script is:inline>
+      (() => {
+        let t = null;
+        try { t = localStorage.getItem('jc-theme'); } catch {}
+        if (t !== 'light' && t !== 'dark') t = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        document.documentElement.dataset.theme = t;
+      })();
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Fragment+Mono&display=swap" />
+  </head>
+  <body>
+    <a class="skip" href="#main">{skip}</a>
+    <Nav lang={lang} current={current} altHref={altHref} />
+    <main id="main" tabindex="-1">
+      <slot />
+    </main>
+  </body>
+</html>

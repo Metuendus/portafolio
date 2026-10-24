@@ -1,0 +1,161 @@
+---
+import Icon from './Icon.astro';
+import { ui, homePath, type Lang } from '../i18n/ui';
+
+interface Props { lang: Lang; current?: string; altHref: string }
+const { lang, current, altHref } = Astro.props;
+const t = ui[lang];
+const esHref = lang === 'es' ? Astro.url.pathname : altHref;
+const enHref = lang === 'en' ? Astro.url.pathname : altHref;
+---
+<header class="nav">
+  <div class="bar page-x">
+    <a class="brand" href={homePath(lang)}>
+      <span class="mono-gram" aria-hidden="true">JC</span>
+      <span class="name">José Carlos Corona</span>
+    </a>
+    <nav class="desk" aria-label={t.navLabel}>
+      <ul class="links">
+        {t.nav.map((l) => (
+          <li><a href={l.href} aria-current={current === l.key ? 'page' : undefined}>{l.label}</a></li>
+        ))}
+      </ul>
+      <span class="sep" aria-hidden="true"></span>
+      <div class="seg" role="group" aria-label={t.langLabel}>
+        <a href={esHref} lang="es" hreflang="es" aria-current={lang === 'es' ? 'true' : undefined}>ES</a>
+        <a href={enHref} lang="en" hreflang="en" aria-current={lang === 'en' ? 'true' : undefined}>EN</a>
+      </div>
+      <button class="theme" type="button" data-theme-toggle data-to-dark={t.themeToDark} data-to-light={t.themeToLight} aria-label={t.themeToDark}>
+        <Icon name="moon" size={18} class="i-moon" /><Icon name="sun" size={18} class="i-sun" />
+      </button>
+    </nav>
+    <button class="burger" type="button" aria-label={t.menuOpen} aria-haspopup="dialog" data-menu-open>
+      <Icon name="menu" size={22} />
+    </button>
+  </div>
+
+  <dialog class="menu" aria-label={t.navLabel} data-menu>
+    <div class="menu-top">
+      <a class="brand" href={homePath(lang)}>
+        <span class="mono-gram" aria-hidden="true">JC</span>
+        <span class="name">José Carlos Corona</span>
+      </a>
+      <button class="burger" type="button" aria-label={t.menuClose} data-menu-close><Icon name="close" size={22} /></button>
+    </div>
+    <nav aria-label={t.navLabel}>
+      <ul class="rows">
+        {t.nav.map((l) => (
+          <li><a href={l.href} aria-current={current === l.key ? 'page' : undefined} data-menu-link>{l.label}<Icon name="arrow" size={18} /></a></li>
+        ))}
+      </ul>
+    </nav>
+    <div class="menu-foot">
+      <div class="seg seg--m" role="group" aria-label={t.langLabel}>
+        <a href={esHref} lang="es" hreflang="es" aria-current={lang === 'es' ? 'true' : undefined}>ES</a>
+        <a href={enHref} lang="en" hreflang="en" aria-current={lang === 'en' ? 'true' : undefined}>EN</a>
+      </div>
+      <button class="theme" type="button" data-theme-toggle data-to-dark={t.themeToDark} data-to-light={t.themeToLight} aria-label={t.themeToDark}>
+        <Icon name="moon" size={18} class="i-moon" /><Icon name="sun" size={18} class="i-sun" />
+      </button>
+    </div>
+  </dialog>
+</header>
+
+<style>
+  .nav { position: sticky; top: 0; z-index: 20; background: var(--jc-canvas); border-bottom: 1px solid var(--jc-hairline); }
+  .bar { height: 72px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+  .brand { display: flex; align-items: center; gap: 10px; min-height: 44px; color: var(--jc-ink); text-decoration: none; }
+  .brand:hover { color: var(--jc-ink); }
+  .mono-gram {
+    width: 32px; height: 32px; border-radius: 8px; background: var(--jc-ink); color: var(--jc-canvas);
+    display: flex; align-items: center; justify-content: center; font: 600 15px/1 var(--jc-font-sans); letter-spacing: -.8px;
+  }
+  .name { font: 600 17px/1 var(--jc-font-sans); letter-spacing: -.3px; }
+  .desk { display: flex; align-items: center; gap: 8px; }
+  .links { display: flex; gap: 4px; list-style: none; padding: 0; }
+  .links a {
+    height: 44px; padding: 0 14px; display: flex; align-items: center; border-radius: var(--jc-radius-pill);
+    font: 500 15px/1 var(--jc-font-sans); color: var(--jc-text-2); text-decoration: none;
+    transition: background-color var(--jc-dur-fast) var(--jc-ease), color var(--jc-dur-fast) var(--jc-ease);
+  }
+  .links a:hover { background: var(--jc-surface); color: var(--jc-ink); }
+  .links a[aria-current='page'] {
+    color: var(--jc-ink); text-decoration: underline; text-decoration-color: var(--jc-accent);
+    text-decoration-thickness: 2px; text-underline-offset: 8px;
+  }
+  .sep { width: 1px; height: 24px; background: var(--jc-hairline); margin: 0 8px; }
+  .seg { display: flex; padding: 3px; border-radius: var(--jc-radius-pill); border: 1px solid var(--jc-hairline); }
+  .seg a {
+    min-width: 44px; height: 36px; border-radius: var(--jc-radius-pill); display: flex; align-items: center; justify-content: center;
+    font: 600 13px/1 var(--jc-font-sans); color: var(--jc-text-2); text-decoration: none;
+    transition: background-color var(--jc-dur-fast) var(--jc-ease);
+  }
+  .seg a:hover { background: var(--jc-surface); color: var(--jc-ink); }
+  .seg a[aria-current='true'] { background: var(--jc-ink); color: var(--jc-canvas); }
+  .theme {
+    width: 44px; height: 44px; border: 1px solid var(--jc-hairline); border-radius: 50%; background: transparent;
+    display: flex; align-items: center; justify-content: center; cursor: pointer; color: var(--jc-ink);
+    transition: background-color var(--jc-dur-fast) var(--jc-ease);
+  }
+  .theme:hover { background: var(--jc-surface); }
+  .theme :global(.i-sun) { display: none; }
+  :global([data-theme='dark']) .theme :global(.i-sun) { display: block; }
+  :global([data-theme='dark']) .theme :global(.i-moon) { display: none; }
+  .burger {
+    display: none; width: 44px; height: 44px; border: 0; background: transparent; color: var(--jc-ink);
+    align-items: center; justify-content: center; cursor: pointer; border-radius: var(--jc-radius-sm);
+  }
+
+  .menu {
+    margin: 0; padding: 0; width: 100%; max-width: none; height: 100%; max-height: none; border: 0;
+    background: var(--jc-canvas); color: var(--jc-ink); flex-direction: column;
+  }
+  .menu[open] { display: flex; animation: menu-in var(--jc-dur-slow) var(--jc-ease); }
+  .menu::backdrop { background: transparent; }
+  @keyframes menu-in { from { opacity: 0; transform: translateY(-8px); } }
+  .menu-top { height: 60px; padding: 0 12px 0 20px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--jc-hairline); margin-top: env(safe-area-inset-top); }
+  .menu-top .burger { display: flex; }
+  .menu-top .name { font-size: 16px; }
+  .rows { list-style: none; padding: 0 20px; }
+  .rows a {
+    height: 64px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--jc-hairline);
+    font: 600 22px/1 var(--jc-font-sans); letter-spacing: -.4px; color: var(--jc-ink); text-decoration: none;
+  }
+  .rows a[aria-current='page'] { color: var(--jc-accent); }
+  .menu-foot { margin-top: auto; padding: 20px; display: flex; align-items: center; justify-content: space-between; border-top: 1px solid var(--jc-hairline); }
+  .seg--m a { height: 38px; min-width: 52px; }
+
+  @media (max-width: 1000px) {
+    .desk { display: none; }
+    .burger { display: flex; }
+    .bar { height: 60px; padding-left: 20px; padding-right: 12px; }
+    .name { font-size: 16px; }
+  }
+</style>
+
+<script>
+  const html = document.documentElement;
+  const sync = () => {
+    const dark = html.dataset.theme === 'dark';
+    document.querySelectorAll<HTMLButtonElement>('[data-theme-toggle]').forEach((b) => {
+      b.setAttribute('aria-label', (dark ? b.dataset.toLight : b.dataset.toDark) ?? '');
+    });
+  };
+  document.querySelectorAll<HTMLButtonElement>('[data-theme-toggle]').forEach((b) =>
+    b.addEventListener('click', () => {
+      const next = html.dataset.theme === 'dark' ? 'light' : 'dark';
+      html.dataset.theme = next;
+      try { localStorage.setItem('jc-theme', next); } catch {}
+      sync();
+    }),
+  );
+  sync();
+
+  const menu = document.querySelector<HTMLDialogElement>('[data-menu]');
+  const opener = document.querySelector<HTMLButtonElement>('[data-menu-open]');
+  opener?.addEventListener('click', () => menu?.showModal());
+  menu?.querySelector('[data-menu-close]')?.addEventListener('click', () => menu.close());
+  menu?.querySelectorAll('[data-menu-link]').forEach((a) => a.addEventListener('click', () => menu.close()));
+  menu?.addEventListener('close', () => opener?.focus());
+  matchMedia('(min-width: 1001px)').addEventListener('change', (e) => { if (e.matches) menu?.close(); });
+</script>

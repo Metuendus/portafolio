@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Fragment+Mono&display=swap">
+<link rel="stylesheet" href="tokens/jc-tokens.css">
+<style>
+body{margin:0;background:#E9E9E6}
+a{color:var(--jc-accent)}a:hover{color:var(--jc-accent-hover)}
+</style>
+</helmet>
+
+<div ref="{{ rootRef }}" style="padding:80px;display:flex;flex-direction:column;gap:140px;background:#E9E9E6;font-family:var(--jc-font-sans);color:#0B0D0E;min-width:max-content">
+
+<!-- FIT REPORT -->
+<section id="4f-informe" style="display:flex;flex-direction:column;gap:20px;max-width:1440px">
+  <div style="display:flex;align-items:center;gap:10px"><span style="font:600 13px/1 var(--jc-font-mono);padding:6px 10px;border-radius:9999px;background:#0B0D0E;color:#fff">4f</span><span style="font:500 15px/1 var(--jc-font-sans);color:#3A3F44">Verificación del inglés · medida en vivo sobre los artboards 4f de abajo</span></div>
+  <div style="display:grid;grid-template-columns:360px minmax(0,1fr);gap:24px;align-items:start">
+    <div style="padding:28px;border-radius:16px;background:#FFFFFF;border:1px solid #E3E5E8;display:flex;flex-direction:column;gap:8px">
+      <span style="font:600 64px/1 var(--jc-font-sans);letter-spacing:-2px;font-variant-numeric:tabular-nums;color:{{ fitColor }}">{{ fitCount }}</span>
+      <span style="font-size:15px;line-height:1.45;color:#3A3F44">elementos con desborde horizontal en Home y Case (EN), escritorio y móvil</span>
+      <span style="font:400 12px/1.4 var(--jc-font-mono);color:#5B6168">Fuente: scrollWidth vs clientWidth de {{ fitScanned }} nodos, tras cargar fuentes</span>
+      <sc-for list="{{ fitOffenders }}" as="o" hint-placeholder-count="0"><span style="font:400 12px/1.4 var(--jc-font-mono);color:#A3261B">{{ o }}</span></sc-for>
+      <button onClick="{{ remeasure }}" style="align-self:flex-start;margin-top:8px;height:36px;padding:0 14px;border:1px solid #C9CDD2;border-radius:9999px;background:#fff;color:#0B0D0E;font:500 13px/1 var(--jc-font-sans);cursor:pointer">Medir de nuevo</button>
+    </div>
+    <div style="padding:28px;border-radius:16px;background:#FFFFFF;border:1px solid #E3E5E8;display:flex;flex-direction:column">
+      <div style="display:grid;grid-template-columns:200px minmax(0,1fr) minmax(0,1fr) 64px 64px;gap:16px;padding-bottom:12px;border-bottom:1px solid #C9CDD2;font:400 12px/1 var(--jc-font-mono);color:#5B6168"><span>CAMPO</span><span>ES</span><span>EN</span><span style="text-align:right">ES</span><span style="text-align:right">EN</span></div>
+      <sc-for list="{{ lenRows }}" as="r" hint-placeholder-count="8">
+        <div style="display:grid;grid-template-columns:200px minmax(0,1fr) minmax(0,1fr) 64px 64px;gap:16px;padding:10px 0;border-bottom:1px solid #E3E5E8;font-size:13px;line-height:1.4;color:#3A3F44;align-items:baseline"><span style="font:400 12px/1.4 var(--jc-font-mono);color:#5B6168">{{ r.k }}</span><span>{{ r.es }}</span><span>{{ r.en }}</span><span style="text-align:right;font:400 12px/1 var(--jc-font-mono)">{{ r.esN }}</span><span style="text-align:right;font:400 12px/1 var(--jc-font-mono);color:{{ r.enColor }}">{{ r.enN }}</span></div>
+      </sc-for>
+      <span style="padding-top:12px;font:400 12px/1.4 var(--jc-font-mono);color:#5B6168">Caracteres. En verde: el inglés es más corto.</span>
+    </div>
+  </div>
+</section>
+
+<!-- HOME VARIANTS -->
+<sc-for list="{{ homes }}" as="v" hint-placeholder-count="2">
+<section id="{{ v.id }}" style="display:flex;flex-direction:column;gap:24px">
+  <div style="display:flex;align-items:center;gap:10px"><span style="font:600 13px/1 var(--jc-font-mono);padding:6px 10px;border-radius:9999px;background:#0B0D0E;color:#fff">{{ v.badge }}</span><span style="font:500 15px/1 var(--jc-font-sans);color:#3A3F44">{{ v.title }}</span></div>
+  <div data-fitcheck="{{ v.fit }}" style="display:flex;gap:80px;align-items:flex-start">
+    <div data-theme="{{ v.theme }}" style="width:1440px;background:var(--jc-canvas);color:var(--jc-ink);box-shadow:0 1px 3px rgba(0,0,0,.08)">
+      <nav style="height:72px;padding:0 120px;display:flex;align-items:center;justify-content:space-between;gap:24px;border-bottom:1px solid var(--jc-hairline)">
+        <a href="#" style="display:flex;align-items:center;gap:10px;height:44px;color:var(--jc-ink);text-decoration:none"><span style="width:32px;height:32px;border-radius:8px;background:var(--jc-ink);color:var(--jc-canvas);display:flex;align-items:center;justify-content:center;font:600 15px/1 var(--jc-font-sans);letter-spacing:-.8px">JC</span><span style="font:600 17px/1 var(--jc-font-sans);letter-spacing:-.3px">José Carlos Corona</span></a>
+        <div style="display:flex;align-items:center;gap:8px">
+          <div style="display:flex;gap:4px"><sc-for list="{{ v.t.nav }}" as="l" hint-placeholder-count="4"><a href="#" style="height:44px;padding:0 14px;display:flex;align-items:center;font:500 15px/1 var(--jc-font-sans);color:var(--jc-text-2);text-decoration:none;border-radius:9999px;white-space:nowrap" style-hover="background-color:var(--jc-surface);color:var(--jc-ink)">{{ l }}</a></sc-for></div>
+          <div style="width:1px;height:24px;background:var(--jc-hairline);margin:0 8px"></div>
+          <div style="display:flex;padding:3px;border-radius:9999px;border:1px solid var(--jc-hairline)"><span style="min-width:44px;height:36px;border-radius:9999px;background:{{ v.esBg }};color:{{ v.esFg }};display:flex;align-items:center;justify-content:center;font:600 13px/1 var(--jc-font-sans)">ES</span><span style="min-width:44px;height:36px;border-radius:9999px;background:{{ v.enBg }};color:{{ v.enFg }};display:flex;align-items:center;justify-content:center;font:600 13px/1 var(--jc-font-sans)">EN</span></div>
+          <span style="width:44px;height:44px;border:1px solid var(--jc-hairline);border-radius:50%;box-sizing:border-box;display:flex;align-items:center;justify-content:center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path></svg></span>
+        </div>
+      </nav>
+      <div style="position:relative;padding:128px 120px 136px">
+        <h1 style="margin:0;max-width:1000px;font:600 64px/1.05 var(--jc-font-sans);letter-spacing:-2.2px;text-wrap:pretty">{{ v.t.h1a }}<span style="background:var(--jc-accent-soft);border-radius:6px;-webkit-box-decoration-break:clone;box-decoration-break:clone">{{ v.t.h1b }}</span>{{ v.t.h1c }}</h1>
+        <p style="margin:32px 0 0;max-width:720px;font:400 20px/1.55 var(--jc-font-sans);color:var(--jc-text-2);text-wrap:pretty">{{ v.t.sub }}</p>
+        <div style="display:flex;gap:12px;margin-top:44px"><span style="height:52px;padding:0 26px;border-radius:9999px;background:var(--jc-ink);color:var(--jc-canvas);display:inline-flex;align-items:center;font:600 16px/1 var(--jc-font-sans);white-space:nowrap">{{ v.t.cta1 }}</span><span style="height:52px;padding:0 26px;border-radius:9999px;border:1px solid var(--jc-ink);box-sizing:border-box;display:inline-flex;align-items:center;font:600 16px/1 var(--jc-font-sans);white-space:nowrap">{{ v.t.cta2 }}</span></div>
+        <div style="position:absolute;right:120px;bottom:120px;width:300px;display:flex;flex-direction:column;gap:6px">
+          <div aria-hidden="true" style="display:flex;gap:2px;align-items:flex-start;margin-left:20px"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 2.5 19.5 12l-7 1.6-3.6 6.4z" fill="var(--jc-ink)" stroke="var(--jc-canvas)" stroke-width="1.5" stroke-linejoin="round"></path></svg><span style="margin-top:16px;padding:4px 8px;border-radius:9999px;background:var(--jc-accent);color:var(--jc-on-accent);font:400 11px/1 var(--jc-font-mono)">{{ v.t.agent }}</span></div>
+          <div style="padding:16px;border-radius:12px;border:1px solid var(--jc-hairline-strong);background:var(--jc-card);box-shadow:var(--jc-shadow-2);display:flex;flex-direction:column;gap:12px"><span style="font:400 11px/1 var(--jc-font-mono);color:var(--jc-accent)">{{ v.t.popLabel }}</span><span style="font:500 15px/1.45 var(--jc-font-sans)">{{ v.t.popText }}</span><div style="display:flex;gap:8px"><span style="height:40px;padding:0 18px;border-radius:9999px;background:var(--jc-ink);color:var(--jc-canvas);display:inline-flex;align-items:center;font:600 14px/1 var(--jc-font-sans)">{{ v.t.accept }}</span><span style="height:40px;padding:0 16px;border-radius:9999px;border:1px solid var(--jc-hairline-strong);display:inline-flex;align-items:center;font:600 14px/1 var(--jc-font-sans)">{{ v.t.dismiss }}</span></div></div>
+        </div>
+      </div>
+      <div style="padding:96px 120px;border-top:1px solid var(--jc-hairline);display:flex;flex-direction:column;gap:48px">
+        <div style="display:flex;flex-direction:column;gap:8px"><span style="font:400 12px/1 var(--jc-font-mono);color:var(--jc-text-3)">{{ v.t.thesisTag }}</span><h2 style="margin:0;font:600 40px/1.1 var(--jc-font-sans);letter-spacing:-1.2px">{{ v.t.thesisTitle }}</h2></div>
+        <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px;border-top:2px solid var(--jc-ink)">
+          <sc-for list="{{ v.t.principles }}" as="p" hint-placeholder-count="3">
+            <div style="padding-top:32px;display:flex;flex-direction:column;gap:16px"><span style="font:400 12px/1 var(--jc-font-mono);color:var(--jc-text-3)">{{ p.n }}</span><h3 style="margin:0;font:600 28px/1.15 var(--jc-font-sans);letter-spacing:-.6px">{{ p.t }}</h3><p style="margin:0;font-size:17px;line-height:1.6;color:var(--jc-text-2)">{{ p.d }}</p><span style="font:600 15px/1.4 var(--jc-font-sans);color:var(--jc-accent);text-decoration:underline;text-underline-offset:4px">{{ p.app }}</span></div>
+          </sc-for>
+        </div>
+      </div>
+      <div style="padding:96px 120px;border-top:1px solid var(--jc-hairline);display:flex;flex-direction:column;gap:40px">
+        <div style="display:flex;flex-direction:column;gap:8px"><span style="font:400 12px/1 var(--jc-font-mono);color:var(--jc-text-3)">{{ v.t.casesTag }}</span><h2 style="margin:0;font:600 40px/1.1 var(--jc-font-sans);letter-spacing:-1.2px">{{ v.t.casesTitle }}</h2></div>
+        <div style="display:flex;flex-direction:column;gap:20px">
+          <sc-for list="{{ v.t.cases }}" as="c" hint-placeholder-count="8">
+            <div style="display:flex;flex-direction:{{ c.dir }};align-items:center;gap:56px;padding:16px;border-radius:16px;border:1px solid var(--jc-hairline)">
+              <div style="flex:0 0 520px;aspect-ratio:16/10;border-radius:12px;background:{{ c.bg }};color:{{ c.fg }};display:flex;align-items:flex-end;padding:14px;box-sizing:border-box;font:400 12px/1 var(--jc-font-mono)">PLACEHOLDER · {{ c.name }}</div>
+              <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:14px;padding:8px 16px">
+                <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap"><span style="font:400 12px/1 var(--jc-font-mono);color:var(--jc-text-3)">{{ c.num }} / 08</span><span style="font:600 15px/1.3 var(--jc-font-sans)">{{ c.name }}</span></div>
+                <p style="margin:0;font:600 32px/1.15 var(--jc-font-sans);letter-spacing:-.8px;text-wrap:pretty">{{ c.hook }}</p>
+                <div style="display:flex;gap:6px;flex-wrap:wrap"><span style="display:inline-flex;align-items:center;height:26px;padding:0 9px;border:1px solid var(--jc-hairline-strong);border-radius:9999px;font:500 12px/1 var(--jc-font-sans)">{{ c.org }}</span><sc-if value="{{ c.isPost }}"><span style="display:inline-flex;align-items:center;height:26px;padding:0 9px;border-radius:9999px;background:var(--jc-neutral-bg);color:var(--jc-neutral);font:500 12px/1 var(--jc-font-sans)">Postmortem</span></sc-if></div>
+                <span style="font:600 15px/1 var(--jc-font-sans);color:var(--jc-accent);text-decoration:underline;text-underline-offset:4px">{{ v.t.readCase }}</span>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+      <div style="padding:96px 120px;background:var(--jc-surface);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:64px;align-items:center">
+        <div style="display:flex;flex-direction:column;gap:28px">
+          <h2 style="margin:0;font:600 40px/1.1 var(--jc-font-sans);letter-spacing:-1.2px">{{ v.t.chassisTitle }}</h2>
+          <div style="padding:24px;border-radius:16px;border:1px solid var(--jc-hairline);background:var(--jc-canvas);display:flex;flex-direction:column">
+            <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px"><span style="padding:12px 14px;border-radius:12px;border:1px solid var(--jc-hairline-strong);font:600 15px/1.2 var(--jc-font-sans)">Iterum</span><span style="padding:12px 14px;border-radius:12px;border:1px solid var(--jc-hairline-strong);font:600 15px/1.2 var(--jc-font-sans)">Domi</span><span style="padding:12px 14px;border-radius:12px;border:1px solid var(--jc-hairline-strong);font:600 15px/1.2 var(--jc-font-sans)">Vocatio</span></div>
+            <div style="height:28px;display:grid;grid-template-columns:repeat(3,1fr)"><span style="justify-self:center;width:1.5px;background:var(--jc-text-3)"></span><span style="justify-self:center;width:1.5px;background:var(--jc-text-3)"></span><span style="justify-self:center;width:1.5px;background:var(--jc-text-3)"></span></div>
+            <div style="padding:14px 16px;border-radius:12px;border:2px solid var(--jc-accent);background:var(--jc-accent-soft);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap"><span style="font:600 17px/1.2 var(--jc-font-sans)">Fundamentum</span><span style="font:400 12px/1.3 var(--jc-font-mono);color:var(--jc-accent)">{{ v.t.chassisSub }}</span></div>
+          </div>
+        </div>
+        <div style="aspect-ratio:16/9;border-radius:24px;background:#1D5C47;color:#fff;position:relative;display:flex;align-items:flex-end;justify-content:space-between;padding:24px;box-sizing:border-box"><span style="position:absolute;left:50%;top:50%;width:72px;height:72px;margin:-36px 0 0 -36px;border-radius:50%;background:#fff"></span><span style="font:600 22px/1.2 var(--jc-font-sans)">{{ v.t.chassisVideo }}</span><span style="font:400 13px/1 var(--jc-font-mono);background:rgba(0,0,0,.6);padding:6px 8px;border-radius:6px">1:00</span></div>
+      </div>
+      <div style="padding:120px 120px 48px;display:flex;flex-direction:column;gap:96px">
+        <div style="display:flex;flex-direction:column;gap:20px;max-width:900px"><h2 style="margin:0;font:600 56px/1.05 var(--jc-font-sans);letter-spacing:-1.8px">{{ v.t.closeTitle }}</h2><p style="margin:0;font:400 24px/1.45 var(--jc-font-sans);color:var(--jc-text-2)">{{ v.t.closeBody }}</p><div style="display:flex;gap:8px;margin-top:20px"><span style="height:52px;padding:0 22px;border-radius:9999px;background:var(--jc-ink);color:var(--jc-canvas);display:inline-flex;align-items:center;font:600 16px/1 var(--jc-font-sans)">{{ v.t.cta2 }}</span><span style="height:52px;padding:0 22px;border-radius:9999px;border:1px solid var(--jc-ink);box-sizing:border-box;display:inline-flex;align-items:center;font:600 16px/1 var(--jc-font-sans)">LinkedIn</span></div></div>
+        <footer style="display:flex;justify-content:space-between;gap:24px;padding-top:24px;border-top:1px solid var(--jc-hairline);font:400 13px/1.5 var(--jc-font-mono);color:var(--jc-text-3)"><span>hola@josecarloscorona.dev</span><span>{{ v.t.footer }}</span></footer>
+      </div>
+    </div>
+
+    <div data-theme="{{ v.theme }}" style="width:402px;height:874px;border-radius:40px;border:1px solid #C9CDD2;overflow:hidden;background:var(--jc-canvas);color:var(--jc-ink);box-shadow:0 1px 3px rgba(0,0,0,.08)">
+      <div style="height:100%;overflow-y:auto">
+        <div style="position:sticky;top:0;z-index:5;background:var(--jc-canvas)"><div style="height:44px"></div><div style="height:60px;padding:0 12px 0 20px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--jc-hairline)"><span style="display:flex;align-items:center;gap:10px"><span style="width:32px;height:32px;border-radius:8px;background:var(--jc-ink);color:var(--jc-canvas);display:flex;align-items:center;justify-content:center;font:600 15px/1 var(--jc-font-sans);letter-spacing:-.8px">JC</span><span style="font:600 16px/1 var(--jc-font-sans);letter-spacing:-.3px">José Carlos Corona</span></span><span style="width:44px;height:44px;display:flex;align-items:center;justify-content:center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"></path></svg></span></div></div>
+        <div style="padding:40px 20px 48px;display:flex;flex-direction:column;gap:20px">
+          <h1 style="margin:0;font:600 40px/1.05 var(--jc-font-sans);letter-spacing:-1.2px;text-wrap:pretty">{{ v.t.h1a }}<span style="background:var(--jc-accent-soft);border-radius:4px;-webkit-box-decoration-break:clone;box-decoration-break:clone">{{ v.t.h1b }}</span>{{ v.t.h1c }}</h1>
+          <p style="margin:0;font-size:17px;line-height:1.55;color:var(--jc-text-2)">{{ v.t.sub }}</p>
+          <div style="display:flex;flex-direction:column;gap:10px"><span style="height:48px;border-radius:9999px;background:var(--jc-ink);color:var(--jc-canvas);display:flex;align-items:center;justify-content:center;font:600 15px/1 var(--jc-font-sans)">{{ v.t.cta1 }}</span><span style="height:48px;border-radius:9999px;border:1px solid var(--jc-ink);box-sizing:border-box;display:flex;align-items:center;justify-content:center;font:600 15px/1 var(--jc-font-sans)">{{ v.t.cta2 }}</span></div>
+          <div style="padding:16px;border-radius:12px;border:1px solid var(--jc-hairline-strong);background:var(--jc-card);box-shadow:var(--jc-shadow-2);display:flex;flex-direction:column;gap:12px"><span style="font:400 11px/1 var(--jc-font-mono);color:var(--jc-accent)">{{ v.t.popLabel }}</span><span style="font:500 15px/1.45 var(--jc-font-sans)">{{ v.t.popText }}</span><div style="display:grid;grid-template-columns:1fr 1fr;gap:8px"><span style="height:44px;border-radius:9999px;background:var(--jc-ink);color:var(--jc-canvas);display:flex;align-items:center;justify-content:center;font:600 14px/1 var(--jc-font-sans)">{{ v.t.accept }}</span><span style="height:44px;border-radius:9999px;border:1px solid var(--jc-hairline-strong);display:flex;align-items:center;justify-content:center;font:600 14px/1 var(--jc-font-sans)">{{ v.t.dismiss }}</span></div></div>
+        </div>
+        <div style="padding:40px 20px;border-top:1px solid var(--jc-hairline);display:flex;flex-direction:column;gap:4px"><span style="font:400 12px/1 var(--jc-font-mono);color:var(--jc-text-3)">{{ v.t.thesisTag }}</span>
+          <sc-for list="{{ v.t.principles }}" as="p" hint-placeholder-count="3"><div style="display:flex;flex-direction:column;gap:6px;padding:16px 0;border-bottom:1px solid var(--jc-hairline)"><span style="font:600 22px/1.2 var(--jc-font-sans);letter-spacing:-.4px">{{ p.t }}</span><span style="font-size:15px;line-height:1.5;color:var(--jc-text-2)">{{ p.d }}</span><span style="min-height:44px;display:flex;align-items:center;font:600 14px/1.3 var(--jc-font-sans);color:var(--jc-accent);text-decoration:underline">{{ p.app }}</span></div></sc-for>
+        </div>
+        <div style="padding:40px 20px;border-top:1px solid var(--jc-hairline);display:flex;flex-direction:column;gap:16px"><h2 style="margin:0;font:600 32px/1.1 var(--jc-font-sans);letter-spacing:-.9px">{{ v.t.casesTitle }}</h2>
+          <sc-for list="{{ v.t.cases }}" as="c" hint-placeholder-count="8"><div style="padding:8px;border-radius:16px;border:1px solid var(--jc-hairline);display:flex;flex-direction:column"><div style="aspect-ratio:16/10;border-radius:12px;background:{{ c.bg }};color:{{ c.fg }};display:flex;align-items:flex-end;padding:10px;box-sizing:border-box;font:400 11px/1 var(--jc-font-mono)">PLACEHOLDER</div><div style="padding:12px 8px 8px;display:flex;flex-direction:column;gap:6px"><span style="align-self:flex-start;height:26px;display:inline-flex;align-items:center;padding:0 9px;border:1px solid var(--jc-hairline-strong);border-radius:9999px;font:500 12px/1 var(--jc-font-sans)">{{ c.org }}</span><span style="font:600 20px/1.2 var(--jc-font-sans)">{{ c.name }}</span><span style="font-size:15px;line-height:1.45;color:var(--jc-text-2)">{{ c.hook }}</span></div></div></sc-for>
+        </div>
+        <div style="padding:40px 20px;background:var(--jc-surface);display:flex;flex-direction:column;gap:16px"><h2 style="margin:0;font:600 28px/1.15 var(--jc-font-sans)">{{ v.t.chassisTitle }}</h2><div style="padding:12px;border-radius:10px;border:2px solid var(--jc-accent);background:var(--jc-accent-soft);display:flex;flex-direction:column;gap:4px"><span style="font:600 15px/1.2 var(--jc-font-sans)">Iterum · Domi · Vocatio → Fundamentum</span><span style="font:400 11px/1.3 var(--jc-font-mono);color:var(--jc-accent)">{{ v.t.chassisSub }}</span></div><div style="aspect-ratio:16/9;border-radius:16px;background:#1D5C47;color:#fff;display:flex;align-items:flex-end;padding:14px;box-sizing:border-box;font:600 16px/1.2 var(--jc-font-sans)">{{ v.t.chassisVideo }}</div></div>
+        <div style="padding:48px 20px 32px;display:flex;flex-direction:column;gap:14px"><h2 style="margin:0;font:600 32px/1.1 var(--jc-font-sans);letter-spacing:-.9px">{{ v.t.closeTitle }}</h2><p style="margin:0;font-size:17px;line-height:1.55;color:var(--jc-text-2)">{{ v.t.closeBody }}</p><span style="height:48px;margin-top:8px;border-radius:9999px;background:var(--jc-ink);color:var(--jc-canvas);display:flex;align-items:center;justify-content:center;font:600 15px/1 var(--jc-font-sans)">{{ v.t.cta2 }}</span><footer style="margin-top:32px;font:400 12px/1.5 var(--jc-font-mono);color:var(--jc-text-3)">{{ v.t.footer }}</footer></div>
+      </div>
+    </div>
+  </div>
+</section>
+</sc-for>
+
+<!-- CASE VARIANTS -->
+<sc-for list="{{ cases }}" as="x" hint-placeholder-count="2">
+<section id="{{ x.id }}" style="display:flex;flex-direction:column;gap:24px">
+  <div style="display:flex;align-items:center;gap:10px"><span style="font:600 13px/1 var(--jc-font-mono);padding:6px 10px;border-radius:9999px;background:#0B0D0E;color:#fff">{{ x.badge }}</span><span style="font:500 15px/1 var(--jc-font-sans);color:#3A3F44">{{ x.title }}</span></div>
+  <div data-fitcheck="{{ x.fit }}" style="display:flex;gap:80px;align-items:flex-start">
+    <div data-theme="{{ x.theme }}" style="width:1440px;background:var(--jc-canvas);color:var(--jc-ink);box-shadow:0 1px 3px rgba(0,0,0,.08)">
+      <nav style="height:72px;padding:0 120px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--jc-hairline)">
+        <span style="display:flex;align-items:center;gap:10px"><span style="width:32px;height:32px;border-radius:8px;background:var(--jc-ink);color:var(--jc-canvas);display:flex;align-items:center;justify-content:center;font:600 15px/1 var(--jc-font-sans);letter-spacing:-.8px">JC</span><span style="font:600 17px/1 var(--jc-font-sans);letter-spacing:-.3px">José Carlos Corona</span></span>
+        <div style="display:flex;gap:4px"><sc-for list="{{ x.nav }}" as="l" hint-placeholder-count="4"><span style="height:44px;padding:0 14px;display:flex;align-items:center;font:500 15px/1 var(--jc-font-sans);color:{{ l.color }};text-decoration:{{ l.deco }};text-decoration-color:var(--jc-accent);text-decoration-thickness:2px;text-underline-offset:8px;white-space:nowrap">{{ l.t }}</span></sc-for></div>
+      </nav>
+      <div style="padding:56px 120px 96px;display:flex;flex-direction:column;gap:48px">
+        <div style="display:flex;flex-direction:column;gap:24px;max-width:960px">
+          <span style="font:400 13px/1 var(--jc-font-mono);color:var(--jc-text-3)">{{ x.L.projects }} / {{ x.short }} · {{ x.num }} / 08</span>
+          <h1 style="margin:0;font:600 64px/1.05 var(--jc-font-sans);letter-spacing:-2.2px;text-wrap:balance">{{ x.name }}</h1>
+          <p style="margin:0;font:400 24px/1.45 var(--jc-font-sans);color:var(--jc-text-2);text-wrap:pretty">{{ x.hook }}</p>
+          <div style="display:flex;gap:8px;flex-wrap:wrap"><span style="display:inline-flex;align-items:center;height:28px;padding:0 10px;border:1px solid var(--jc-hairline-strong);border-radius:9999px;font:500 13px/1 var(--jc-font-sans)">{{ x.orgLabel }}</span><span style="display:inline-flex;align-items:center;height:28px;padding:0 10px;border-radius:9999px;background:{{ x.statusBg }};color:{{ x.statusFg }};font:500 13px/1 var(--jc-font-sans)">{{ x.statusLabel }}</span><sc-for list="{{ x.stack }}" as="s" hint-placeholder-count="2"><span style="display:inline-flex;align-items:center;height:28px;padding:0 8px;border-radius:6px;background:var(--jc-surface);color:var(--jc-text-2);font:400 12px/1 var(--jc-font-mono)">{{ s }}</span></sc-for></div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <div style="position:relative;aspect-ratio:16/9;border-radius:24px;overflow:hidden;background:{{ x.poster }};color:#fff;display:flex;flex-direction:column;justify-content:space-between">
+            <span style="padding:28px;font:400 13px/1 var(--jc-font-mono)">{{ x.L.poster }}</span>
+            <span style="position:absolute;left:50%;top:50%;width:88px;height:88px;margin:-44px 0 0 -44px;border-radius:50%;background:#fff"></span>
+            <span style="display:flex;justify-content:space-between;align-items:flex-end;gap:16px;padding:28px;background:linear-gradient(transparent,rgba(0,0,0,.55))"><span style="font:600 26px/1.2 var(--jc-font-sans)">{{ x.videoTitle }}</span><span style="font:400 13px/1 var(--jc-font-mono);background:rgba(0,0,0,.6);padding:6px 8px;border-radius:6px;white-space:nowrap">60–90 s</span></span>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:4px"><sc-for list="{{ x.chapters }}" as="ch" hint-placeholder-count="3"><div style="display:flex;flex-direction:column;gap:8px"><div style="height:4px;border-radius:2px;background:{{ ch.c }}"></div><span style="font:400 12px/1 var(--jc-font-mono);color:{{ ch.tc }}">{{ ch.t }}</span></div></sc-for></div>
+        </div>
+      </div>
+      <div style="padding:96px 120px;border-top:1px solid var(--jc-hairline);display:grid;grid-template-columns:280px minmax(0,1fr);gap:64px">
+        <h2 style="margin:0;font:600 28px/1.15 var(--jc-font-sans);letter-spacing:-.6px">{{ x.L.problem }}</h2>
+        <div style="display:flex;flex-direction:column;gap:20px;max-width:760px"><p style="margin:0;font:600 40px/1.12 var(--jc-font-sans);letter-spacing:-1.2px;text-wrap:pretty">{{ x.problemTitle }}</p><p style="margin:0;font-size:19px;line-height:1.6;color:var(--jc-text-2)">{{ x.problemBody }}</p></div>
+      </div>
+      <div style="padding:96px 120px;border-top:1px solid var(--jc-hairline);display:grid;grid-template-columns:280px minmax(0,1fr);gap:64px">
+        <h2 style="margin:0;font:600 28px/1.15 var(--jc-font-sans);letter-spacing:-.6px">{{ x.L.how }}</h2>
+        <div style="display:flex;flex-direction:column;gap:32px">
+          <div style="border:1px solid var(--jc-hairline);border-radius:16px;padding:40px;background-color:var(--jc-surface);background-image:radial-gradient(var(--jc-hairline-strong) 1px,transparent 1px);background-size:16px 16px;display:flex;flex-direction:column;gap:24px">
+            <div style="display:flex;align-items:center"><sc-for list="{{ x.nodes }}" as="n" hint-placeholder-count="4"><sc-if value="{{ n.notFirst }}"><div style="flex:1;min-width:16px;display:flex;align-items:center;padding:0 4px"><div style="flex:1;height:1.5px;background:var(--jc-text-3)"></div><svg width="8" height="10" viewBox="0 0 8 10" aria-hidden="true"><path d="M0 0l8 5-8 5z" fill="var(--jc-text-3)"></path></svg></div></sc-if><div style="flex:0 1 164px;min-width:0;box-sizing:border-box;padding:14px 16px;border-radius:12px;border:{{ n.border }};background:{{ n.bg }};display:flex;flex-direction:column;gap:4px"><span style="font:600 15px/1.2 var(--jc-font-sans)">{{ n.t }}</span><span style="font:400 12px/1.35 var(--jc-font-mono);color:{{ n.subColor }}">{{ n.s }}</span></div></sc-for></div>
+            <span style="padding-top:20px;border-top:1px solid var(--jc-hairline-strong);font:400 13px/1.4 var(--jc-font-mono);color:var(--jc-text-2)">{{ x.diagramNote }}</span>
+          </div>
+          <ol style="margin:0;padding:0;list-style:none;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px"><sc-for list="{{ x.steps }}" as="st" hint-placeholder-count="3"><li style="display:flex;flex-direction:column;gap:10px;padding-top:16px;border-top:1px solid var(--jc-hairline)"><span style="font:400 12px/1 var(--jc-font-mono);color:var(--jc-text-3)">{{ st.n }}</span><span style="font-size:17px;line-height:1.55;color:var(--jc-text-2)">{{ st.t }}</span></li></sc-for></ol>
+        </div>
+      </div>
+      <div style="padding:96px 120px;background:var(--jc-surface);display:grid;grid-template-columns:280px minmax(0,1fr);gap:64px">
+        <h2 style="margin:0;font:600 28px/1.15 var(--jc-font-sans);letter-spacing:-.6px">{{ x.L.dec }}</h2>
+        <div style="display:flex;flex-direction:column;gap:20px"><sc-for list="{{ x.decisions }}" as="d" hint-placeholder-count="3"><div style="border:1px solid var(--jc-hairline);border-radius:16px;padding:28px 32px;display:flex;flex-direction:column;gap:20px;background:var(--jc-card)"><span style="font:400 12px/1 var(--jc-font-mono);color:var(--jc-accent)">{{ x.L.decision }} {{ d.n }}</span><p style="margin:0;font:500 22px/1.4 var(--jc-font-sans);text-wrap:pretty">{{ x.lead }} <strong style="font-weight:700">{{ d.what }}</strong><sc-if value="{{ d.hasAlt }}"> {{ x.L.insteadOf }} <span style="color:var(--jc-text-3);text-decoration:line-through">{{ d.alt }}</span></sc-if> {{ d.why }}</p><sc-if value="{{ d.hasBa }}"><div style="display:grid;grid-template-columns:1fr auto 1fr;gap:12px"><div style="padding:16px;border-radius:12px;background:var(--jc-surface);display:flex;flex-direction:column;gap:6px"><span style="font:400 12px/1 var(--jc-font-mono);color:var(--jc-text-3)">{{ x.L.before }}</span><span style="font-size:15px;line-height:1.45;color:var(--jc-text-2)">{{ d.before }}</span></div><div style="display:flex;align-items:center;color:var(--jc-text-3)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></div><div style="padding:16px;border-radius:12px;background:var(--jc-accent-soft);display:flex;flex-direction:column;gap:6px"><span style="font:400 12px/1 var(--jc-font-mono);color:var(--jc-accent)">{{ x.L.after }}</span><span style="font-size:15px;line-height:1.45">{{ d.after }}</span></div></div></sc-if></div></sc-for></div>
+      </div>
+      <div style="padding:120px;border-top:1px solid var(--jc-hairline)"><figure style="margin:0;padding-top:48px;border-top:2px solid var(--jc-ink);display:flex;flex-direction:column;gap:32px;max-width:1080px"><blockquote style="margin:0;font:600 64px/1.08 var(--jc-font-sans);letter-spacing:-2px;text-wrap:pretty"><span style="color:var(--jc-accent)">“</span>{{ x.quote }}<span style="color:var(--jc-accent)">”</span></blockquote><figcaption style="font-size:15px;color:var(--jc-text-2)">{{ x.quoteCap }}</figcaption></figure></div>
+      <div style="padding:96px 120px;border-top:1px solid var(--jc-hairline);display:grid;grid-template-columns:280px minmax(0,1fr);gap:64px">
+        <h2 style="margin:0;font:600 28px/1.15 var(--jc-font-sans);letter-spacing:-.6px">{{ x.L.result }}</h2>
+        <div style="display:flex;flex-direction:column;gap:32px">
+          <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid var(--jc-hairline);border-bottom:1px solid var(--jc-hairline)">
+            <sc-for list="{{ x.figures }}" as="f" hint-placeholder-count="3"><div style="padding:32px 28px 32px 0;margin-right:28px;border-right:1px solid var(--jc-hairline);display:flex;flex-direction:column;gap:8px"><span style="font:600 56px/1 var(--jc-font-sans);letter-spacing:-1.8px;white-space:nowrap">{{ f.v }}</span><span style="font-size:15px;line-height:1.45;color:var(--jc-text-2)">{{ f.l }}</span><span style="align-self:flex-start;padding:4px 8px;border:1.5px dashed var(--jc-warn);border-radius:6px;background:var(--jc-warn-bg);color:var(--jc-warn);font:400 12px/1.4 var(--jc-font-mono)">{{ x.L.source }}: {{ x.L.missing }}</span></div></sc-for>
+            <sc-if value="{{ x.noUsage }}"><div style="grid-column:span 2;padding:32px 0;display:flex;flex-direction:column;gap:8px;justify-content:center"><span style="font:600 28px/1.2 var(--jc-font-sans)">{{ x.noUsageText }}</span><span style="font-size:15px;color:var(--jc-text-3)">{{ x.L.whenData }}</span></div></sc-if>
+          </div>
+          <p style="margin:0;max-width:760px;font-size:19px;line-height:1.6;color:var(--jc-text-2)">{{ x.resultText }}</p>
+        </div>
+      </div>
+      <div style="padding:96px 120px;border-top:1px solid var(--jc-hairline);display:flex;flex-direction:column;gap:32px">
+        <h2 style="margin:0;font:600 28px/1.15 var(--jc-font-sans);letter-spacing:-.6px">{{ x.L.shots }}</h2>
+        <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px"><sc-for list="{{ x.shots }}" as="g" hint-placeholder-count="3"><figure style="margin:0;display:flex;flex-direction:column;gap:10px"><div style="display:grid;grid-template-columns:1fr 1fr;gap:8px"><div style="aspect-ratio:4/5;border-radius:10px;border:1px solid #E3E5E8;background:repeating-linear-gradient(135deg,#F5F6F7 0 12px,#EEF0F2 12px 24px);padding:8px;box-sizing:border-box"><span style="padding:3px 6px;border-radius:4px;background:#fff;color:#0B0D0E;font:400 10px/1.2 var(--jc-font-mono)">{{ x.L.light }}</span></div><div style="aspect-ratio:4/5;border-radius:10px;border:1px solid #2A2F33;background:repeating-linear-gradient(135deg,#16191B 0 12px,#1A1D20 12px 24px);padding:8px;box-sizing:border-box"><span style="padding:3px 6px;border-radius:4px;background:#0E1011;color:#F2F3F4;font:400 10px/1.2 var(--jc-font-mono)">{{ x.L.dark }}</span></div></div><figcaption style="font-size:14px;line-height:1.45;color:var(--jc-text-2)">{{ g }}</figcaption></figure></sc-for></div>
+      </div>
+      <div style="padding:96px 120px 48px;border-top:1px solid var(--jc-hairline);display:flex;flex-direction:column;gap:64px">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px"><div style="padding:32px;border-radius:16px;border:1px solid var(--jc-hairline);display:flex;flex-direction:column;gap:12px"><span style="font:400 12px/1 var(--jc-font-mono);color:var(--jc-text-3)">{{ x.L.role }}</span><span style="font:600 28px/1.2 var(--jc-font-sans)">{{ x.role }}</span><span style="font-size:16px;color:var(--jc-text-2)">{{ x.roleNote }}</span></div><div style="padding:32px;border-radius:16px;background:var(--jc-surface);display:flex;flex-direction:column;gap:12px"><span style="font:400 12px/1 var(--jc-font-mono);color:var(--jc-text-3)">{{ x.L.next }}</span><span style="font:600 28px/1.2 var(--jc-font-sans);color:{{ x.nextColor }}">{{ x.nextText }}</span></div></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--jc-hairline);border-bottom:1px solid var(--jc-hairline)"><div style="padding:32px 32px 32px 0;border-right:1px solid var(--jc-hairline);display:flex;flex-direction:column;gap:10px"><span style="font:400 12px/1 var(--jc-font-mono);color:var(--jc-text-3)">← {{ x.L.prev }} · {{ x.prev.num }}</span><span style="font:600 28px/1.15 var(--jc-font-sans)">{{ x.prev.name }}</span><span style="font-size:15px;color:var(--jc-text-2)">{{ x.prev.hook }}</span></div><div style="padding:32px 0 32px 32px;display:flex;flex-direction:column;gap:10px;align-items:flex-end;text-align:right"><span style="font:400 12px/1 var(--jc-font-mono);color:var(--jc-text-3)">{{ x.L.nextCase }} · {{ x.next.num }} →</span><span style="font:600 28px/1.15 var(--jc-font-sans)">{{ x.next.name }}</span><span style="font-size:15px;color:var(--jc-text-2)">{{ x.next.hook }}</span></div></div>
+        <footer style="display:flex;justify-content:space-between;font:400 13px/1.5 var(--jc-font-mono);color:var(--jc-text-3)"><span>hola@josecarloscorona.dev</span><span>{{ x.L.footer }}</span></footer>
+      </div>
+    </div>
+
+    <div data-theme="{{ x.theme }}" style="width:402px;height:874px;border-radius:40px;border:1px solid #C9CDD2;overflow:hidden;background:var(--jc-canvas);color:var(--jc-ink);box-shadow:0 1px 3px rgba(0,0,0,.08)">
+      <div style="height:100%;overflow-y:auto">
+        <div style="position:sticky;top:0;z-index:5;background:var(--jc-canvas)"><div style="height:44px"></div><div style="height:60px;padding:0 12px 0 20px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--jc-hairline)"><span style="display:flex;align-items:center;gap:10px"><span style="width:32px;height:32px;border-radius:8px;background:var(--jc-ink);color:var(--jc-canvas);display:flex;align-items:center;justify-content:center;font:600 15px/1 var(--jc-font-sans);letter-spacing:-.8px">JC</span><span style="font:600 16px/1 var(--jc-font-sans);letter-spacing:-.3px">José Carlos Corona</span></span><span style="width:44px;height:44px;display:flex;align-items:center;justify-content:center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"></path></svg></span></div></div>
+        <div style="padding:24px 20px 40px;display:flex;flex-direction:column;gap:16px">
+          <span style="font:400 12px/1 var(--jc-font-mono);color:var(--jc-text-3)">{{ x.L.projects }} / {{ x.short }} · {{ x.num }} / 08</span>
+          <h1 style="margin:0;font:600 40px/1.05 var(--jc-font-sans);letter-spacing:-1.2px">{{ x.name }}</h1>
+          <p style="margin:0;font-size:18px;line-height:1.5;color:var(--jc-text-2)">{{ x.hook }}</p>
+          <div style="display:flex;gap:6px;flex-wrap:wrap"><span style="display:inline-flex;align-items:center;height:28px;padding:0 10px;border:1px solid var(--jc-hairline-strong);border-radius:9999px;font:500 13px/1 var(--jc-font-sans)">{{ x.orgLabel }}</span><span style="display:inline-flex;align-items:center;height:28px;padding:0 10px;border-radius:9999px;background:{{ x.statusBg }};color:{{ x.statusFg }};font:500 13px/1 var(--jc-font-sans)">{{ x.statusLabel }}</span><sc-for list="{{ x.stack }}" as="s" hint-placeholder-count="2"><span style="display:inline-flex;align-items:center;height:28px;padding:0 8px;border-radius:6px;background:var(--jc-surface);color:var(--jc-text-2);font:400 12px/1 var(--jc-font-mono)">{{ s }}</span></sc-for></div>
+          <div style="aspect-ratio:16/9;border-radius:16px;background:{{ x.poster }};color:#fff;display:flex;align-items:flex-end;justify-content:space-between;gap:8px;padding:12px;box-sizing:border-box"><span style="font:600 15px/1.2 var(--jc-font-sans)">{{ x.videoTitle }}</span><span style="font:400 11px/1 var(--jc-font-mono);background:rgba(0,0,0,.6);padding:5px 7px;border-radius:6px;white-space:nowrap">60–90 s</span></div>
+        </div>
+        <div style="padding:40px 20px;border-top:1px solid var(--jc-hairline);display:flex;flex-direction:column;gap:12px"><span style="font:400 12px/1 var(--jc-font-mono);color:var(--jc-text-3)">{{ x.L.problem }}</span><p style="margin:0;font:600 26px/1.15 var(--jc-font-sans);letter-spacing:-.6px">{{ x.problemTitle }}</p><p style="margin:0;font-size:16px;line-height:1.6;color:var(--jc-text-2)">{{ x.problemBody }}</p></div>
+        <div style="padding:40px 20px;border-top:1px solid var(--jc-hairline);display:flex;flex-direction:column;gap:12px"><span style="font:400 12px/1 var(--jc-font-mono);color:var(--jc-text-3)">{{ x.L.how }}</span><div style="padding:16px;border-radius:16px;border:1px solid var(--jc-hairline);background:var(--jc-surface);display:flex;flex-direction:column"><sc-for list="{{ x.nodes }}" as="n" hint-placeholder-count="4"><sc-if value="{{ n.notFirst }}"><div style="height:18px;display:flex;justify-content:center"><div style="width:1.5px;background:var(--jc-text-3)"></div></div></sc-if><div style="padding:12px 14px;border-radius:10px;border:{{ n.border }};background:{{ n.bg }};display:flex;justify-content:space-between;align-items:baseline;gap:8px"><span style="font:600 15px/1.2 var(--jc-font-sans)">{{ n.t }}</span><span style="font:400 11px/1.3 var(--jc-font-mono);color:{{ n.subColor }};text-align:right">{{ n.s }}</span></div></sc-for></div><sc-for list="{{ x.steps }}" as="st" hint-placeholder-count="3"><div style="display:grid;grid-template-columns:28px 1fr;gap:8px;font-size:15px;line-height:1.5;color:var(--jc-text-2)"><span style="font:400 12px/1.6 var(--jc-font-mono);color:var(--jc-text-3)">{{ st.n }}</span><span>{{ st.t }}</span></div></sc-for></div>
+        <div style="padding:40px 20px;background:var(--jc-surface);display:flex;flex-direction:column;gap:12px"><span style="font:400 12px/1 var(--jc-font-mono);color:var(--jc-text-3)">{{ x.L.dec }}</span><sc-for list="{{ x.decisions }}" as="d" hint-placeholder-count="3"><div style="border:1px solid var(--jc-hairline);border-radius:16px;padding:20px;background:var(--jc-card);display:flex;flex-direction:column;gap:10px"><span style="font:400 11px/1 var(--jc-font-mono);color:var(--jc-accent)">{{ x.L.decision }} {{ d.n }}</span><p style="margin:0;font:500 18px/1.4 var(--jc-font-sans)">{{ x.lead }} <strong>{{ d.what }}</strong><sc-if value="{{ d.hasAlt }}"> {{ x.L.insteadOf }} <span style="color:var(--jc-text-3);text-decoration:line-through">{{ d.alt }}</span></sc-if> {{ d.why }}</p></div></sc-for></div>
+        <figure style="margin:0;padding:48px 20px;display:flex;flex-direction:column;gap:16px"><blockquote style="margin:0;padding-top:24px;border-top:2px solid var(--jc-ink);font:600 32px/1.12 var(--jc-font-sans);letter-spacing:-.9px"><span style="color:var(--jc-accent)">“</span>{{ x.quote }}<span style="color:var(--jc-accent)">”</span></blockquote><figcaption style="font-size:14px;color:var(--jc-text-2)">{{ x.quoteCap }}</figcaption></figure>
+        <div style="padding:40px 20px;border-top:1px solid var(--jc-hairline);display:flex;flex-direction:column;gap:4px"><span style="font:400 12px/1 var(--jc-font-mono);color:var(--jc-text-3)">{{ x.L.result }}</span><sc-for list="{{ x.figures }}" as="f" hint-placeholder-count="3"><div style="padding:18px 0;border-bottom:1px solid var(--jc-hairline);display:flex;flex-direction:column;gap:6px"><span style="font:600 40px/1 var(--jc-font-sans);letter-spacing:-1.2px">{{ f.v }}</span><span style="font-size:15px;line-height:1.45;color:var(--jc-text-2)">{{ f.l }}</span><span style="align-self:flex-start;padding:3px 7px;border:1.5px dashed var(--jc-warn);border-radius:6px;background:var(--jc-warn-bg);color:var(--jc-warn);font:400 11px/1.4 var(--jc-font-mono)">{{ x.L.source }}: {{ x.L.missing }}</span></div></sc-for><sc-if value="{{ x.noUsage }}"><span style="padding:18px 0;font:600 20px/1.3 var(--jc-font-sans)">{{ x.noUsageText }}</span></sc-if><p style="margin:12px 0 0;font-size:16px;line-height:1.6;color:var(--jc-text-2)">{{ x.resultText }}</p></div>
+        <div style="padding:40px 20px;border-top:1px solid var(--jc-hairline);display:flex;flex-direction:column;gap:12px"><span style="font:400 12px/1 var(--jc-font-mono);color:var(--jc-text-3)">{{ x.L.shots }}</span><sc-for list="{{ x.shots }}" as="g" hint-placeholder-count="3"><div style="display:flex;flex-direction:column;gap:6px"><div style="display:grid;grid-template-columns:1fr 1fr;gap:8px"><div style="aspect-ratio:4/5;border-radius:10px;border:1px solid #E3E5E8;background:repeating-linear-gradient(135deg,#F5F6F7 0 10px,#EEF0F2 10px 20px)"></div><div style="aspect-ratio:4/5;border-radius:10px;border:1px solid #2A2F33;background:repeating-linear-gradient(135deg,#16191B 0 10px,#1A1D20 10px 20px)"></div></div><span style="font-size:13px;color:var(--jc-text-2)">{{ g }}</span></div></sc-for></div>
+        <div style="padding:40px 20px 32px;border-top:1px solid var(--jc-hairline);display:flex;flex-direction:column;gap:12px"><div style="padding:20px;border-radius:16px;border:1px solid var(--jc-hairline);display:flex;flex-direction:column;gap:6px"><span style="font:400 11px/1 var(--jc-font-mono);color:var(--jc-text-3)">{{ x.L.role }}</span><span style="font:600 20px/1.25 var(--jc-font-sans)">{{ x.role }}</span><span style="font-size:14px;color:var(--jc-text-2)">{{ x.roleNote }}</span></div><div style="padding:20px;border-radius:16px;background:var(--jc-surface);display:flex;flex-direction:column;gap:6px"><span style="font:400 11px/1 var(--jc-font-mono);color:var(--jc-text-3)">{{ x.L.next }}</span><span style="font:600 20px/1.25 var(--jc-font-sans);color:{{ x.nextColor }}">{{ x.nextText }}</span></div><div style="display:flex;flex-direction:column;border-top:1px solid var(--jc-hairline);margin-top:12px"><div style="min-height:72px;padding:14px 0;border-bottom:1px solid var(--jc-hairline);display:flex;flex-direction:column;justify-content:center;gap:6px"><span style="font:400 11px/1 var(--jc-font-mono);color:var(--jc-text-3)">← {{ x.L.prev }} · {{ x.prev.num }}</span><span style="font:600 18px/1.2 var(--jc-font-sans)">{{ x.prev.name }}</span></div><div style="min-height:72px;padding:14px 0;border-bottom:1px solid var(--jc-hairline);display:flex;flex-direction:column;justify-content:center;gap:6px"><span style="font:400 11px/1 var(--jc-font-mono);color:var(--jc-text-3)">{{ x.L.nextCase }} · {{ x.next.num }} →</span><span style="font:600 18px/1.2 var(--jc-font-sans)">{{ x.next.name }}</span></div></div><footer style="margin-top:24px;font:400 12px/1.5 var(--jc-font-mono);color:var(--jc-text-3)">{{ x.L.footer }}</footer></div>
+      </div>
+    </div>
+  </div>
+</section>
+</sc-for>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const COLORS = ['', '#1456F0', '', '#D4421F', '', '#2E3F9E', '', '#0B0D0E'];
+const T = {
+  es: {
+    nav: ['Proyectos', 'Escritos', 'Sobre mí', 'Contacto'],
+    h1a: 'Construyo sistemas de IA que la gente usa ', h1b: 'todos los días', h1c: ', no demos.',
+    sub: 'Lidero datos e IA en una agencia de marketing digital de ~190 personas y construyo productos propios con agentes en Google Cloud. 9 años en marketing digital, desde CDMX.',
+    cta1: 'Ver proyectos', cta2: 'Contacto', agent: 'agente', popLabel: 'PROPUESTA DEL AGENTE',
+    popText: 'Subrayar «todos los días». Es lo que separa un sistema de una demo.', accept: 'Aceptar', dismiss: 'Descartar',
+    thesisTag: 'CÓMO TRABAJO', thesisTitle: 'Tres principios',
+    principles: [
+      ['Proponer, no imponer', 'El sistema sugiere el cambio; una persona lo acepta o lo descarta.', 'Lo muestra: Servidor MCP de medios'],
+      ['Toda cifra con fuente', 'Si un número aparece en pantalla, se puede rastrear de dónde salió.', 'Lo muestra: Domi'],
+      ['No todo es LLM', 'Reglas, SQL y estadística primero; el modelo entra donde aporta.', 'Lo muestra: Dashboards y Hopper'],
+    ],
+    casesTag: 'CASOS · 4 EPA · 4 PROPIOS', casesTitle: 'Proyectos', readCase: 'Leer el caso', own: 'Propia',
+    cases: [
+      ['Servidor MCP de medios', 'Automatiza el criterio, no la tarea'],
+      ['Iterum', 'Una agencia de viajes personal, no un cuaderno con asistente'],
+      ['Dashboards y Hopper', 'De un Excel de 993 filas a QA guiado'],
+      ['Domi', 'No es un buscador con chatbot: los agentes juzgan y explican'],
+      ['Einstein, un postmortem', 'Construimos el cerebro de la agencia y nadie lo usó'],
+      ['Vocatio', 'Tu equipo trabaja hasta que te llamen'],
+      ['Librería de Prompts', 'Cada prompt documenta su impacto'],
+      ['Fundamentum', 'Un chasis para tres apps'],
+    ],
+    chassisTitle: 'Un chasis para tres apps', chassisSub: 'chasis común · Google Cloud', chassisVideo: 'Fundamentum en 60 s',
+    closeTitle: 'Soy José Carlos Corona.', closeBody: 'Lidero datos e IA en EPA y construyo Iterum, Domi y Vocatio sobre Fundamentum.',
+    footer: 'Hecho con Astro en Google Cloud · © 2026 · CDMX',
+  },
+  en: {
+    nav: ['Projects', 'Writing', 'About', 'Contact'],
+    h1a: 'I build AI systems people use ', h1b: 'every day', h1c: ', not demos.',
+    sub: 'I lead data and AI at a ~190-person digital marketing agency and build my own agent products on Google Cloud. 9 years in digital marketing, based in Mexico City.',
+    cta1: 'View projects', cta2: 'Contact', agent: 'agent', popLabel: 'AGENT PROPOSAL',
+    popText: 'Underline “every day”. It’s what separates a system from a demo.', accept: 'Accept', dismiss: 'Dismiss',
+    thesisTag: 'HOW I WORK', thesisTitle: 'Three principles',
+    principles: [
+      ['Propose, don’t impose', 'The system suggests the change; a person accepts or dismisses it.', 'See it in: Media MCP server'],
+      ['Every figure has a source', 'If a number shows up on screen, you can trace where it came from.', 'See it in: Domi'],
+      ['Not everything is an LLM', 'Rules, SQL and statistics first; the model comes in where it helps.', 'See it in: Dashboards and Hopper'],
+    ],
+    casesTag: 'CASES · 4 EPA · 4 PERSONAL', casesTitle: 'Projects', readCase: 'Read the case', own: 'Personal',
+    cases: [
+      ['Media MCP server', 'Automate judgment, not the task'],
+      ['Iterum', 'A personal travel agency, not a notebook with an assistant'],
+      ['Dashboards and Hopper', 'From a 993-row spreadsheet to guided QA'],
+      ['Domi', 'Not a search engine with a chatbot: agents judge and explain'],
+      ['Einstein, a postmortem', 'We built the agency’s brain and nobody used it'],
+      ['Vocatio', 'Your team keeps working until they call you'],
+      ['Prompt Library', 'Every prompt documents its impact'],
+      ['Fundamentum', 'One chassis for three apps'],
+    ],
+    chassisTitle: 'One chassis for three apps', chassisSub: 'shared chassis · Google Cloud', chassisVideo: 'Fundamentum in 60 s',
+    closeTitle: 'I’m José Carlos Corona.', closeBody: 'I lead data and AI at EPA and build Iterum, Domi and Vocatio on Fundamentum.',
+    footer: 'Built with Astro on Google Cloud · © 2026 · Mexico City',
+  },
+};
+const L = {
+  es: { projects: 'Proyectos', problem: 'Problema', how: 'Cómo funciona', dec: 'Tres decisiones difíciles', result: 'Resultado', shots: 'Capturas', role: 'MI ROL', next: 'QUÉ SIGUE', prev: 'ANTERIOR', nextCase: 'SIGUIENTE', before: 'ANTES', after: 'DESPUÉS', decision: 'DECISIÓN', insteadOf: 'en lugar de', source: 'Fuente', missing: '(falta)', poster: 'PLACEHOLDER · póster del video', light: 'CLARO', dark: 'OSCURO', whenData: 'Cuando la haya, va aquí con su fuente.', chapters: ['01 · PROBLEMA', '02 · MOMENTO CLAVE', '03 · RESULTADO'], footer: 'Hecho con Astro en Google Cloud · © 2026 · CDMX' },
+  en: { projects: 'Projects', problem: 'Problem', how: 'How it works', dec: 'Three hard decisions', result: 'Result', shots: 'Screenshots', role: 'MY ROLE', next: 'WHAT’S NEXT', prev: 'PREVIOUS', nextCase: 'NEXT', before: 'BEFORE', after: 'AFTER', decision: 'DECISION', insteadOf: 'instead of', source: 'Source', missing: '(missing)', poster: 'PLACEHOLDER · video poster', light: 'LIGHT', dark: 'DARK', whenData: 'When there is, it goes here with its source.', chapters: ['01 · PROBLEM', '02 · KEY MOMENT', '03 · RESULT'], footer: 'Built with Astro on Google Cloud · © 2026 · Mexico City' },
+};
+const NODE = {
+  ext: { border: '1.5px dashed var(--jc-hairline-strong)', bg: 'var(--jc-canvas)', subColor: 'var(--jc-text-3)' },
+  svc: { border: '1px solid var(--jc-hairline-strong)', bg: 'var(--jc-card)', subColor: 'var(--jc-text-3)' },
+  focus: { border: '2px solid var(--jc-accent)', bg: 'var(--jc-accent-soft)', subColor: 'var(--jc-accent)' },
+};
+const CASE = {
+  einstein: {
+    idx: 4, short: 'Einstein', status: 'post', stack: ['Outline'], poster: '#23272B',
+    name: 'Einstein, un postmortem', hook: 'Construimos el cerebro de la agencia y nadie lo usó', org: 'EPA', statusLabel: 'Postmortem',
+    videoTitle: 'Einstein: qué construimos y por qué nadie lo usó',
+    problemTitle: 'Un cerebro de la agencia que respetara quién puede ver qué.',
+    problemBody: 'La idea era reunir el conocimiento de la agencia en un solo lugar que personas e IA pudieran consultar, sin que nadie viera lo que no le toca.',
+    nodes: [['ext', 'Equipo de la agencia', 'personas'], ['svc', 'Outline', 'permisos en 4 niveles'], ['focus', 'Recuperación', 'RAG · GraphRAG · LLM Wiki'], ['svc', 'Asistente de IA', 'respuesta con contexto']],
+    diagramNote: 'Evaluación: golden set de 30 preguntas en 10 categorías',
+    steps: ['Los documentos viven en Outline, la v1, con permisos en 4 niveles.', 'Una capa de recuperación arma el contexto. Comparamos RAG, GraphRAG y LLM Wiki.', 'Cada arquitectura se mide contra el mismo golden set de 30 preguntas.'],
+    lead: 'Decidimos',
+    decisions: [
+      { what: 'construir la v1 sobre Outline', why: 'con permisos en 4 niveles desde el primer día.' },
+      { what: 'elegir la arquitectura con un golden set', alt: 'elegirla por intuición', why: 'de 30 preguntas en 10 categorías.', before: 'RAG, GraphRAG y LLM Wiki sobre la mesa, sin medir.', after: 'Mismas 30 preguntas para las tres: 6–8K contra 15–30K tokens por consulta.' },
+      { what: 'reencuadrar el producto a «compartir y auditar contexto de IA»', alt: 'insistir con el cerebro de la agencia', why: 'porque la adopción fue cero, incluidos los tres fundadores. Quedó en ADR-001.', before: 'El cerebro de la agencia.', after: 'Compartir y auditar contexto de IA.' },
+    ],
+    quote: 'Construimos el cerebro de la agencia y nadie lo usó. Ni los tres fundadores.', quoteCap: 'Momento clave · adopción cero',
+    figures: [['0', 'personas lo usaron, incluidos los tres fundadores'], ['30', 'preguntas en 10 categorías en el golden set'], ['6–8K', 'tokens por consulta, contra 15–30K de la alternativa más pesada']],
+    resultText: 'El producto se reencuadró a «compartir y auditar contexto de IA». La decisión y su razonamiento están en ADR-001.',
+    shots: ['Outline · permisos por nivel', 'Golden set · 30 preguntas en 10 categorías', 'ADR-001 · reencuadre'],
+    role: 'Product owner.', roleNote: 'Otra persona construyó.', nextText: 'Compartir y auditar contexto de IA, según ADR-001.',
+  },
+  iterumEn: {
+    idx: 1, short: 'Iterum', status: 'prod', stack: ['Cloud Run', 'Agents'], poster: '#1456F0',
+    name: 'Iterum', hook: 'A personal travel agency, not a notebook with an assistant', org: 'Personal', statusLabel: 'In production',
+    videoTitle: 'Iterum: one proposal, start to finish',
+    problemTitle: 'Planning a trip with AI usually ends in a notebook with an assistant.',
+    problemBody: 'Loose notes, places that don’t exist and nobody checking whether the plan is feasible. Iterum works like a personal travel agency: it proposes, verifies and waits for your decision.',
+    nodes: [['ext', 'Traveler', 'chat'], ['focus', 'Concierge', 'single voice'], ['svc', 'Specialists', 'signed cards'], ['svc', 'Audit', 'feasibility · traffic light']],
+    diagramNote: 'Deployed on Cloud Run',
+    steps: ['You only talk to Concierge.', 'Specialists prepare signed cards; Concierge presents them to you as proposals.', 'Before showing the plan, a feasibility audit marks it with a traffic light.'],
+    lead: 'I decided',
+    decisions: [
+      { what: 'to make Concierge the only voice', alt: 'several agents talking to you at once', why: 'and to have the specialists work behind it, signing their cards.' },
+      { what: 'that every change arrives as a proposal', alt: 'editing the itinerary on its own', why: 'with three ways out: Accept · Edit · Reject.', before: 'The assistant changes the plan.', after: 'You decide every change.' },
+      { what: 'to audit feasibility with a traffic light', why: 'and not show places that couldn’t be verified.' },
+    ],
+    quote: 'Iterum proposes; you accept, edit or reject.', quoteCap: 'Key moment · the first proposal',
+    figures: [['0', 'invented places in itineraries']], noUsageText: 'No usage figures yet.',
+    resultText: 'Deployed on Cloud Run.',
+    shots: ['Concierge and signed cards', 'Proposal · Accept · Edit · Reject', 'Feasibility audit · traffic light'],
+    role: 'Personal project.', roleNote: 'Product, agents and deployment.', nextText: null,
+  },
+};
+
+class Component extends DCLogic {
+  state = { fit: null };
+  rootRef = React.createRef();
+  componentDidMount() {
+    const go = () => { this.t = setTimeout(() => this.measure(), 400); };
+    (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(go);
+  }
+  componentWillUnmount() { clearTimeout(this.t); }
+  measure() {
+    const root = this.rootRef.current; if (!root) return;
+    const els = root.querySelectorAll('[data-fitcheck="1"] *');
+    const bad = [];
+    els.forEach((el) => {
+      if (!el.clientWidth || el.tagName === 'svg' || el.closest('svg')) return;
+      if (el.scrollWidth - el.clientWidth > 1) bad.push(el);
+    });
+    const leaf = bad.filter((el) => !bad.some((o) => o !== el && el.contains(o)));
+    this.setState({ fit: { n: leaf.length, scanned: els.length, list: leaf.slice(0, 5).map((el) => el.tagName.toLowerCase() + ' · ' + (el.textContent || '').trim().slice(0, 48)) } });
+  }
+  home(lang) {
+    const t = T[lang];
+    return { ...t,
+      principles: t.principles.map(([tt, d, app], i) => ({ t: tt, d, app, n: String(i + 1).padStart(2, '0') })),
+      cases: t.cases.map(([name, hook], i) => ({ name, hook, num: String(i + 1).padStart(2, '0'), dir: i % 2 ? 'row-reverse' : 'row',
+        org: i % 2 ? t.own : 'EPA', isPost: i === 4, bg: COLORS[i] || 'var(--jc-surface)', fg: COLORS[i] ? '#FFFFFF' : 'var(--jc-text-3)' })) };
+  }
+  caseV(c, lang) {
+    const l = L[lang], names = T[lang].cases;
+    const nb = (i) => ({ num: String(i + 1).padStart(2, '0'), name: names[i][0], hook: names[i][1] });
+    return { ...c, L: l, num: String(c.idx + 1).padStart(2, '0'), orgLabel: c.org,
+      nav: T[lang].nav.map((tt, i) => ({ t: tt, color: i === 0 ? 'var(--jc-ink)' : 'var(--jc-text-2)', deco: i === 0 ? 'underline' : 'none' })),
+      statusBg: c.status === 'post' ? 'var(--jc-neutral-bg)' : 'var(--jc-ok-bg)', statusFg: c.status === 'post' ? 'var(--jc-neutral)' : 'var(--jc-ok)',
+      chapters: l.chapters.map((tt, i) => ({ t: tt, c: i === 1 ? 'var(--jc-accent)' : i === 0 ? 'var(--jc-ink)' : 'var(--jc-hairline-strong)', tc: i === 1 ? 'var(--jc-accent)' : 'var(--jc-text-3)' })),
+      nodes: c.nodes.map(([type, tt, s], j) => ({ t: tt, s, notFirst: j > 0, ...NODE[type] })),
+      steps: c.steps.map((tt, j) => ({ t: tt, n: String(j + 1).padStart(2, '0') })),
+      decisions: c.decisions.map((d, j) => ({ ...d, n: String(j + 1).padStart(2, '0'), hasAlt: !!d.alt, hasBa: !!d.before })),
+      figures: c.figures.map(([v, lab]) => ({ v, l: lab })), noUsage: !!c.noUsageText,
+      nextText: c.nextText || (lang === 'en' ? '(missing) next step' : '(falta) siguiente paso'),
+      nextColor: c.nextText ? 'var(--jc-ink)' : 'var(--jc-warn)',
+      prev: nb((c.idx + 7) % 8), next: nb((c.idx + 1) % 8) };
+  }
+  renderVals() {
+    const seg = (on) => ({ bg: on ? 'var(--jc-ink)' : 'transparent', fg: on ? 'var(--jc-canvas)' : 'var(--jc-text-2)' });
+    const es = seg(true), en = seg(false);
+    const homes = [
+      { id: '4e', badge: '4e', title: 'Inicio · modo oscuro', theme: 'dark', fit: '0', t: this.home('es'), esBg: es.bg, esFg: es.fg, enBg: en.bg, enFg: en.fg },
+      { id: '4f', badge: '4f', title: 'Home · English (EN activo)', theme: 'light', fit: '1', t: this.home('en'), esBg: en.bg, esFg: en.fg, enBg: es.bg, enFg: es.fg },
+    ];
+    const cases = [
+      { id: '4e-caso', badge: '4e', title: 'Caso Einstein · modo oscuro', theme: 'dark', fit: '0', ...this.caseV(CASE.einstein, 'es') },
+      { id: '4f-caso', badge: '4f', title: 'Case Iterum · English', theme: 'light', fit: '1', ...this.caseV(CASE.iterumEn, 'en') },
+    ];
+    const longest = (arr) => arr.reduce((a, b) => (b.length > a.length ? b : a), '');
+    const pairs = [
+      ['héroe · titular', T.es.h1a + T.es.h1b + T.es.h1c, T.en.h1a + T.en.h1b + T.en.h1c],
+      ['héroe · bajada', T.es.sub, T.en.sub],
+      ['botón primario', T.es.cta1, T.en.cta1],
+      ['propuesta del agente', T.es.popText, T.en.popText],
+      ['principio más largo', longest(T.es.principles.map((p) => p[0])), longest(T.en.principles.map((p) => p[0]))],
+      ['nombre de caso más largo', longest(T.es.cases.map((c) => c[0])), longest(T.en.cases.map((c) => c[0]))],
+      ['gancho más largo', longest(T.es.cases.map((c) => c[1])), longest(T.en.cases.map((c) => c[1]))],
+      ['nav completa', T.es.nav.join(' · '), T.en.nav.join(' · ')],
+    ];
+    const lenRows = pairs.map(([k, a, b]) => ({ k, es: a, en: b, esN: a.length, enN: b.length, enColor: b.length <= a.length ? '#176B3F' : '#835000' }));
+    const f = this.state.fit;
+    return {
+      rootRef: this.rootRef, homes, cases, lenRows,
+      fitCount: f ? String(f.n) : '…', fitScanned: f ? String(f.scanned) : '…', fitOffenders: f ? f.list : [],
+      fitColor: f && f.n === 0 ? '#176B3F' : f ? '#A3261B' : '#5B6168',
+      remeasure: () => this.measure(),
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,313 @@
+---
+import OrgChip from './OrgChip.astro';
+import VideoFacade from './VideoFacade.astro';
+import Footer from './Footer.astro';
+import { ui, casePath, homePath, showMissing, type Lang } from '../i18n/ui';
+import { cases, details, hasPage, caseNum } from '../data/cases';
+
+interface Props { lang: Lang; id: string }
+const { lang, id } = Astro.props;
+const L = ui[lang].caseL;
+const summary = cases.find((c) => c.id === id)!;
+const detail = details[id];
+const c = detail.content[lang];
+const idx = cases.indexOf(summary);
+const prev = cases[(idx + cases.length - 1) % cases.length];
+const next = cases[(idx + 1) % cases.length];
+const projects = `${homePath(lang)}#${lang === 'es' ? 'proyectos' : 'projects'}`;
+const nextText = c.nextText ?? (showMissing ? L.missingNext : undefined);
+---
+<article class="case">
+  <header class="top page-x">
+    <div class="intro">
+      <nav aria-label={L.breadcrumb} class="crumbs tag"><a href={projects}>{L.projects}</a> / {c.short} · {caseNum(id)} / 08</nav>
+      <h1>{summary.name[lang]}</h1>
+      <p class="hook">{summary.hook[lang]}</p>
+      <div class="chips">
+        <OrgChip lang={lang} org={summary.org} status={summary.status} large />
+        {c.stack.map((s) => <span class="chip chip--stack chip--lg">{s}</span>)}
+      </div>
+    </div>
+    <div class="video-block">
+      <VideoFacade lang={lang} title={c.videoTitle} duration="60–90 s" poster={detail.poster} videoId={c.videoId} size="lg" />
+      <ol class="chapters" aria-hidden={c.videoId ? undefined : 'true'}>
+        {L.chapters.map((ch, i) => <li class:list={[`ch${i}`]}><span class="tick"></span><span class="tag">{ch}</span></li>)}
+      </ol>
+    </div>
+  </header>
+
+  <section class="row page-x" aria-labelledby="s-problem">
+    <h2 id="s-problem">{L.problem}</h2>
+    <div class="problem">
+      <p class="statement">{c.problemTitle}</p>
+      <p class="para">{c.problemBody}</p>
+    </div>
+  </section>
+
+  <section class="row page-x" aria-labelledby="s-how">
+    <h2 id="s-how">{L.how}</h2>
+    <div class="how">
+      <figure class="diagram">
+        <ol class="nodes">
+          {c.nodes.map(([kind, t, s], j) => (
+            <>
+              {j > 0 && <li class="arrow" aria-hidden="true"><span class="line"></span><svg width="8" height="10" viewBox="0 0 8 10"><path d="M0 0l8 5-8 5z" /></svg></li>}
+              <li class="node" data-kind={kind}><span class="n-t">{t}</span><span class="n-s">{s}</span></li>
+            </>
+          ))}
+        </ol>
+        <figcaption>{c.diagramNote}</figcaption>
+      </figure>
+      <ol class="steps">
+        {c.steps.map((s, j) => <li><span class="tag">{String(j + 1).padStart(2, '0')}</span><span>{s}</span></li>)}
+      </ol>
+    </div>
+  </section>
+
+  <section class="row row--surface page-x" aria-labelledby="s-dec">
+    <h2 id="s-dec">{L.dec}</h2>
+    <div class="decisions">
+      {c.decisions.map((d, j) => (
+        <div class="decision">
+          <span class="d-tag">{L.decision} {String(j + 1).padStart(2, '0')}</span>
+          <p class="d-text">{c.lead} <strong>{d.what}</strong>{d.alt && <> {L.insteadOf} <s>{d.alt}</s></>} {d.why}</p>
+          {d.before && (
+            <div class="ba">
+              <div class="b"><span class="tag">{L.before}</span><span>{d.before}</span></div>
+              <svg class="ba-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+              <div class="a"><span class="tag">{L.after}</span><span>{d.after}</span></div>
+            </div>
+          )}
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="quote page-x">
+    <figure>
+      <blockquote><span class="q" aria-hidden="true">“</span>{c.quote}<span class="q" aria-hidden="true">”</span></blockquote>
+      <figcaption>{c.quoteCap}</figcaption>
+    </figure>
+  </section>
+
+  <section class="row page-x" aria-labelledby="s-result">
+    <h2 id="s-result">{L.result}</h2>
+    <div class="result">
+      <div class="figures">
+        {c.figures.map((f) => (
+          <div class="fig">
+            <span class="fig-v">{f.v}</span>
+            <span class="fig-l">{f.l}</span>
+            {f.source
+              ? <span class="fig-s">{L.source}: {f.source}</span>
+              : showMissing && <span class="missing">{L.source}: {L.missing}</span>}
+          </div>
+        ))}
+        {c.noUsageText && (
+          <div class="no-usage"><span class="nu-t">{c.noUsageText}</span><span class="nu-s">{L.whenData}</span></div>
+        )}
+      </div>
+      <p class="para">{c.resultText}</p>
+    </div>
+  </section>
+
+  <section class="shots-sec page-x" aria-labelledby="s-shots">
+    <h2 id="s-shots">{L.shots}</h2>
+    <div class="shots">
+      {c.shots.map((g) => (
+        <figure>
+          <div class="pair">
+            <div class="ph ph--light"><span>{L.light}</span></div>
+            <div class="ph ph--dark"><span>{L.dark}</span></div>
+          </div>
+          <figcaption>{g}</figcaption>
+        </figure>
+      ))}
+    </div>
+  </section>
+
+  <section class="end page-x">
+    <div class="cards">
+      <div class="card"><span class="tag">{L.role}</span><span class="c-big">{c.role}</span><span class="c-note">{c.roleNote}</span></div>
+      {nextText && <div class="card card--surface"><span class="tag">{L.next}</span><span class:list={['c-big', { warn: !c.nextText }]}>{nextText}</span></div>}
+    </div>
+    <nav class="pn" aria-label={`${L.prev} / ${L.nextCase}`}>
+      {[{ k: 'prev', c: prev, label: `← ${L.prev} · ${caseNum(prev.id)}` }, { k: 'next', c: next, label: `${L.nextCase} · ${caseNum(next.id)} →` }].map((p) => {
+        const Tag = hasPage(p.c.id) ? 'a' : 'div';
+        return (
+          <Tag class:list={['pn-item', `pn-${p.k}`]} href={hasPage(p.c.id) ? casePath(lang, p.c.id) : undefined} rel={p.k}>
+            <span class="tag">{p.label}</span>
+            <span class="pn-name">{p.c.name[lang]}</span>
+            <span class="pn-hook">{p.c.hook[lang]}</span>
+          </Tag>
+        );
+      })}
+    </nav>
+    <Footer lang={lang} />
+  </section>
+</article>
+
+<style>
+  .top { padding-top: 56px; padding-bottom: 96px; display: flex; flex-direction: column; gap: 48px; }
+  .intro { display: flex; flex-direction: column; gap: 24px; max-width: 960px; }
+  .crumbs { font-size: 13px; }
+  .crumbs a { color: inherit; text-decoration: underline; text-underline-offset: 3px; display: inline-block; padding: 16px 0; margin: -16px 0; }
+  .crumbs a:hover { color: var(--jc-ink); }
+  h1 { font: 600 var(--jc-fs-hero)/1.05 var(--jc-font-sans); letter-spacing: var(--jc-ls-hero); text-wrap: balance; }
+  .hook { font: 400 24px/1.45 var(--jc-font-sans); color: var(--jc-text-2); }
+  .chips { display: flex; gap: 8px; flex-wrap: wrap; }
+  .video-block { display: flex; flex-direction: column; gap: 12px; }
+  .chapters { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; }
+  .chapters li { display: flex; flex-direction: column; gap: 8px; }
+  .tick { height: 4px; border-radius: 2px; background: var(--jc-hairline-strong); }
+  .ch0 .tick { background: var(--jc-ink); }
+  .ch1 .tick { background: var(--jc-accent); }
+  .ch1 .tag { color: var(--jc-accent); }
+
+  .row { padding-top: 96px; padding-bottom: 96px; border-top: 1px solid var(--jc-hairline); display: grid; grid-template-columns: 280px minmax(0, 1fr); gap: 64px; }
+  .row--surface { background: var(--jc-surface); border-top: 0; }
+  h2 { font: 600 var(--jc-fs-h2)/1.15 var(--jc-font-sans); letter-spacing: var(--jc-ls-h2); }
+  .problem { display: flex; flex-direction: column; gap: 20px; max-width: 760px; }
+  .statement { font: 600 40px/1.12 var(--jc-font-sans); letter-spacing: -1.2px; }
+  .para { font-size: 19px; line-height: 1.6; color: var(--jc-text-2); max-width: 760px; }
+
+  .how { display: flex; flex-direction: column; gap: 32px; min-width: 0; }
+  .diagram {
+    border: 1px solid var(--jc-hairline); border-radius: var(--jc-radius-lg); padding: 40px;
+    background-color: var(--jc-surface); background-image: radial-gradient(var(--jc-hairline-strong) 1px, transparent 1px); background-size: 16px 16px;
+    display: flex; flex-direction: column; gap: 24px;
+  }
+  .nodes { list-style: none; padding: 0; display: flex; align-items: center; }
+  .node { flex: 0 1 164px; min-width: 0; padding: 14px 16px; border-radius: var(--jc-radius-md); display: flex; flex-direction: column; gap: 4px; border: 1px solid var(--jc-hairline-strong); background: var(--jc-card); }
+  .node[data-kind='ext'] { border: 1.5px dashed var(--jc-hairline-strong); background: var(--jc-canvas); }
+  .node[data-kind='focus'] { border: 2px solid var(--jc-accent); background: var(--jc-accent-soft); }
+  .n-t { font: 600 15px/1.2 var(--jc-font-sans); overflow-wrap: anywhere; }
+  .n-s { font: 400 12px/1.35 var(--jc-font-mono); color: var(--jc-text-3); overflow-wrap: anywhere; }
+  .node[data-kind='focus'] .n-s { color: var(--jc-accent); }
+  .arrow { flex: 1; min-width: 16px; display: flex; align-items: center; padding: 0 4px; color: var(--jc-text-3); }
+  .arrow .line { flex: 1; height: 1.5px; background: currentColor; }
+  .arrow svg { fill: currentColor; }
+  .diagram figcaption { padding-top: 20px; border-top: 1px solid var(--jc-hairline-strong); font: 400 13px/1.4 var(--jc-font-mono); color: var(--jc-text-2); }
+  .steps { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; }
+  .steps li { display: flex; flex-direction: column; gap: 10px; padding-top: 16px; border-top: 1px solid var(--jc-hairline); font-size: 17px; line-height: 1.55; color: var(--jc-text-2); }
+
+  .decisions { display: flex; flex-direction: column; gap: 20px; }
+  .decision { border: 1px solid var(--jc-hairline); border-radius: var(--jc-radius-lg); padding: 28px 32px; display: flex; flex-direction: column; gap: 20px; background: var(--jc-card); }
+  .d-tag { font: 400 12px/1 var(--jc-font-mono); color: var(--jc-accent); }
+  .d-text { font: 500 22px/1.4 var(--jc-font-sans); }
+  .d-text strong { font-weight: 700; }
+  .d-text s { color: var(--jc-text-3); }
+  .ba { display: grid; grid-template-columns: 1fr auto 1fr; gap: 12px; }
+  .ba > div { padding: 16px; border-radius: var(--jc-radius-md); display: flex; flex-direction: column; gap: 6px; font-size: 15px; line-height: 1.45; }
+  .b { background: var(--jc-surface); color: var(--jc-text-2); }
+  .a { background: var(--jc-accent-soft); }
+  .a .tag { color: var(--jc-accent); }
+  .ba-arrow { align-self: center; color: var(--jc-text-3); }
+
+  .quote { padding-top: 120px; padding-bottom: 120px; border-top: 1px solid var(--jc-hairline); }
+  .quote figure { padding-top: 48px; border-top: 2px solid var(--jc-ink); display: flex; flex-direction: column; gap: 32px; max-width: 1080px; }
+  blockquote { font: 600 64px/1.08 var(--jc-font-sans); letter-spacing: -2px; text-wrap: pretty; }
+  .q { color: var(--jc-accent); }
+  .quote figcaption { font-size: 15px; color: var(--jc-text-2); }
+
+  .result { display: flex; flex-direction: column; gap: 32px; min-width: 0; }
+  .figures { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid var(--jc-hairline); border-bottom: 1px solid var(--jc-hairline); }
+  .fig { padding: 32px 28px 32px 0; margin-right: 28px; border-right: 1px solid var(--jc-hairline); display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+  .fig:nth-child(3n) { border-right: 0; margin-right: 0; }
+  .fig-v { font: 600 56px/1 var(--jc-font-sans); letter-spacing: -1.8px; }
+  .fig-l { font-size: 15px; line-height: 1.45; color: var(--jc-text-2); }
+  .fig-s { font: 400 12px/1.4 var(--jc-font-mono); color: var(--jc-text-3); }
+  .no-usage { grid-column: span 2; padding: 32px 0; display: flex; flex-direction: column; gap: 8px; justify-content: center; }
+  .nu-t { font: 600 28px/1.2 var(--jc-font-sans); }
+  .nu-s { font-size: 15px; color: var(--jc-text-3); }
+
+  .shots-sec { padding-top: 96px; padding-bottom: 96px; border-top: 1px solid var(--jc-hairline); display: flex; flex-direction: column; gap: 32px; }
+  .shots { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+  .shots figure { display: flex; flex-direction: column; gap: 10px; }
+  .pair { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .ph { aspect-ratio: 4 / 5; border-radius: 10px; padding: 8px; }
+  .ph span { display: inline-block; padding: 3px 6px; border-radius: 4px; font: 400 10px/1.2 var(--jc-font-mono); }
+  .ph--light { border: 1px solid var(--jc-ph-light-line); background: repeating-linear-gradient(135deg, var(--jc-ph-light-a) 0 12px, var(--jc-ph-light-b) 12px 24px); }
+  .ph--light span { background: var(--jc-ph-light-tag); color: var(--jc-ph-light-ink); }
+  .ph--dark { border: 1px solid var(--jc-ph-dark-line); background: repeating-linear-gradient(135deg, var(--jc-ph-dark-a) 0 12px, var(--jc-ph-dark-b) 12px 24px); }
+  .ph--dark span { background: var(--jc-ph-dark-tag); color: var(--jc-ph-dark-ink); }
+  .shots figcaption { font-size: 14px; line-height: 1.45; color: var(--jc-text-2); }
+
+  .end { padding-top: 96px; padding-bottom: 48px; border-top: 1px solid var(--jc-hairline); display: flex; flex-direction: column; gap: 64px; }
+  .cards { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .card { padding: 32px; border-radius: var(--jc-radius-lg); border: 1px solid var(--jc-hairline); display: flex; flex-direction: column; gap: 12px; }
+  .card--surface { background: var(--jc-surface); border-color: transparent; }
+  .c-big { font: 600 28px/1.2 var(--jc-font-sans); }
+  .c-big.warn { color: var(--jc-warn); }
+  .c-note { font-size: 16px; color: var(--jc-text-2); }
+  .pn { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid var(--jc-hairline); border-bottom: 1px solid var(--jc-hairline); }
+  .pn-item { padding: 32px 32px 32px 0; display: flex; flex-direction: column; gap: 10px; color: var(--jc-ink); text-decoration: none; }
+  .pn-prev { border-right: 1px solid var(--jc-hairline); }
+  .pn-next { padding: 32px 0 32px 32px; align-items: flex-end; text-align: right; }
+  a.pn-item:hover .pn-name { text-decoration: underline; text-decoration-color: var(--jc-accent); text-decoration-thickness: 2px; text-underline-offset: 6px; }
+  .pn-name { font: 600 28px/1.15 var(--jc-font-sans); }
+  .pn-hook { font-size: 15px; color: var(--jc-text-2); }
+
+  @media (max-width: 1100px) {
+    .row { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+    .steps { grid-template-columns: minmax(0, 1fr); gap: 0; }
+    .steps li { flex-direction: row; gap: 12px; padding: 12px 0; }
+    blockquote { font-size: 48px; letter-spacing: -1.4px; }
+  }
+  @media (max-width: 900px) {
+    .nodes { flex-direction: column; align-items: stretch; }
+    .node { flex: none; flex-direction: row; justify-content: space-between; align-items: baseline; gap: 8px; padding: 12px 14px; border-radius: 10px; }
+    .n-s { text-align: right; font-size: 11px; }
+    .arrow { flex: none; height: 18px; min-width: 0; justify-content: center; padding: 0; }
+    .arrow .line { flex: none; width: 1.5px; height: 100%; }
+    .arrow svg { display: none; }
+    .diagram { padding: 16px; gap: 16px; }
+    .figures { grid-template-columns: minmax(0, 1fr); border-top: 0; }
+    .fig { padding: 18px 0; margin-right: 0; border-right: 0; border-bottom: 1px solid var(--jc-hairline); }
+    .no-usage { grid-column: auto; padding: 18px 0; }
+    .shots { grid-template-columns: minmax(0, 1fr); gap: 12px; }
+    .cards, .pn { grid-template-columns: minmax(0, 1fr); }
+    .pn-item, .pn-next { padding: 14px 0; min-height: 72px; justify-content: center; align-items: flex-start; text-align: left; gap: 6px; border-right: 0; border-bottom: 1px solid var(--jc-hairline); }
+    .pn { border-bottom: 0; }
+    .pn-hook { display: none; }
+    .pn-name { font-size: 18px; line-height: 1.2; }
+  }
+  @media (max-width: 640px) {
+    .top { padding-top: 24px; padding-bottom: 40px; gap: 16px; }
+    .intro { gap: 16px; }
+    .crumbs { font-size: 12px; }
+    .hook { font-size: 18px; line-height: 1.5; }
+    .chips { gap: 6px; }
+    .chapters { display: none; }
+    .row, .shots-sec { padding-top: 40px; padding-bottom: 40px; gap: 12px; }
+    .row h2, .shots-sec h2 { font: 400 12px/1 var(--jc-font-mono); color: var(--jc-text-3); letter-spacing: 0; }
+    .statement { font-size: 26px; line-height: 1.15; letter-spacing: -.6px; }
+    .para { font-size: 16px; }
+    .problem { gap: 12px; }
+    .how { gap: 12px; }
+    .steps li { display: grid; grid-template-columns: 28px 1fr; gap: 8px; padding: 0; border-top: 0; font-size: 15px; line-height: 1.5; }
+    .steps { gap: 8px; }
+    .decisions { gap: 12px; }
+    .decision { padding: 20px; gap: 10px; }
+    .d-tag { font-size: 11px; }
+    .d-text { font-size: 18px; }
+    .ba { display: none; }
+    .quote { padding-top: 48px; padding-bottom: 48px; border-top: 0; }
+    .quote figure { padding-top: 24px; gap: 16px; }
+    blockquote { font-size: 32px; line-height: 1.12; letter-spacing: -.9px; }
+    .quote figcaption { font-size: 14px; }
+    .result { gap: 4px; }
+    .fig-v { font-size: 40px; letter-spacing: -1.2px; }
+    .missing { font-size: 11px; padding: 3px 7px; }
+    .nu-t { font-size: 20px; line-height: 1.3; }
+    .nu-s { display: none; }
+    .result .para { margin-top: 12px; }
+    .shots figcaption { font-size: 13px; }
+    .end { padding-top: 40px; padding-bottom: 32px; gap: 12px; }
+    .cards { gap: 12px; }
+    .card { padding: 20px; gap: 6px; }
+    .c-big { font-size: 20px; line-height: 1.25; }
+    .c-note { font-size: 14px; }
+    .pn { margin-top: 12px; }
+  }
+</style>

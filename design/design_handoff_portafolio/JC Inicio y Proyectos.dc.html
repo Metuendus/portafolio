@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Fragment+Mono&display=swap">
+<link rel="stylesheet" href="tokens/jc-tokens.css">
+<style>
+body{margin:0;background:#E9E9E6}
+a{color:var(--jc-accent)}a:hover{color:var(--jc-accent-hover)}
+@keyframes jcspin{to{transform:rotate(360deg)}}
+</style>
+</helmet>
+
+<div data-theme="{{ theme }}" style="padding:80px;display:flex;flex-direction:column;gap:140px;background:#E9E9E6;font-family:var(--jc-font-sans);color:#0B0D0E;min-width:max-content">
+
+<!-- INICIO -->
+<section data-screen-label="Inicio" style="display:flex;flex-direction:column;gap:40px">
+  <div style="display:flex;align-items:baseline;gap:16px"><h1 style="margin:0;font:600 40px/1.1 var(--jc-font-sans);letter-spacing:-1.2px">Inicio</h1><span style="font:400 14px/1 var(--jc-font-mono);color:#5B6168">1a–1f · escritorio 1440 · móvil 402 × 874</span></div>
+  <div style="display:flex;gap:80px;align-items:flex-start">
+    <div style="display:flex;flex-direction:column;gap:64px">
+
+      <!-- 1a HÉROE -->
+      <div id="1a" style="display:flex;flex-direction:column;gap:12px">
+        <div style="display:flex;align-items:center;gap:10px"><span style="font:600 13px/1 var(--jc-font-mono);padding:6px 10px;border-radius:9999px;background:#0B0D0E;color:#fff">1a</span><span style="font:500 15px/1 var(--jc-font-sans);color:#3A3F44">Héroe · el agente propone y espera tu Aceptar</span></div>
+        <div data-screen-label="1a Héroe" style="width:1440px;background:var(--jc-canvas);color:var(--jc-ink);box-shadow:0 1px 3px rgba(0,0,0,.08)">
+          <nav aria-label="Principal" style="height:72px;padding:0 120px;display:flex;align-items:center;justify-content:space-between;gap:24px;border-bottom:1px solid var(--jc-hairline)">
+            <a href="#1a" style="display:flex;align-items:center;gap:10px;height:44px;color:var(--jc-ink);text-decoration:none"><span style="width:32px;height:32px;border-radius:8px;background:var(--jc-ink);color:var(--jc-canvas);display:flex;align-items:center;justify-content:center;font:600 15px/1 var(--jc-font-sans);letter-spacing:-.8px">JC</span><span style="font:600 17px/1 var(--jc-font-sans);letter-spacing:-.3px">José Carlos Corona</span></a>
+            <div style="display:flex;align-items:center;gap:8px">
+              <div style="display:flex;gap:4px">
+                <a href="#2a" style="height:44px;padding:0 14px;display:flex;align-items:center;font:500 15px/1 var(--jc-font-sans);color:var(--jc-text-2);text-decoration:none;border-radius:9999px" style-hover="background-color:var(--jc-surface);color:var(--jc-ink)">Proyectos</a>
+                <a href="#" style="height:44px;padding:0 14px;display:flex;align-items:center;font:500 15px/1 var(--jc-font-sans);color:var(--jc-text-2);text-decoration:none;border-radius:9999px" style-hover="background-color:var(--jc-surface);color:var(--jc-ink)">Escritos</a>
+                <a href="#" style="height:44px;padding:0 14px;display:flex;align-items:center;font:500 15px/1 var(--jc-font-sans);color:var(--jc-text-2);text-decoration:none;border-radius:9999px" style-hover="background-color:var(--jc-surface);color:var(--jc-ink)">Sobre mí</a>
+                <a href="#1e" style="height:44px;padding:0 14px;display:flex;align-items:center;font:500 15px/1 var(--jc-font-sans);color:var(--jc-text-2);text-decoration:none;border-radius:9999px" style-hover="background-color:var(--jc-surface);color:var(--jc-ink)">Contacto</a>
+              </div>
+              <div style="width:1px;height:24px;background:var(--jc-hairline);margin:0 8px"></div>
+              <div role="group" aria-label="Idioma" style="display:flex;padding:3px;border-radius:9999px;border:1px solid var(--jc-hairline)"><span style="min-width:44px;height:36px;border-radius:9999px;background:var(--jc-ink);color:var(--jc-canvas);display:flex;align-items:center;justify-content:center;font:600 13px/1 var(--jc-font-sans)">ES</span><span style="min-width:44px;height:36px;border-radius:9999px;color:var(--jc-text-2);display:flex;align-items:center;justify-content:center;font:600 13px/1 var(--jc-font-sans)">EN</span></div>
+              <span aria-label="Cambiar tema" style="width:44px;height:44px;border:1px solid var(--jc-hairline);border-radius:50%;box-sizing:border-box;display:flex;align-items:center;justify-content:center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path></svg></span>
+            </div>
+          </nav>
+          <div ref="{{ heroD.cRef }}" style="position:relative;padding:128px 120px 136px;display:flex;flex-direction:column">
+            <h1 style="margin:0;max-width:1000px;font:600 64px/1.05 var(--jc-font-sans);letter-spacing:-2.2px;text-wrap:pretty">Construyo sistemas de IA que la gente usa <span ref="{{ heroD.tRef }}" style="background:{{ heroD.hlBg }};text-decoration:underline;text-decoration-color:{{ heroD.deco }};text-decoration-thickness:5px;text-underline-offset:10px;border-radius:6px;-webkit-box-decoration-break:clone;box-decoration-break:clone;transition:background-color 200ms var(--jc-ease),text-decoration-color 250ms var(--jc-ease)">todos los días</span>, no demos.</h1>
+            <p style="margin:32px 0 0;max-width:720px;font:400 20px/1.55 var(--jc-font-sans);color:var(--jc-text-2);text-wrap:pretty">Lidero datos e IA en una agencia de marketing digital de ~190 personas y construyo productos propios con agentes en Google Cloud. 9 años en marketing digital, desde CDMX.</p>
+            <div style="display:flex;gap:12px;margin-top:44px">
+              <a href="#2a" style="height:52px;padding:0 26px;border-radius:9999px;background:var(--jc-ink);color:var(--jc-canvas);display:inline-flex;align-items:center;gap:8px;font:600 16px/1 var(--jc-font-sans);text-decoration:none;transition:background-color var(--jc-dur-fast) var(--jc-ease)" style-hover="background-color:var(--jc-accent);color:var(--jc-on-accent)">Ver proyectos<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+              <a href="#1e" style="height:52px;padding:0 26px;border-radius:9999px;border:1px solid var(--jc-ink);box-sizing:border-box;color:var(--jc-ink);display:inline-flex;align-items:center;font:600 16px/1 var(--jc-font-sans);text-decoration:none;transition:background-color var(--jc-dur-fast) var(--jc-ease)" style-hover="background-color:var(--jc-surface)">Contacto</a>
+            </div>
+            <div aria-hidden="true" style="position:absolute;left:{{ heroD.curLeft }};top:{{ heroD.curTop }};opacity:{{ heroD.curOpacity }};pointer-events:none;z-index:3;display:flex;align-items:flex-start;gap:2px;transition:left 700ms var(--jc-ease),top 700ms var(--jc-ease),opacity 200ms var(--jc-ease)">
+              <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 2.5 19.5 12l-7 1.6-3.6 6.4z" fill="var(--jc-ink)" stroke="var(--jc-canvas)" stroke-width="1.5" stroke-linejoin="round"></path></svg>
+              <span style="margin-top:16px;padding:4px 8px;border-radius:9999px;background:var(--jc-accent);color:var(--jc-on-accent);font:400 11px/1 var(--jc-font-mono)">agente</span>
+            </div>
+            <sc-if value="{{ heroD.showPop }}">
+              <div role="dialog" aria-label="Propuesta del agente" style="position:absolute;left:{{ heroD.popLeft }};top:{{ heroD.popTop }};width:300px;z-index:4;box-sizing:border-box;padding:16px;border-radius:12px;border:1px solid var(--jc-hairline-strong);background:var(--jc-card);box-shadow:var(--jc-shadow-2);display:flex;flex-direction:column;gap:12px">
+                <sc-if value="{{ heroD.asking }}">
+                  <div style="display:flex;flex-direction:column;gap:12px">
+                    <span style="font:400 11px/1 var(--jc-font-mono);color:var(--jc-accent)">PROPUESTA DEL AGENTE</span>
+                    <span style="font:500 15px/1.45 var(--jc-font-sans);color:var(--jc-ink)">Subrayar «todos los días». Es lo que separa un sistema de una demo.</span>
+                    <div style="display:flex;gap:8px">
+                      <button onClick="{{ heroD.accept }}" style="height:40px;padding:0 18px;border:0;border-radius:9999px;background:var(--jc-ink);color:var(--jc-canvas);font:600 14px/1 var(--jc-font-sans);cursor:pointer" style-hover="background-color:var(--jc-accent);color:var(--jc-on-accent)">Aceptar</button>
+                      <button onClick="{{ heroD.dismiss }}" style="height:40px;padding:0 16px;border:1px solid var(--jc-hairline-strong);border-radius:9999px;background:transparent;color:var(--jc-ink);font:600 14px/1 var(--jc-font-sans);cursor:pointer" style-hover="background-color:var(--jc-surface)">Descartar</button>
+                    </div>
+                  </div>
+                </sc-if>
+                <sc-if value="{{ heroD.done }}">
+                  <div style="display:flex;justify-content:space-between;align-items:center;gap:12px">
+                    <span style="display:inline-flex;align-items:center;gap:8px;font:500 14px/1.4 var(--jc-font-sans);color:var(--jc-ink)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--jc-accent)" stroke-width="2.2" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="m8 12 3 3 5-6"></path></svg>{{ heroD.doneText }}</span>
+                    <button onClick="{{ heroD.again }}" style="height:36px;padding:0 12px;border:0;border-radius:9999px;background:var(--jc-surface);color:var(--jc-ink);font:500 13px/1 var(--jc-font-sans);cursor:pointer;flex-shrink:0">Repetir</button>
+                  </div>
+                </sc-if>
+              </div>
+            </sc-if>
+          </div>
+        </div>
+      </div>
+
+      <!-- 1b TESIS -->
+      <div id="1b" style="display:flex;flex-direction:column;gap:12px">
+        <div style="display:flex;align-items:center;gap:10px"><span style="font:600 13px/1 var(--jc-font-mono);padding:6px 10px;border-radius:9999px;background:#0B0D0E;color:#fff">1b</span><span style="font:500 15px/1 var(--jc-font-sans);color:#3A3F44">Tesis en tres principios</span></div>
+        <div data-screen-label="1b Tesis" style="width:1440px;box-sizing:border-box;padding:96px 120px;background:var(--jc-canvas);color:var(--jc-ink);box-shadow:0 1px 3px rgba(0,0,0,.08);display:flex;flex-direction:column;gap:48px">
+          <div style="display:flex;flex-direction:column;gap:8px"><span style="font:400 12px/1 var(--jc-font-mono);color:var(--jc-text-3)">CÓMO TRABAJO</span><h2 style="margin:0;font:600 40px/1.1 var(--jc-font-sans);letter-spacing:-1.2px">Tres principios</h2></div>
+          <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:2px solid var(--jc-ink)">
+            <div style="padding:32px 32px 8px 0;display:flex;flex-direction:column;gap:16px">
+              <span style="font:400 12px/1 var(--jc-font-mono);color:var(--jc-text-3)">01</span>
+              <h3 style="margin:0;font:600 28px/1.15 var(--jc-font-sans);letter-spacing:-.6px">Proponer, no imponer</h3>
+              <p style="margin:0;font-size:17px;line-height:1.6;color:var(--jc-text-2);text-wrap:pretty">El sistema sugiere el cambio; una persona lo acepta o lo descarta.</p>
+              <a href="#1c" style="display:inline-flex;align-items:center;gap:6px;height:44px;font:600 15px/1 var(--jc-font-sans);text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:1px">Lo muestra: Servidor MCP de medios<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+            </div>
+            <div style="padding:32px 32px 8px;border-left:1px solid var(--jc-hairline);display:flex;flex-direction:column;gap:16px">
+              <span style="font:400 12px/1 var(--jc-font-mono);color:var(--jc-text-3)">02</span>
+              <h3 style="margin:0;font:600 28px/1.15 var(--jc-font-sans);letter-spacing:-.6px">Toda cifra con fuente</h3>
+              <p style="margin:0;font-size:17px;line-height:1.6;color:var(--jc-text-2);text-wrap:pretty">Si un número aparece en pantalla, se puede rastrear de dónde salió.</p>
+              <a href="#1c" style="display:inline-flex;align-items:center;gap:6px;height:44px;font:600 15px/1 var(--jc-font-sans);text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:1px">Lo muestra: Domi<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+            </div>
+            <div style="padding:32px 0 8px 32px;border-left:1px solid var(--jc-hairline);display:flex;flex-direction:column;gap:16px">
+              <span style="font:400 12px/1 var(--jc-font-mono);color:var(--jc-text-3)">03</span>
+              <h3 style="margin:0;font:600 28px/1.15 var(--jc-font-sans);letter-spacing:-.6px">No todo es LLM</h3>
+              <p style="margin:0;font-size:17px;line-height:1.6;color:var(--jc-text-2);text-wrap:pretty">Reglas, SQL y estadística primero; el modelo entra donde aporta.</p>
+              <a href="#1c" style="display:inline-flex;align-items:center;gap:6px;height:44px;font:600 15px/1 var(--jc-font-sans);text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:1px">Lo muestra: Dashboards y Hopper<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 1c CASOS ALTERNADOS -->
+      <div id="1c" style="display:flex;flex-direction:column;gap:12px">
+        <div style="display:flex;align-items:center;gap:10px"><span style="font:600 13px/1 var(--jc-font-mono);padding:6px 10px;border-radius:9999px;background:#0B0D0E;color:#fff">1c</span><span style="font:500 15px/1 var(--jc-font-sans);color:#3A3F44">Ocho casos alternados</span></div>
+        <div data-screen-label="1c Casos" style="width:1440px;box-sizing:border-box;padding:96px 120px 120px;background:var(--jc-canvas);color:var(--jc-ink);box-shadow:0 1px 3px rgba(0,0,0,.08);display:flex;flex-direction:column;gap:64px">
+          <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:24px">
+            <div style="display:flex;flex-direction:column;gap:8px"><span style="font:400 12px/1 var(--jc-font-mono);color:var(--jc-text-3)">CASOS · 4 EPA · 4 PROPIOS</span><h2 style="margin:0;font:600 40px/1.1 var(--jc-font-sans);letter-spacing:-1.2px">Proyectos</h2></div>
+            <a href="#2a" style="display:inline-flex;align-items:center;gap:6px;height:44px;font:600 15px/1 var(--jc-font-sans);text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:1px">Ver el índice<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:24px">
+            <sc-for list="{{ cases }}" as="c" hint-placeholder-count="8">
+              <a href="#" style="display:flex;flex-direction:{{ c.dir }};align-items:center;gap:64px;padding:16px;border-radius:16px;border:1px solid var(--jc-hairline);color:var(--jc-ink);text-decoration:none;transition:box-shadow var(--jc-dur-base) var(--jc-ease),border-color var(--jc-dur-base) var(--jc-ease)" style-hover="box-shadow:var(--jc-shadow-3);border-color:var(--jc-hairline-strong)">
+                <div style="flex:0 0 620px;aspect-ratio:16/10;border-radius:12px;background:{{ c.shotBg }};color:{{ c.shotFg }};display:flex;align-items:flex-end;padding:16px;box-sizing:border-box;font:400 12px/1 var(--jc-font-mono)">{{ c.shotLabel }}</div>
+                <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:18px;padding:8px 24px">
+                  <div style="display:flex;align-items:center;gap:12px"><span style="font:400 12px/1 var(--jc-font-mono);color:var(--jc-text-3);font-variant-numeric:tabular-nums">{{ c.num }} / 08</span><span style="width:1px;height:14px;background:var(--jc-hairline-strong)"></span><span style="font:600 15px/1 var(--jc-font-sans)">{{ c.name }}</span></div>
+                  <p style="margin:0;font:600 32px/1.15 var(--jc-font-sans);letter-spacing:-.8px;text-wrap:pretty">{{ c.hook }}</p>
+                  <div style="display:flex;gap:6px;flex-wrap:wrap">
+                    <sc-if value="{{ c.isEpa }}"><span style="display:inline-flex;align-items:center;gap:5px;height:26px;padding:0 9px;border:1px solid var(--jc-hairline-strong);border-radius:9999px;font:500 12px/1 var(--jc-font-sans)"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><rect x="4" y="2" width="16" height="20" rx="2"></rect><path d="M9 22v-4h6v4M8 6h.01M12 6h.01M16 6h.01M8 10h.01M12 10h.01M16 10h.01"></path></svg>EPA</span></sc-if>
+                    <sc-if value="{{ c.isOwn }}"><span style="display:inline-flex;align-items:center;gap:5px;height:26px;padding:0 9px;border:1px solid var(--jc-hairline-strong);border-radius:9999px;font:500 12px/1 var(--jc-font-sans)"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><circle cx="12" cy="8" r="5"></circle><path d="M20 21a8 8 0 0 0-16 0"></path></svg>Propia</span></sc-if>
+                    <sc-if value="{{ c.isPost }}"><span style="display:inline-flex;align-items:center;gap:5px;height:26px;padding:0 9px;border-radius:9999px;background:var(--jc-neutral-bg);color:var(--jc-neutral);font:500 12px/1 var(--jc-font-sans)"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><rect width="20" height="5" x="2" y="3" rx="1"></rect><path d="M4 8v11a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8M10 12h4"></path></svg>Postmortem</span></sc-if>
+                  </div>
+                  <span style="display:inline-flex;align-items:center;gap:6px;height:44px;color:var(--jc-accent);font:600 15px/1 var(--jc-font-sans);text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:1px">Leer el caso<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
+                </div>
+              </a>
+            </sc-for>
+          </div>
+        </div>
+      </div>
+
+      <!-- 1d CHASIS -->
+      <div id="1d" style="display:flex;flex-direction:column;gap:12px">
+        <div style="display:flex;align-items:center;gap:10px"><span style="font:600 13px/1 var(--jc-font-mono);padding:6px 10px;border-radius:9999px;background:#0B0D0E;color:#fff">1d</span><span style="font:500 15px/1 var(--jc-font-sans);color:#3A3F44">Franja del chasis · diagrama + video de 60 s</span></div>
+        <div data-screen-label="1d Chasis" style="width:1440px;box-sizing:border-box;padding:96px 120px;background:var(--jc-surface);color:var(--jc-ink);box-shadow:0 1px 3px rgba(0,0,0,.08);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:64px;align-items:center">
+          <div style="display:flex;flex-direction:column;gap:32px">
+            <div style="display:flex;flex-direction:column;gap:12px"><span style="font:400 12px/1 var(--jc-font-mono);color:var(--jc-text-3)">FUNDAMENTUM</span><h2 style="margin:0;font:600 40px/1.1 var(--jc-font-sans);letter-spacing:-1.2px">Un chasis para tres apps</h2></div>
+            <div aria-label="Iterum, Domi y Vocatio corren sobre Fundamentum" style="display:flex;flex-direction:column;padding:28px;border-radius:16px;border:1px solid var(--jc-hairline);background-color:var(--jc-canvas);background-image:radial-gradient(var(--jc-hairline-strong) 1px,transparent 1px);background-size:16px 16px">
+              <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px">
+                <div style="padding:14px 16px;border-radius:12px;border:1px solid var(--jc-hairline-strong);background:var(--jc-card);display:flex;align-items:center;gap:10px"><span style="width:10px;height:10px;border-radius:3px;background:#1456F0;flex-shrink:0"></span><span style="font:600 15px/1.2 var(--jc-font-sans)">Iterum</span></div>
+                <div style="padding:14px 16px;border-radius:12px;border:1px solid var(--jc-hairline-strong);background:var(--jc-card);display:flex;align-items:center;gap:10px"><span style="width:10px;height:10px;border-radius:3px;background:#D4421F;flex-shrink:0"></span><span style="font:600 15px/1.2 var(--jc-font-sans)">Domi</span></div>
+                <div style="padding:14px 16px;border-radius:12px;border:1px solid var(--jc-hairline-strong);background:var(--jc-card);display:flex;align-items:center;gap:10px"><span style="width:10px;height:10px;border-radius:3px;background:#2E3F9E;flex-shrink:0"></span><span style="font:600 15px/1.2 var(--jc-font-sans)">Vocatio</span></div>
+              </div>
+              <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;height:36px">
+                <div style="display:flex;justify-content:center"><div style="width:1.5px;height:100%;background:var(--jc-text-3)"></div></div>
+                <div style="display:flex;justify-content:center"><div style="width:1.5px;height:100%;background:var(--jc-text-3)"></div></div>
+                <div style="display:flex;justify-content:center"><div style="width:1.5px;height:100%;background:var(--jc-text-3)"></div></div>
+              </div>
+              <div style="padding:16px 18px;border-radius:12px;border:2px solid var(--jc-accent);background:var(--jc-accent-soft);display:flex;justify-content:space-between;align-items:center;gap:16px"><span style="font:600 17px/1.2 var(--jc-font-sans)">Fundamentum</span><span style="font:400 12px/1.3 var(--jc-font-mono);color:var(--jc-accent)">chasis común · Google Cloud</span></div>
+            </div>
+          </div>
+          <div style="position:relative;aspect-ratio:16/9;border-radius:24px;overflow:hidden;background:#0B0D0E">
+            <sc-if value="{{ vD.idle }}" hint-placeholder-val="{{ true }}">
+              <button onClick="{{ vD.play }}" aria-label="Reproducir: Fundamentum en 60 segundos, 1 min" style="position:absolute;inset:0;width:100%;height:100%;border:0;padding:0;cursor:pointer;background:#1D5C47;display:flex;flex-direction:column;justify-content:space-between;text-align:left;color:#fff">
+                <span style="padding:24px;font:400 12px/1 var(--jc-font-mono)">póster · captura del video</span>
+                <span style="position:absolute;left:50%;top:50%;width:72px;height:72px;margin:-36px 0 0 -36px;border-radius:50%;background:#fff;color:#0B0D0E;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(0,0,0,.25)"><svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="margin-left:3px"><path d="M7 4.5v15a1 1 0 0 0 1.5.86l12.5-7.5a1 1 0 0 0 0-1.72L8.5 3.64A1 1 0 0 0 7 4.5z"></path></svg></span>
+                <span style="display:flex;justify-content:space-between;align-items:flex-end;gap:16px;padding:24px;background:linear-gradient(transparent,rgba(0,0,0,.5))"><span style="font:600 22px/1.2 var(--jc-font-sans);letter-spacing:-.3px">Fundamentum en 60 s</span><span style="font:400 13px/1 var(--jc-font-mono);background:rgba(0,0,0,.6);padding:6px 8px;border-radius:6px;font-variant-numeric:tabular-nums">1:00</span></span>
+              </button>
+            </sc-if>
+            <sc-if value="{{ vD.loading }}">
+              <div role="status" style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;color:#fff"><span style="width:32px;height:32px;border-radius:50%;border:3px solid rgba(255,255,255,.25);border-top-color:#fff;animation:jcspin 800ms linear infinite"></span><span style="font:400 13px/1 var(--jc-font-mono)">Cargando reproductor…</span></div>
+            </sc-if>
+            <sc-if value="{{ vD.loaded }}">
+              <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;color:#B8BEC4;text-align:center;padding:24px"><span style="font:400 13px/1.5 var(--jc-font-mono)">iframe youtube-nocookie · autoplay</span><button onClick="{{ vD.reset }}" style="height:44px;padding:0 20px;border:1px solid #3D4349;border-radius:9999px;background:transparent;color:#F2F3F4;font:600 14px/1 var(--jc-font-sans);cursor:pointer">Volver al póster</button></div>
+            </sc-if>
+          </div>
+        </div>
+      </div>
+
+      <!-- 1e CIERRE -->
+      <div id="1e" style="display:flex;flex-direction:column;gap:12px">
+        <div style="display:flex;align-items:center;gap:10px"><span style="font:600 13px/1 var(--jc-font-mono);padding:6px 10px;border-radius:9999px;background:#0B0D0E;color:#fff">1e</span><span style="font:500 15px/1 var(--jc-font-sans);color:#3A3F44">Cierre · quién es y contacto</span></div>
+        <div data-screen-label="1e Cierre" style="width:1440px;box-sizing:border-box;padding:120px 120px 48px;background:var(--jc-canvas);color:var(--jc-ink);box-shadow:0 1px 3px rgba(0,0,0,.08);display:flex;flex-direction:column;gap:96px">
+          <div style="display:flex;flex-direction:column;gap:20px;max-width:900px">
+            <h2 style="margin:0;font:600 56px/1.05 var(--jc-font-sans);letter-spacing:-1.8px">Soy José Carlos Corona.</h2>
+            <p style="margin:0;font:400 24px/1.45 var(--jc-font-sans);color:var(--jc-text-2);text-wrap:pretty">Lidero datos e IA en EPA y construyo Iterum, Domi y Vocatio sobre Fundamentum.</p>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:20px">
+              <a href="mailto:hola@josecarloscorona.dev" style="height:52px;padding:0 22px;display:inline-flex;align-items:center;gap:8px;border-radius:9999px;background:var(--jc-ink);color:var(--jc-canvas);font:600 16px/1 var(--jc-font-sans);text-decoration:none;transition:background-color var(--jc-dur-fast) var(--jc-ease)" style-hover="background-color:var(--jc-accent);color:var(--jc-on-accent)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg>Contacto</a>
+              <a href="https://www.linkedin.com/" style="height:52px;padding:0 22px;display:inline-flex;align-items:center;gap:8px;border-radius:9999px;border:1px solid var(--jc-ink);box-sizing:border-box;color:var(--jc-ink);font:600 16px/1 var(--jc-font-sans);text-decoration:none" style-hover="background-color:var(--jc-surface)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"></path><rect width="4" height="12" x="2" y="9"></rect><circle cx="4" cy="4" r="2"></circle></svg>LinkedIn</a>
+            </div>
+          </div>
+          <footer style="display:flex;justify-content:space-between;gap:24px;padding-top:24px;border-top:1px solid var(--jc-hairline);font:400 13px/1.5 var(--jc-font-mono);color:var(--jc-text-3)"><span>hola@josecarloscorona.dev</span><span>Hecho con Astro en Google Cloud · © 2026 · CDMX</span></footer>
+        </div>
+      </div>
+    </div>
+
+    <!-- 1f MÓVIL -->
+    <div id="1f" style="display:flex;flex-direction:column;gap:12px">
+      <div style="display:flex;align-items:center;gap:10px"><span style="font:600 13px/1 var(--jc-font-mono);padding:6px 10px;border-radius:9999px;background:#0B0D0E;color:#fff">1f</span><span style="font:500 15px/1 var(--jc-font-sans);color:#3A3F44">Inicio móvil completo · desplaza dentro del marco</span></div>
+      <div data-screen-label="1f Inicio móvil" style="width:402px;height:874px;border-radius:40px;border:1px solid #C9CDD2;overflow:hidden;background:var(--jc-canvas);color:var(--jc-ink);box-shadow:0 1px 3px rgba(0,0,0,.08)">
+        <div style="height:100%;overflow-y:auto">
+          <div style="position:sticky;top:0;z-index:5;background:var(--jc-canvas)">
+            <div style="height:44px"></div>
+            <div style="height:60px;padding:0 12px 0 20px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--jc-hairline)">
+              <span style="display:flex;align-items:center;gap:10px"><span style="width:32px;height:32px;border-radius:8px;background:var(--jc-ink);color:var(--jc-canvas);display:flex;align-items:center;justify-content:center;font:600 15px/1 var(--jc-font-sans);letter-spacing:-.8px">JC</span><span style="font:600 16px/1 var(--jc-font-sans);letter-spacing:-.3px">José Carlos Corona</span></span>
+              <span aria-label="Abrir menú" style="width:44px;height:44px;display:flex;align-items:center;justify-content:center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"></path></svg></span>
+            </div>
+          </div>
+          <div ref="{{ heroM.cRef }}" style="position:relative;padding:40px 20px 56px;display:flex;flex-direction:column">
+            <h1 style="margin:0;font:600 40px/1.05 var(--jc-font-sans);letter-spacing:-1.2px;text-wrap:pretty">Construyo sistemas de IA que la gente usa <span ref="{{ heroM.tRef }}" style="background:{{ heroM.hlBg }};text-decoration:underline;text-decoration-color:{{ heroM.deco }};text-decoration-thickness:4px;text-underline-offset:7px;border-radius:4px;-webkit-box-decoration-break:clone;box-decoration-break:clone;transition:background-color 200ms var(--jc-ease),text-decoration-color 250ms var(--jc-ease)">todos los días</span>, no demos.</h1>
+            <p style="margin:20px 0 0;font-size:17px;line-height:1.55;color:var(--jc-text-2)">Lidero datos e IA en una agencia de marketing digital de ~190 personas y construyo productos propios con agentes en Google Cloud. 9 años en marketing digital, desde CDMX.</p>
+            <div style="display:flex;flex-direction:column;gap:10px;margin-top:28px">
+              <a href="#2c" style="height:48px;border-radius:9999px;background:var(--jc-ink);color:var(--jc-canvas);display:flex;align-items:center;justify-content:center;font:600 15px/1 var(--jc-font-sans);text-decoration:none">Ver proyectos</a>
+              <a href="#1e" style="height:48px;border-radius:9999px;border:1px solid var(--jc-ink);box-sizing:border-box;color:var(--jc-ink);display:flex;align-items:center;justify-content:center;font:600 15px/1 var(--jc-font-sans);text-decoration:none">Contacto</a>
+            </div>
+            <div aria-hidden="true" style="position:absolute;left:{{ heroM.curLeft }};top:{{ heroM.curTop }};opacity:{{ heroM.curOpacity }};pointer-events:none;z-index:3;display:flex;align-items:flex-start;gap:2px;transition:left 700ms var(--jc-ease),top 700ms var(--jc-ease),opacity 200ms var(--jc-ease)">
+              <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 2.5 19.5 12l-7 1.6-3.6 6.4z" fill="var(--jc-ink)" stroke="var(--jc-canvas)" stroke-width="1.5" stroke-linejoin="round"></path></svg>
+              <span style="margin-top:14px;padding:4px 8px;border-radius:9999px;background:var(--jc-accent);color:var(--jc-on-accent);font:400 11px/1 var(--jc-font-mono)">agente</span>
+            </div>
+            <sc-if value="{{ heroM.showPop }}">
+              <div role="dialog" aria-label="Propuesta del agente" style="position:absolute;left:{{ heroM.popLeft }};top:{{ heroM.popTop }};width:{{ heroM.popW }};z-index:4;box-sizing:border-box;padding:16px;border-radius:12px;border:1px solid var(--jc-hairline-strong);background:var(--jc-card);box-shadow:var(--jc-shadow-2);display:flex;flex-direction:column;gap:12px">
+                <sc-if value="{{ heroM.asking }}">
+                  <div style="display:flex;flex-direction:column;gap:12px">
+                    <span style="font:400 11px/1 var(--jc-font-mono);color:var(--jc-accent)">PROPUESTA DEL AGENTE</span>
+                    <span style="font:500 15px/1.45 var(--jc-font-sans)">Subrayar «todos los días». Es lo que separa un sistema de una demo.</span>
+                    <div style="display:flex;gap:8px">
+                      <button onClick="{{ heroM.accept }}" style="flex:1;height:44px;border:0;border-radius:9999px;background:var(--jc-ink);color:var(--jc-canvas);font:600 14px/1 var(--jc-font-sans);cursor:pointer">Aceptar</button>
+                      <button onClick="{{ heroM.dismiss }}" style="flex:1;height:44px;border:1px solid var(--jc-hairline-strong);border-radius:9999px;background:transparent;color:var(--jc-ink);font:600 14px/1 var(--jc-font-sans);cursor:pointer">Descartar</button>
+                    </div>
+                  </div>
+                </sc-if>
+                <sc-if value="{{ heroM.done }}">
+                  <div style="display:flex;justify-content:space-between;align-items:center;gap:12px">
+                    <span style="display:inline-flex;align-items:center;gap:8px;font:500 14px/1.4 var(--jc-font-sans)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--jc-accent)" stroke-width="2.2" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="m8 12 3 3 5-6"></path></svg>{{ heroM.doneText }}</span>
+                    <button onClick="{{ heroM.again }}" style="height:44px;padding:0 14px;border:0;border-radius:9999px;background:var(--jc-surface);color:var(--jc-ink);font:500 13px/1 var(--jc-font-sans);cursor:pointer;flex-shrink:0">Repetir</button>
+                  </div>
+                </sc-if>
+              </div>
+            </sc-if>
+          </div>
+
+          <div style="padding:48px 20px;border-top:1px solid var(--jc-hairline);display:flex;flex-direction:column;gap:8px">
+            <span style="font:400 12px/1 var(--jc-font-mono);color:var(--jc-text-3)">CÓMO TRABAJO</span>
+            <div style="display:flex;flex-direction:column;padding:16px 0;border-bottom:1px solid var(--jc-hairline);gap:6px"><span style="font:600 22px/1.2 var(--jc-font-sans);letter-spacing:-.4px">Proponer, no imponer</span><span style="font-size:15px;line-height:1.5;color:var(--jc-text-2)">El sistema sugiere el cambio; una persona lo acepta o lo descarta.</span><a href="#" style="height:44px;display:inline-flex;align-items:center;font:600 14px/1 var(--jc-font-sans);text-decoration:underline;text-underline-offset:4px">Lo muestra: Servidor MCP de medios</a></div>
+            <div style="display:flex;flex-direction:column;padding:16px 0;border-bottom:1px solid var(--jc-hairline);gap:6px"><span style="font:600 22px/1.2 var(--jc-font-sans);letter-spacing:-.4px">Toda cifra con fuente</span><span style="font-size:15px;line-height:1.5;color:var(--jc-text-2)">Si un número aparece en pantalla, se puede rastrear de dónde salió.</span><a href="#" style="height:44px;display:inline-flex;align-items:center;font:600 14px/1 var(--jc-font-sans);text-decoration:underline;text-underline-offset:4px">Lo muestra: Domi</a></div>
+            <div style="display:flex;flex-direction:column;padding:16px 0;gap:6px"><span style="font:600 22px/1.2 var(--jc-font-sans);letter-spacing:-.4px">No todo es LLM</span><span style="font-size:15px;line-height:1.5;color:var(--jc-text-2)">Reglas, SQL y estadística primero; el modelo entra donde aporta.</span><a href="#" style="height:44px;display:inline-flex;align-items:center;font:600 14px/1 var(--jc-font-sans);text-decoration:underline;text-underline-offset:4px">Lo muestra: Dashboards y Hopper</a></div>
+          </div>
+
+          <div style="padding:48px 20px;border-top:1px solid var(--jc-hairline);display:flex;flex-direction:column;gap:20px">
+            <div style="display:flex;flex-direction:column;gap:8px"><span style="font:400 12px/1 var(--jc-font-mono);color:var(--jc-text-3)">CASOS · 4 EPA · 4 PROPIOS</span><h2 style="margin:0;font:600 32px/1.1 var(--jc-font-sans);letter-spacing:-.9px">Proyectos</h2></div>
+            <sc-for list="{{ cases }}" as="c" hint-placeholder-count="8">
+              <a href="#" style="display:flex;flex-direction:column;padding:8px;border-radius:16px;border:1px solid var(--jc-hairline);color:var(--jc-ink);text-decoration:none">
+                <div style="aspect-ratio:16/10;border-radius:12px;background:{{ c.shotBg }};color:{{ c.shotFg }};display:flex;align-items:flex-end;padding:10px;box-sizing:border-box;font:400 11px/1 var(--jc-font-mono)">{{ c.shotLabel }}</div>
+                <div style="padding:14px 8px 8px;display:flex;flex-direction:column;gap:8px">
+                  <div style="display:flex;gap:6px;flex-wrap:wrap">
+                    <sc-if value="{{ c.isEpa }}"><span style="display:inline-flex;align-items:center;gap:5px;height:26px;padding:0 9px;border:1px solid var(--jc-hairline-strong);border-radius:9999px;font:500 12px/1 var(--jc-font-sans)"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><rect x="4" y="2" width="16" height="20" rx="2"></rect><path d="M9 22v-4h6v4M8 6h.01M12 6h.01M16 6h.01M8 10h.01M12 10h.01M16 10h.01"></path></svg>EPA</span></sc-if>
+                    <sc-if value="{{ c.isOwn }}"><span style="display:inline-flex;align-items:center;gap:5px;height:26px;padding:0 9px;border:1px solid var(--jc-hairline-strong);border-radius:9999px;font:500 12px/1 var(--jc-font-sans)"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><circle cx="12" cy="8" r="5"></circle><path d="M20 21a8 8 0 0 0-16 0"></path></svg>Propia</span></sc-if>
+                    <sc-if value="{{ c.isPost }}"><span style="display:inline-flex;align-items:center;gap:5px;height:26px;padding:0 9px;border-radius:9999px;background:var(--jc-neutral-bg);color:var(--jc-neutral);font:500 12px/1 var(--jc-font-sans)">Postmortem</span></sc-if>
+                  </div>
+                  <span style="font:600 20px/1.2 var(--jc-font-sans);letter-spacing:-.3px">{{ c.name }}</span>
+                  <span style="font-size:15px;line-height:1.45;color:var(--jc-text-2)">{{ c.hook }}</span>
+                </div>
+              </a>
+            </sc-for>
+          </div>
+
+          <div style="padding:48px 20px;background:var(--jc-surface);display:flex;flex-direction:column;gap:20px">
+            <div style="display:flex;flex-direction:column;gap:8px"><span style="font:400 12px/1 var(--jc-font-mono);color:var(--jc-text-3)">FUNDAMENTUM</span><h2 style="margin:0;font:600 28px/1.15 var(--jc-font-sans);letter-spacing:-.6px">Un chasis para tres apps</h2></div>
+            <div style="display:flex;flex-direction:column;padding:16px;border-radius:16px;border:1px solid var(--jc-hairline);background:var(--jc-canvas)">
+              <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px">
+                <div style="padding:10px;border-radius:10px;border:1px solid var(--jc-hairline-strong);display:flex;align-items:center;gap:6px;font:600 13px/1 var(--jc-font-sans)"><span style="width:8px;height:8px;border-radius:2px;background:#1456F0"></span>Iterum</div>
+                <div style="padding:10px;border-radius:10px;border:1px solid var(--jc-hairline-strong);display:flex;align-items:center;gap:6px;font:600 13px/1 var(--jc-font-sans)"><span style="width:8px;height:8px;border-radius:2px;background:#D4421F"></span>Domi</div>
+                <div style="padding:10px;border-radius:10px;border:1px solid var(--jc-hairline-strong);display:flex;align-items:center;gap:6px;font:600 13px/1 var(--jc-font-sans)"><span style="width:8px;height:8px;border-radius:2px;background:#2E3F9E"></span>Vocatio</div>
+              </div>
+              <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;height:20px"><div style="display:flex;justify-content:center"><div style="width:1.5px;background:var(--jc-text-3)"></div></div><div style="display:flex;justify-content:center"><div style="width:1.5px;background:var(--jc-text-3)"></div></div><div style="display:flex;justify-content:center"><div style="width:1.5px;background:var(--jc-text-3)"></div></div></div>
+              <div style="padding:12px;border-radius:10px;border:2px solid var(--jc-accent);background:var(--jc-accent-soft);display:flex;flex-direction:column;gap:4px"><span style="font:600 15px/1.2 var(--jc-font-sans)">Fundamentum</span><span style="font:400 11px/1.3 var(--jc-font-mono);color:var(--jc-accent)">chasis común · Google Cloud</span></div>
+            </div>
+            <div style="position:relative;aspect-ratio:16/9;border-radius:16px;overflow:hidden;background:#0B0D0E">
+              <sc-if value="{{ vM.idle }}" hint-placeholder-val="{{ true }}">
+                <button onClick="{{ vM.play }}" aria-label="Reproducir: Fundamentum en 60 segundos, 1 min" style="position:absolute;inset:0;width:100%;height:100%;border:0;padding:0;cursor:pointer;background:#1D5C47;color:#fff;display:flex;align-items:flex-end;text-align:left">
+                  <span style="position:absolute;left:50%;top:50%;width:56px;height:56px;margin:-28px 0 0 -28px;border-radius:50%;background:#fff;color:#0B0D0E;display:flex;align-items:center;justify-content:center"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="margin-left:2px"><path d="M7 4.5v15a1 1 0 0 0 1.5.86l12.5-7.5a1 1 0 0 0 0-1.72L8.5 3.64A1 1 0 0 0 7 4.5z"></path></svg></span>
+                  <span style="width:100%;display:flex;justify-content:space-between;align-items:flex-end;padding:14px;box-sizing:border-box;background:linear-gradient(transparent,rgba(0,0,0,.5))"><span style="font:600 16px/1.2 var(--jc-font-sans)">Fundamentum en 60 s</span><span style="font:400 12px/1 var(--jc-font-mono);background:rgba(0,0,0,.6);padding:5px 7px;border-radius:6px">1:00</span></span>
+                </button>
+              </sc-if>
+              <sc-if value="{{ vM.loading }}"><div role="status" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center"><span style="width:28px;height:28px;border-radius:50%;border:3px solid rgba(255,255,255,.25);border-top-color:#fff;animation:jcspin 800ms linear infinite"></span></div></sc-if>
+              <sc-if value="{{ vM.loaded }}"><div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;color:#B8BEC4"><span style="font:400 12px/1 var(--jc-font-mono)">iframe · autoplay</span><button onClick="{{ vM.reset }}" style="height:44px;padding:0 18px;border:1px solid #3D4349;border-radius:9999px;background:transparent;color:#F2F3F4;font:600 14px/1 var(--jc-font-sans);cursor:pointer">Volver al póster</button></div></sc-if>
+            </div>
+          </div>
+
+          <div style="padding:56px 20px 32px;display:flex;flex-direction:column;gap:16px">
+            <h2 style="margin:0;font:600 32px/1.1 var(--jc-font-sans);letter-spacing:-.9px">Soy José Carlos Corona.</h2>
+            <p style="margin:0;font-size:17px;line-height:1.55;color:var(--jc-text-2)">Lidero datos e IA en EPA y construyo Iterum, Domi y Vocatio sobre Fundamentum.</p>
+            <div style="display:flex;flex-direction:column;gap:10px;margin-top:12px">
+              <a href="mailto:hola@josecarloscorona.dev" style="height:48px;border-radius:9999px;background:var(--jc-ink);color:var(--jc-canvas);display:flex;align-items:center;justify-content:center;gap:8px;font:600 15px/1 var(--jc-font-sans);text-decoration:none">Contacto</a>
+              <a href="https://www.linkedin.com/" style="height:48px;border-radius:9999px;border:1px solid var(--jc-ink);box-sizing:border-box;color:var(--jc-ink);display:flex;align-items:center;justify-content:center;font:600 15px/1 var(--jc-font-sans);text-decoration:none">LinkedIn</a>
+            </div>
+            <footer style="margin-top:40px;padding-top:20px;border-top:1px solid var(--jc-hairline);display:flex;flex-direction:column;gap:6px;font:400 12px/1.5 var(--jc-font-mono);color:var(--jc-text-3)"><span>Hecho con Astro en Google Cloud</span><span>© 2026 José Carlos Corona · CDMX</span></footer>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROYECTOS -->
+<section data-screen-label="Proyectos" style="display:flex;flex-direction:column;gap:40px">
+  <div style="display:flex;align-items:baseline;gap:16px"><h1 style="margin:0;font:600 40px/1.1 var(--jc-font-sans);letter-spacing:-1.2px">Proyectos</h1><span style="font:400 14px/1 var(--jc-font-mono);color:#5B6168">2a–2c</span></div>
+  <div style="display:flex;gap:80px;align-items:flex-start">
+    <div style="display:flex;flex-direction:column;gap:64px">
+
+      <!-- 2a ÍNDICE -->
+      <div id="2a" style="display:flex;flex-direction:column;gap:12px">
+        <div style="display:flex;align-items:center;gap:10px"><span style="font:600 13px/1 var(--jc-font-mono);padding:6px 10px;border-radius:9999px;background:#0B0D0E;color:#fff">2a</span><span style="font:500 15px/1 var(--jc-font-sans);color:#3A3F44">Índice con filtro por origen · pruébalo</span></div>
+        <div data-screen-label="2a Índice" style="width:1440px;background:var(--jc-canvas);color:var(--jc-ink);box-shadow:0 1px 3px rgba(0,0,0,.08)">
+          <nav aria-label="Principal" style="height:72px;padding:0 120px;display:flex;align-items:center;justify-content:space-between;gap:24px;border-bottom:1px solid var(--jc-hairline)">
+            <a href="#1a" style="display:flex;align-items:center;gap:10px;height:44px;color:var(--jc-ink);text-decoration:none"><span style="width:32px;height:32px;border-radius:8px;background:var(--jc-ink);color:var(--jc-canvas);display:flex;align-items:center;justify-content:center;font:600 15px/1 var(--jc-font-sans);letter-spacing:-.8px">JC</span><span style="font:600 17px/1 var(--jc-font-sans);letter-spacing:-.3px">José Carlos Corona</span></a>
+            <div style="display:flex;align-items:center;gap:8px">
+              <div style="display:flex;gap:4px">
+                <a href="#2a" aria-current="page" style="height:44px;padding:0 14px;display:flex;align-items:center;font:500 15px/1 var(--jc-font-sans);color:var(--jc-ink);text-decoration:underline;text-decoration-color:var(--jc-accent);text-decoration-thickness:2px;text-underline-offset:8px">Proyectos</a>
+                <a href="#" style="height:44px;padding:0 14px;display:flex;align-items:center;font:500 15px/1 var(--jc-font-sans);color:var(--jc-text-2);text-decoration:none;border-radius:9999px" style-hover="background-color:var(--jc-surface);color:var(--jc-ink)">Escritos</a>
+                <a href="#" style="height:44px;padding:0 14px;display:flex;align-items:center;font:500 15px/1 var(--jc-font-sans);color:var(--jc-text-2);text-decoration:none;border-radius:9999px" style-hover="background-color:var(--jc-surface);color:var(--jc-ink)">Sobre mí</a>
+                <a href="#1e" style="height:44px;padding:0 14px;display:flex;align-items:center;font:500 15px/1 var(--jc-font-sans);color:var(--jc-text-2);text-decoration:none;border-radius:9999px" style-hover="background-color:var(--jc-surface);color:var(--jc-ink)">Contacto</a>
+              </div>
+              <div style="width:1px;height:24px;background:var(--jc-hairline);margin:0 8px"></div>
+              <div role="group" aria-label="Idioma" style="display:flex;padding:3px;border-radius:9999px;border:1px solid var(--jc-hairline)"><span style="min-width:44px;height:36px;border-radius:9999px;background:var(--jc-ink);color:var(--jc-canvas);display:flex;align-items:center;justify-content:center;font:600 13px/1 var(--jc-font-sans)">ES</span><span style="min-width:44px;height:36px;border-radius:9999px;color:var(--jc-text-2);display:flex;align-items:center;justify-content:center;font:600 13px/1 var(--jc-font-sans)">EN</span></div>
+              <span aria-label="Cambiar tema" style="width:44px;height:44px;border:1px solid var(--jc-hairline);border-radius:50%;box-sizing:border-box;display:flex;align-items:center;justify-content:center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path></svg></span>
+            </div>
+          </nav>
+          <div style="padding:80px 120px 120px;display:flex;flex-direction:column;gap:40px">
+            <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:24px">
+              <div style="display:flex;flex-direction:column;gap:12px"><h1 style="margin:0;font:600 56px/1.05 var(--jc-font-sans);letter-spacing:-1.8px">Proyectos</h1><p style="margin:0;font-size:17px;line-height:1.6;color:var(--jc-text-2)">Ocho casos: cuatro en EPA y cuatro propios.</p></div>
+              <div role="group" aria-label="Filtrar por origen" style="display:flex;padding:4px;gap:4px;border-radius:9999px;background:var(--jc-surface);border:1px solid var(--jc-hairline)">
+                <button onClick="{{ fD.all.set }}" aria-pressed="{{ fD.all.on }}" style="height:40px;padding:0 16px;border:0;border-radius:9999px;background:{{ fD.all.bg }};color:{{ fD.all.fg }};box-shadow:{{ fD.all.sh }};display:flex;align-items:center;gap:8px;font:500 14px/1 var(--jc-font-sans);cursor:pointer">Todos<span style="font:400 12px/1 var(--jc-font-mono);color:var(--jc-text-3)">8</span></button>
+                <button onClick="{{ fD.epa.set }}" aria-pressed="{{ fD.epa.on }}" style="height:40px;padding:0 16px;border:0;border-radius:9999px;background:{{ fD.epa.bg }};color:{{ fD.epa.fg }};box-shadow:{{ fD.epa.sh }};display:flex;align-items:center;gap:8px;font:500 14px/1 var(--jc-font-sans);cursor:pointer">EPA<span style="font:400 12px/1 var(--jc-font-mono);color:var(--jc-text-3)">4</span></button>
+                <button onClick="{{ fD.own.set }}" aria-pressed="{{ fD.own.on }}" style="height:40px;padding:0 16px;border:0;border-radius:9999px;background:{{ fD.own.bg }};color:{{ fD.own.fg }};box-shadow:{{ fD.own.sh }};display:flex;align-items:center;gap:8px;font:500 14px/1 var(--jc-font-sans);cursor:pointer">Propios<span style="font:400 12px/1 var(--jc-font-mono);color:var(--jc-text-3)">4</span></button>
+              </div>
+            </div>
+            <div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px">
+              <sc-for list="{{ listD }}" as="c" hint-placeholder-count="8">
+                <a href="#" style="display:flex;flex-direction:column;padding:8px;border-radius:16px;border:1px solid var(--jc-hairline);background:var(--jc-card);color:var(--jc-ink);text-decoration:none;transition:box-shadow var(--jc-dur-base) var(--jc-ease),border-color var(--jc-dur-base) var(--jc-ease)" style-hover="box-shadow:var(--jc-shadow-3);border-color:var(--jc-hairline-strong)">
+                  <div style="aspect-ratio:16/10;border-radius:12px;background:{{ c.shotBg }};color:{{ c.shotFg }};display:flex;align-items:flex-end;padding:12px;box-sizing:border-box;font:400 12px/1 var(--jc-font-mono)">{{ c.shotLabel }}</div>
+                  <div style="padding:16px 10px 10px;display:flex;flex-direction:column;gap:10px;flex:1">
+                    <div style="display:flex;gap:6px;flex-wrap:wrap">
+                      <sc-if value="{{ c.isEpa }}"><span style="display:inline-flex;align-items:center;gap:5px;height:26px;padding:0 9px;border:1px solid var(--jc-hairline-strong);border-radius:9999px;font:500 12px/1 var(--jc-font-sans)"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><rect x="4" y="2" width="16" height="20" rx="2"></rect><path d="M9 22v-4h6v4M8 6h.01M12 6h.01M16 6h.01M8 10h.01M12 10h.01M16 10h.01"></path></svg>EPA</span></sc-if>
+                      <sc-if value="{{ c.isOwn }}"><span style="display:inline-flex;align-items:center;gap:5px;height:26px;padding:0 9px;border:1px solid var(--jc-hairline-strong);border-radius:9999px;font:500 12px/1 var(--jc-font-sans)"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><circle cx="12" cy="8" r="5"></circle><path d="M20 21a8 8 0 0 0-16 0"></path></svg>Propia</span></sc-if>
+                      <sc-if value="{{ c.isPost }}"><span style="display:inline-flex;align-items:center;gap:5px;height:26px;padding:0 9px;border-radius:9999px;background:var(--jc-neutral-bg);color:var(--jc-neutral);font:500 12px/1 var(--jc-font-sans)"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><rect width="20" height="5" x="2" y="3" rx="1"></rect><path d="M4 8v11a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8M10 12h4"></path></svg>Postmortem</span></sc-if>
+                    </div>
+                    <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px"><h3 style="margin:0;font:600 20px/1.25 var(--jc-font-sans);letter-spacing:-.3px">{{ c.name }}</h3><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--jc-accent)" stroke-width="2" aria-hidden="true" style="flex-shrink:0;margin-top:2px"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></div>
+                    <p style="margin:0;font-size:15px;line-height:1.5;color:var(--jc-text-2);text-wrap:pretty">{{ c.hook }}</p>
+                  </div>
+                </a>
+              </sc-for>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2b TAMBIÉN CONSTRUÍ -->
+      <div id="2b" style="display:flex;flex-direction:column;gap:12px">
+        <div style="display:flex;align-items:center;gap:10px"><span style="font:600 13px/1 var(--jc-font-mono);padding:6px 10px;border-radius:9999px;background:#0B0D0E;color:#fff">2b</span><span style="font:500 15px/1 var(--jc-font-sans);color:#3A3F44">Franja «También construí»</span></div>
+        <div data-screen-label="2b También construí" style="width:1440px;box-sizing:border-box;padding:80px 120px 96px;background:var(--jc-canvas);color:var(--jc-ink);box-shadow:0 1px 3px rgba(0,0,0,.08);display:grid;grid-template-columns:320px minmax(0,1fr);gap:64px">
+          <div style="display:flex;flex-direction:column;gap:8px"><span style="font:400 12px/1 var(--jc-font-mono);color:var(--jc-text-3)">SIN CASO COMPLETO</span><h2 style="margin:0;font:600 40px/1.1 var(--jc-font-sans);letter-spacing:-1.2px">También construí</h2></div>
+          <div style="display:flex;flex-direction:column;border-top:2px solid var(--jc-ink)">
+            <sc-for list="{{ also }}" as="p" hint-placeholder-count="5">
+              <div style="display:grid;grid-template-columns:48px minmax(0,1fr) minmax(0,1fr);gap:24px;align-items:baseline;padding:22px 0;border-bottom:1px solid var(--jc-hairline)">
+                <span style="font:400 12px/1 var(--jc-font-mono);color:var(--jc-text-3)">{{ p.num }}</span>
+                <span style="font:600 20px/1.3 var(--jc-font-sans);letter-spacing:-.3px;text-wrap:pretty">{{ p.name }}</span>
+                <sc-if value="{{ showMissing }}" hint-placeholder-val="{{ true }}"><span style="display:inline-flex;align-items:center;gap:6px;justify-self:start;padding:6px 10px;border:1.5px dashed var(--jc-warn);border-radius:8px;background:var(--jc-warn-bg);color:var(--jc-warn);font:500 13px/1.3 var(--jc-font-sans)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M12 3 2 21h20L12 3z"></path><path d="M12 10v5M12 18h.01"></path></svg>(falta) descripción de una línea</span></sc-if>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2c MÓVIL -->
+    <div id="2c" style="display:flex;flex-direction:column;gap:12px">
+      <div style="display:flex;align-items:center;gap:10px"><span style="font:600 13px/1 var(--jc-font-mono);padding:6px 10px;border-radius:9999px;background:#0B0D0E;color:#fff">2c</span><span style="font:500 15px/1 var(--jc-font-sans);color:#3A3F44">Índice móvil · filtro funcional</span></div>
+      <div data-screen-label="2c Índice móvil" style="width:402px;height:874px;border-radius:40px;border:1px solid #C9CDD2;overflow:hidden;background:var(--jc-canvas);color:var(--jc-ink);box-shadow:0 1px 3px rgba(0,0,0,.08)">
+        <div style="height:100%;overflow-y:auto">
+          <div style="position:sticky;top:0;z-index:5;background:var(--jc-canvas)">
+            <div style="height:44px"></div>
+            <div style="height:60px;padding:0 12px 0 20px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--jc-hairline)">
+              <span style="display:flex;align-items:center;gap:10px"><span style="width:32px;height:32px;border-radius:8px;background:var(--jc-ink);color:var(--jc-canvas);display:flex;align-items:center;justify-content:center;font:600 15px/1 var(--jc-font-sans);letter-spacing:-.8px">JC</span><span style="font:600 16px/1 var(--jc-font-sans);letter-spacing:-.3px">José Carlos Corona</span></span>
+              <span aria-label="Abrir menú" style="width:44px;height:44px;display:flex;align-items:center;justify-content:center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"></path></svg></span>
+            </div>
+          </div>
+          <div style="padding:32px 20px 24px;display:flex;flex-direction:column;gap:12px">
+            <h1 style="margin:0;font:600 40px/1.05 var(--jc-font-sans);letter-spacing:-1.2px">Proyectos</h1>
+            <p style="margin:0;font-size:16px;line-height:1.55;color:var(--jc-text-2)">Ocho casos: cuatro en EPA y cuatro propios.</p>
+            <div role="group" aria-label="Filtrar por origen" style="display:grid;grid-template-columns:repeat(3,1fr);padding:4px;gap:4px;margin-top:8px;border-radius:9999px;background:var(--jc-surface);border:1px solid var(--jc-hairline)">
+              <button onClick="{{ fM.all.set }}" aria-pressed="{{ fM.all.on }}" style="height:44px;border:0;border-radius:9999px;background:{{ fM.all.bg }};color:{{ fM.all.fg }};box-shadow:{{ fM.all.sh }};font:500 14px/1 var(--jc-font-sans);cursor:pointer">Todos</button>
+              <button onClick="{{ fM.epa.set }}" aria-pressed="{{ fM.epa.on }}" style="height:44px;border:0;border-radius:9999px;background:{{ fM.epa.bg }};color:{{ fM.epa.fg }};box-shadow:{{ fM.epa.sh }};font:500 14px/1 var(--jc-font-sans);cursor:pointer">EPA</button>
+              <button onClick="{{ fM.own.set }}" aria-pressed="{{ fM.own.on }}" style="height:44px;border:0;border-radius:9999px;background:{{ fM.own.bg }};color:{{ fM.own.fg }};box-shadow:{{ fM.own.sh }};font:500 14px/1 var(--jc-font-sans);cursor:pointer">Propios</button>
+            </div>
+          </div>
+          <div style="padding:0 20px 48px;display:flex;flex-direction:column;gap:16px">
+            <sc-for list="{{ listM }}" as="c" hint-placeholder-count="8">
+              <a href="#" style="display:flex;flex-direction:column;padding:8px;border-radius:16px;border:1px solid var(--jc-hairline);color:var(--jc-ink);text-decoration:none">
+                <div style="aspect-ratio:16/10;border-radius:12px;background:{{ c.shotBg }};color:{{ c.shotFg }};display:flex;align-items:flex-end;padding:10px;box-sizing:border-box;font:400 11px/1 var(--jc-font-mono)">{{ c.shotLabel }}</div>
+                <div style="padding:14px 8px 8px;display:flex;flex-direction:column;gap:8px">
+                  <div style="display:flex;gap:6px;flex-wrap:wrap">
+                    <sc-if value="{{ c.isEpa }}"><span style="display:inline-flex;align-items:center;gap:5px;height:26px;padding:0 9px;border:1px solid var(--jc-hairline-strong);border-radius:9999px;font:500 12px/1 var(--jc-font-sans)">EPA</span></sc-if>
+                    <sc-if value="{{ c.isOwn }}"><span style="display:inline-flex;align-items:center;gap:5px;height:26px;padding:0 9px;border:1px solid var(--jc-hairline-strong);border-radius:9999px;font:500 12px/1 var(--jc-font-sans)">Propia</span></sc-if>
+                    <sc-if value="{{ c.isPost }}"><span style="display:inline-flex;align-items:center;height:26px;padding:0 9px;border-radius:9999px;background:var(--jc-neutral-bg);color:var(--jc-neutral);font:500 12px/1 var(--jc-font-sans)">Postmortem</span></sc-if>
+                  </div>
+                  <span style="font:600 20px/1.2 var(--jc-font-sans);letter-spacing:-.3px">{{ c.name }}</span>
+                  <span style="font-size:15px;line-height:1.45;color:var(--jc-text-2)">{{ c.hook }}</span>
+                </div>
+              </a>
+            </sc-for>
+          </div>
+          <div style="padding:40px 20px;border-top:1px solid var(--jc-hairline);display:flex;flex-direction:column;gap:8px">
+            <h2 style="margin:0 0 8px;font:600 24px/1.15 var(--jc-font-sans);letter-spacing:-.5px">También construí</h2>
+            <sc-for list="{{ also }}" as="p" hint-placeholder-count="5">
+              <div style="display:flex;flex-direction:column;gap:8px;padding:14px 0;border-bottom:1px solid var(--jc-hairline)">
+                <span style="font:600 16px/1.35 var(--jc-font-sans)">{{ p.name }}</span>
+                <sc-if value="{{ showMissing }}" hint-placeholder-val="{{ true }}"><span style="align-self:flex-start;padding:4px 8px;border:1.5px dashed var(--jc-warn);border-radius:6px;background:var(--jc-warn-bg);color:var(--jc-warn);font:500 12px/1.3 var(--jc-font-sans)">(falta) descripción</span></sc-if>
+              </div>
+            </sc-for>
+            <footer style="margin-top:40px;display:flex;flex-direction:column;gap:6px;font:400 12px/1.5 var(--jc-font-mono);color:var(--jc-text-3)"><span>Hecho con Astro en Google Cloud</span><span>© 2026 José Carlos Corona · CDMX</span></footer>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;theme&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;light&quot;,&quot;dark&quot;],&quot;default&quot;:&quot;light&quot;,&quot;tsType&quot;:&quot;'light'|'dark'&quot;,&quot;section&quot;:&quot;Vista&quot;},&quot;mode&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;borrador&quot;,&quot;produccion&quot;],&quot;default&quot;:&quot;borrador&quot;,&quot;tsType&quot;:&quot;'borrador'|'produccion'&quot;,&quot;section&quot;:&quot;Vista&quot;},&quot;heroDemo&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Héroe&quot;}}">
+const CASES = [
+  { id: 'mcp', name: 'Servidor MCP de medios', org: 'EPA', hook: 'Automatiza el criterio, no la tarea' },
+  { id: 'iterum', name: 'Iterum', org: 'Propia', hook: 'Una agencia de viajes personal, no un cuaderno con asistente', bg: '#1456F0' },
+  { id: 'dash', name: 'Dashboards y Hopper', org: 'EPA', hook: 'De un Excel de 993 filas a QA guiado' },
+  { id: 'domi', name: 'Domi', org: 'Propia', hook: 'No es un buscador con chatbot: los agentes juzgan y explican', bg: '#D4421F' },
+  { id: 'einstein', name: 'Einstein, un postmortem', org: 'EPA', hook: 'Construimos el cerebro de la agencia y nadie lo usó', post: true },
+  { id: 'vocatio', name: 'Vocatio', org: 'Propia', hook: 'Tu equipo trabaja hasta que te llamen', bg: '#2E3F9E' },
+  { id: 'prompts', name: 'Librería de Prompts', org: 'EPA', hook: 'Cada prompt documenta su impacto' },
+  { id: 'fundamentum', name: 'Fundamentum', org: 'Propia', hook: 'Un chasis para tres apps', bg: '#0B0D0E' },
+].map((c, i) => ({
+  ...c,
+  num: String(i + 1).padStart(2, '0'),
+  dir: i % 2 ? 'row-reverse' : 'row',
+  isEpa: c.org === 'EPA', isOwn: c.org === 'Propia', isPost: !!c.post,
+  shotBg: c.bg || 'var(--jc-surface)', shotFg: c.bg ? '#FFFFFF' : 'var(--jc-text-3)',
+  shotLabel: 'captura ' + c.name + ' · 16:10',
+}));
+const ALSO = [
+  'Programa de AI Fluency y curso «Dashboards con Claude Code»',
+  'OpenClaw',
+  'GEO y Citation Tracker',
+  'Gauss',
+  'Migración de OpenAI a Claude',
+].map((name, i) => ({ name, num: String(i + 1).padStart(2, '0') }));
+const H0 = { p: 'off', x: 0, y: 0, W: 0 };
+
+class Component extends DCLogic {
+  state = { fD: 'all', fM: 'all', vD: 'idle', vM: 'idle', h: { d: H0, m: H0 } };
+  R = { d: { c: React.createRef(), t: React.createRef() }, m: { c: React.createRef(), t: React.createRef() } };
+  T = { d: [], m: [] };
+  componentDidMount() { this.boot(); }
+  componentDidUpdate(pp) { if (pp.heroDemo !== this.props.heroDemo) this.boot(); }
+  componentWillUnmount() { this.clear('d'); this.clear('m'); clearTimeout(this.vt); }
+  clear(k) { this.T[k].forEach(clearTimeout); this.T[k] = []; }
+  later(k, fn, ms) { this.T[k].push(setTimeout(fn, ms)); }
+  setH(k, patch) { this.setState((s) => ({ h: { ...s.h, [k]: { ...s.h[k], ...patch } } })); }
+  boot() {
+    this.clear('d'); this.clear('m');
+    if ((this.props.heroDemo ?? true) === false) { this.setState({ h: { d: H0, m: H0 } }); return; }
+    this.run('d', 1400); this.run('m', 2000);
+  }
+  run(k, delay) {
+    this.clear(k);
+    const c = this.R[k].c.current; if (!c) return;
+    const W = c.offsetWidth, H = c.offsetHeight;
+    this.setH(k, { p: 'hidden', x: W - 90, y: H - 50, W });
+    this.later(k, () => { const m = this.measure(k); if (m) this.setH(k, { p: 'moving', ...m }); }, delay);
+    this.later(k, () => this.setH(k, { p: 'proposing' }), delay + 850);
+  }
+  measure(k) {
+    const c = this.R[k].c.current, t = this.R[k].t.current; if (!c || !t) return null;
+    const cr = c.getBoundingClientRect(); const s = cr.width / c.offsetWidth || 1;
+    const rs = t.getClientRects(); const b = rs[rs.length - 1] || t.getBoundingClientRect();
+    return { x: (b.right - cr.left) / s - 14, y: (b.bottom - cr.top) / s - 10, W: c.offsetWidth };
+  }
+  hv(k, popW) {
+    const h = this.state.h[k];
+    const show = h.p === 'moving' || h.p === 'proposing' || h.p === 'accepted' || h.p === 'dismissed';
+    return {
+      cRef: this.R[k].c, tRef: this.R[k].t,
+      curLeft: h.x + 'px', curTop: h.y + 'px', curOpacity: show ? 1 : 0,
+      showPop: h.p === 'proposing' || h.p === 'accepted' || h.p === 'dismissed',
+      asking: h.p === 'proposing', done: h.p === 'accepted' || h.p === 'dismissed',
+      doneText: h.p === 'accepted' ? 'Aplicado. Tú decidiste.' : 'Descartado. Nada cambió.',
+      popW: popW + 'px',
+      popLeft: Math.max(0, Math.min(h.x - 12, h.W - popW - (k === 'm' ? 20 : 0))) + 'px',
+      popTop: (h.y + 34) + 'px',
+      hlBg: h.p === 'proposing' ? 'var(--jc-accent-soft)' : 'transparent',
+      deco: h.p === 'accepted' ? 'var(--jc-accent)' : 'transparent',
+      accept: () => this.setH(k, { p: 'accepted' }),
+      dismiss: () => this.setH(k, { p: 'dismissed' }),
+      again: () => this.run(k, 250),
+    };
+  }
+  filt(key) {
+    const cur = this.state[key];
+    const one = (v) => { const on = cur === v; return { on, set: () => this.setState({ [key]: v }), bg: on ? 'var(--jc-card)' : 'transparent', fg: on ? 'var(--jc-ink)' : 'var(--jc-text-2)', sh: on ? 'var(--jc-shadow-1)' : 'none' }; };
+    return { all: one('all'), epa: one('epa'), own: one('own') };
+  }
+  list(v) { return v === 'epa' ? CASES.filter((c) => c.isEpa) : v === 'own' ? CASES.filter((c) => c.isOwn) : CASES; }
+  vid(key) {
+    const v = this.state[key];
+    return { idle: v === 'idle', loading: v === 'loading', loaded: v === 'loaded',
+      play: () => { this.setState({ [key]: 'loading' }); this.vt = setTimeout(() => this.setState({ [key]: 'loaded' }), 900); },
+      reset: () => this.setState({ [key]: 'idle' }) };
+  }
+  renderVals() {
+    return {
+      theme: this.props.theme ?? 'light',
+      showMissing: (this.props.mode ?? 'borrador') !== 'produccion',
+      cases: CASES, also: ALSO,
+      listD: this.list(this.state.fD), listM: this.list(this.state.fM),
+      fD: this.filt('fD'), fM: this.filt('fM'),
+      vD: this.vid('vD'), vM: this.vid('vM'),
+      heroD: this.hv('d', 300), heroM: this.hv('m', 300),
+    };
+  }
+}
+</script>
+</body>
+</html>

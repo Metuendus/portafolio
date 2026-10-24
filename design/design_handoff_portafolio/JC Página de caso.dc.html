@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Fragment+Mono&display=swap">
+<link rel="stylesheet" href="tokens/jc-tokens.css">
+<style>
+body{margin:0;background:#E9E9E6}
+a{color:var(--jc-accent)}a:hover{color:var(--jc-accent-hover)}
+@keyframes jcspin{to{transform:rotate(360deg)}}
+</style>
+</helmet>
+
+<div data-theme="{{ theme }}" style="padding:80px;display:flex;flex-direction:column;gap:160px;background:#E9E9E6;font-family:var(--jc-font-sans);color:#0B0D0E;min-width:max-content">
+
+<sc-for list="{{ examples }}" as="x" hint-placeholder-count="2">
+<section data-screen-label="{{ x.label }}" style="display:flex;flex-direction:column;gap:40px">
+  <div style="display:flex;align-items:baseline;gap:16px"><h1 style="margin:0;font:600 40px/1.1 var(--jc-font-sans);letter-spacing:-1.2px">Página de caso · {{ x.name }}</h1><span style="font:400 14px/1 var(--jc-font-mono);color:#5B6168">3a–3h · {{ x.org }} · escritorio 1440 · móvil 402 × 874</span></div>
+  <div style="display:flex;gap:80px;align-items:flex-start">
+    <div style="display:flex;flex-direction:column;gap:56px">
+
+      <!-- 3a ENCABEZADO -->
+      <div id="{{ x.ids.a }}" style="display:flex;flex-direction:column;gap:12px">
+        <div style="display:flex;align-items:center;gap:10px"><span style="font:600 13px/1 var(--jc-font-mono);padding:6px 10px;border-radius:9999px;background:#0B0D0E;color:#fff">3a</span><span style="font:500 15px/1 var(--jc-font-sans);color:#3A3F44">Encabezado · chips + video de 60–90 s</span></div>
+        <div style="width:1440px;background:var(--jc-canvas);color:var(--jc-ink);box-shadow:0 1px 3px rgba(0,0,0,.08)">
+          <nav aria-label="Principal" style="height:72px;padding:0 120px;display:flex;align-items:center;justify-content:space-between;gap:24px;border-bottom:1px solid var(--jc-hairline)">
+            <a href="#" style="display:flex;align-items:center;gap:10px;height:44px;color:var(--jc-ink);text-decoration:none"><span style="width:32px;height:32px;border-radius:8px;background:var(--jc-ink);color:var(--jc-canvas);display:flex;align-items:center;justify-content:center;font:600 15px/1 var(--jc-font-sans);letter-spacing:-.8px">JC</span><span style="font:600 17px/1 var(--jc-font-sans);letter-spacing:-.3px">José Carlos Corona</span></a>
+            <div style="display:flex;align-items:center;gap:8px">
+              <div style="display:flex;gap:4px">
+                <a href="JC Inicio y Proyectos.dc.html#2a" aria-current="page" style="height:44px;padding:0 14px;display:flex;align-items:center;font:500 15px/1 var(--jc-font-sans);color:var(--jc-ink);text-decoration:underline;text-decoration-color:var(--jc-accent);text-decoration-thickness:2px;text-underline-offset:8px">Proyectos</a>
+                <a href="#" style="height:44px;padding:0 14px;display:flex;align-items:center;font:500 15px/1 var(--jc-font-sans);color:var(--jc-text-2);text-decoration:none;border-radius:9999px" style-hover="background-color:var(--jc-surface);color:var(--jc-ink)">Escritos</a>
+                <a href="#" style="height:44px;padding:0 14px;display:flex;align-items:center;font:500 15px/1 var(--jc-font-sans);color:var(--jc-text-2);text-decoration:none;border-radius:9999px" style-hover="background-color:var(--jc-surface);color:var(--jc-ink)">Sobre mí</a>
+                <a href="#" style="height:44px;padding:0 14px;display:flex;align-items:center;font:500 15px/1 var(--jc-font-sans);color:var(--jc-text-2);text-decoration:none;border-radius:9999px" style-hover="background-color:var(--jc-surface);color:var(--jc-ink)">Contacto</a>
+              </div>
+              <div style="width:1px;height:24px;background:var(--jc-hairline);margin:0 8px"></div>
+              <div style="display:flex;padding:3px;border-radius:9999px;border:1px solid var(--jc-hairline)"><span style="min-width:44px;height:36px;border-radius:9999px;background:var(--jc-ink);color:var(--jc-canvas);display:flex;align-items:center;justify-content:center;font:600 13px/1 var(--jc-font-sans)">ES</span><span style="min-width:44px;height:36px;border-radius:9999px;color:var(--jc-text-2);display:flex;align-items:center;justify-content:center;font:600 13px/1 var(--jc-font-sans)">EN</span></div>
+              <span style="width:44px;height:44px;border:1px solid var(--jc-hairline);border-radius:50%;box-sizing:border-box;display:flex;align-items:center;justify-content:center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path></svg></span>
+            </div>
+          </nav>
+          <div style="padding:56px 120px 96px;display:flex;flex-direction:column;gap:48px">
+            <div style="display:flex;flex-direction:column;gap:24px;max-width:960px">
+              <div style="display:flex;align-items:center;gap:10px;font:400 13px/1 var(--jc-font-mono);color:var(--jc-text-3)"><a href="JC Inicio y Proyectos.dc.html#2a" style="color:var(--jc-text-3);text-decoration:none" style-hover="color:var(--jc-ink)">Proyectos</a><span>/</span><span style="color:var(--jc-ink)">{{ x.short }}</span><span style="margin-left:8px;font-variant-numeric:tabular-nums">{{ x.num }} / 08</span></div>
+              <h1 style="margin:0;font:600 64px/1.05 var(--jc-font-sans);letter-spacing:-2.2px">{{ x.name }}</h1>
+              <p style="margin:0;font:400 24px/1.45 var(--jc-font-sans);color:var(--jc-text-2);text-wrap:pretty">{{ x.hook }}</p>
+              <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
+                <sc-if value="{{ x.isEpa }}"><span style="display:inline-flex;align-items:center;gap:6px;height:28px;padding:0 10px;border:1px solid var(--jc-hairline-strong);border-radius:9999px;font:500 13px/1 var(--jc-font-sans)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="4" y="2" width="16" height="20" rx="2"></rect><path d="M9 22v-4h6v4M8 6h.01M12 6h.01M16 6h.01M8 10h.01M12 10h.01M16 10h.01"></path></svg>EPA</span></sc-if>
+                <sc-if value="{{ x.isOwn }}"><span style="display:inline-flex;align-items:center;gap:6px;height:28px;padding:0 10px;border:1px solid var(--jc-hairline-strong);border-radius:9999px;font:500 13px/1 var(--jc-font-sans)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="8" r="5"></circle><path d="M20 21a8 8 0 0 0-16 0"></path></svg>Propia</span></sc-if>
+                <sc-if value="{{ x.isPost }}"><span style="display:inline-flex;align-items:center;gap:6px;height:28px;padding:0 10px;border-radius:9999px;background:var(--jc-neutral-bg);color:var(--jc-neutral);font:500 13px/1 var(--jc-font-sans)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><rect width="20" height="5" x="2" y="3" rx="1"></rect><path d="M4 8v11a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8M10 12h4"></path></svg>Postmortem</span></sc-if>
+                <sc-if value="{{ x.isProd }}"><span style="display:inline-flex;align-items:center;gap:6px;height:28px;padding:0 10px;border-radius:9999px;background:var(--jc-ok-bg);color:var(--jc-ok);font:500 13px/1 var(--jc-font-sans)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="m8 12 3 3 5-6"></path></svg>En producción</span></sc-if>
+                <span style="width:1px;height:20px;background:var(--jc-hairline-strong);margin:0 4px"></span>
+                <sc-for list="{{ x.stack }}" as="s" hint-placeholder-count="2"><span style="display:inline-flex;align-items:center;height:24px;padding:0 8px;border-radius:6px;background:var(--jc-surface);color:var(--jc-text-2);font:400 12px/1 var(--jc-font-mono)">{{ s }}</span></sc-for>
+              </div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:12px">
+              <div style="position:relative;aspect-ratio:16/9;border-radius:24px;overflow:hidden;background:#0B0D0E">
+                <sc-if value="{{ x.vd.idle }}" hint-placeholder-val="{{ true }}">
+                  <button onClick="{{ x.vd.play }}" aria-label="{{ x.videoAria }}" style="position:absolute;inset:0;width:100%;height:100%;border:0;padding:0;cursor:pointer;background:{{ x.poster }};display:flex;flex-direction:column;justify-content:space-between;text-align:left;color:#fff">
+                    <span style="padding:28px;font:400 13px/1 var(--jc-font-mono)">PLACEHOLDER · póster del video</span>
+                    <span style="position:absolute;left:50%;top:50%;width:88px;height:88px;margin:-44px 0 0 -44px;border-radius:50%;background:#fff;color:#0B0D0E;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(0,0,0,.25)"><svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="margin-left:4px"><path d="M7 4.5v15a1 1 0 0 0 1.5.86l12.5-7.5a1 1 0 0 0 0-1.72L8.5 3.64A1 1 0 0 0 7 4.5z"></path></svg></span>
+                    <span style="display:flex;justify-content:space-between;align-items:flex-end;gap:16px;padding:28px;background:linear-gradient(transparent,rgba(0,0,0,.55))"><span style="font:600 26px/1.2 var(--jc-font-sans);letter-spacing:-.4px">{{ x.videoTitle }}</span><span style="font:400 13px/1 var(--jc-font-mono);background:rgba(0,0,0,.6);padding:6px 8px;border-radius:6px">60–90 s</span></span>
+                  </button>
+                </sc-if>
+                <sc-if value="{{ x.vd.loading }}"><div role="status" style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;color:#fff"><span style="width:32px;height:32px;border-radius:50%;border:3px solid rgba(255,255,255,.25);border-top-color:#fff;animation:jcspin 800ms linear infinite"></span><span style="font:400 13px/1 var(--jc-font-mono)">Cargando reproductor…</span></div></sc-if>
+                <sc-if value="{{ x.vd.loaded }}"><div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;color:#B8BEC4"><span style="font:400 13px/1.5 var(--jc-font-mono)">iframe youtube-nocookie · autoplay</span><button onClick="{{ x.vd.reset }}" style="height:44px;padding:0 20px;border:1px solid #3D4349;border-radius:9999px;background:transparent;color:#F2F3F4;font:600 14px/1 var(--jc-font-sans);cursor:pointer">Volver al póster</button></div></sc-if>
+              </div>
+              <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:4px">
+                <div style="display:flex;flex-direction:column;gap:8px"><div style="height:4px;border-radius:2px;background:var(--jc-ink)"></div><span style="font:400 12px/1 var(--jc-font-mono);color:var(--jc-text-3)">01 · PROBLEMA</span></div>
+                <div style="display:flex;flex-direction:column;gap:8px"><div style="height:4px;border-radius:2px;background:var(--jc-accent)"></div><span style="font:400 12px/1 var(--jc-font-mono);color:var(--jc-accent)">02 · MOMENTO CLAVE</span></div>
+                <div style="display:flex;flex-direction:column;gap:8px"><div style="height:4px;border-radius:2px;background:var(--jc-hairline-strong)"></div><span style="font:400 12px/1 var(--jc-font-mono);color:var(--jc-text-3)">03 · RESULTADO</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3b PROBLEMA -->
+      <div id="{{ x.ids.b }}" style="display:flex;flex-direction:column;gap:12px">
+        <div style="display:flex;align-items:center;gap:10px"><span style="font:600 13px/1 var(--jc-font-mono);padding:6px 10px;border-radius:9999px;background:#0B0D0E;color:#fff">3b</span><span style="font:500 15px/1 var(--jc-font-sans);color:#3A3F44">Problema</span></div>
+        <div style="width:1440px;box-sizing:border-box;padding:96px 120px;background:var(--jc-canvas);color:var(--jc-ink);box-shadow:0 1px 3px rgba(0,0,0,.08);display:grid;grid-template-columns:280px minmax(0,1fr);gap:64px">
+          <div style="display:flex;flex-direction:column;gap:8px"><span style="font:400 12px/1 var(--jc-font-mono);color:var(--jc-text-3)">01</span><h2 style="margin:0;font:600 28px/1.15 var(--jc-font-sans);letter-spacing:-.6px">Problema</h2></div>
+          <div style="display:flex;flex-direction:column;gap:20px;max-width:760px">
+            <p style="margin:0;font:600 40px/1.12 var(--jc-font-sans);letter-spacing:-1.2px;text-wrap:pretty">{{ x.problemTitle }}</p>
+            <p style="margin:0;font-size:19px;line-height:1.6;color:var(--jc-text-2);text-wrap:pretty">{{ x.problemBody }}</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3c CÓMO FUNCIONA -->
+      <div id="{{ x.ids.c }}" style="display:flex;flex-direction:column;gap:12px">
+        <div style="display:flex;align-items:center;gap:10px"><span style="font:600 13px/1 var(--jc-font-mono);padding:6px 10px;border-radius:9999px;background:#0B0D0E;color:#fff">3c</span><span style="font:500 15px/1 var(--jc-font-sans);color:#3A3F44">Cómo funciona · diagrama de arquitectura</span></div>
+        <div style="width:1440px;box-sizing:border-box;padding:96px 120px;background:var(--jc-canvas);color:var(--jc-ink);box-shadow:0 1px 3px rgba(0,0,0,.08);display:grid;grid-template-columns:280px minmax(0,1fr);gap:64px">
+          <div style="display:flex;flex-direction:column;gap:8px"><span style="font:400 12px/1 var(--jc-font-mono);color:var(--jc-text-3)">02</span><h2 style="margin:0;font:600 28px/1.15 var(--jc-font-sans);letter-spacing:-.6px">Cómo funciona</h2></div>
+          <div style="display:flex;flex-direction:column;gap:40px">
+            <div style="border:1px solid var(--jc-hairline);border-radius:16px;padding:40px;background-color:var(--jc-surface);background-image:radial-gradient(var(--jc-hairline-strong) 1px,transparent 1px);background-size:16px 16px;display:flex;flex-direction:column;gap:28px">
+              <div style="display:flex;align-items:center">
+                <sc-for list="{{ x.nodes }}" as="n" hint-placeholder-count="4">
+                  <sc-if value="{{ n.notFirst }}"><div style="flex:1;min-width:16px;display:flex;align-items:center;padding:0 4px"><div style="flex:1;height:1.5px;background:var(--jc-text-3)"></div><svg width="8" height="10" viewBox="0 0 8 10" aria-hidden="true"><path d="M0 0l8 5-8 5z" fill="var(--jc-text-3)"></path></svg></div></sc-if>
+                  <div style="flex:0 1 164px;min-width:0;box-sizing:border-box;padding:14px 16px;border-radius:12px;border:{{ n.border }};background:{{ n.bg }};display:flex;flex-direction:column;gap:4px"><span style="font:600 15px/1.2 var(--jc-font-sans)">{{ n.t }}</span><span style="font:400 12px/1.35 var(--jc-font-mono);color:{{ n.subColor }}">{{ n.s }}</span></div>
+                </sc-for>
+              </div>
+              <div style="display:flex;align-items:center;gap:10px;padding-top:20px;border-top:1px solid var(--jc-hairline-strong);font:400 13px/1.4 var(--jc-font-mono);color:var(--jc-text-2)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"></path></svg>{{ x.diagramNote }}</div>
+            </div>
+            <ol style="margin:0;padding:0;list-style:none;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px">
+              <sc-for list="{{ x.steps }}" as="st" hint-placeholder-count="3">
+                <li style="display:flex;flex-direction:column;gap:10px;padding-top:16px;border-top:1px solid var(--jc-hairline)"><span style="font:400 12px/1 var(--jc-font-mono);color:var(--jc-text-3)">{{ st.n }}</span><span style="font-size:17px;line-height:1.55;color:var(--jc-text-2);text-wrap:pretty">{{ st.t }}</span></li>
+              </sc-for>
+            </ol>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3d DECISIONES -->
+      <div id="{{ x.ids.d }}" style="display:flex;flex-direction:column;gap:12px">
+        <div style="display:flex;align-items:center;gap:10px"><span style="font:600 13px/1 var(--jc-font-mono);padding:6px 10px;border-radius:9999px;background:#0B0D0E;color:#fff">3d</span><span style="font:500 15px/1 var(--jc-font-sans);color:#3A3F44">Tres decisiones difíciles</span></div>
+        <div style="width:1440px;box-sizing:border-box;padding:96px 120px;background:var(--jc-surface);color:var(--jc-ink);box-shadow:0 1px 3px rgba(0,0,0,.08);display:grid;grid-template-columns:280px minmax(0,1fr);gap:64px">
+          <div style="display:flex;flex-direction:column;gap:8px"><span style="font:400 12px/1 var(--jc-font-mono);color:var(--jc-text-3)">03</span><h2 style="margin:0;font:600 28px/1.15 var(--jc-font-sans);letter-spacing:-.6px">Tres decisiones difíciles</h2></div>
+          <div style="display:flex;flex-direction:column;gap:20px">
+            <sc-for list="{{ x.decisions }}" as="d" hint-placeholder-count="3">
+              <div style="border:1px solid var(--jc-hairline);border-radius:16px;padding:28px 32px;display:flex;flex-direction:column;gap:20px;background:var(--jc-card)">
+                <span style="display:inline-flex;align-items:center;gap:6px;font:400 12px/1 var(--jc-font-mono);color:var(--jc-accent)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 3v12M18 9a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM6 21a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM18 9a9 9 0 0 1-9 9"></path></svg>DECISIÓN {{ d.n }}</span>
+                <p style="margin:0;font:500 22px/1.4 var(--jc-font-sans);letter-spacing:-.2px;text-wrap:pretty">{{ d.lead }} <strong style="font-weight:700">{{ d.what }}</strong><sc-if value="{{ d.hasAlt }}"> en lugar de <span style="color:var(--jc-text-3);text-decoration:line-through;text-decoration-thickness:1.5px">{{ d.alt }}</span></sc-if> {{ d.why }}</p>
+                <sc-if value="{{ d.hasBa }}">
+                  <div style="display:grid;grid-template-columns:1fr auto 1fr;gap:12px;align-items:stretch">
+                    <div style="padding:16px;border-radius:12px;background:var(--jc-surface);display:flex;flex-direction:column;gap:6px"><span style="font:400 12px/1 var(--jc-font-mono);color:var(--jc-text-3)">ANTES</span><span style="font-size:15px;line-height:1.45;color:var(--jc-text-2)">{{ d.before }}</span></div>
+                    <div style="display:flex;align-items:center;color:var(--jc-text-3)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></div>
+                    <div style="padding:16px;border-radius:12px;background:var(--jc-accent-soft);display:flex;flex-direction:column;gap:6px"><span style="font:400 12px/1 var(--jc-font-mono);color:var(--jc-accent)">DESPUÉS</span><span style="font-size:15px;line-height:1.45;color:var(--jc-ink)">{{ d.after }}</span></div>
+                  </div>
+                </sc-if>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3e MOMENTO CLAVE -->
+      <div id="{{ x.ids.e }}" style="display:flex;flex-direction:column;gap:12px">
+        <div style="display:flex;align-items:center;gap:10px"><span style="font:600 13px/1 var(--jc-font-mono);padding:6px 10px;border-radius:9999px;background:#0B0D0E;color:#fff">3e</span><span style="font:500 15px/1 var(--jc-font-sans);color:#3A3F44">Momento clave · cita grande</span></div>
+        <div style="width:1440px;box-sizing:border-box;padding:120px 120px;background:var(--jc-canvas);color:var(--jc-ink);box-shadow:0 1px 3px rgba(0,0,0,.08)">
+          <figure style="margin:0;padding-top:48px;border-top:2px solid var(--jc-ink);display:flex;flex-direction:column;gap:32px;max-width:1080px">
+            <blockquote style="margin:0;font:600 64px/1.08 var(--jc-font-sans);letter-spacing:-2px;text-wrap:pretty"><span style="color:var(--jc-accent)">“</span>{{ x.quote }}<span style="color:var(--jc-accent)">”</span></blockquote>
+            <figcaption style="display:flex;align-items:center;gap:12px;font-size:15px;color:var(--jc-text-2)"><span style="width:24px;height:1px;background:var(--jc-text-3)"></span>{{ x.quoteCap }}</figcaption>
+          </figure>
+        </div>
+      </div>
+
+      <!-- 3f RESULTADO -->
+      <div id="{{ x.ids.f }}" style="display:flex;flex-direction:column;gap:12px">
+        <div style="display:flex;align-items:center;gap:10px"><span style="font:600 13px/1 var(--jc-font-mono);padding:6px 10px;border-radius:9999px;background:#0B0D0E;color:#fff">3f</span><span style="font:500 15px/1 var(--jc-font-sans);color:#3A3F44">Resultado · cifras con fuente</span></div>
+        <div style="width:1440px;box-sizing:border-box;padding:96px 120px;background:var(--jc-canvas);color:var(--jc-ink);box-shadow:0 1px 3px rgba(0,0,0,.08);display:grid;grid-template-columns:280px minmax(0,1fr);gap:64px">
+          <div style="display:flex;flex-direction:column;gap:8px"><span style="font:400 12px/1 var(--jc-font-mono);color:var(--jc-text-3)">04</span><h2 style="margin:0;font:600 28px/1.15 var(--jc-font-sans);letter-spacing:-.6px">Resultado</h2></div>
+          <div style="display:flex;flex-direction:column;gap:32px">
+            <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid var(--jc-hairline);border-bottom:1px solid var(--jc-hairline)">
+              <sc-for list="{{ x.figures }}" as="f" hint-placeholder-count="3">
+                <div style="padding:32px 28px 32px 0;display:flex;flex-direction:column;gap:8px;border-right:1px solid var(--jc-hairline);margin-right:28px">
+                  <span style="font:600 56px/1 var(--jc-font-sans);letter-spacing:-1.8px;font-variant-numeric:tabular-nums;white-space:nowrap">{{ f.v }}</span>
+                  <span style="font-size:15px;line-height:1.45;color:var(--jc-text-2);text-wrap:pretty">{{ f.l }}</span>
+                  <sc-if value="{{ f.hasSrc }}"><span style="font:400 12px/1.4 var(--jc-font-mono);color:var(--jc-text-3)">Fuente: {{ f.src }}</span></sc-if>
+                  <sc-if value="{{ f.srcMissing }}"><span style="display:inline-flex;align-self:flex-start;align-items:center;gap:6px;padding:4px 8px;border:1.5px dashed var(--jc-warn);border-radius:6px;background:var(--jc-warn-bg);color:var(--jc-warn);font:400 12px/1.4 var(--jc-font-mono)">Fuente: (falta)</span></sc-if>
+                </div>
+              </sc-for>
+              <sc-if value="{{ x.noUsage }}">
+                <div style="padding:32px 0;display:flex;flex-direction:column;gap:8px;grid-column:span 2;justify-content:center">
+                  <span style="font:600 28px/1.2 var(--jc-font-sans);letter-spacing:-.6px">{{ x.noUsageText }}</span>
+                  <span style="font-size:15px;line-height:1.45;color:var(--jc-text-3)">Cuando la haya, va aquí con su fuente.</span>
+                </div>
+              </sc-if>
+            </div>
+            <p style="margin:0;max-width:760px;font-size:19px;line-height:1.6;color:var(--jc-text-2);text-wrap:pretty">{{ x.resultText }}</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3g GALERÍA -->
+      <div id="{{ x.ids.g }}" style="display:flex;flex-direction:column;gap:12px">
+        <div style="display:flex;align-items:center;gap:10px"><span style="font:600 13px/1 var(--jc-font-mono);padding:6px 10px;border-radius:9999px;background:#0B0D0E;color:#fff">3g</span><span style="font:500 15px/1 var(--jc-font-sans);color:#3A3F44">Galería · claro y oscuro</span></div>
+        <div style="width:1440px;box-sizing:border-box;padding:96px 120px;background:var(--jc-canvas);color:var(--jc-ink);box-shadow:0 1px 3px rgba(0,0,0,.08);display:flex;flex-direction:column;gap:40px">
+          <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:24px"><div style="display:flex;flex-direction:column;gap:8px"><span style="font:400 12px/1 var(--jc-font-mono);color:var(--jc-text-3)">05</span><h2 style="margin:0;font:600 28px/1.15 var(--jc-font-sans);letter-spacing:-.6px">Capturas</h2></div><span style="font:400 13px/1 var(--jc-font-mono);color:var(--jc-text-3)">claro · oscuro</span></div>
+          <sc-for list="{{ x.shots }}" as="g" hint-placeholder-count="3">
+            <figure style="margin:0;display:flex;flex-direction:column;gap:12px">
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+                <div style="aspect-ratio:16/10;border-radius:12px;border:1px solid #E3E5E8;background:repeating-linear-gradient(135deg,#F5F6F7 0 14px,#EEF0F2 14px 28px);display:flex;flex-direction:column;justify-content:space-between;padding:16px;box-sizing:border-box;color:#5B6168;font:400 12px/1.4 var(--jc-font-mono)"><span style="align-self:flex-start;padding:4px 8px;border-radius:6px;background:#FFFFFF;color:#0B0D0E;border:1px solid #C9CDD2">PLACEHOLDER · CLARO</span><span>{{ g.t }}</span></div>
+                <div style="aspect-ratio:16/10;border-radius:12px;border:1px solid #2A2F33;background:repeating-linear-gradient(135deg,#16191B 0 14px,#1A1D20 14px 28px);display:flex;flex-direction:column;justify-content:space-between;padding:16px;box-sizing:border-box;color:#959CA3;font:400 12px/1.4 var(--jc-font-mono)"><span style="align-self:flex-start;padding:4px 8px;border-radius:6px;background:#0E1011;color:#F2F3F4;border:1px solid #3D4349">PLACEHOLDER · OSCURO</span><span>{{ g.t }}</span></div>
+              </div>
+              <figcaption style="font-size:14px;line-height:1.45;color:var(--jc-text-2)">{{ g.t }}</figcaption>
+            </figure>
+          </sc-for>
+        </div>
+      </div>
+
+      <!-- 3h ROL Y QUÉ SIGUE -->
+      <div id="{{ x.ids.h }}" style="display:flex;flex-direction:column;gap:12px">
+        <div style="display:flex;align-items:center;gap:10px"><span style="font:600 13px/1 var(--jc-font-mono);padding:6px 10px;border-radius:9999px;background:#0B0D0E;color:#fff">3h</span><span style="font:500 15px/1 var(--jc-font-sans);color:#3A3F44">Mi rol, qué sigue y navegación</span></div>
+        <div style="width:1440px;box-sizing:border-box;padding:96px 120px 48px;background:var(--jc-canvas);color:var(--jc-ink);box-shadow:0 1px 3px rgba(0,0,0,.08);display:flex;flex-direction:column;gap:80px">
+          <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px">
+            <div style="padding:32px;border-radius:16px;border:1px solid var(--jc-hairline);display:flex;flex-direction:column;gap:12px"><span style="font:400 12px/1 var(--jc-font-mono);color:var(--jc-text-3)">MI ROL</span><span style="font:600 28px/1.2 var(--jc-font-sans);letter-spacing:-.6px;text-wrap:pretty">{{ x.role }}</span><span style="font-size:16px;line-height:1.55;color:var(--jc-text-2)">{{ x.roleNote }}</span></div>
+            <div style="padding:32px;border-radius:16px;background:var(--jc-surface);display:flex;flex-direction:column;gap:12px"><span style="font:400 12px/1 var(--jc-font-mono);color:var(--jc-text-3)">QUÉ SIGUE</span>
+              <sc-if value="{{ x.hasNext }}"><span style="font:600 28px/1.2 var(--jc-font-sans);letter-spacing:-.6px;text-wrap:pretty">{{ x.nextText }}</span></sc-if>
+              <sc-if value="{{ x.nextMissing }}"><span style="align-self:flex-start;display:inline-flex;align-items:center;gap:6px;padding:8px 12px;border:1.5px dashed var(--jc-warn);border-radius:8px;background:var(--jc-warn-bg);color:var(--jc-warn);font:500 15px/1.3 var(--jc-font-sans)">(falta) siguiente paso</span></sc-if>
+            </div>
+          </div>
+          <nav aria-label="Casos" style="display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--jc-hairline);border-bottom:1px solid var(--jc-hairline)">
+            <a href="#" style="padding:32px 32px 32px 0;display:flex;flex-direction:column;gap:10px;color:var(--jc-ink);text-decoration:none;border-right:1px solid var(--jc-hairline)" style-hover="background-color:var(--jc-surface)"><span style="display:inline-flex;align-items:center;gap:6px;font:400 12px/1 var(--jc-font-mono);color:var(--jc-text-3)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M19 12H5M11 18l-6-6 6-6"></path></svg>ANTERIOR · {{ x.prev.num }}</span><span style="font:600 28px/1.15 var(--jc-font-sans);letter-spacing:-.6px">{{ x.prev.name }}</span><span style="font-size:15px;color:var(--jc-text-2)">{{ x.prev.hook }}</span></a>
+            <a href="#" style="padding:32px 0 32px 32px;display:flex;flex-direction:column;gap:10px;align-items:flex-end;text-align:right;color:var(--jc-ink);text-decoration:none" style-hover="background-color:var(--jc-surface)"><span style="display:inline-flex;align-items:center;gap:6px;font:400 12px/1 var(--jc-font-mono);color:var(--jc-text-3)">SIGUIENTE · {{ x.next.num }}<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span><span style="font:600 28px/1.15 var(--jc-font-sans);letter-spacing:-.6px">{{ x.next.name }}</span><span style="font-size:15px;color:var(--jc-text-2)">{{ x.next.hook }}</span></a>
+          </nav>
+          <footer style="display:flex;justify-content:space-between;gap:24px;font:400 13px/1.5 var(--jc-font-mono);color:var(--jc-text-3)"><span>hola@josecarloscorona.dev</span><span>Hecho con Astro en Google Cloud · © 2026 · CDMX</span></footer>
+        </div>
+      </div>
+    </div>
+
+    <!-- MÓVIL -->
+    <div id="{{ x.ids.m }}" style="display:flex;flex-direction:column;gap:12px;position:sticky;top:24px">
+      <div style="display:flex;align-items:center;gap:10px"><span style="font:600 13px/1 var(--jc-font-mono);padding:6px 10px;border-radius:9999px;background:#0B0D0E;color:#fff">3a–3h</span><span style="font:500 15px/1 var(--jc-font-sans);color:#3A3F44">Móvil · desplaza dentro del marco</span></div>
+      <div style="width:402px;height:874px;border-radius:40px;border:1px solid #C9CDD2;overflow:hidden;background:var(--jc-canvas);color:var(--jc-ink);box-shadow:0 1px 3px rgba(0,0,0,.08)">
+        <div style="height:100%;overflow-y:auto">
+          <div style="position:sticky;top:0;z-index:5;background:var(--jc-canvas)">
+            <div style="height:44px"></div>
+            <div style="height:60px;padding:0 12px 0 20px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--jc-hairline)">
+              <span style="display:flex;align-items:center;gap:10px"><span style="width:32px;height:32px;border-radius:8px;background:var(--jc-ink);color:var(--jc-canvas);display:flex;align-items:center;justify-content:center;font:600 15px/1 var(--jc-font-sans);letter-spacing:-.8px">JC</span><span style="font:600 16px/1 var(--jc-font-sans);letter-spacing:-.3px">José Carlos Corona</span></span>
+              <span aria-label="Abrir menú" style="width:44px;height:44px;display:flex;align-items:center;justify-content:center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"></path></svg></span>
+            </div>
+          </div>
+
+          <div style="padding:24px 20px 40px;display:flex;flex-direction:column;gap:16px">
+            <span style="font:400 12px/1 var(--jc-font-mono);color:var(--jc-text-3)">Proyectos / {{ x.short }} · {{ x.num }} / 08</span>
+            <h1 style="margin:0;font:600 40px/1.05 var(--jc-font-sans);letter-spacing:-1.2px">{{ x.name }}</h1>
+            <p style="margin:0;font-size:18px;line-height:1.5;color:var(--jc-text-2)">{{ x.hook }}</p>
+            <div style="display:flex;gap:6px;flex-wrap:wrap">
+              <sc-if value="{{ x.isEpa }}"><span style="display:inline-flex;align-items:center;height:28px;padding:0 10px;border:1px solid var(--jc-hairline-strong);border-radius:9999px;font:500 13px/1 var(--jc-font-sans)">EPA</span></sc-if>
+              <sc-if value="{{ x.isOwn }}"><span style="display:inline-flex;align-items:center;height:28px;padding:0 10px;border:1px solid var(--jc-hairline-strong);border-radius:9999px;font:500 13px/1 var(--jc-font-sans)">Propia</span></sc-if>
+              <sc-if value="{{ x.isPost }}"><span style="display:inline-flex;align-items:center;height:28px;padding:0 10px;border-radius:9999px;background:var(--jc-neutral-bg);color:var(--jc-neutral);font:500 13px/1 var(--jc-font-sans)">Postmortem</span></sc-if>
+              <sc-if value="{{ x.isProd }}"><span style="display:inline-flex;align-items:center;height:28px;padding:0 10px;border-radius:9999px;background:var(--jc-ok-bg);color:var(--jc-ok);font:500 13px/1 var(--jc-font-sans)">En producción</span></sc-if>
+              <sc-for list="{{ x.stack }}" as="s" hint-placeholder-count="2"><span style="display:inline-flex;align-items:center;height:28px;padding:0 8px;border-radius:6px;background:var(--jc-surface);color:var(--jc-text-2);font:400 12px/1 var(--jc-font-mono)">{{ s }}</span></sc-for>
+            </div>
+            <div style="position:relative;aspect-ratio:16/9;border-radius:16px;overflow:hidden;background:#0B0D0E;margin-top:8px">
+              <sc-if value="{{ x.vm.idle }}" hint-placeholder-val="{{ true }}">
+                <button onClick="{{ x.vm.play }}" aria-label="{{ x.videoAria }}" style="position:absolute;inset:0;width:100%;height:100%;border:0;padding:0;cursor:pointer;background:{{ x.poster }};color:#fff;display:flex;align-items:flex-end;text-align:left">
+                  <span style="position:absolute;left:12px;top:12px;font:400 11px/1 var(--jc-font-mono)">PLACEHOLDER · póster</span>
+                  <span style="position:absolute;left:50%;top:50%;width:56px;height:56px;margin:-28px 0 0 -28px;border-radius:50%;background:#fff;color:#0B0D0E;display:flex;align-items:center;justify-content:center"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="margin-left:2px"><path d="M7 4.5v15a1 1 0 0 0 1.5.86l12.5-7.5a1 1 0 0 0 0-1.72L8.5 3.64A1 1 0 0 0 7 4.5z"></path></svg></span>
+                  <span style="width:100%;display:flex;justify-content:space-between;align-items:flex-end;gap:8px;padding:12px;box-sizing:border-box;background:linear-gradient(transparent,rgba(0,0,0,.55))"><span style="font:600 15px/1.2 var(--jc-font-sans)">{{ x.videoTitle }}</span><span style="font:400 11px/1 var(--jc-font-mono);background:rgba(0,0,0,.6);padding:5px 7px;border-radius:6px;flex-shrink:0">60–90 s</span></span>
+                </button>
+              </sc-if>
+              <sc-if value="{{ x.vm.loading }}"><div role="status" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center"><span style="width:28px;height:28px;border-radius:50%;border:3px solid rgba(255,255,255,.25);border-top-color:#fff;animation:jcspin 800ms linear infinite"></span></div></sc-if>
+              <sc-if value="{{ x.vm.loaded }}"><div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;color:#B8BEC4"><span style="font:400 12px/1 var(--jc-font-mono)">iframe · autoplay</span><button onClick="{{ x.vm.reset }}" style="height:44px;padding:0 18px;border:1px solid #3D4349;border-radius:9999px;background:transparent;color:#F2F3F4;font:600 14px/1 var(--jc-font-sans);cursor:pointer">Volver al póster</button></div></sc-if>
+            </div>
+            <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:4px;font:400 10px/1.3 var(--jc-font-mono);color:var(--jc-text-3)"><div style="display:flex;flex-direction:column;gap:6px"><div style="height:3px;border-radius:2px;background:var(--jc-ink)"></div>PROBLEMA</div><div style="display:flex;flex-direction:column;gap:6px;color:var(--jc-accent)"><div style="height:3px;border-radius:2px;background:var(--jc-accent)"></div>MOMENTO CLAVE</div><div style="display:flex;flex-direction:column;gap:6px"><div style="height:3px;border-radius:2px;background:var(--jc-hairline-strong)"></div>RESULTADO</div></div>
+          </div>
+
+          <div style="padding:40px 20px;border-top:1px solid var(--jc-hairline);display:flex;flex-direction:column;gap:12px">
+            <span style="font:400 12px/1 var(--jc-font-mono);color:var(--jc-text-3)">01 · PROBLEMA</span>
+            <p style="margin:0;font:600 26px/1.15 var(--jc-font-sans);letter-spacing:-.6px">{{ x.problemTitle }}</p>
+            <p style="margin:0;font-size:16px;line-height:1.6;color:var(--jc-text-2)">{{ x.problemBody }}</p>
+          </div>
+
+          <div style="padding:40px 20px;border-top:1px solid var(--jc-hairline);display:flex;flex-direction:column;gap:16px">
+            <span style="font:400 12px/1 var(--jc-font-mono);color:var(--jc-text-3)">02 · CÓMO FUNCIONA</span>
+            <div style="padding:16px;border-radius:16px;border:1px solid var(--jc-hairline);background-color:var(--jc-surface);background-image:radial-gradient(var(--jc-hairline-strong) 1px,transparent 1px);background-size:16px 16px;display:flex;flex-direction:column;align-items:stretch">
+              <sc-for list="{{ x.nodes }}" as="n" hint-placeholder-count="4">
+                <sc-if value="{{ n.notFirst }}"><div style="height:20px;display:flex;justify-content:center"><div style="width:1.5px;background:var(--jc-text-3)"></div></div></sc-if>
+                <div style="padding:12px 14px;border-radius:10px;border:{{ n.border }};background:{{ n.bg }};display:flex;justify-content:space-between;align-items:baseline;gap:8px"><span style="font:600 15px/1.2 var(--jc-font-sans)">{{ n.t }}</span><span style="font:400 11px/1.3 var(--jc-font-mono);color:{{ n.subColor }};text-align:right">{{ n.s }}</span></div>
+              </sc-for>
+              <span style="margin-top:14px;font:400 11px/1.4 var(--jc-font-mono);color:var(--jc-text-2)">{{ x.diagramNote }}</span>
+            </div>
+            <sc-for list="{{ x.steps }}" as="st" hint-placeholder-count="3">
+              <div style="display:grid;grid-template-columns:28px 1fr;gap:8px;font-size:15px;line-height:1.5;color:var(--jc-text-2)"><span style="font:400 12px/1.6 var(--jc-font-mono);color:var(--jc-text-3)">{{ st.n }}</span><span>{{ st.t }}</span></div>
+            </sc-for>
+          </div>
+
+          <div style="padding:40px 20px;background:var(--jc-surface);display:flex;flex-direction:column;gap:12px">
+            <span style="font:400 12px/1 var(--jc-font-mono);color:var(--jc-text-3)">03 · TRES DECISIONES DIFÍCILES</span>
+            <sc-for list="{{ x.decisions }}" as="d" hint-placeholder-count="3">
+              <div style="border:1px solid var(--jc-hairline);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:14px;background:var(--jc-card)">
+                <span style="font:400 11px/1 var(--jc-font-mono);color:var(--jc-accent)">DECISIÓN {{ d.n }}</span>
+                <p style="margin:0;font:500 18px/1.4 var(--jc-font-sans)">{{ d.lead }} <strong style="font-weight:700">{{ d.what }}</strong><sc-if value="{{ d.hasAlt }}"> en lugar de <span style="color:var(--jc-text-3);text-decoration:line-through">{{ d.alt }}</span></sc-if> {{ d.why }}</p>
+                <sc-if value="{{ d.hasBa }}">
+                  <div style="display:flex;flex-direction:column;gap:8px">
+                    <div style="padding:12px;border-radius:10px;background:var(--jc-surface);display:flex;flex-direction:column;gap:4px"><span style="font:400 11px/1 var(--jc-font-mono);color:var(--jc-text-3)">ANTES</span><span style="font-size:14px;line-height:1.45;color:var(--jc-text-2)">{{ d.before }}</span></div>
+                    <div style="padding:12px;border-radius:10px;background:var(--jc-accent-soft);display:flex;flex-direction:column;gap:4px"><span style="font:400 11px/1 var(--jc-font-mono);color:var(--jc-accent)">DESPUÉS</span><span style="font-size:14px;line-height:1.45">{{ d.after }}</span></div>
+                  </div>
+                </sc-if>
+              </div>
+            </sc-for>
+          </div>
+
+          <figure style="margin:0;padding:48px 20px;display:flex;flex-direction:column;gap:20px">
+            <blockquote style="margin:0;padding-top:24px;border-top:2px solid var(--jc-ink);font:600 32px/1.12 var(--jc-font-sans);letter-spacing:-.9px;text-wrap:pretty"><span style="color:var(--jc-accent)">“</span>{{ x.quote }}<span style="color:var(--jc-accent)">”</span></blockquote>
+            <figcaption style="font-size:14px;color:var(--jc-text-2)">{{ x.quoteCap }}</figcaption>
+          </figure>
+
+          <div style="padding:40px 20px;border-top:1px solid var(--jc-hairline);display:flex;flex-direction:column;gap:4px">
+            <span style="font:400 12px/1 var(--jc-font-mono);color:var(--jc-text-3)">04 · RESULTADO</span>
+            <sc-for list="{{ x.figures }}" as="f" hint-placeholder-count="3">
+              <div style="padding:20px 0;border-bottom:1px solid var(--jc-hairline);display:flex;flex-direction:column;gap:6px">
+                <span style="font:600 40px/1 var(--jc-font-sans);letter-spacing:-1.2px;font-variant-numeric:tabular-nums">{{ f.v }}</span>
+                <span style="font-size:15px;line-height:1.45;color:var(--jc-text-2)">{{ f.l }}</span>
+                <sc-if value="{{ f.hasSrc }}"><span style="font:400 12px/1.4 var(--jc-font-mono);color:var(--jc-text-3)">Fuente: {{ f.src }}</span></sc-if>
+                <sc-if value="{{ f.srcMissing }}"><span style="align-self:flex-start;padding:3px 7px;border:1.5px dashed var(--jc-warn);border-radius:6px;background:var(--jc-warn-bg);color:var(--jc-warn);font:400 11px/1.4 var(--jc-font-mono)">Fuente: (falta)</span></sc-if>
+              </div>
+            </sc-for>
+            <sc-if value="{{ x.noUsage }}"><div style="padding:20px 0;border-bottom:1px solid var(--jc-hairline);font:600 20px/1.3 var(--jc-font-sans)">{{ x.noUsageText }}</div></sc-if>
+            <p style="margin:16px 0 0;font-size:16px;line-height:1.6;color:var(--jc-text-2)">{{ x.resultText }}</p>
+          </div>
+
+          <div style="padding:40px 20px;border-top:1px solid var(--jc-hairline);display:flex;flex-direction:column;gap:16px">
+            <span style="font:400 12px/1 var(--jc-font-mono);color:var(--jc-text-3)">05 · CAPTURAS · CLARO Y OSCURO</span>
+            <sc-for list="{{ x.shots }}" as="g" hint-placeholder-count="3">
+              <figure style="margin:0;display:flex;flex-direction:column;gap:8px">
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+                  <div style="aspect-ratio:9/16;border-radius:10px;border:1px solid #E3E5E8;background:repeating-linear-gradient(135deg,#F5F6F7 0 10px,#EEF0F2 10px 20px);display:flex;align-items:flex-start;padding:8px;box-sizing:border-box"><span style="padding:3px 6px;border-radius:4px;background:#fff;color:#0B0D0E;border:1px solid #C9CDD2;font:400 10px/1.2 var(--jc-font-mono)">PLACEHOLDER · CLARO</span></div>
+                  <div style="aspect-ratio:9/16;border-radius:10px;border:1px solid #2A2F33;background:repeating-linear-gradient(135deg,#16191B 0 10px,#1A1D20 10px 20px);display:flex;align-items:flex-start;padding:8px;box-sizing:border-box"><span style="padding:3px 6px;border-radius:4px;background:#0E1011;color:#F2F3F4;border:1px solid #3D4349;font:400 10px/1.2 var(--jc-font-mono)">PLACEHOLDER · OSCURO</span></div>
+                </div>
+                <figcaption style="font-size:13px;line-height:1.4;color:var(--jc-text-2)">{{ g.t }}</figcaption>
+              </figure>
+            </sc-for>
+          </div>
+
+          <div style="padding:40px 20px;border-top:1px solid var(--jc-hairline);display:flex;flex-direction:column;gap:12px">
+            <div style="padding:20px;border-radius:16px;border:1px solid var(--jc-hairline);display:flex;flex-direction:column;gap:8px"><span style="font:400 11px/1 var(--jc-font-mono);color:var(--jc-text-3)">MI ROL</span><span style="font:600 20px/1.25 var(--jc-font-sans)">{{ x.role }}</span><span style="font-size:14px;line-height:1.5;color:var(--jc-text-2)">{{ x.roleNote }}</span></div>
+            <div style="padding:20px;border-radius:16px;background:var(--jc-surface);display:flex;flex-direction:column;gap:8px"><span style="font:400 11px/1 var(--jc-font-mono);color:var(--jc-text-3)">QUÉ SIGUE</span>
+              <sc-if value="{{ x.hasNext }}"><span style="font:600 20px/1.25 var(--jc-font-sans)">{{ x.nextText }}</span></sc-if>
+              <sc-if value="{{ x.nextMissing }}"><span style="align-self:flex-start;padding:6px 10px;border:1.5px dashed var(--jc-warn);border-radius:8px;background:var(--jc-warn-bg);color:var(--jc-warn);font:500 14px/1.3 var(--jc-font-sans)">(falta) siguiente paso</span></sc-if>
+            </div>
+            <nav aria-label="Casos" style="display:flex;flex-direction:column;margin-top:16px;border-top:1px solid var(--jc-hairline)">
+              <a href="#" style="min-height:72px;padding:14px 0;display:flex;flex-direction:column;justify-content:center;gap:6px;border-bottom:1px solid var(--jc-hairline);color:var(--jc-ink);text-decoration:none"><span style="font:400 11px/1 var(--jc-font-mono);color:var(--jc-text-3)">← ANTERIOR · {{ x.prev.num }}</span><span style="font:600 18px/1.2 var(--jc-font-sans)">{{ x.prev.name }}</span></a>
+              <a href="#" style="min-height:72px;padding:14px 0;display:flex;flex-direction:column;justify-content:center;gap:6px;border-bottom:1px solid var(--jc-hairline);color:var(--jc-ink);text-decoration:none"><span style="font:400 11px/1 var(--jc-font-mono);color:var(--jc-text-3)">SIGUIENTE · {{ x.next.num }} →</span><span style="font:600 18px/1.2 var(--jc-font-sans)">{{ x.next.name }}</span></a>
+            </nav>
+            <footer style="margin-top:32px;display:flex;flex-direction:column;gap:6px;font:400 12px/1.5 var(--jc-font-mono);color:var(--jc-text-3)"><span>Hecho con Astro en Google Cloud</span><span>© 2026 José Carlos Corona · CDMX</span></footer>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</sc-for>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;theme&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;light&quot;,&quot;dark&quot;],&quot;default&quot;:&quot;light&quot;,&quot;tsType&quot;:&quot;'light'|'dark'&quot;,&quot;section&quot;:&quot;Vista&quot;},&quot;mode&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;borrador&quot;,&quot;produccion&quot;],&quot;default&quot;:&quot;borrador&quot;,&quot;tsType&quot;:&quot;'borrador'|'produccion'&quot;,&quot;section&quot;:&quot;Vista&quot;}}">
+const IDX = [
+  ['01', 'Servidor MCP de medios', 'Automatiza el criterio, no la tarea'],
+  ['02', 'Iterum', 'Una agencia de viajes personal, no un cuaderno con asistente'],
+  ['03', 'Dashboards y Hopper', 'De un Excel de 993 filas a QA guiado'],
+  ['04', 'Domi', 'No es un buscador con chatbot: los agentes juzgan y explican'],
+  ['05', 'Einstein, un postmortem', 'Construimos el cerebro de la agencia y nadie lo usó'],
+  ['06', 'Vocatio', 'Tu equipo trabaja hasta que te llamen'],
+  ['07', 'Librería de Prompts', 'Cada prompt documenta su impacto'],
+  ['08', 'Fundamentum', 'Un chasis para tres apps'],
+].map(([num, name, hook]) => ({ num, name, hook }));
+
+const NODE = {
+  ext: { border: '1.5px dashed var(--jc-hairline-strong)', bg: 'var(--jc-canvas)', subColor: 'var(--jc-text-3)' },
+  svc: { border: '1px solid var(--jc-hairline-strong)', bg: 'var(--jc-card)', subColor: 'var(--jc-text-3)' },
+  focus: { border: '2px solid var(--jc-accent)', bg: 'var(--jc-accent-soft)', subColor: 'var(--jc-accent)' },
+};
+
+const DATA = [
+  {
+    key: 'einstein', idx: 4, short: 'Einstein', org: 'EPA', status: 'post', stack: ['Outline'],
+    poster: '#23272B', videoTitle: 'Einstein: qué construimos y por qué nadie lo usó',
+    problemTitle: 'Un cerebro de la agencia que respetara quién puede ver qué.',
+    problemBody: 'La idea era reunir el conocimiento de la agencia en un solo lugar que personas e IA pudieran consultar, sin que nadie viera lo que no le toca.',
+    nodes: [['ext', 'Equipo de la agencia', 'personas'], ['svc', 'Outline', 'permisos en 4 niveles'], ['focus', 'Recuperación', 'RAG · GraphRAG · LLM Wiki'], ['svc', 'Asistente de IA', 'respuesta con contexto']],
+    diagramNote: 'Evaluación: golden set de 30 preguntas en 10 categorías',
+    steps: ['Los documentos viven en Outline, la v1, con permisos en 4 niveles.', 'Una capa de recuperación arma el contexto. Comparamos RAG, GraphRAG y LLM Wiki.', 'Cada arquitectura se mide contra el mismo golden set de 30 preguntas.'],
+    lead: 'Decidimos',
+    decisions: [
+      { what: 'construir la v1 sobre Outline', why: 'con permisos en 4 niveles desde el primer día.' },
+      { what: 'elegir la arquitectura con un golden set', alt: 'elegirla por intuición', why: 'de 30 preguntas en 10 categorías.', before: 'RAG, GraphRAG y LLM Wiki sobre la mesa, sin medir.', after: 'Mismas 30 preguntas para las tres: 6–8K contra 15–30K tokens por consulta.' },
+      { what: 'reencuadrar el producto a «compartir y auditar contexto de IA»', alt: 'insistir con el cerebro de la agencia', why: 'porque la adopción fue cero, incluidos los tres fundadores. Quedó en ADR-001.', before: 'El cerebro de la agencia.', after: 'Compartir y auditar contexto de IA.' },
+    ],
+    quote: 'Construimos el cerebro de la agencia y nadie lo usó. Ni los tres fundadores.',
+    quoteCap: 'Momento clave · adopción cero',
+    figures: [
+      { v: '0', l: 'personas lo usaron, incluidos los tres fundadores' },
+      { v: '30', l: 'preguntas en 10 categorías en el golden set' },
+      { v: '6–8K', l: 'tokens por consulta, contra 15–30K de la alternativa más pesada' },
+    ],
+    resultText: 'El producto se reencuadró a «compartir y auditar contexto de IA». La decisión y su razonamiento están en ADR-001.',
+    shots: ['Outline · permisos por nivel', 'Golden set · 30 preguntas en 10 categorías', 'ADR-001 · reencuadre'],
+    role: 'Product owner.', roleNote: 'Otra persona construyó.',
+    nextText: 'Compartir y auditar contexto de IA, según ADR-001.',
+  },
+  {
+    key: 'iterum', idx: 1, short: 'Iterum', org: 'Propia', status: 'prod', stack: ['Cloud Run', 'Agentes'],
+    poster: '#1456F0', videoTitle: 'Iterum: una propuesta, de principio a fin',
+    problemTitle: 'Planear un viaje con IA suele acabar en un cuaderno con asistente.',
+    problemBody: 'Notas sueltas, lugares que no existen y nadie que revise si el plan es factible. Iterum funciona como una agencia de viajes personal: propone, verifica y espera tu decisión.',
+    nodes: [['ext', 'Viajero', 'chat'], ['focus', 'Concierge', 'única voz'], ['svc', 'Especialistas', 'tarjetas firmadas'], ['svc', 'Auditoría', 'factibilidad · semáforo']],
+    diagramNote: 'Desplegada en Cloud Run',
+    steps: ['Hablas solo con Concierge.', 'Los especialistas preparan tarjetas firmadas; Concierge te las presenta como propuestas.', 'Antes de mostrar el plan, una auditoría de factibilidad lo marca con semáforo.'],
+    lead: 'Decidí',
+    decisions: [
+      { what: 'que Concierge sea la única voz', alt: 'varios agentes hablándote a la vez', why: 'y los especialistas trabajan detrás, firmando sus tarjetas.' },
+      { what: 'que todo cambio llegue como propuesta', alt: 'editar el itinerario por su cuenta', why: 'con tres salidas: Aceptar · Editar · Rechazar.', before: 'El asistente cambia el plan.', after: 'Tú decides cada cambio.' },
+      { what: 'auditar la factibilidad con semáforo', why: 'y no mostrar lugares que no se pudieron verificar.' },
+    ],
+    quote: 'Iterum propone; tú aceptas, editas o rechazas.',
+    quoteCap: 'Momento clave · la primera propuesta',
+    figures: [{ v: '0', l: 'lugares inventados en los itinerarios' }],
+    noUsageText: 'Todavía no hay cifras de uso.',
+    resultText: 'Desplegada en Cloud Run.',
+    shots: ['Concierge y tarjetas firmadas', 'Propuesta · Aceptar · Editar · Rechazar', 'Auditoría de factibilidad · semáforo'],
+    role: 'Proyecto propio.', roleNote: 'Producto, agentes y despliegue.',
+    nextText: null,
+  },
+];
+
+class Component extends DCLogic {
+  state = { v: {} };
+  componentWillUnmount() { clearTimeout(this.vt); }
+  vid(k) {
+    const s = this.state.v[k] || 'idle';
+    const set = (val) => this.setState((st) => ({ v: { ...st.v, [k]: val } }));
+    return { idle: s === 'idle', loading: s === 'loading', loaded: s === 'loaded',
+      play: () => { set('loading'); this.vt = setTimeout(() => set('loaded'), 900); }, reset: () => set('idle') };
+  }
+  renderVals() {
+    const draft = (this.props.mode ?? 'borrador') !== 'produccion';
+    const examples = DATA.map((d, i) => {
+      const me = IDX[d.idx];
+      const sfx = i === 0 ? '' : '-' + d.key;
+      return {
+        ...d, ...me,
+        label: 'Caso ' + d.short,
+        ids: { a: '3a' + sfx, b: '3b' + sfx, c: '3c' + sfx, d: '3d' + sfx, e: '3e' + sfx, f: '3f' + sfx, g: '3g' + sfx, h: '3h' + sfx, m: '3m-' + d.key },
+        isEpa: d.org === 'EPA', isOwn: d.org === 'Propia', isPost: d.status === 'post', isProd: d.status === 'prod',
+        videoAria: 'Reproducir: ' + d.videoTitle + ', 60 a 90 segundos',
+        nodes: d.nodes.map(([type, t, s], j) => ({ t, s, notFirst: j > 0, ...NODE[type] })),
+        steps: d.steps.map((t, j) => ({ t, n: String(j + 1).padStart(2, '0') })),
+        decisions: d.decisions.map((x, j) => ({ ...x, n: String(j + 1).padStart(2, '0'), lead: d.lead, hasAlt: !!x.alt, hasBa: !!x.before, why: x.why || '' })),
+        figures: d.figures.map((f) => ({ ...f, hasSrc: !!f.src, srcMissing: !f.src && draft })),
+        noUsage: !!d.noUsageText,
+        shots: d.shots.map((t) => ({ t })),
+        hasNext: !!d.nextText, nextMissing: !d.nextText && draft,
+        prev: IDX[(d.idx + 7) % 8], next: IDX[(d.idx + 1) % 8],
+        vd: this.vid(d.key + '-d'), vm: this.vid(d.key + '-m'),
+      };
+    });
+    return { theme: this.props.theme ?? 'light', examples };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Fragment+Mono&display=swap">
+<link rel="stylesheet" href="tokens/jc-tokens.css">
+<style>
+body{margin:0;background:#E9E9E6}
+a{color:var(--jc-accent)}a:hover{color:var(--jc-accent-hover)}
+@keyframes jcspin{to{transform:rotate(360deg)}}
+</style>
+</helmet>
+
+<div data-theme="{{ theme }}" style="padding:80px;display:flex;flex-direction:column;gap:140px;background:#E9E9E6;font-family:var(--jc-font-sans);color:#0B0D0E;min-width:max-content">
+
+<!-- 4a SOBRE MÍ -->
+<section id="4a" data-screen-label="4a Sobre mí" style="display:flex;flex-direction:column;gap:24px">
+  <div style="display:flex;align-items:center;gap:10px"><span style="font:600 13px/1 var(--jc-font-mono);padding:6px 10px;border-radius:9999px;background:#0B0D0E;color:#fff">4a</span><span style="font:500 15px/1 var(--jc-font-sans);color:#3A3F44">Sobre mí · línea de tiempo, Verne, stack y certificaciones</span></div>
+  <div style="display:flex;gap:80px;align-items:flex-start">
+    <div style="width:1440px;background:var(--jc-canvas);color:var(--jc-ink);box-shadow:0 1px 3px rgba(0,0,0,.08)">
+      <nav aria-label="Principal" style="height:72px;padding:0 120px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--jc-hairline)">
+        <a href="JC Inicio y Proyectos.dc.html#1a" style="display:flex;align-items:center;gap:10px;height:44px;color:var(--jc-ink);text-decoration:none"><span style="width:32px;height:32px;border-radius:8px;background:var(--jc-ink);color:var(--jc-canvas);display:flex;align-items:center;justify-content:center;font:600 15px/1 var(--jc-font-sans);letter-spacing:-.8px">JC</span><span style="font:600 17px/1 var(--jc-font-sans);letter-spacing:-.3px">José Carlos Corona</span></a>
+        <div style="display:flex;gap:4px"><sc-for list="{{ navAbout }}" as="l" hint-placeholder-count="4"><a href="{{ l.href }}" aria-current="{{ l.cur }}" style="height:44px;padding:0 14px;display:flex;align-items:center;font:500 15px/1 var(--jc-font-sans);color:{{ l.color }};text-decoration:{{ l.deco }};text-decoration-color:var(--jc-accent);text-decoration-thickness:2px;text-underline-offset:8px;border-radius:9999px" style-hover="background-color:var(--jc-surface)">{{ l.t }}</a></sc-for></div>
+      </nav>
+      <div style="padding:80px 120px 120px;display:flex;flex-direction:column;gap:96px">
+        <div style="display:grid;grid-template-columns:280px minmax(0,1fr);gap:64px">
+          <h1 style="margin:0;font:600 56px/1.05 var(--jc-font-sans);letter-spacing:-1.8px">Sobre mí</h1>
+          <p style="margin:0;max-width:760px;font:400 24px/1.45 var(--jc-font-sans);color:var(--jc-text-2);text-wrap:pretty">Empecé en cuentas en 2017 y fui acercándome a los datos: marketing digital, CRO, análisis. Hoy lidero datos e IA en EPA, desde CDMX.</p>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:32px">
+          <span style="font:400 12px/1 var(--jc-font-mono);color:var(--jc-text-3)">TRAYECTORIA</span>
+          <ol style="margin:0;padding:0;list-style:none;position:relative;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:24px">
+            <div aria-hidden="true" style="position:absolute;left:0;right:0;top:39px;height:2px;background:var(--jc-hairline-strong)"></div>
+            <sc-for list="{{ timeline }}" as="t" hint-placeholder-count="6">
+              <li style="position:relative;display:flex;flex-direction:column;gap:12px">
+                <sc-if value="{{ t.hasYear }}"><span style="height:20px;font:400 13px/20px var(--jc-font-mono);color:{{ t.yearColor }};font-variant-numeric:tabular-nums">{{ t.y }}</span></sc-if>
+                <sc-if value="{{ t.yearMissing }}"><span style="align-self:flex-start;height:20px;padding:0 6px;border:1.5px dashed var(--jc-warn);border-radius:4px;background:var(--jc-warn-bg);color:var(--jc-warn);font:400 11px/17px var(--jc-font-mono)">año (falta)</span></sc-if>
+                <sc-if value="{{ t.yearHidden }}"><span style="height:20px"></span></sc-if>
+                <span style="width:16px;height:16px;border-radius:50%;box-sizing:border-box;border:2px solid {{ t.dotBorder }};background:{{ t.dotBg }}"></span>
+                <span style="font:600 20px/1.25 var(--jc-font-sans);letter-spacing:-.3px;color:{{ t.titleColor }};text-wrap:pretty">{{ t.t }}</span>
+                <span style="font-size:14px;line-height:1.45;color:var(--jc-text-3)">{{ t.s }}</span>
+              </li>
+            </sc-for>
+          </ol>
+        </div>
+
+        <div style="display:grid;grid-template-columns:280px minmax(0,1fr);gap:64px;padding:64px 0;border-top:2px solid var(--jc-ink);border-bottom:1px solid var(--jc-hairline)">
+          <div style="display:flex;flex-direction:column;gap:8px"><span style="font:400 12px/1 var(--jc-font-mono);color:var(--jc-accent)">EL ORIGEN</span><span style="font:600 28px/1.15 var(--jc-font-sans);letter-spacing:-.6px">Verne, 2024</span></div>
+          <blockquote style="margin:0;font:600 44px/1.12 var(--jc-font-sans);letter-spacing:-1.3px;text-wrap:pretty"><span style="color:var(--jc-accent)">“</span>Mi primera herramienta con IA me enseñó que el modelo es la parte fácil; lo difícil es todo lo que lo rodea.<span style="color:var(--jc-accent)">”</span></blockquote>
+        </div>
+
+        <div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:64px">
+          <div style="display:flex;flex-direction:column;gap:20px">
+            <h2 style="margin:0;font:600 28px/1.15 var(--jc-font-sans);letter-spacing:-.6px">Stack</h2>
+            <div style="display:flex;flex-direction:column;border-top:1px solid var(--jc-hairline)">
+              <sc-for list="{{ stack }}" as="g" hint-placeholder-count="4">
+                <div style="display:grid;grid-template-columns:140px minmax(0,1fr);gap:16px;align-items:center;padding:16px 0;border-bottom:1px solid var(--jc-hairline)"><span style="font:400 12px/1 var(--jc-font-mono);color:var(--jc-text-3)">{{ g.k }}</span><div style="display:flex;gap:6px;flex-wrap:wrap"><sc-for list="{{ g.v }}" as="s" hint-placeholder-count="2"><span style="display:inline-flex;align-items:center;height:28px;padding:0 10px;border-radius:6px;background:var(--jc-surface);color:var(--jc-text-2);font:400 13px/1 var(--jc-font-mono)">{{ s }}</span></sc-for></div></div>
+              </sc-for>
+            </div>
+            <sc-if value="{{ draft }}"><span style="align-self:flex-start;padding:6px 10px;border:1.5px dashed var(--jc-warn);border-radius:8px;background:var(--jc-warn-bg);color:var(--jc-warn);font:500 13px/1.3 var(--jc-font-sans)">(falta) confirmar stack completo; lo de arriba sale de los casos</span></sc-if>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:20px">
+            <h2 style="margin:0;font:600 28px/1.15 var(--jc-font-sans);letter-spacing:-.6px">Certificaciones</h2>
+            <div style="display:flex;flex-direction:column;border-top:1px solid var(--jc-hairline)">
+              <sc-for list="{{ certs }}" as="c" hint-placeholder-count="3">
+                <div style="display:grid;grid-template-columns:minmax(0,1fr) auto;gap:16px;align-items:baseline;padding:16px 0;border-bottom:1px solid var(--jc-hairline)"><div style="display:flex;flex-direction:column;gap:4px"><span style="font:600 17px/1.3 var(--jc-font-sans);color:var(--jc-text-3)">{{ c.t }}</span><span style="font-size:14px;color:var(--jc-text-3)">Emisor (falta)</span></div><span style="font:400 13px/1 var(--jc-font-mono);color:var(--jc-text-3)">año</span></div>
+              </sc-for>
+            </div>
+            <sc-if value="{{ draft }}"><span style="align-self:flex-start;padding:6px 10px;border:1.5px dashed var(--jc-warn);border-radius:8px;background:var(--jc-warn-bg);color:var(--jc-warn);font:500 13px/1.3 var(--jc-font-sans)">(falta) lista de certificaciones: nombre, emisor, año, link de verificación</span></sc-if>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="width:402px;height:874px;border-radius:40px;border:1px solid #C9CDD2;overflow:hidden;background:var(--jc-canvas);color:var(--jc-ink);box-shadow:0 1px 3px rgba(0,0,0,.08)">
+      <div style="height:100%;overflow-y:auto">
+        <div style="position:sticky;top:0;z-index:5;background:var(--jc-canvas)"><div style="height:44px"></div><div style="height:60px;padding:0 12px 0 20px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--jc-hairline)"><span style="display:flex;align-items:center;gap:10px"><span style="width:32px;height:32px;border-radius:8px;background:var(--jc-ink);color:var(--jc-canvas);display:flex;align-items:center;justify-content:center;font:600 15px/1 var(--jc-font-sans);letter-spacing:-.8px">JC</span><span style="font:600 16px/1 var(--jc-font-sans);letter-spacing:-.3px">José Carlos Corona</span></span><span style="width:44px;height:44px;display:flex;align-items:center;justify-content:center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"></path></svg></span></div></div>
+        <div style="padding:32px 20px;display:flex;flex-direction:column;gap:16px"><h1 style="margin:0;font:600 40px/1.05 var(--jc-font-sans);letter-spacing:-1.2px">Sobre mí</h1><p style="margin:0;font-size:17px;line-height:1.55;color:var(--jc-text-2)">Empecé en cuentas en 2017 y fui acercándome a los datos: marketing digital, CRO, análisis. Hoy lidero datos e IA en EPA, desde CDMX.</p></div>
+        <ol style="margin:0;padding:8px 20px 40px;list-style:none;display:flex;flex-direction:column">
+          <sc-for list="{{ timeline }}" as="t" hint-placeholder-count="6">
+            <li style="display:grid;grid-template-columns:16px minmax(0,1fr);gap:16px">
+              <div style="display:flex;flex-direction:column;align-items:center"><span style="width:16px;height:16px;flex-shrink:0;margin-top:2px;border-radius:50%;box-sizing:border-box;border:2px solid {{ t.dotBorder }};background:{{ t.dotBg }}"></span><span style="flex:1;width:2px;background:var(--jc-hairline-strong)"></span></div>
+              <div style="display:flex;flex-direction:column;gap:4px;padding-bottom:24px">
+                <sc-if value="{{ t.hasYear }}"><span style="font:400 12px/1.6 var(--jc-font-mono);color:{{ t.yearColor }}">{{ t.y }}</span></sc-if>
+                <sc-if value="{{ t.yearMissing }}"><span style="align-self:flex-start;padding:0 6px;border:1.5px dashed var(--jc-warn);border-radius:4px;background:var(--jc-warn-bg);color:var(--jc-warn);font:400 11px/1.6 var(--jc-font-mono)">año (falta)</span></sc-if>
+                <span style="font:600 18px/1.3 var(--jc-font-sans);color:{{ t.titleColor }}">{{ t.t }}</span>
+                <span style="font-size:14px;line-height:1.4;color:var(--jc-text-3)">{{ t.s }}</span>
+              </div>
+            </li>
+          </sc-for>
+        </ol>
+        <blockquote style="margin:0 20px;padding:24px 0 40px;border-top:2px solid var(--jc-ink);display:flex;flex-direction:column;gap:12px"><span style="font:400 11px/1 var(--jc-font-mono);color:var(--jc-accent)">EL ORIGEN · VERNE, 2024</span><span style="font:600 26px/1.15 var(--jc-font-sans);letter-spacing:-.6px"><span style="color:var(--jc-accent)">“</span>Mi primera herramienta con IA me enseñó que el modelo es la parte fácil; lo difícil es todo lo que lo rodea.<span style="color:var(--jc-accent)">”</span></span></blockquote>
+        <div style="padding:32px 20px;border-top:1px solid var(--jc-hairline);display:flex;flex-direction:column;gap:12px"><h2 style="margin:0;font:600 24px/1.15 var(--jc-font-sans)">Stack</h2>
+          <sc-for list="{{ stack }}" as="g" hint-placeholder-count="4"><div style="display:flex;flex-direction:column;gap:8px;padding:12px 0;border-bottom:1px solid var(--jc-hairline)"><span style="font:400 11px/1 var(--jc-font-mono);color:var(--jc-text-3)">{{ g.k }}</span><div style="display:flex;gap:6px;flex-wrap:wrap"><sc-for list="{{ g.v }}" as="s" hint-placeholder-count="2"><span style="height:28px;display:inline-flex;align-items:center;padding:0 8px;border-radius:6px;background:var(--jc-surface);color:var(--jc-text-2);font:400 12px/1 var(--jc-font-mono)">{{ s }}</span></sc-for></div></div></sc-for>
+        </div>
+        <div style="padding:32px 20px 48px;display:flex;flex-direction:column;gap:12px"><h2 style="margin:0;font:600 24px/1.15 var(--jc-font-sans)">Certificaciones</h2><sc-if value="{{ draft }}"><span style="align-self:flex-start;padding:6px 10px;border:1.5px dashed var(--jc-warn);border-radius:8px;background:var(--jc-warn-bg);color:var(--jc-warn);font:500 13px/1.3 var(--jc-font-sans)">(falta) nombre, emisor, año</span></sc-if></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4b CONTACTO -->
+<section id="4b" data-screen-label="4b Contacto" style="display:flex;flex-direction:column;gap:24px">
+  <div style="display:flex;align-items:center;gap:10px"><span style="font:600 13px/1 var(--jc-font-mono);padding:6px 10px;border-radius:9999px;background:#0B0D0E;color:#fff">4b</span><span style="font:500 15px/1 var(--jc-font-sans);color:#3A3F44">Contacto · correo y LinkedIn, sin formulario · «Copiar» funciona</span></div>
+  <div style="display:flex;gap:80px;align-items:flex-start">
+    <div style="width:1440px;background:var(--jc-canvas);color:var(--jc-ink);box-shadow:0 1px 3px rgba(0,0,0,.08)">
+      <nav aria-label="Principal" style="height:72px;padding:0 120px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--jc-hairline)">
+        <a href="JC Inicio y Proyectos.dc.html#1a" style="display:flex;align-items:center;gap:10px;height:44px;color:var(--jc-ink);text-decoration:none"><span style="width:32px;height:32px;border-radius:8px;background:var(--jc-ink);color:var(--jc-canvas);display:flex;align-items:center;justify-content:center;font:600 15px/1 var(--jc-font-sans);letter-spacing:-.8px">JC</span><span style="font:600 17px/1 var(--jc-font-sans);letter-spacing:-.3px">José Carlos Corona</span></a>
+        <div style="display:flex;gap:4px"><sc-for list="{{ navContact }}" as="l" hint-placeholder-count="4"><a href="{{ l.href }}" aria-current="{{ l.cur }}" style="height:44px;padding:0 14px;display:flex;align-items:center;font:500 15px/1 var(--jc-font-sans);color:{{ l.color }};text-decoration:{{ l.deco }};text-decoration-color:var(--jc-accent);text-decoration-thickness:2px;text-underline-offset:8px;border-radius:9999px" style-hover="background-color:var(--jc-surface)">{{ l.t }}</a></sc-for></div>
+      </nav>
+      <div style="padding:120px 120px 48px;display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:64px;align-items:start">
+        <div style="display:flex;flex-direction:column;gap:20px"><h1 style="margin:0;font:600 64px/1.05 var(--jc-font-sans);letter-spacing:-2.2px">Contacto</h1><p style="margin:0;font-size:20px;line-height:1.55;color:var(--jc-text-2)">Por correo o por LinkedIn. Desde CDMX.</p></div>
+        <div style="display:flex;flex-direction:column;border-top:2px solid var(--jc-ink)">
+          <div style="display:grid;grid-template-columns:minmax(0,1fr) auto;gap:24px;align-items:center;padding:32px 0;border-bottom:1px solid var(--jc-hairline)">
+            <a href="mailto:hola@josecarloscorona.dev" style="display:flex;flex-direction:column;gap:10px;color:var(--jc-ink);text-decoration:none;min-width:0" style-hover="color:var(--jc-accent)"><span style="display:inline-flex;align-items:center;gap:8px;font:400 12px/1 var(--jc-font-mono);color:var(--jc-text-3)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg>CORREO</span><span style="font:600 36px/1.1 var(--jc-font-sans);letter-spacing:-1px;overflow-wrap:anywhere">hola@josecarloscorona.dev</span></a>
+            <button onClick="{{ copy }}" aria-live="polite" style="height:44px;padding:0 18px;border:1px solid var(--jc-ink);border-radius:9999px;background:{{ copyBg }};color:var(--jc-ink);display:inline-flex;align-items:center;gap:8px;font:600 15px/1 var(--jc-font-sans);cursor:pointer;transition:background-color var(--jc-dur-fast) var(--jc-ease)" style-hover="background-color:var(--jc-surface)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg>{{ copyLabel }}</button>
+          </div>
+          <a href="https://www.linkedin.com/" style="display:grid;grid-template-columns:minmax(0,1fr) auto;gap:24px;align-items:center;padding:32px 0;border-bottom:1px solid var(--jc-hairline);color:var(--jc-ink);text-decoration:none" style-hover="color:var(--jc-accent)">
+            <span style="display:flex;flex-direction:column;gap:10px"><span style="display:inline-flex;align-items:center;gap:8px;font:400 12px/1 var(--jc-font-mono);color:var(--jc-text-3)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"></path><rect width="4" height="12" x="2" y="9"></rect><circle cx="4" cy="4" r="2"></circle></svg>LINKEDIN</span><span style="font:600 36px/1.1 var(--jc-font-sans);letter-spacing:-1px">José Carlos Corona</span></span>
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--jc-accent)" stroke-width="2" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg>
+          </a>
+          <sc-if value="{{ draft }}"><span style="align-self:flex-start;margin-top:16px;padding:6px 10px;border:1.5px dashed var(--jc-warn);border-radius:8px;background:var(--jc-warn-bg);color:var(--jc-warn);font:500 13px/1.3 var(--jc-font-sans)">(falta) URL de LinkedIn y confirmar correo</span></sc-if>
+        </div>
+      </div>
+      <footer style="margin:0 120px;padding:24px 0 48px;border-top:1px solid var(--jc-hairline);display:flex;justify-content:space-between;font:400 13px/1.5 var(--jc-font-mono);color:var(--jc-text-3)"><span>hola@josecarloscorona.dev</span><span>Hecho con Astro en Google Cloud · © 2026 · CDMX</span></footer>
+    </div>
+
+    <div style="width:402px;height:874px;border-radius:40px;border:1px solid #C9CDD2;overflow:hidden;background:var(--jc-canvas);color:var(--jc-ink);box-shadow:0 1px 3px rgba(0,0,0,.08);display:flex;flex-direction:column">
+      <div style="height:44px;flex-shrink:0"></div>
+      <div style="height:60px;flex-shrink:0;padding:0 12px 0 20px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--jc-hairline)"><span style="display:flex;align-items:center;gap:10px"><span style="width:32px;height:32px;border-radius:8px;background:var(--jc-ink);color:var(--jc-canvas);display:flex;align-items:center;justify-content:center;font:600 15px/1 var(--jc-font-sans);letter-spacing:-.8px">JC</span><span style="font:600 16px/1 var(--jc-font-sans);letter-spacing:-.3px">José Carlos Corona</span></span><span style="width:44px;height:44px;display:flex;align-items:center;justify-content:center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"></path></svg></span></div>
+      <div style="padding:40px 20px;display:flex;flex-direction:column;gap:16px;flex:1">
+        <h1 style="margin:0;font:600 40px/1.05 var(--jc-font-sans);letter-spacing:-1.2px">Contacto</h1>
+        <p style="margin:0;font-size:17px;line-height:1.55;color:var(--jc-text-2)">Por correo o por LinkedIn. Desde CDMX.</p>
+        <div style="display:flex;flex-direction:column;margin-top:16px;border-top:2px solid var(--jc-ink)">
+          <div style="display:flex;flex-direction:column;gap:12px;padding:24px 0;border-bottom:1px solid var(--jc-hairline)"><span style="font:400 11px/1 var(--jc-font-mono);color:var(--jc-text-3)">CORREO</span><a href="mailto:hola@josecarloscorona.dev" style="font:600 22px/1.2 var(--jc-font-sans);color:var(--jc-ink);text-decoration:none;overflow-wrap:anywhere">hola@josecarloscorona.dev</a><div style="display:grid;grid-template-columns:1fr 1fr;gap:8px"><a href="mailto:hola@josecarloscorona.dev" style="height:48px;border-radius:9999px;background:var(--jc-ink);color:var(--jc-canvas);display:flex;align-items:center;justify-content:center;font:600 15px/1 var(--jc-font-sans);text-decoration:none">Escribir</a><button onClick="{{ copy }}" style="height:48px;border:1px solid var(--jc-ink);border-radius:9999px;background:{{ copyBg }};color:var(--jc-ink);font:600 15px/1 var(--jc-font-sans);cursor:pointer">{{ copyLabel }}</button></div></div>
+          <a href="https://www.linkedin.com/" style="min-height:72px;display:flex;justify-content:space-between;align-items:center;padding:16px 0;border-bottom:1px solid var(--jc-hairline);color:var(--jc-ink);text-decoration:none"><span style="display:flex;flex-direction:column;gap:8px"><span style="font:400 11px/1 var(--jc-font-mono);color:var(--jc-text-3)">LINKEDIN</span><span style="font:600 22px/1.2 var(--jc-font-sans)">José Carlos Corona</span></span><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--jc-accent)" stroke-width="2" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></a>
+        </div>
+      </div>
+      <footer style="padding:20px 20px 32px;font:400 12px/1.5 var(--jc-font-mono);color:var(--jc-text-3)">© 2026 José Carlos Corona · CDMX</footer>
+    </div>
+  </div>
+</section>
+
+<!-- 4c ESCRITOS -->
+<section id="4c" data-screen-label="4c Escritos" style="display:flex;flex-direction:column;gap:24px">
+  <div style="display:flex;align-items:center;gap:10px"><span style="font:600 13px/1 var(--jc-font-mono);padding:6px 10px;border-radius:9999px;background:#0B0D0E;color:#fff">4c</span><span style="font:500 15px/1 var(--jc-font-sans);color:#3A3F44">Escritos · vacío («Pronto») y con dos artículos</span></div>
+  <sc-for list="{{ writingStates }}" as="w" hint-placeholder-count="2">
+    <div style="display:flex;gap:80px;align-items:flex-start">
+      <div style="width:1440px;background:var(--jc-canvas);color:var(--jc-ink);box-shadow:0 1px 3px rgba(0,0,0,.08)">
+        <nav aria-label="Principal" style="height:72px;padding:0 120px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--jc-hairline)">
+          <a href="JC Inicio y Proyectos.dc.html#1a" style="display:flex;align-items:center;gap:10px;height:44px;color:var(--jc-ink);text-decoration:none"><span style="width:32px;height:32px;border-radius:8px;background:var(--jc-ink);color:var(--jc-canvas);display:flex;align-items:center;justify-content:center;font:600 15px/1 var(--jc-font-sans);letter-spacing:-.8px">JC</span><span style="font:600 17px/1 var(--jc-font-sans);letter-spacing:-.3px">José Carlos Corona</span></a>
+          <div style="display:flex;gap:4px"><sc-for list="{{ navWriting }}" as="l" hint-placeholder-count="4"><a href="{{ l.href }}" aria-current="{{ l.cur }}" style="height:44px;padding:0 14px;display:flex;align-items:center;font:500 15px/1 var(--jc-font-sans);color:{{ l.color }};text-decoration:{{ l.deco }};text-decoration-color:var(--jc-accent);text-decoration-thickness:2px;text-underline-offset:8px;border-radius:9999px" style-hover="background-color:var(--jc-surface)">{{ l.t }}</a></sc-for></div>
+        </nav>
+        <div style="padding:80px 120px 120px;display:grid;grid-template-columns:280px minmax(0,1fr);gap:64px;min-height:560px;box-sizing:border-box">
+          <div style="display:flex;flex-direction:column;gap:10px"><span style="font:400 12px/1 var(--jc-font-mono);color:var(--jc-text-3)">{{ w.tag }}</span><h1 style="margin:0;font:600 56px/1.05 var(--jc-font-sans);letter-spacing:-1.8px">Escritos</h1></div>
+          <sc-if value="{{ w.empty }}">
+            <div style="display:flex;flex-direction:column;gap:20px;padding-top:24px;border-top:2px solid var(--jc-ink);max-width:720px">
+              <span style="font:600 64px/1 var(--jc-font-sans);letter-spacing:-2.2px">Pronto.</span>
+              <p style="margin:0;font-size:19px;line-height:1.6;color:var(--jc-text-2)">Escribo sobre lo que aprendo construyendo. Mientras tanto, los casos cuentan lo mismo con más detalle.</p>
+              <a href="JC Inicio y Proyectos.dc.html#2a" style="display:inline-flex;align-items:center;gap:6px;height:44px;font:600 15px/1 var(--jc-font-sans);text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:1px">Ver proyectos<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+            </div>
+          </sc-if>
+          <sc-if value="{{ w.full }}">
+            <div style="display:flex;flex-direction:column;border-top:2px solid var(--jc-ink)">
+              <sc-for list="{{ articles }}" as="a" hint-placeholder-count="2">
+                <a href="#" style="display:grid;grid-template-columns:140px minmax(0,1fr) 24px;gap:32px;align-items:baseline;padding:32px 0;border-bottom:1px solid var(--jc-hairline);color:var(--jc-ink);text-decoration:none" style-hover="background-color:var(--jc-surface)">
+                  <span style="font:400 13px/1.4 var(--jc-font-mono);color:var(--jc-text-3)">{{ a.date }}</span>
+                  <span style="display:flex;flex-direction:column;gap:10px"><span style="font:600 28px/1.2 var(--jc-font-sans);letter-spacing:-.6px;text-wrap:pretty">{{ a.t }}</span><span style="font-size:17px;line-height:1.55;color:var(--jc-text-2);text-wrap:pretty">{{ a.d }}</span><span style="font:400 12px/1 var(--jc-font-mono);color:var(--jc-text-3)">{{ a.rel }}</span></span>
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--jc-accent)" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+                </a>
+              </sc-for>
+              <sc-if value="{{ draft }}"><span style="align-self:flex-start;margin-top:16px;padding:6px 10px;border:1.5px dashed var(--jc-warn);border-radius:8px;background:var(--jc-warn-bg);color:var(--jc-warn);font:500 13px/1.3 var(--jc-font-sans)">Contenido de muestra: títulos, bajadas y fechas reales (falta)</span></sc-if>
+            </div>
+          </sc-if>
+        </div>
+      </div>
+
+      <div style="width:402px;height:874px;border-radius:40px;border:1px solid #C9CDD2;overflow:hidden;background:var(--jc-canvas);color:var(--jc-ink);box-shadow:0 1px 3px rgba(0,0,0,.08);display:flex;flex-direction:column">
+        <div style="height:44px;flex-shrink:0"></div>
+        <div style="height:60px;flex-shrink:0;padding:0 12px 0 20px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--jc-hairline)"><span style="display:flex;align-items:center;gap:10px"><span style="width:32px;height:32px;border-radius:8px;background:var(--jc-ink);color:var(--jc-canvas);display:flex;align-items:center;justify-content:center;font:600 15px/1 var(--jc-font-sans);letter-spacing:-.8px">JC</span><span style="font:600 16px/1 var(--jc-font-sans);letter-spacing:-.3px">José Carlos Corona</span></span><span style="width:44px;height:44px;display:flex;align-items:center;justify-content:center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"></path></svg></span></div>
+        <div style="padding:32px 20px;display:flex;flex-direction:column;gap:16px;overflow-y:auto">
+          <span style="font:400 11px/1 var(--jc-font-mono);color:var(--jc-text-3)">{{ w.tag }}</span>
+          <h1 style="margin:0;font:600 40px/1.05 var(--jc-font-sans);letter-spacing:-1.2px">Escritos</h1>
+          <sc-if value="{{ w.empty }}">
+            <div style="display:flex;flex-direction:column;gap:14px;padding-top:20px;border-top:2px solid var(--jc-ink)"><span style="font:600 40px/1 var(--jc-font-sans);letter-spacing:-1.2px">Pronto.</span><p style="margin:0;font-size:16px;line-height:1.55;color:var(--jc-text-2)">Escribo sobre lo que aprendo construyendo. Mientras tanto, los casos cuentan lo mismo con más detalle.</p><a href="JC Inicio y Proyectos.dc.html#2c" style="height:48px;border-radius:9999px;border:1px solid var(--jc-ink);box-sizing:border-box;color:var(--jc-ink);display:flex;align-items:center;justify-content:center;font:600 15px/1 var(--jc-font-sans);text-decoration:none">Ver proyectos</a></div>
+          </sc-if>
+          <sc-if value="{{ w.full }}">
+            <div style="display:flex;flex-direction:column;border-top:2px solid var(--jc-ink)">
+              <sc-for list="{{ articles }}" as="a" hint-placeholder-count="2"><a href="#" style="display:flex;flex-direction:column;gap:8px;padding:20px 0;border-bottom:1px solid var(--jc-hairline);color:var(--jc-ink);text-decoration:none"><span style="font:400 11px/1.4 var(--jc-font-mono);color:var(--jc-text-3)">{{ a.date }} · {{ a.rel }}</span><span style="font:600 21px/1.25 var(--jc-font-sans);letter-spacing:-.4px">{{ a.t }}</span><span style="font-size:15px;line-height:1.5;color:var(--jc-text-2)">{{ a.d }}</span></a></sc-for>
+            </div>
+          </sc-if>
+        </div>
+      </div>
+    </div>
+  </sc-for>
+</section>
+
+<!-- 4d 404 -->
+<section id="4d" data-screen-label="4d 404" style="display:flex;flex-direction:column;gap:24px">
+  <div style="display:flex;align-items:center;gap:10px"><span style="font:600 13px/1 var(--jc-font-mono);padding:6px 10px;border-radius:9999px;background:#0B0D0E;color:#fff">4d</span><span style="font:500 15px/1 var(--jc-font-sans);color:#3A3F44">404 · la cifra lleva fuente y el agente propone salida · prueba Descartar</span></div>
+  <div style="display:flex;gap:80px;align-items:flex-start">
+    <div style="width:1440px;background:var(--jc-canvas);color:var(--jc-ink);box-shadow:0 1px 3px rgba(0,0,0,.08)">
+      <nav aria-label="Principal" style="height:72px;padding:0 120px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--jc-hairline)">
+        <a href="JC Inicio y Proyectos.dc.html#1a" style="display:flex;align-items:center;gap:10px;height:44px;color:var(--jc-ink);text-decoration:none"><span style="width:32px;height:32px;border-radius:8px;background:var(--jc-ink);color:var(--jc-canvas);display:flex;align-items:center;justify-content:center;font:600 15px/1 var(--jc-font-sans);letter-spacing:-.8px">JC</span><span style="font:600 17px/1 var(--jc-font-sans);letter-spacing:-.3px">José Carlos Corona</span></a>
+        <div style="display:flex;gap:4px"><sc-for list="{{ navNone }}" as="l" hint-placeholder-count="4"><a href="{{ l.href }}" style="height:44px;padding:0 14px;display:flex;align-items:center;font:500 15px/1 var(--jc-font-sans);color:var(--jc-text-2);text-decoration:none;border-radius:9999px" style-hover="background-color:var(--jc-surface);color:var(--jc-ink)">{{ l.t }}</a></sc-for></div>
+      </nav>
+      <div style="padding:96px 120px 120px;display:grid;grid-template-columns:minmax(0,1fr) 380px;gap:80px;align-items:center">
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <span style="font:600 220px/0.9 var(--jc-font-sans);letter-spacing:-10px;font-variant-numeric:tabular-nums">404</span>
+          <span style="font-size:20px;line-height:1.45;color:var(--jc-text-2)">páginas encontradas en esta dirección: ninguna.</span>
+          <span style="font:400 13px/1.4 var(--jc-font-mono);color:var(--jc-text-3)">Fuente: el servidor, hace un momento</span>
+        </div>
+        <div style="position:relative;padding-top:28px">
+          <div aria-hidden="true" style="position:absolute;left:24px;top:0;display:flex;gap:2px;align-items:flex-start"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 2.5 19.5 12l-7 1.6-3.6 6.4z" fill="var(--jc-ink)" stroke="var(--jc-canvas)" stroke-width="1.5" stroke-linejoin="round"></path></svg><span style="margin-top:16px;padding:4px 8px;border-radius:9999px;background:var(--jc-accent);color:var(--jc-on-accent);font:400 11px/1 var(--jc-font-mono)">agente</span></div>
+          <div role="dialog" aria-label="Propuesta del agente" style="margin-top:28px;padding:20px;border-radius:12px;border:1px solid var(--jc-hairline-strong);background:var(--jc-card);box-shadow:var(--jc-shadow-2);display:flex;flex-direction:column;gap:14px">
+            <span style="font:400 11px/1 var(--jc-font-mono);color:var(--jc-accent)">PROPUESTA DEL AGENTE</span>
+            <sc-if value="{{ nfAsk }}" hint-placeholder-val="{{ true }}">
+              <div style="display:flex;flex-direction:column;gap:14px">
+                <span style="font:500 17px/1.45 var(--jc-font-sans)">Esta página no existe. ¿Te llevo a Proyectos?</span>
+                <div style="display:flex;gap:8px"><a href="JC Inicio y Proyectos.dc.html#2a" style="height:44px;padding:0 20px;border-radius:9999px;background:var(--jc-ink);color:var(--jc-canvas);display:inline-flex;align-items:center;font:600 15px/1 var(--jc-font-sans);text-decoration:none" style-hover="background-color:var(--jc-accent);color:var(--jc-on-accent)">Aceptar</a><button onClick="{{ nfDismiss }}" style="height:44px;padding:0 18px;border:1px solid var(--jc-hairline-strong);border-radius:9999px;background:transparent;color:var(--jc-ink);font:600 15px/1 var(--jc-font-sans);cursor:pointer" style-hover="background-color:var(--jc-surface)">Descartar</button></div>
+              </div>
+            </sc-if>
+            <sc-if value="{{ nfDismissed }}">
+              <div style="display:flex;flex-direction:column;gap:14px">
+                <span style="font:500 17px/1.45 var(--jc-font-sans)">Entendido. Sigues en una página que no existe. Tú decidiste.</span>
+                <div style="display:flex;gap:8px;flex-wrap:wrap"><a href="JC Inicio y Proyectos.dc.html#1a" style="height:44px;padding:0 18px;border-radius:9999px;border:1px solid var(--jc-ink);color:var(--jc-ink);display:inline-flex;align-items:center;font:600 15px/1 var(--jc-font-sans);text-decoration:none">Mejor al inicio</a><button onClick="{{ nfReset }}" style="height:44px;padding:0 14px;border:0;border-radius:9999px;background:var(--jc-surface);color:var(--jc-ink);font:500 14px/1 var(--jc-font-sans);cursor:pointer">Repetir</button></div>
+              </div>
+            </sc-if>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="width:402px;height:874px;border-radius:40px;border:1px solid #C9CDD2;overflow:hidden;background:var(--jc-canvas);color:var(--jc-ink);box-shadow:0 1px 3px rgba(0,0,0,.08);display:flex;flex-direction:column">
+      <div style="height:44px;flex-shrink:0"></div>
+      <div style="height:60px;flex-shrink:0;padding:0 12px 0 20px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--jc-hairline)"><span style="display:flex;align-items:center;gap:10px"><span style="width:32px;height:32px;border-radius:8px;background:var(--jc-ink);color:var(--jc-canvas);display:flex;align-items:center;justify-content:center;font:600 15px/1 var(--jc-font-sans);letter-spacing:-.8px">JC</span><span style="font:600 16px/1 var(--jc-font-sans);letter-spacing:-.3px">José Carlos Corona</span></span><span style="width:44px;height:44px;display:flex;align-items:center;justify-content:center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"></path></svg></span></div>
+      <div style="padding:48px 20px;display:flex;flex-direction:column;gap:10px">
+        <span style="font:600 120px/0.9 var(--jc-font-sans);letter-spacing:-5px">404</span>
+        <span style="font-size:17px;line-height:1.45;color:var(--jc-text-2)">páginas encontradas en esta dirección: ninguna.</span>
+        <span style="font:400 12px/1.4 var(--jc-font-mono);color:var(--jc-text-3)">Fuente: el servidor, hace un momento</span>
+        <div style="margin-top:28px;padding:18px;border-radius:12px;border:1px solid var(--jc-hairline-strong);background:var(--jc-card);box-shadow:var(--jc-shadow-2);display:flex;flex-direction:column;gap:12px">
+          <span style="font:400 11px/1 var(--jc-font-mono);color:var(--jc-accent)">PROPUESTA DEL AGENTE</span>
+          <sc-if value="{{ nfAsk }}" hint-placeholder-val="{{ true }}"><div style="display:flex;flex-direction:column;gap:12px"><span style="font:500 16px/1.45 var(--jc-font-sans)">Esta página no existe. ¿Te llevo a Proyectos?</span><div style="display:grid;grid-template-columns:1fr 1fr;gap:8px"><a href="JC Inicio y Proyectos.dc.html#2c" style="height:48px;border-radius:9999px;background:var(--jc-ink);color:var(--jc-canvas);display:flex;align-items:center;justify-content:center;font:600 15px/1 var(--jc-font-sans);text-decoration:none">Aceptar</a><button onClick="{{ nfDismiss }}" style="height:48px;border:1px solid var(--jc-hairline-strong);border-radius:9999px;background:transparent;color:var(--jc-ink);font:600 15px/1 var(--jc-font-sans);cursor:pointer">Descartar</button></div></div></sc-if>
+          <sc-if value="{{ nfDismissed }}"><div style="display:flex;flex-direction:column;gap:12px"><span style="font:500 16px/1.45 var(--jc-font-sans)">Entendido. Sigues en una página que no existe. Tú decidiste.</span><button onClick="{{ nfReset }}" style="height:48px;border:0;border-radius:9999px;background:var(--jc-surface);color:var(--jc-ink);font:500 15px/1 var(--jc-font-sans);cursor:pointer">Repetir</button></div></sc-if>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4g ESTADOS -->
+<section id="4g" data-screen-label="4g Estados" style="display:flex;flex-direction:column;gap:24px">
+  <div style="display:flex;align-items:center;gap:10px"><span style="font:600 13px/1 var(--jc-font-mono);padding:6px 10px;border-radius:9999px;background:#0B0D0E;color:#fff">4g</span><span style="font:500 15px/1 var(--jc-font-sans);color:#3A3F44">Estados · video cargando, imagen que falla, prefers-reduced-motion</span></div>
+  <div style="display:flex;gap:80px;align-items:flex-start">
+    <div style="width:1440px;box-sizing:border-box;padding:80px 120px;background:var(--jc-canvas);color:var(--jc-ink);box-shadow:0 1px 3px rgba(0,0,0,.08);display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px;align-items:start">
+      <div style="display:flex;flex-direction:column;gap:16px">
+        <span style="font:400 12px/1 var(--jc-font-mono);color:var(--jc-text-3)">01 · VIDEO CARGANDO</span>
+        <div role="status" aria-live="polite" style="position:relative;aspect-ratio:16/9;border-radius:24px;overflow:hidden;background:#0B0D0E;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;color:#fff">
+          <sc-if value="{{ motionOn }}" hint-placeholder-val="{{ true }}"><span style="width:32px;height:32px;border-radius:50%;border:3px solid rgba(255,255,255,.25);border-top-color:#fff;animation:jcspin 800ms linear infinite"></span></sc-if>
+          <sc-if value="{{ motionOff }}"><span style="font:600 15px/1 var(--jc-font-sans)">Cargando…</span></sc-if>
+          <span style="font:400 13px/1 var(--jc-font-mono)">Cargando reproductor…</span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:6px;font-size:14px;line-height:1.5;color:var(--jc-text-2)"><span>Aparece al hacer clic en el póster, mientras se crea el iframe.</span><span>Si pasan 8 s sin cargar: «No se pudo cargar el video» + link «Verlo en YouTube».</span></div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:16px">
+        <span style="font:400 12px/1 var(--jc-font-mono);color:var(--jc-text-3)">02 · IMAGEN QUE FALLA</span>
+        <div style="display:flex;flex-direction:column;padding:8px;border-radius:16px;border:1px solid var(--jc-hairline);background:var(--jc-card)">
+          <div style="aspect-ratio:16/10;border-radius:12px;background:var(--jc-surface);border:1px dashed var(--jc-hairline-strong);box-sizing:border-box;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:16px;text-align:center">
+            <sc-if value="{{ imgFailed }}" hint-placeholder-val="{{ true }}">
+              <div style="display:flex;flex-direction:column;align-items:center;gap:10px">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--jc-text-3)" stroke-width="1.8" aria-hidden="true"><rect width="18" height="18" x="3" y="3" rx="2"></rect><circle cx="9" cy="9" r="2"></circle><path d="m21 15-3.1-3.1a2 2 0 0 0-2.8 0L6 21M3 3l18 18"></path></svg>
+                <span style="font:500 14px/1.4 var(--jc-font-sans);color:var(--jc-text-2)">No se pudo cargar la captura.</span>
+                <span style="font:400 12px/1.4 var(--jc-font-mono);color:var(--jc-text-3)">alt: Concierge y tarjetas firmadas</span>
+                <button onClick="{{ imgRetry }}" style="height:36px;padding:0 14px;border:1px solid var(--jc-hairline-strong);border-radius:9999px;background:var(--jc-canvas);color:var(--jc-ink);font:500 13px/1 var(--jc-font-sans);cursor:pointer">Reintentar</button>
+              </div>
+            </sc-if>
+            <sc-if value="{{ imgLoading }}"><span style="font:400 13px/1 var(--jc-font-mono);color:var(--jc-text-3)">Reintentando…</span></sc-if>
+          </div>
+          <div style="padding:14px 10px 10px;display:flex;flex-direction:column;gap:8px"><span style="font:600 20px/1.25 var(--jc-font-sans);letter-spacing:-.3px">Iterum</span><span style="font-size:15px;line-height:1.5;color:var(--jc-text-2)">Una agencia de viajes personal, no un cuaderno con asistente</span></div>
+        </div>
+        <span style="font-size:14px;line-height:1.5;color:var(--jc-text-2)">El marco conserva su proporción: nada salta. El texto alternativo queda visible.</span>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:16px">
+        <span style="font:400 12px/1 var(--jc-font-mono);color:var(--jc-text-3)">03 · PREFERS-REDUCED-MOTION</span>
+        <div style="display:flex;flex-direction:column;gap:16px;padding:20px;border-radius:16px;border:1px solid var(--jc-hairline)">
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:8px">
+            <div role="group" aria-label="Movimiento" style="display:flex;padding:3px;gap:3px;border-radius:9999px;background:var(--jc-surface);border:1px solid var(--jc-hairline)">
+              <button onClick="{{ setMotionOn }}" aria-pressed="{{ motionOn }}" style="height:36px;padding:0 12px;border:0;border-radius:9999px;background:{{ mOnBg }};color:var(--jc-ink);font:500 13px/1 var(--jc-font-sans);cursor:pointer">Normal</button>
+              <button onClick="{{ setMotionOff }}" aria-pressed="{{ motionOff }}" style="height:36px;padding:0 12px;border:0;border-radius:9999px;background:{{ mOffBg }};color:var(--jc-ink);font:500 13px/1 var(--jc-font-sans);cursor:pointer">Reducido</button>
+            </div>
+            <button onClick="{{ rmPlay }}" style="height:36px;padding:0 14px;border:0;border-radius:9999px;background:var(--jc-ink);color:var(--jc-canvas);font:600 13px/1 var(--jc-font-sans);cursor:pointer">Reproducir</button>
+          </div>
+          <div style="position:relative;height:120px;border-radius:12px;background-color:var(--jc-surface);background-image:radial-gradient(var(--jc-hairline-strong) 1px,transparent 1px);background-size:16px 16px">
+            <span style="position:absolute;right:16px;bottom:20px;padding:6px 10px;border-radius:6px;background:{{ rmTargetBg }};font:600 15px/1 var(--jc-font-sans);transition:background-color 200ms">todos los días</span>
+            <div aria-hidden="true" style="position:absolute;left:{{ rmLeft }};top:{{ rmTop }};display:flex;gap:2px;transition:{{ rmTransition }}"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 2.5 19.5 12l-7 1.6-3.6 6.4z" fill="var(--jc-ink)" stroke="var(--jc-canvas)" stroke-width="1.5" stroke-linejoin="round"></path></svg><span style="margin-top:14px;padding:3px 7px;border-radius:9999px;background:var(--jc-accent);color:var(--jc-on-accent);font:400 10px/1 var(--jc-font-mono)">agente</span></div>
+          </div>
+          <ul style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px;font-size:14px;line-height:1.45;color:var(--jc-text-2)">
+            <li>Cursor del héroe: aparece en su sitio, sin recorrido.</li>
+            <li>Tarjetas: la sombra cambia sin transición; la captura no crece.</li>
+            <li>Spinner: se reemplaza por el texto «Cargando…».</li>
+            <li>Tema y menú móvil: cambio instantáneo.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div style="width:402px;height:874px;border-radius:40px;border:1px solid #C9CDD2;overflow:hidden;background:var(--jc-canvas);color:var(--jc-ink);box-shadow:0 1px 3px rgba(0,0,0,.08);display:flex;flex-direction:column">
+      <div style="height:44px;flex-shrink:0"></div>
+      <div style="padding:16px 20px 32px;display:flex;flex-direction:column;gap:24px;overflow-y:auto">
+        <div style="display:flex;flex-direction:column;gap:10px"><span style="font:400 11px/1 var(--jc-font-mono);color:var(--jc-text-3)">01 · VIDEO CARGANDO</span><div role="status" style="aspect-ratio:16/9;border-radius:16px;background:#0B0D0E;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;color:#fff"><sc-if value="{{ motionOn }}" hint-placeholder-val="{{ true }}"><span style="width:28px;height:28px;border-radius:50%;border:3px solid rgba(255,255,255,.25);border-top-color:#fff;animation:jcspin 800ms linear infinite"></span></sc-if><sc-if value="{{ motionOff }}"><span style="font:600 14px/1 var(--jc-font-sans)">Cargando…</span></sc-if><span style="font:400 12px/1 var(--jc-font-mono)">Cargando reproductor…</span></div></div>
+        <div style="display:flex;flex-direction:column;gap:10px"><span style="font:400 11px/1 var(--jc-font-mono);color:var(--jc-text-3)">02 · IMAGEN QUE FALLA</span><div style="padding:8px;border-radius:16px;border:1px solid var(--jc-hairline)"><div style="aspect-ratio:16/10;border-radius:12px;background:var(--jc-surface);border:1px dashed var(--jc-hairline-strong);box-sizing:border-box;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;text-align:center;padding:12px"><span style="font:500 14px/1.4 var(--jc-font-sans);color:var(--jc-text-2)">No se pudo cargar la captura.</span><span style="font:400 11px/1.4 var(--jc-font-mono);color:var(--jc-text-3)">alt: Concierge y tarjetas firmadas</span><button onClick="{{ imgRetry }}" style="height:44px;padding:0 16px;border:1px solid var(--jc-hairline-strong);border-radius:9999px;background:var(--jc-canvas);color:var(--jc-ink);font:500 14px/1 var(--jc-font-sans);cursor:pointer">{{ retryLabel }}</button></div><div style="padding:12px 8px 6px;font:600 18px/1.2 var(--jc-font-sans)">Iterum</div></div></div>
+        <div style="display:flex;flex-direction:column;gap:10px"><span style="font:400 11px/1 var(--jc-font-mono);color:var(--jc-text-3)">03 · MOVIMIENTO REDUCIDO</span><div style="padding:16px;border-radius:16px;border:1px solid var(--jc-hairline);display:flex;flex-direction:column;gap:12px"><span style="font-size:14px;line-height:1.5;color:var(--jc-text-2)">Mismas reglas que en escritorio. El selector de arriba también controla este marco.</span><div style="display:grid;grid-template-columns:1fr 1fr;gap:8px"><button onClick="{{ setMotionOn }}" aria-pressed="{{ motionOn }}" style="height:44px;border:1px solid var(--jc-hairline);border-radius:9999px;background:{{ mOnBg }};color:var(--jc-ink);font:500 14px/1 var(--jc-font-sans);cursor:pointer">Normal</button><button onClick="{{ setMotionOff }}" aria-pressed="{{ motionOff }}" style="height:44px;border:1px solid var(--jc-hairline);border-radius:9999px;background:{{ mOffBg }};color:var(--jc-ink);font:500 14px/1 var(--jc-font-sans);cursor:pointer">Reducido</button></div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4h OPEN GRAPH -->
+<section id="4h" data-screen-label="4h Open Graph" style="display:flex;flex-direction:column;gap:24px">
+  <div style="display:flex;align-items:center;gap:10px"><span style="font:600 13px/1 var(--jc-font-mono);padding:6px 10px;border-radius:9999px;background:#0B0D0E;color:#fff">4h</span><span style="font:500 15px/1 var(--jc-font-sans);color:#3A3F44">Open Graph 1200 × 630 por caso · tinta fija, no cambian con el tema</span></div>
+  <div style="display:grid;grid-template-columns:repeat(2,1200px);gap:48px">
+    <sc-for list="{{ og }}" as="o" hint-placeholder-count="8">
+      <div data-theme="light" style="width:1200px;height:630px;box-sizing:border-box;padding:64px;background:#FFFFFF;color:#0B0D0E;display:grid;grid-template-columns:minmax(0,1fr) 400px;gap:56px;box-shadow:0 1px 3px rgba(0,0,0,.08);font-family:var(--jc-font-sans)">
+        <div style="display:flex;flex-direction:column;justify-content:space-between;min-width:0">
+          <div style="display:flex;align-items:center;gap:14px"><span style="width:48px;height:48px;border-radius:12px;background:#0B0D0E;color:#fff;display:flex;align-items:center;justify-content:center;font:600 22px/1 var(--jc-font-sans);letter-spacing:-1.2px">JC</span><span style="font:400 18px/1 var(--jc-font-mono);color:#5B6168">josecarloscorona.dev</span></div>
+          <div style="display:flex;flex-direction:column;gap:20px">
+            <span style="font:400 18px/1 var(--jc-font-mono);color:#5B6168">{{ o.num }} / 08 · {{ o.org }}</span>
+            <span style="font:600 64px/1.02 var(--jc-font-sans);letter-spacing:-2.2px;text-wrap:balance">{{ o.name }}</span>
+            <span style="font:400 28px/1.3 var(--jc-font-sans);color:#3A3F44;text-wrap:pretty">{{ o.hook }}</span>
+          </div>
+          <span style="width:64px;height:4px;border-radius:2px;background:#1D5C47"></span>
+        </div>
+        <div style="border-radius:24px;background:{{ o.bg }};border:{{ o.border }};color:{{ o.fg }};display:flex;align-items:flex-end;padding:20px;box-sizing:border-box;font:400 14px/1.4 var(--jc-font-mono)">PLACEHOLDER · captura {{ o.name }}</div>
+      </div>
+    </sc-for>
+  </div>
+</section>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;theme&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;light&quot;,&quot;dark&quot;],&quot;default&quot;:&quot;light&quot;,&quot;tsType&quot;:&quot;'light'|'dark'&quot;,&quot;section&quot;:&quot;Vista&quot;},&quot;mode&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;borrador&quot;,&quot;produccion&quot;],&quot;default&quot;:&quot;borrador&quot;,&quot;tsType&quot;:&quot;'borrador'|'produccion'&quot;,&quot;section&quot;:&quot;Vista&quot;}}">
+const NAV = [['Proyectos', 'JC Inicio y Proyectos.dc.html#2a', 'p'], ['Escritos', '#4c', 'w'], ['Sobre mí', '#4a', 'a'], ['Contacto', '#4b', 'c']];
+const CASES = [
+  ['Servidor MCP de medios', 'EPA', 'Automatiza el criterio, no la tarea'],
+  ['Iterum', 'Propia', 'Una agencia de viajes personal, no un cuaderno con asistente', '#1456F0'],
+  ['Dashboards y Hopper', 'EPA', 'De un Excel de 993 filas a QA guiado'],
+  ['Domi', 'Propia', 'No es un buscador con chatbot: los agentes juzgan y explican', '#D4421F'],
+  ['Einstein, un postmortem', 'EPA', 'Construimos el cerebro de la agencia y nadie lo usó'],
+  ['Vocatio', 'Propia', 'Tu equipo trabaja hasta que te llamen', '#2E3F9E'],
+  ['Librería de Prompts', 'EPA', 'Cada prompt documenta su impacto'],
+  ['Fundamentum', 'Propia', 'Un chasis para tres apps', '#0B0D0E'],
+];
+
+class Component extends DCLogic {
+  state = { copied: false, nf: 'ask', motion: true, rmPos: 0, img: 'failed' };
+  componentWillUnmount() { clearTimeout(this.t1); clearTimeout(this.t2); }
+  nav(cur) {
+    return NAV.map(([t, href, k]) => ({ t, href, cur: k === cur ? 'page' : 'false',
+      color: k === cur ? 'var(--jc-ink)' : 'var(--jc-text-2)', deco: k === cur ? 'underline' : 'none' }));
+  }
+  renderVals() {
+    const draft = (this.props.mode ?? 'borrador') !== 'produccion';
+    const s = this.state;
+    const timeline = [
+      { y: '2017', t: 'Ejecutivo de cuentas', s: 'Cuentas en agencia' },
+      { y: null, t: 'Analista de marketing digital', s: 'Campañas y medición' },
+      { y: null, t: 'CRO', s: 'Optimización de conversión' },
+      { y: '2019', t: 'Analista de datos', s: 'Datos y dashboards' },
+      { y: '2024', t: 'Verne', s: 'Mi primera herramienta con IA', verne: true },
+      { y: 'Hoy', t: 'IA y automatización en EPA', s: 'Lidero datos e IA', now: true },
+    ].map((x) => ({ ...x,
+      hasYear: !!x.y, yearMissing: !x.y && draft, yearHidden: !x.y && !draft,
+      yearColor: x.verne ? 'var(--jc-accent)' : 'var(--jc-text-3)',
+      dotBorder: x.verne ? 'var(--jc-accent)' : 'var(--jc-ink)',
+      dotBg: x.verne ? 'var(--jc-accent)' : x.now ? 'var(--jc-ink)' : 'var(--jc-canvas)',
+      titleColor: x.verne ? 'var(--jc-accent)' : 'var(--jc-ink)' }));
+    const copy = () => {
+      try { navigator.clipboard && navigator.clipboard.writeText('hola@josecarloscorona.dev'); } catch (e) {}
+      this.setState({ copied: true }); clearTimeout(this.t1); this.t1 = setTimeout(() => this.setState({ copied: false }), 2000);
+    };
+    const rmPlay = () => this.setState((p) => ({ rmPos: p.rmPos ? 0 : 1 }));
+    return {
+      theme: this.props.theme ?? 'light', draft,
+      navAbout: this.nav('a'), navContact: this.nav('c'), navWriting: this.nav('w'), navNone: this.nav(''),
+      timeline,
+      stack: [
+        { k: 'NUBE', v: ['Google Cloud', 'Cloud Run'] },
+        { k: 'MODELOS', v: ['Claude', 'OpenAI'] },
+        { k: 'AGENTES', v: ['MCP', 'Claude Code'] },
+        { k: 'RECUPERACIÓN', v: ['RAG', 'GraphRAG', 'LLM Wiki'] },
+        { k: 'WEB', v: ['Astro'] },
+      ],
+      certs: [{ t: 'Certificación 1 (falta)' }, { t: 'Certificación 2 (falta)' }],
+      copy, copyLabel: s.copied ? 'Copiado' : 'Copiar', copyBg: s.copied ? 'var(--jc-accent-soft)' : 'transparent',
+      writingStates: [{ tag: 'ESTADO · VACÍO', empty: true, full: false }, { tag: 'ESTADO · DOS ARTÍCULOS', empty: false, full: true }],
+      articles: [
+        { date: draft ? 'fecha (falta)' : '', t: 'Lo que aprendí de un producto que nadie usó', d: 'Einstein tuvo permisos en 4 niveles, un golden set de 30 preguntas y adopción cero. Por qué lo reencuadramos.', rel: 'Relacionado: Einstein, un postmortem' },
+        { date: draft ? 'fecha (falta)' : '', t: 'Proponer, no imponer: agentes que esperan tu Aceptar', d: 'En Iterum todo cambio llega como propuesta con tres salidas: Aceptar · Editar · Rechazar.', rel: 'Relacionado: Iterum' },
+      ],
+      nfAsk: s.nf === 'ask', nfDismissed: s.nf === 'dismissed',
+      nfDismiss: () => this.setState({ nf: 'dismissed' }), nfReset: () => this.setState({ nf: 'ask' }),
+      motionOn: s.motion, motionOff: !s.motion,
+      setMotionOn: () => this.setState({ motion: true }), setMotionOff: () => this.setState({ motion: false }),
+      mOnBg: s.motion ? 'var(--jc-card)' : 'transparent', mOffBg: !s.motion ? 'var(--jc-card)' : 'transparent',
+      rmPlay, rmLeft: s.rmPos ? 'calc(100% - 150px)' : '16px', rmTop: s.rmPos ? '44px' : '12px',
+      rmTransition: s.motion ? 'left 700ms cubic-bezier(.2,0,0,1), top 700ms cubic-bezier(.2,0,0,1)' : 'none',
+      rmTargetBg: s.rmPos ? 'var(--jc-accent-soft)' : 'transparent',
+      imgFailed: s.img === 'failed', imgLoading: s.img === 'loading', retryLabel: s.img === 'loading' ? 'Reintentando…' : 'Reintentar',
+      imgRetry: () => { this.setState({ img: 'loading' }); clearTimeout(this.t2); this.t2 = setTimeout(() => this.setState({ img: 'failed' }), 1000); },
+      og: CASES.map(([name, org, hook, bg], i) => ({ name, org, hook, num: String(i + 1).padStart(2, '0'),
+        bg: bg || 'repeating-linear-gradient(135deg,#F5F6F7 0 16px,#EEF0F2 16px 32px)',
+        border: bg ? '0' : '1px solid #E3E5E8', fg: bg ? '#FFFFFF' : '#5B6168' })),
+    };
+  }
+}
+</script>
+</body>
+</html>

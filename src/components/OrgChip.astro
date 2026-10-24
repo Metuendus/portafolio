@@ -1,0 +1,20 @@
+---
+import Icon from './Icon.astro';
+import { ui, type Lang } from '../i18n/ui';
+import type { Org, Status } from '../data/cases';
+
+interface Props { lang: Lang; org?: Org; status?: Status; large?: boolean }
+const { lang, org, status, large } = Astro.props;
+const t = ui[lang];
+const statusIcon = status === 'post' ? 'archive' : 'check';
+---
+{org && (
+  <span class:list={['chip', 'chip--org', { 'chip--lg': large }]}>
+    <Icon name={org === 'epa' ? 'building' : 'person'} size={12} />{t.org[org]}
+  </span>
+)}
+{status && (
+  <span class:list={['chip', `chip--${status}`, { 'chip--lg': large }]}>
+    <Icon name={statusIcon} size={12} />{t.status[status]}
+  </span>
+)}
