@@ -1,20 +1,20 @@
 ---
 import Icon from './Icon.astro';
-import { ui, homePath, type Lang } from '../i18n/ui';
+import QuickCard from './QuickCard.astro';
+import { ui, projectsPath, type Lang } from '../i18n/ui';
 
 interface Props { lang: Lang }
 const { lang } = Astro.props;
-const h = ui[lang].hero;
-const home = homePath(lang);
-const projects = lang === 'es' ? '#proyectos' : '#projects';
-const contact = lang === 'es' ? '#contacto' : '#contact';
+const t = ui[lang];
+const h = t.hero;
 ---
 <section class="hero page-x" data-hero data-accepted={h.accepted} data-dismissed={h.dismissed}>
+  <p class="fiche tag">{t.fiche}</p>
   <h1>{h.h1a}<span class="target" data-target>{h.h1b}</span>{h.h1c}</h1>
   <p class="sub">{h.sub}</p>
   <div class="ctas">
-    <a class="btn btn--primary btn--lg" href={`${home}${projects}`}>{h.cta1}<Icon name="arrow" /></a>
-    <a class="btn btn--secondary btn--lg" href={`${home}${contact}`}>{h.cta2}</a>
+    <button type="button" class="btn btn--primary btn--lg" aria-haspopup="dialog" data-quick-open>{t.quick.open}</button>
+    <a class="btn btn--secondary btn--lg" href={projectsPath(lang)}>{h.cta1}<Icon name="arrow" /></a>
   </div>
 
   <div class="cursor" aria-hidden="true" data-cursor>
@@ -37,9 +37,11 @@ const contact = lang === 'es' ? '#contacto' : '#contact';
     </div>
   </div>
 </section>
+<QuickCard lang={lang} />
 
 <style>
-  .hero { position: relative; padding-top: 128px; padding-bottom: 136px; display: flex; flex-direction: column; }
+  .fiche { margin-bottom: 24px; font-size: 13px; }
+  .hero { position: relative; padding-top: 112px; padding-bottom: 136px; display: flex; flex-direction: column; }
   h1 {
     max-width: 1000px; font: 600 var(--jc-fs-hero)/1.05 var(--jc-font-sans); letter-spacing: var(--jc-ls-hero);
     text-wrap: pretty;
@@ -91,7 +93,8 @@ const contact = lang === 'es' ? '#contacto' : '#contact';
   }
 
   @media (max-width: 640px) {
-    .hero { padding-top: 40px; padding-bottom: 48px; }
+    .hero { padding-top: 32px; padding-bottom: 48px; }
+    .fiche { margin-bottom: 16px; font-size: 12px; line-height: 1.5; }
     h1 { text-wrap: pretty; }
     .target { border-radius: 4px; }
     .sub { margin-top: 20px; font-size: 17px; }

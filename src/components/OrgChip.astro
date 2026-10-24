@@ -6,7 +6,7 @@ import type { Org, Status } from '../data/cases';
 interface Props { lang: Lang; org?: Org; status?: Status; large?: boolean }
 const { lang, org, status, large } = Astro.props;
 const t = ui[lang];
-const statusIcon = status === 'post' ? 'archive' : 'check';
+const statusIcon = status === 'post' ? 'archive' : status === 'exp' ? 'flask' : 'check';
 ---
 {org && (
   <span class:list={['chip', 'chip--org', { 'chip--lg': large }]}>

@@ -2,7 +2,7 @@
 import OrgChip from './OrgChip.astro';
 import VideoFacade from './VideoFacade.astro';
 import Footer from './Footer.astro';
-import { ui, casePath, homePath, showMissing, type Lang } from '../i18n/ui';
+import { ui, casePath, projectsPath, showMissing, type Lang } from '../i18n/ui';
 import { cases, details, hasPage, caseNum } from '../data/cases';
 
 interface Props { lang: Lang; id: string }
@@ -14,7 +14,7 @@ const c = detail.content[lang];
 const idx = cases.indexOf(summary);
 const prev = cases[(idx + cases.length - 1) % cases.length];
 const next = cases[(idx + 1) % cases.length];
-const projects = `${homePath(lang)}#${lang === 'es' ? 'proyectos' : 'projects'}`;
+const projects = projectsPath(lang);
 const nextText = c.nextText ?? (showMissing ? L.missingNext : undefined);
 ---
 <article class="case">

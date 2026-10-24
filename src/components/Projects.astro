@@ -1,0 +1,156 @@
+---
+import Icon from './Icon.astro';
+import OrgChip from './OrgChip.astro';
+import Footer from './Footer.astro';
+import { ui, casePath, showMissing, type Lang } from '../i18n/ui';
+import { cases, hasPage } from '../data/cases';
+import { fronts, more, caseFront } from '../data/fronts';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = ui[lang];
+const P = t.projectsPage;
+const others = more.filter((m) => m.line || showMissing);
+const frontName = (id: string) => fronts.find((f) => f.id === id)!.name[lang];
+---
+<section class="intro page-x">
+  <h1>{P.title}</h1>
+  <p>{P.intro}</p>
+  <div class="filter" role="group" aria-label={P.filterLabel} data-filter>
+    <button type="button" aria-pressed="true" data-f="all">{P.all}</button>
+    {fronts.map((f) => <button type="button" aria-pressed="false" data-f={f.id}>{f.name[lang]}</button>)}
+  </div>
+  <p class="sr-only" aria-live="polite" data-filter-status></p>
+</section>
+
+<section class="group page-x" data-group aria-labelledby="g-cases">
+  <h2 id="g-cases" class="tag">{P.cases}</h2>
+  <ul class="grid">
+    {cases.map((c, i) => {
+      const linked = hasPage(c.id);
+      const Tag = linked ? 'a' : 'div';
+      return (
+        <li data-front={caseFront(c.org)}>
+          <Tag class:list={['card', { linked }]} href={linked ? casePath(lang, c.id) : undefined}>
+            <div class="shot-wrap"><div class="shot shot-ph" data-shot={c.shot}>{showMissing ? 'PLACEHOLDER' : ''}</div></div>
+            <div class="c-body">
+              <span class="tag">{String(i + 1).padStart(2, '0')} / 08</span>
+              <span class="c-name">{c.name[lang]}</span>
+              <span class="c-hook">{c.hook[lang]}</span>
+              <div class="chips"><OrgChip lang={lang} org={c.org} status={c.status} /></div>
+              {linked && <span class="c-read">{t.readCase}<Icon name="arrow" /></span>}
+            </div>
+          </Tag>
+        </li>
+      );
+    })}
+  </ul>
+</section>
+
+<section class="group page-x" data-group aria-labelledby="g-more">
+  <h2 id="g-more" class="tag">{P.others}</h2>
+  <ul class="rows">
+    {others.map((m) => (
+      <li class="row" data-front={m.front}>
+        <span class="r-year tag">{m.year}</span>
+        <div class="r-main">
+          <span class="r-name">{m.name[lang]}</span>
+          {m.line ? <span class="r-line">{m.line[lang]}</span> : <span class="missing">{P.noLine}</span>}
+        </div>
+        <div class="r-meta">
+          <span class="r-front tag">{frontName(m.front)}</span>
+          {m.status && <OrgChip lang={lang} status={m.status} />}
+        </div>
+      </li>
+    ))}
+  </ul>
+</section>
+
+<div class="foot page-x"><Footer lang={lang} /></div>
+
+<style>
+  .intro { padding-top: 96px; padding-bottom: 48px; display: flex; flex-direction: column; gap: 20px; }
+  h1 { font: 600 var(--jc-fs-display)/1.05 var(--jc-font-sans); letter-spacing: var(--jc-ls-display); }
+  .intro > p { max-width: 720px; font: 400 20px/1.55 var(--jc-font-sans); color: var(--jc-text-2); }
+  .filter { margin-top: 16px; align-self: flex-start; display: flex; flex-wrap: wrap; gap: 4px; padding: 3px; border-radius: var(--jc-radius-pill); background: var(--jc-surface); }
+  .filter button {
+    height: 40px; padding: 0 16px; border: 0; border-radius: var(--jc-radius-pill); background: transparent; color: var(--jc-text-2);
+    font: 500 14px/1 var(--jc-font-sans); cursor: pointer; transition: background-color var(--jc-dur-fast) var(--jc-ease);
+  }
+  .filter button:hover { color: var(--jc-ink); }
+  .filter button[aria-pressed='true'] { background: var(--jc-card); color: var(--jc-ink); box-shadow: var(--jc-shadow-1); }
+
+  .group { padding-top: 40px; padding-bottom: 40px; display: flex; flex-direction: column; gap: 20px; }
+  .group[hidden] { display: none; }
+  .grid { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; }
+  .grid li[hidden], .rows li[hidden] { display: none; }
+  .card {
+    height: 100%; padding: 8px; border-radius: var(--jc-radius-lg); border: 1px solid var(--jc-hairline); display: flex; flex-direction: column;
+    color: var(--jc-ink); text-decoration: none; transition: box-shadow var(--jc-dur-base) var(--jc-ease), border-color var(--jc-dur-base) var(--jc-ease);
+  }
+  .card.linked:hover { box-shadow: var(--jc-shadow-3); border-color: var(--jc-hairline-strong); color: var(--jc-ink); }
+  .shot-wrap { aspect-ratio: 16 / 10; border-radius: var(--jc-radius-md); overflow: hidden; }
+  .shot { width: 100%; height: 100%; transition: transform var(--jc-dur-slow) var(--jc-ease); }
+  .card.linked:hover .shot { transform: scale(1.03); }
+  .c-body { padding: 14px 8px 8px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+  .c-name { font: 600 20px/1.2 var(--jc-font-sans); letter-spacing: -.3px; }
+  .c-hook { font-size: 15px; line-height: 1.45; color: var(--jc-text-2); }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: auto; padding-top: 6px; }
+  .c-read { display: inline-flex; align-items: center; gap: 6px; min-height: 32px; font: 600 15px/1 var(--jc-font-sans); color: var(--jc-accent); text-decoration: underline; text-underline-offset: 4px; }
+  .c-read :global(svg) { transition: transform var(--jc-dur-fast) var(--jc-ease); }
+  .card.linked:hover .c-read :global(svg) { transform: translateX(4px); }
+
+  .rows { list-style: none; padding: 0; border-top: 1px solid var(--jc-hairline-strong); }
+  .row { display: grid; grid-template-columns: 96px minmax(0, 1fr) 260px; gap: 24px; align-items: baseline; padding: 22px 0; border-bottom: 1px solid var(--jc-hairline); }
+  .r-main { display: flex; flex-direction: column; gap: 4px; }
+  .r-name { font: 600 20px/1.25 var(--jc-font-sans); letter-spacing: -.3px; }
+  .r-line { font-size: 16px; line-height: 1.5; color: var(--jc-text-2); }
+  .r-meta { display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-end; gap: 8px; }
+  .foot { padding-top: 48px; padding-bottom: 48px; }
+
+  @media (max-width: 1100px) { .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (max-width: 900px) {
+    .row { grid-template-columns: minmax(0, 1fr); gap: 6px; padding: 18px 0; }
+    .r-meta { justify-content: flex-start; order: 2; }
+    .r-year { order: 0; }
+  }
+  @media (max-width: 640px) {
+    .intro { padding-top: 32px; padding-bottom: 24px; gap: 14px; }
+    .intro > p { font-size: 17px; }
+    .filter { align-self: stretch; border-radius: var(--jc-radius-lg); }
+    .filter button { height: 44px; flex: 1 1 auto; }
+    .grid { grid-template-columns: minmax(0, 1fr); gap: 16px; }
+    .group { padding-top: 24px; padding-bottom: 24px; }
+    .r-name { font-size: 18px; }
+    .r-line { font-size: 15px; }
+    .foot { padding-top: 24px; padding-bottom: 32px; }
+  }
+</style>
+
+<script>
+  const bar = document.querySelector<HTMLElement>('[data-filter]');
+  const status = document.querySelector<HTMLElement>('[data-filter-status]');
+  if (bar) {
+    const buttons = [...bar.querySelectorAll<HTMLButtonElement>('button')];
+    const apply = (f: string, push: boolean) => {
+      buttons.forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.f === f)));
+      let shown = 0;
+      document.querySelectorAll<HTMLElement>('[data-front]').forEach((el) => {
+        el.hidden = f !== 'all' && el.dataset.front !== f;
+        if (!el.hidden) shown++;
+      });
+      document.querySelectorAll<HTMLElement>('[data-group]').forEach((g) => {
+        g.hidden = !g.querySelector('[data-front]:not([hidden])');
+      });
+      if (status) status.textContent = String(shown);
+      if (push) {
+        const u = new URL(location.href);
+        if (f === 'all') u.searchParams.delete('frente'); else u.searchParams.set('frente', f);
+        history.replaceState(null, '', u);
+      }
+    };
+    buttons.forEach((b) => b.addEventListener('click', () => apply(b.dataset.f ?? 'all', true)));
+    const initial = new URL(location.href).searchParams.get('frente');
+    if (initial && buttons.some((b) => b.dataset.f === initial)) apply(initial, false);
+  }
+</script>

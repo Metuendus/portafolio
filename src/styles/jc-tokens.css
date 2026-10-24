@@ -142,6 +142,7 @@ a:hover { color: var(--jc-accent-hover); }
   --jc-on-poster: #FFFFFF;
   --jc-poster-scrim: rgba(0, 0, 0, .6);
   --jc-poster-fade: rgba(0, 0, 0, .55);
+  --jc-scrim: rgba(11, 13, 14, .45);
 
   /* Rayado de capturas placeholder: fijo en claro y oscuro para mostrar ambos temas */
   --jc-ph-light-a: #F5F6F7; --jc-ph-light-b: #EEF0F2; --jc-ph-light-line: #E3E5E8; --jc-ph-light-tag: #FFFFFF; --jc-ph-light-ink: #0B0D0E;

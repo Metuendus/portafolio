@@ -3,7 +3,7 @@ export type Lang = 'es' | 'en';
 export const ui = {
   es: {
     nav: [
-      { label: 'Proyectos', href: '/#proyectos', key: 'projects' },
+      { label: 'Proyectos', href: '/proyectos/', key: 'projects' },
       { label: 'Escritos', href: '/escritos/', key: 'writing' },
       { label: 'Sobre mí', href: '/sobre-mi/', key: 'about' },
       { label: 'Contacto', href: '/#contacto', key: 'contact' },
@@ -18,7 +18,7 @@ export const ui = {
     footer: 'Hecho con Astro en Google Cloud · © 2026 · CDMX',
     readCase: 'Leer el caso',
     org: { epa: 'EPA', own: 'Propia' },
-    status: { prod: 'En producción', wip: 'En construcción', post: 'Postmortem' },
+    status: { prod: 'En producción', wip: 'En construcción', post: 'Postmortem', exp: 'Experimento' },
     hero: {
       h1a: 'Construyo sistemas de IA que la gente usa ',
       h1b: 'todos los días',
@@ -34,6 +34,43 @@ export const ui = {
       accepted: 'Aplicado. Tú decidiste.',
       dismissed: 'Descartado. Nada cambió.',
       replay: 'Repetir',
+    },
+    fiche: 'Datos e IA en EPA Digital · CDMX · 9 años en marketing digital',
+    quick: {
+      open: 'Tengo 30 segundos',
+      title: 'José Carlos en 30 segundos',
+      role: 'Lidero datos e IA en EPA Digital, una agencia de marketing digital de ~190 personas, y construyo productos propios con agentes en Google Cloud.',
+      where: 'CDMX · 9 años en marketing digital · ES / EN',
+      stackLabel: 'STACK',
+      stack: ['Python', 'Google Cloud', 'BigQuery', 'ADK', 'MCP', 'RAG', 'Claude', 'Gemini', 'TypeScript'],
+      winsLabel: 'TRES LOGROS',
+      wins: [
+        { t: 'Servidor MCP de medios en producción', d: '28 personas lo usan; 14.7M tokens procesados.', s: 'LinkedIn, oct 2026' },
+        { t: 'Librería de Prompts de la agencia', d: 'Pico de 60 personas y 39 recursos documentados.', s: 'LinkedIn, oct 2026' },
+        { t: 'Tres productos propios con agentes', d: 'Iterum, Domi y Vocatio, sobre un chasis común que también construí.', s: '' },
+      ],
+      close: 'Cerrar',
+      more: 'Ver todos los proyectos',
+    },
+    numbersTag: 'EN NÚMEROS',
+    numbersTitle: 'Lo que ya está en uso',
+    featuredTag: 'TRABAJO DESTACADO · 2 EPA · 2 PROPIOS',
+    featuredTitle: 'Cuatro casos para empezar',
+    allWork: 'Ver todos los proyectos',
+    doorsTag: 'MÁS ALLÁ DE ESTOS CUATRO',
+    doorsTitle: 'Todo lo que hago, en cinco frentes',
+    doorCount: (n: number) => `${n} ${n === 1 ? 'proyecto' : 'proyectos'}`,
+    timelineTag: 'TRAYECTORIA',
+    timelineTitle: 'De cuentas a IA, en 9 años',
+    projectsPage: {
+      title: 'Proyectos',
+      intro: 'Casos completos, proyectos de EPA, productos propios y el laboratorio donde pruebo ideas. Todo con su año y su estado.',
+      filterLabel: 'Filtrar por frente',
+      all: 'Todo',
+      cases: 'CASOS',
+      others: 'TAMBIÉN',
+      noLine: '(falta) descripción de una línea',
+      exp: 'Experimento',
     },
     thesisTag: 'CÓMO TRABAJO',
     thesisTitle: 'Tres principios',
@@ -71,7 +108,7 @@ export const ui = {
   },
   en: {
     nav: [
-      { label: 'Projects', href: '/en/#projects', key: 'projects' },
+      { label: 'Projects', href: '/en/projects/', key: 'projects' },
       { label: 'Writing', href: '/en/writing/', key: 'writing' },
       { label: 'About', href: '/en/about/', key: 'about' },
       { label: 'Contact', href: '/en/#contact', key: 'contact' },
@@ -86,7 +123,7 @@ export const ui = {
     footer: 'Built with Astro on Google Cloud · © 2026 · Mexico City',
     readCase: 'Read the case',
     org: { epa: 'EPA', own: 'Personal' },
-    status: { prod: 'In production', wip: 'In progress', post: 'Postmortem' },
+    status: { prod: 'In production', wip: 'In progress', post: 'Postmortem', exp: 'Experiment' },
     hero: {
       h1a: 'I build AI systems people use ',
       h1b: 'every day',
@@ -102,6 +139,43 @@ export const ui = {
       accepted: 'Applied. You decided.',
       dismissed: 'Dismissed. Nothing changed.',
       replay: 'Replay',
+    },
+    fiche: 'Data and AI at EPA Digital · Mexico City · 9 years in digital marketing',
+    quick: {
+      open: 'I have 30 seconds',
+      title: 'José Carlos in 30 seconds',
+      role: 'I lead data and AI at EPA Digital, a ~190-person digital marketing agency, and build my own agent products on Google Cloud.',
+      where: 'Mexico City · 9 years in digital marketing · ES / EN',
+      stackLabel: 'STACK',
+      stack: ['Python', 'Google Cloud', 'BigQuery', 'ADK', 'MCP', 'RAG', 'Claude', 'Gemini', 'TypeScript'],
+      winsLabel: 'THREE RESULTS',
+      wins: [
+        { t: 'Media MCP server in production', d: '28 people use it; 14.7M tokens processed.', s: 'LinkedIn, Oct 2026' },
+        { t: 'The agency’s Prompt Library', d: 'A peak of 60 people and 39 documented resources.', s: 'LinkedIn, Oct 2026' },
+        { t: 'Three agent products of my own', d: 'Iterum, Domi and Vocatio, on a shared chassis I also built.', s: '' },
+      ],
+      close: 'Close',
+      more: 'See all projects',
+    },
+    numbersTag: 'BY THE NUMBERS',
+    numbersTitle: 'What’s already in use',
+    featuredTag: 'FEATURED WORK · 2 EPA · 2 PERSONAL',
+    featuredTitle: 'Four cases to start with',
+    allWork: 'See all projects',
+    doorsTag: 'BEYOND THESE FOUR',
+    doorsTitle: 'Everything I do, on five fronts',
+    doorCount: (n: number) => `${n} ${n === 1 ? 'project' : 'projects'}`,
+    timelineTag: 'CAREER',
+    timelineTitle: 'From accounts to AI, in 9 years',
+    projectsPage: {
+      title: 'Projects',
+      intro: 'Full cases, EPA projects, my own products and the lab where I try ideas. Each with its year and status.',
+      filterLabel: 'Filter by front',
+      all: 'All',
+      cases: 'CASES',
+      others: 'ALSO',
+      noLine: '(missing) one-line description',
+      exp: 'Experiment',
     },
     thesisTag: 'HOW I WORK',
     thesisTitle: 'Three principles',
@@ -142,6 +216,7 @@ export const ui = {
 export type UI = (typeof ui)[Lang];
 
 export const homePath = (lang: Lang) => (lang === 'es' ? '/' : '/en/');
+export const projectsPath = (lang: Lang) => (lang === 'es' ? '/proyectos/' : '/en/projects/');
 export const casePath = (lang: Lang, slug: string) => (lang === 'es' ? `/proyectos/${slug}/` : `/en/projects/${slug}/`);
 
 /** Borrador muestra los «(falta)»; producción los oculta (Tweak `mode` del handoff). */

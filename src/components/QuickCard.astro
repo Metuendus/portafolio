@@ -1,0 +1,91 @@
+---
+import Icon from './Icon.astro';
+import { ui, projectsPath, showMissing, type Lang } from '../i18n/ui';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = ui[lang];
+const q = t.quick;
+const L = t.caseL;
+---
+<dialog class="quick" aria-labelledby="quick-title" data-quick>
+  <div class="q-head">
+    <span class="tag">josecarloscorona.dev</span>
+    <button type="button" class="q-close" aria-label={q.close} data-quick-close><Icon name="close" size={20} /></button>
+  </div>
+  <h2 id="quick-title">{q.title}</h2>
+  <p class="q-role">{q.role}</p>
+  <p class="q-where tag">{q.where}</p>
+
+  <div class="q-block">
+    <span class="tag">{q.winsLabel}</span>
+    <ol class="wins">
+      {q.wins.map((w, i) => (
+        <li>
+          <span class="tag">{String(i + 1).padStart(2, '0')}</span>
+          <div>
+            <span class="w-t">{w.t}</span>
+            <span class="w-d">{w.d}</span>
+            {w.s ? <span class="w-s">{L.source}: {w.s}</span> : null}
+          </div>
+        </li>
+      ))}
+    </ol>
+  </div>
+
+  <div class="q-block">
+    <span class="tag">{q.stackLabel}</span>
+    <div class="stack">{q.stack.map((s) => <span class="chip chip--stack">{s}</span>)}</div>
+  </div>
+
+  <div class="q-actions">
+    <a class="btn btn--primary" href="mailto:hola@josecarloscorona.dev"><Icon name="mail" />hola@josecarloscorona.dev</a>
+    <a class="btn btn--secondary" href="https://www.linkedin.com/in/josecarloscorona"><Icon name="linkedin" />LinkedIn</a>
+    {showMissing && <span class="missing">CV · {L.missing}</span>}
+  </div>
+  <a class="link" href={projectsPath(lang)}>{q.more}<Icon name="arrow" /></a>
+</dialog>
+
+<style>
+  .quick {
+    width: min(640px, calc(100vw - 32px)); max-height: calc(100dvh - 32px); padding: 32px; overflow-y: auto;
+    border: 1px solid var(--jc-hairline-strong); border-radius: var(--jc-radius-lg);
+    background: var(--jc-card); color: var(--jc-ink); box-shadow: var(--jc-shadow-2);
+  }
+  .quick[open] { display: flex; flex-direction: column; gap: 20px; animation: q-in var(--jc-dur-slow) var(--jc-ease); }
+  .quick::backdrop { background: var(--jc-scrim); }
+  @keyframes q-in { from { opacity: 0; transform: translateY(8px) scale(.98); } }
+  .q-head { display: flex; justify-content: space-between; align-items: center; margin: -8px -8px -8px 0; }
+  .q-close { width: 44px; height: 44px; border: 0; border-radius: 50%; background: transparent; display: flex; align-items: center; justify-content: center; cursor: pointer; color: var(--jc-ink); }
+  .q-close:hover { background: var(--jc-surface); }
+  h2 { font: 600 var(--jc-fs-h1)/1.1 var(--jc-font-sans); letter-spacing: var(--jc-ls-h1); }
+  .q-role { font: 400 19px/1.5 var(--jc-font-sans); color: var(--jc-text-2); }
+  .q-where { font-size: 13px; }
+  .q-block { display: flex; flex-direction: column; gap: 12px; padding-top: 16px; border-top: 1px solid var(--jc-hairline); }
+  .wins { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 14px; }
+  .wins li { display: grid; grid-template-columns: 28px 1fr; gap: 8px; }
+  .wins li > .tag { line-height: 1.6; }
+  .wins div { display: flex; flex-direction: column; gap: 2px; }
+  .w-t { font: 600 17px/1.35 var(--jc-font-sans); }
+  .w-d { font-size: 15px; line-height: 1.45; color: var(--jc-text-2); }
+  .w-s { font: 400 12px/1.4 var(--jc-font-mono); color: var(--jc-text-3); }
+  .stack { display: flex; flex-wrap: wrap; gap: 6px; }
+  .q-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; padding-top: 16px; border-top: 1px solid var(--jc-hairline); }
+  .link { align-self: flex-start; }
+  @media (max-width: 640px) {
+    .quick { padding: 20px; }
+    .q-role { font-size: 17px; }
+    .q-actions .btn { width: 100%; height: 48px; }
+  }
+</style>
+
+<script>
+  const dlg = document.querySelector<HTMLDialogElement>('[data-quick]');
+  let opener: HTMLElement | null = null;
+  document.querySelectorAll<HTMLElement>('[data-quick-open]').forEach((b) =>
+    b.addEventListener('click', () => { opener = b; dlg?.showModal(); }),
+  );
+  dlg?.querySelector('[data-quick-close]')?.addEventListener('click', () => dlg.close());
+  dlg?.addEventListener('click', (e) => { if (e.target === dlg) dlg.close(); });
+  dlg?.addEventListener('close', () => opener?.focus());
+</script>

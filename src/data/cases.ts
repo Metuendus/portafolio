@@ -1,7 +1,7 @@
 import type { Lang } from '../i18n/ui';
 
 export type Org = 'epa' | 'own';
-export type Status = 'prod' | 'wip' | 'post';
+export type Status = 'prod' | 'wip' | 'post' | 'exp';
 export type NodeKind = 'ext' | 'svc' | 'focus';
 
 export interface CaseSummary {
