@@ -1,6 +1,6 @@
 ---
 import Icon from './Icon.astro';
-import { ui, homePath, type Lang } from '../i18n/ui';
+import { ui, homePath, navItems, type Lang } from '../i18n/ui';
 
 interface Props { lang: Lang; current?: string; altHref: string }
 const { lang, current, altHref } = Astro.props;
@@ -16,7 +16,7 @@ const enHref = lang === 'en' ? Astro.url.pathname : altHref;
     </a>
     <nav class="desk" aria-label={t.navLabel}>
       <ul class="links">
-        {t.nav.map((l) => (
+        {navItems(lang).map((l) => (
           <li><a href={l.href} aria-current={current === l.key ? 'page' : undefined}>{l.label}</a></li>
         ))}
       </ul>
@@ -44,7 +44,7 @@ const enHref = lang === 'en' ? Astro.url.pathname : altHref;
     </div>
     <nav aria-label={t.navLabel}>
       <ul class="rows">
-        {t.nav.map((l) => (
+        {navItems(lang).map((l) => (
           <li><a href={l.href} aria-current={current === l.key ? 'page' : undefined} data-menu-link>{l.label}<Icon name="arrow" size={18} /></a></li>
         ))}
       </ul>

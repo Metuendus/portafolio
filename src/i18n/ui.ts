@@ -23,7 +23,7 @@ export const ui = {
       h1a: 'Construyo sistemas de IA que la gente usa ',
       h1b: 'todos los días',
       h1c: ', no demos.',
-      sub: 'Lidero datos e IA en una agencia de marketing digital de ~190 personas y construyo productos propios con agentes en Google Cloud. 9 años en marketing digital, desde CDMX.',
+      sub: 'Soy AI & Automation Lead en EPA.Digital, una agencia de performance marketing de unas 200 personas, y construyo productos propios con agentes en Google Cloud. Llevo 9 años ahí, de cuentas a IA, desde CDMX.',
       cta1: 'Ver proyectos',
       cta2: 'Contacto',
       agent: 'agente',
@@ -35,20 +35,20 @@ export const ui = {
       dismissed: 'Descartado. Nada cambió.',
       replay: 'Repetir',
     },
-    fiche: 'Datos e IA en EPA Digital · CDMX · 9 años en marketing digital',
-    openTo: 'Abierto a roles de Applied AI y GenAI · CDMX, híbrido',
+    fiche: 'AI & Automation Lead en EPA.Digital · CDMX · desde 2017',
+    openTo: 'Abierto a roles de AI Engineer y Applied AI · CDMX, híbrido o remoto',
     quick: {
       open: 'Tengo 30 segundos',
       title: 'José Carlos en 30 segundos',
-      role: 'Lidero datos e IA en EPA Digital, una agencia de marketing digital de ~190 personas, y construyo productos propios con agentes en Google Cloud.',
-      where: 'CDMX · 9 años en marketing digital · ES / EN',
+      role: 'AI & Automation Lead en EPA.Digital, una agencia de performance marketing de unas 200 personas. Construyo los sistemas de IA que usan los equipos de cuentas y dirijo a un desarrollador de IA.',
+      where: 'CDMX · 9 años en EPA.Digital · español nativo, inglés intermedio',
       stackLabel: 'STACK',
-      stack: ['Python', 'Google Cloud', 'BigQuery', 'ADK', 'MCP', 'RAG', 'Claude', 'Gemini', 'TypeScript'],
+      stack: ['Python', 'TypeScript', 'BigQuery', 'Cloud Run', 'Vertex AI', 'MCP', 'Claude', 'Gemini', 'Next.js'],
       winsLabel: 'TRES LOGROS',
       wins: [
-        { t: 'Servidor MCP de medios en producción', d: '28 personas lo usan; 14.7M tokens procesados.', s: 'LinkedIn, oct 2026' },
-        { t: 'Librería de Prompts de la agencia', d: 'Pico de 60 personas y 39 recursos documentados.', s: 'LinkedIn, oct 2026' },
-        { t: 'Tres productos propios con agentes', d: 'Iterum, Domi y Vocatio, sobre un chasis común que también construí.', s: '' },
+        { t: 'Servidor MCP de medios', d: 'Hice la primera versión y hoy soy co-dueño técnico: 28 personas activas y más de 14.7M tokens procesados.', s: 'panel de administración, oct 2026' },
+        { t: 'Librería de Prompts de la agencia', d: 'La diseñé y construí; se abrió a las 170 personas de EPA y cuesta 0 USD al mes operarla.', s: 'lanzamiento, nov 2025' },
+        { t: 'Dashboard y ETL de SKU para Coppel', d: 'El análisis diario de SKU pasó de un día completo a 30 minutos.', s: 'proyecto con Coppel, 2026' },
       ],
       close: 'Cerrar',
       more: 'Ver todos los proyectos',
@@ -88,7 +88,7 @@ export const ui = {
     chassisDiagram: 'Iterum, Domi y Vocatio corren sobre Fundamentum',
     chassisVideo: 'Fundamentum en 60 s',
     closeTitle: 'Soy José Carlos Corona.',
-    closeBody: 'Lidero datos e IA en EPA y construyo Iterum, Domi y Vocatio sobre Fundamentum.',
+    closeBody: 'AI & Automation Lead en EPA.Digital. Por mi cuenta construyo Iterum, Domi y Vocatio sobre Fundamentum.',
     video: {
       play: 'Reproducir',
       poster: 'PLACEHOLDER · póster del video',
@@ -129,7 +129,7 @@ export const ui = {
       h1a: 'I build AI systems people use ',
       h1b: 'every day',
       h1c: ', not demos.',
-      sub: 'I lead data and AI at a ~190-person digital marketing agency and build my own agent products on Google Cloud. 9 years in digital marketing, based in Mexico City.',
+      sub: 'I’m AI & Automation Lead at EPA.Digital, a performance marketing agency of about 200 people, and I build my own agent products on Google Cloud. 9 years there, from accounts to AI, based in Mexico City.',
       cta1: 'View projects',
       cta2: 'Contact',
       agent: 'agent',
@@ -141,20 +141,20 @@ export const ui = {
       dismissed: 'Dismissed. Nothing changed.',
       replay: 'Replay',
     },
-    fiche: 'Data and AI at EPA Digital · Mexico City · 9 years in digital marketing',
-    openTo: 'Open to Applied AI and GenAI roles · Mexico City, hybrid',
+    fiche: 'AI & Automation Lead at EPA.Digital · Mexico City · since 2017',
+    openTo: 'Open to AI Engineer and Applied AI roles · Mexico City, hybrid or remote',
     quick: {
       open: 'I have 30 seconds',
       title: 'José Carlos in 30 seconds',
-      role: 'I lead data and AI at EPA Digital, a ~190-person digital marketing agency, and build my own agent products on Google Cloud.',
-      where: 'Mexico City · 9 years in digital marketing · ES / EN',
+      role: 'AI & Automation Lead at EPA.Digital, a performance marketing agency of about 200 people. I build the AI systems account teams use and lead one AI developer.',
+      where: 'Mexico City · 9 years at EPA.Digital · native Spanish, intermediate English',
       stackLabel: 'STACK',
-      stack: ['Python', 'Google Cloud', 'BigQuery', 'ADK', 'MCP', 'RAG', 'Claude', 'Gemini', 'TypeScript'],
+      stack: ['Python', 'TypeScript', 'BigQuery', 'Cloud Run', 'Vertex AI', 'MCP', 'Claude', 'Gemini', 'Next.js'],
       winsLabel: 'THREE RESULTS',
       wins: [
-        { t: 'Media MCP server in production', d: '28 people use it; 14.7M tokens processed.', s: 'LinkedIn, Oct 2026' },
-        { t: 'The agency’s Prompt Library', d: 'A peak of 60 people and 39 documented resources.', s: 'LinkedIn, Oct 2026' },
-        { t: 'Three agent products of my own', d: 'Iterum, Domi and Vocatio, on a shared chassis I also built.', s: '' },
+        { t: 'Media MCP server', d: 'I built the first version and now co-own it technically: 28 active people and over 14.7M tokens processed.', s: 'admin dashboard, Oct 2026' },
+        { t: 'The agency’s Prompt Library', d: 'I designed and built it; it opened to all 170 people at EPA and costs 0 USD a month to run.', s: 'launch, Nov 2025' },
+        { t: 'SKU dashboard and ETL for Coppel', d: 'Daily SKU analysis went from a full day to 30 minutes.', s: 'Coppel project, 2026' },
       ],
       close: 'Close',
       more: 'See all projects',
@@ -194,7 +194,7 @@ export const ui = {
     chassisDiagram: 'Iterum, Domi and Vocatio run on Fundamentum',
     chassisVideo: 'Fundamentum in 60 s',
     closeTitle: 'I’m José Carlos Corona.',
-    closeBody: 'I lead data and AI at EPA and build Iterum, Domi and Vocatio on Fundamentum.',
+    closeBody: 'AI & Automation Lead at EPA.Digital. On my own time I build Iterum, Domi and Vocatio on Fundamentum.',
     video: {
       play: 'Play',
       poster: 'PLACEHOLDER · video poster',
@@ -223,3 +223,13 @@ export const casePath = (lang: Lang, slug: string) => (lang === 'es' ? `/proyect
 
 /** Borrador muestra los «(falta)»; producción los oculta (Tweak `mode` del handoff). */
 export const showMissing = import.meta.env.DEV || import.meta.env.PUBLIC_BORRADOR === '1';
+export const aboutPath = (lang: Lang) => (lang === 'es' ? '/sobre-mi/' : '/en/about/');
+
+/** Contacto público. El correo del dominio todavía no existe: sin correo, el sitio lleva a LinkedIn. */
+export const contact = {
+  email: null as string | null,
+  linkedin: 'https://www.linkedin.com/in/josecarloscorona/',
+};
+
+/** Escritos aún no tiene contenido: solo aparece en borrador. */
+export const navItems = (lang: Lang) => ui[lang].nav.filter((l) => l.key !== 'writing' || showMissing);

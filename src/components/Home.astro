@@ -3,7 +3,7 @@ import Hero from './Hero.astro';
 import Icon from './Icon.astro';
 import OrgChip from './OrgChip.astro';
 import Footer from './Footer.astro';
-import { ui, casePath, projectsPath, showMissing, type Lang } from '../i18n/ui';
+import { ui, casePath, projectsPath, aboutPath, showMissing, contact, type Lang } from '../i18n/ui';
 import { cases, hasPage } from '../data/cases';
 import { fronts, numbers, timeline, countByFront, examplesByFront } from '../data/fronts';
 
@@ -13,7 +13,7 @@ const t = ui[lang];
 const L = t.caseL;
 const contactId = lang === 'es' ? 'contacto' : 'contact';
 const featured = ['mcp', 'iterum', 'prompts', 'domi'].map((id) => cases.find((c) => c.id === id)!);
-const about = lang === 'es' ? '/sobre-mi/' : '/en/about/';
+const about = aboutPath(lang);
 ---
 <Hero lang={lang} />
 
@@ -94,7 +94,7 @@ const about = lang === 'es' ? '/sobre-mi/' : '/en/about/';
     <div class="head"><span class="tag">{t.timelineTag}</span><h2 id="timeline-title">{t.timelineTitle}</h2></div>
     <a class="link" href={about}>{t.nav.find((n) => n.key === 'about')!.label}<Icon name="arrow" /></a>
   </div>
-  <ol class="timeline">
+  <ol class="timeline" style={`--n:${timeline.length}`}>
     {timeline.map((m) => (
       <li class:list={[m.mark && `t-${m.mark}`]}>
         <span class="t-dot" aria-hidden="true"></span>
@@ -111,8 +111,9 @@ const about = lang === 'es' ? '/sobre-mi/' : '/en/about/';
     <p>{t.closeBody}</p>
     <span class="chip chip--prod chip--lg open-to"><Icon name="check" size={12} />{t.openTo}</span>
     <div class="close-ctas">
-      <a class="btn btn--primary btn--lg" href="mailto:hola@josecarloscorona.dev"><Icon name="mail" />{t.hero.cta2}</a>
-      <a class="btn btn--secondary btn--lg" href="https://www.linkedin.com/in/josecarloscorona"><Icon name="linkedin" />LinkedIn</a>
+      {contact.email && <a class="btn btn--primary btn--lg" href={`mailto:${contact.email}`}><Icon name="mail" />{t.hero.cta2}</a>}
+      <a class:list={['btn', 'btn--lg', contact.email ? 'btn--secondary' : 'btn--primary']} href={contact.linkedin}><Icon name="linkedin" />LinkedIn</a>
+      {showMissing && !contact.email && <span class="missing">correo · {t.caseL.missing}</span>}
     </div>
   </div>
   <Footer lang={lang} />
@@ -176,7 +177,7 @@ const about = lang === 'es' ? '/sobre-mi/' : '/en/about/';
   .door :global(.d-arrow) { position: absolute; left: 20px; bottom: 20px; color: var(--jc-accent); transition: transform var(--jc-dur-fast) var(--jc-ease); }
   .door:hover :global(.d-arrow) { transform: translateX(4px); }
 
-  .timeline { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 16px; position: relative; }
+  .timeline { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(var(--n), minmax(0, 1fr)); gap: 16px; position: relative; }
   .timeline::before { content: ''; position: absolute; left: 0; right: 0; top: 6px; height: 1.5px; background: var(--jc-hairline-strong); }
   .timeline li { position: relative; display: flex; flex-direction: column; gap: 10px; padding-top: 28px; }
   .t-dot { position: absolute; top: 0; left: 0; width: 14px; height: 14px; border-radius: 50%; border: 2px solid var(--jc-hairline-strong); background: var(--jc-canvas); }

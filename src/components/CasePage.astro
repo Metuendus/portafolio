@@ -93,7 +93,7 @@ const nextText = c.nextText ?? (showMissing ? L.missingNext : undefined);
   <section class="row page-x" aria-labelledby="s-result">
     <h2 id="s-result">{L.result}</h2>
     <div class="result">
-      <div class="figures">
+      {(c.figures.length > 0 || c.noUsageText) && <div class="figures">
         {c.figures.map((f) => (
           <div class="fig">
             <span class="fig-v">{f.v}</span>
@@ -106,7 +106,7 @@ const nextText = c.nextText ?? (showMissing ? L.missingNext : undefined);
         {c.noUsageText && (
           <div class="no-usage"><span class="nu-t">{c.noUsageText}</span><span class="nu-s">{L.whenData}</span></div>
         )}
-      </div>
+      </div>}
       <p class="para">{c.resultText}</p>
     </div>
   </section>
