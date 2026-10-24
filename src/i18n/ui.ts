@@ -36,6 +36,7 @@ export const ui = {
       replay: 'Repetir',
     },
     fiche: 'Datos e IA en EPA Digital · CDMX · 9 años en marketing digital',
+    openTo: 'Abierto a roles de Applied AI y GenAI · CDMX, híbrido',
     quick: {
       open: 'Tengo 30 segundos',
       title: 'José Carlos en 30 segundos',
@@ -141,6 +142,7 @@ export const ui = {
       replay: 'Replay',
     },
     fiche: 'Data and AI at EPA Digital · Mexico City · 9 years in digital marketing',
+    openTo: 'Open to Applied AI and GenAI roles · Mexico City, hybrid',
     quick: {
       open: 'I have 30 seconds',
       title: 'José Carlos in 30 seconds',

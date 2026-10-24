@@ -109,6 +109,7 @@ const about = lang === 'es' ? '/sobre-mi/' : '/en/about/';
   <div class="close-body">
     <h2 id="close-title">{t.closeTitle}</h2>
     <p>{t.closeBody}</p>
+    <span class="chip chip--prod chip--lg open-to"><Icon name="check" size={12} />{t.openTo}</span>
     <div class="close-ctas">
       <a class="btn btn--primary btn--lg" href="mailto:hola@josecarloscorona.dev"><Icon name="mail" />{t.hero.cta2}</a>
       <a class="btn btn--secondary btn--lg" href="https://www.linkedin.com/in/josecarloscorona"><Icon name="linkedin" />LinkedIn</a>
@@ -118,6 +119,7 @@ const about = lang === 'es' ? '/sobre-mi/' : '/en/about/';
 </section>
 
 <style>
+  .open-to { align-self: flex-start; white-space: normal; height: auto; min-height: 28px; padding-block: 4px; }
   .block { padding-top: 96px; padding-bottom: 96px; border-top: 1px solid var(--jc-hairline); display: flex; flex-direction: column; gap: 48px; }
   .block--cases { gap: 40px; }
   .head { display: flex; flex-direction: column; gap: 8px; }

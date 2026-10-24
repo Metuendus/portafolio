@@ -9,6 +9,7 @@ const t = ui[lang];
 const h = t.hero;
 ---
 <section class="hero page-x" data-hero data-accepted={h.accepted} data-dismissed={h.dismissed}>
+  <span class="chip chip--prod chip--lg open-to"><Icon name="check" size={12} />{t.openTo}</span>
   <p class="fiche tag">{t.fiche}</p>
   <h1>{h.h1a}<span class="target" data-target>{h.h1b}</span>{h.h1c}</h1>
   <p class="sub">{h.sub}</p>
@@ -40,6 +41,7 @@ const h = t.hero;
 <QuickCard lang={lang} />
 
 <style>
+  .open-to { align-self: flex-start; margin-bottom: 16px; white-space: normal; height: auto; min-height: 28px; padding-block: 4px; }
   .fiche { margin-bottom: 24px; font-size: 13px; }
   .hero { position: relative; padding-top: 112px; padding-bottom: 136px; display: flex; flex-direction: column; }
   h1 {

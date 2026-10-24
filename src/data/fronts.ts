@@ -22,7 +22,7 @@ export interface Work {
 
 /** Trabajo que no tiene página de caso (todavía). Los casos con página salen de `cases`. */
 export const more: Work[] = [
-  { id: 'copy-master', front: 'epa', year: '2024', status: 'prod', name: { es: 'Copy Master', en: 'Copy Master' }, line: { es: 'Add-on de Sheets que redacta anuncios con Claude, Gemini y Llama en Vertex AI; lo usa el equipo desde 2024.', en: 'A Sheets add-on that writes ads with Claude, Gemini and Llama on Vertex AI; the team has used it since 2024.' } },
+  { id: 'copy-master', front: 'epa', year: '2024', status: 'prod', name: { es: 'Verne · Copy Master', en: 'Verne · Copy Master' }, line: { es: 'Add-on de Sheets que redacta anuncios con Claude, Gemini y Llama en Vertex AI; lo usa el equipo desde 2024.', en: 'A Sheets add-on that writes ads with Claude, Gemini and Llama on Vertex AI; the team has used it since 2024.' } },
   { id: 'doppel', front: 'own', year: '2026', status: 'wip', name: { es: 'Doppel', en: 'Doppel' }, line: { es: 'Un agente de voz que entra a mis reuniones de Meet, escucha y responde con contexto.', en: 'A voice agent that joins my Meet calls, listens and answers with context.' } },
   { id: 'mmm', front: 'data', year: '2024', name: { es: 'Mezcla de medios y segmentación de catálogo', en: 'Media mix and catalog segmentation' }, line: { es: 'Modelo de mezcla de medios con Robyn y clusters de producto para Performance Max, con marcas anonimizadas.', en: 'A Robyn media mix model and product clusters for Performance Max, with brands anonymized.' } },
   { id: 'geo-talk', front: 'teach', year: '2026', name: { es: 'Charla de GEO en Google Señales', en: 'GEO talk at Google Señales' }, line: { es: 'Demo en vivo de RAG con Gemini y una tienda ficticia hecha con imágenes de Vertex AI.', en: 'A live Gemini RAG demo and a fictional store built with Vertex AI images.' } },
@@ -59,6 +59,6 @@ export const timeline: { year: string; t: Record<Lang, string>; mark?: 'origin' 
   { year: '', t: { es: 'Analista de marketing digital', en: 'Digital marketing analyst' } },
   { year: '', t: { es: 'CRO', en: 'CRO' } },
   { year: '2019', t: { es: 'Analista de datos', en: 'Data analyst' } },
-  { year: '2024', t: { es: 'Verne, mi primera herramienta con IA', en: 'Verne, my first AI tool' }, mark: 'origin' },
+  { year: '2024', t: { es: 'Verne (Copy Master), mi primera herramienta con IA', en: 'Verne (Copy Master), my first AI tool' }, mark: 'origin' },
   { year: '', t: { es: 'IA y automatización en EPA', en: 'AI and automation at EPA' }, mark: 'now' },
 ];
