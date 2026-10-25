@@ -84,12 +84,12 @@ const nextText = c.nextText ?? (showMissing ? L.missingNext : undefined);
     </div>
   </section>
 
-  <section class="quote page-x">
+  {c.quote && <section class="quote page-x">
     <figure>
       <blockquote><span class="q" aria-hidden="true">“</span>{c.quote}<span class="q" aria-hidden="true">”</span></blockquote>
       <figcaption>{c.quoteCap}</figcaption>
     </figure>
-  </section>
+  </section>}
 
   <section class="row page-x" aria-labelledby="s-result">
     <h2 id="s-result">{L.result}</h2>

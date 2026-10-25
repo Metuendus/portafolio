@@ -1,3 +1,4 @@
+import { moreDetails } from './cases-more';
 import type { Lang } from '../i18n/ui';
 
 export type Org = 'epa' | 'own';
@@ -31,8 +32,8 @@ export interface CaseContent {
   diagramNote: string;
   steps: string[];
   decisions: Decision[];
-  quote: string;
-  quoteCap: string;
+  quote?: string;
+  quoteCap?: string;
   figures: Figure[];
   noUsageText?: string;
   resultText: string;
@@ -43,7 +44,7 @@ export interface CaseContent {
 }
 
 export interface CaseDetail {
-  poster: 'iterum' | 'einstein';
+  poster: 'iterum' | 'einstein' | 'fundamentum';
   content: Record<Lang, CaseContent>;
 }
 
@@ -60,6 +61,7 @@ export const cases: CaseSummary[] = [
 ];
 
 export const details: Record<string, CaseDetail> = {
+  ...moreDetails,
   einstein: {
     poster: 'einstein',
     // Solo lo que respalda el repo EPA-Einstein (perfil v1.1.1, §7.2).
