@@ -1,0 +1,31 @@
+---
+import { showMissing, type Lang } from '../i18n/ui';
+import type { CaseSummary } from '../data/cases';
+
+interface Props { lang: Lang; c: CaseSummary; size?: 'md' | 'sm' }
+const { lang, c, size = 'md' } = Astro.props;
+---
+<div class:list={['shot', 'shot-ph', 'cover', `cover--${size}`]} data-shot={c.shot}>
+  {showMissing && <span class="ph-label">PLACEHOLDER · {c.name[lang]}</span>}
+  <span class:list={['cv', { 'cv--long': c.cover.v.length > 6 }]}>{c.cover.v}</span>
+  <span class="cl">{c.cover.l[lang]}</span>
+</div>
+
+<style>
+  .cover { flex-direction: column; align-items: flex-start; justify-content: flex-end; gap: 6px; padding: 24px; position: relative; }
+  .ph-label { position: absolute; top: 14px; left: 14px; font: 400 11px/1 var(--jc-font-mono); }
+  .cv { font: 600 64px/1 var(--jc-font-sans); letter-spacing: -2px; color: var(--jc-ink); }
+  .cl { max-width: 26ch; font: 400 15px/1.4 var(--jc-font-sans); color: var(--jc-text-2); }
+  .cover[data-shot] .cv, .cover[data-shot] .cl { color: var(--jc-on-poster); }
+  .cv--long { font-size: 48px; letter-spacing: -1.4px; }
+  .cover--sm { padding: 18px; }
+  .cover--sm .cv { font-size: 44px; letter-spacing: -1.4px; }
+  .cover--sm .cl { font-size: 14px; }
+  .cover--sm .cv--long { font-size: 30px; letter-spacing: -0.8px; }
+  @media (max-width: 640px) {
+    .cover { padding: 16px; }
+    .cv { font-size: 44px; letter-spacing: -1.4px; }
+    .cl { font-size: 14px; }
+    .cv--long { font-size: 32px; }
+  }
+</style>

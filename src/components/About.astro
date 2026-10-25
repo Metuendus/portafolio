@@ -1,0 +1,139 @@
+---
+import Icon from './Icon.astro';
+import Footer from './Footer.astro';
+import { ui, projectsPath, showMissing, contact, type Lang } from '../i18n/ui';
+import { aboutCopy, stages, skills, education } from '../data/about';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = ui[lang];
+const A = aboutCopy[lang];
+const L = t.caseL;
+---
+<section class="intro page-x">
+  <span class="tag">{A.title.toUpperCase()}</span>
+  <h1>{A.h1}</h1>
+  <span class="chip chip--prod chip--lg open-to"><Icon name="check" size={12} />{t.openTo}</span>
+  {A.intro.map((p) => <p>{p}</p>)}
+</section>
+
+<section class="block page-x" aria-labelledby="exp-title">
+  <div class="head">
+    <span class="tag">{A.expTag}</span>
+    <h2 id="exp-title">{A.expTitle}</h2>
+    <p class="employer">{A.employer}</p>
+  </div>
+  <ol class="stages">
+    {stages.map((s, i) => (
+      <li class:list={['stage', { 'stage--now': i === 0 }]}>
+        <div class="s-meta">
+          <span class="s-dates tag">{s.dates[lang]}</span>
+          <h3>{s.role[lang]}</h3>
+        </div>
+        <div class="s-body">
+          <p>{s.what[lang]}</p>
+          {s.wins && <ul class="wins">{s.wins[lang].map((w) => <li>{w}</li>)}</ul>}
+        </div>
+      </li>
+    ))}
+  </ol>
+  <a class="link" href={projectsPath(lang)}>{t.allWork}<Icon name="arrow" /></a>
+</section>
+
+<section class="block page-x" aria-labelledby="skills-title">
+  <div class="head">
+    <span class="tag">{A.skillsTag}</span>
+    <h2 id="skills-title">{A.skillsTitle}</h2>
+    <p class="employer">{A.skillsNote}</p>
+  </div>
+  <div class="skills">
+    {skills.map((g) => (
+      <div class="sk">
+        <h3>{g.name[lang]}</h3>
+        <ul class="chips">{g.items.map((it) => <li class="chip chip--stack chip--lg">{it}</li>)}</ul>
+      </div>
+    ))}
+  </div>
+</section>
+
+<section class="block page-x" aria-labelledby="edu-title">
+  <div class="head">
+    <span class="tag">{A.eduTag}</span>
+    <h2 id="edu-title">{A.eduTitle}</h2>
+  </div>
+  <dl class="edu">
+    <div><dt class="tag">{A.degreeLabel}</dt><dd>{education.degree[lang]}</dd></div>
+    <div><dt class="tag">{A.certLabel}</dt>{education.certs.map((c) => <dd>{c[lang]}</dd>)}</div>
+    <div><dt class="tag">{A.langLabel}</dt>{education.langs.map((c) => <dd>{c[lang]}</dd>)}</div>
+  </dl>
+</section>
+
+<section class="block page-x" aria-labelledby="cta-title">
+  <div class="head">
+    <h2 id="cta-title">{A.ctaTitle}</h2>
+    <p class="employer">{A.ctaBody}</p>
+  </div>
+  <div class="ctas">
+    {contact.email && <a class="btn btn--primary btn--lg" href={`mailto:${contact.email}`}><Icon name="mail" />{contact.email}</a>}
+    <a class:list={['btn', 'btn--lg', contact.email ? 'btn--secondary' : 'btn--primary']} href={contact.linkedin}><Icon name="linkedin" />LinkedIn</a>
+    {showMissing && !contact.email && <span class="missing">correo · {L.missing}</span>}
+    {showMissing && <span class="missing">CV · {L.missing}</span>}
+  </div>
+</section>
+
+<div class="foot page-x"><Footer lang={lang} /></div>
+
+<style>
+  .intro { padding-top: 96px; padding-bottom: 72px; display: flex; flex-direction: column; gap: 20px; }
+  h1 { max-width: 1000px; font: 600 var(--jc-fs-display)/1.05 var(--jc-font-sans); letter-spacing: var(--jc-ls-display); }
+  .intro > p { max-width: 760px; font: 400 20px/1.55 var(--jc-font-sans); color: var(--jc-text-2); }
+  .open-to { align-self: flex-start; white-space: normal; height: auto; min-height: 28px; padding-block: 4px; }
+
+  .block { padding-top: 80px; padding-bottom: 80px; border-top: 1px solid var(--jc-hairline); display: flex; flex-direction: column; gap: 40px; }
+  .head { display: flex; flex-direction: column; gap: 8px; }
+  h2 { font: 600 var(--jc-fs-h1)/1.1 var(--jc-font-sans); letter-spacing: var(--jc-ls-h1); }
+  .employer { font: 400 17px/1.5 var(--jc-font-sans); color: var(--jc-text-2); max-width: 720px; }
+
+  .stages { list-style: none; padding: 0; display: flex; flex-direction: column; }
+  .stage { display: grid; grid-template-columns: 300px minmax(0, 1fr); gap: 40px; padding: 32px 0; border-top: 1px solid var(--jc-hairline); }
+  .stage:first-child { border-top: 0; padding-top: 0; }
+  .s-meta { display: flex; flex-direction: column; gap: 8px; }
+  .s-dates { font-size: 13px; }
+  .stage--now .s-dates { color: var(--jc-accent); }
+  h3 { font: 600 22px/1.3 var(--jc-font-sans); }
+  .s-body { display: flex; flex-direction: column; gap: 16px; max-width: 760px; }
+  .s-body > p { font: 400 17px/1.6 var(--jc-font-sans); color: var(--jc-text-2); }
+  .wins { padding-left: 20px; display: flex; flex-direction: column; gap: 10px; }
+  .wins li { font: 400 16px/1.55 var(--jc-font-sans); color: var(--jc-ink); }
+  .wins li::marker { color: var(--jc-text-3); }
+  .link { align-self: flex-start; }
+
+  .skills { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; }
+  .sk { display: flex; flex-direction: column; gap: 14px; }
+  .sk h3 { font-size: 18px; }
+  .chips { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; }
+  .chips .chip { white-space: normal; height: auto; min-height: 28px; padding-block: 5px; line-height: 1.3; }
+
+  .edu { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; margin: 0; }
+  .edu div { display: flex; flex-direction: column; gap: 10px; }
+  .edu dd { margin: 0; font: 400 16px/1.55 var(--jc-font-sans); color: var(--jc-ink); }
+
+  .ctas { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+  .foot { padding-bottom: 48px; }
+
+  @media (max-width: 1100px) {
+    .stage { grid-template-columns: 220px minmax(0, 1fr); gap: 28px; }
+    .skills, .edu { grid-template-columns: minmax(0, 1fr); }
+  }
+  @media (max-width: 760px) {
+    .stage { grid-template-columns: minmax(0, 1fr); gap: 12px; }
+  }
+  @media (max-width: 640px) {
+    .intro { padding-top: 32px; padding-bottom: 40px; gap: 14px; }
+    .intro > p { font-size: 17px; }
+    .block { padding-top: 48px; padding-bottom: 48px; gap: 28px; }
+    h3 { font-size: 20px; }
+    .ctas .btn { width: 100%; height: 48px; }
+    .foot { padding-bottom: 32px; }
+  }
+</style>

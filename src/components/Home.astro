@@ -2,23 +2,77 @@
 import Hero from './Hero.astro';
 import Icon from './Icon.astro';
 import OrgChip from './OrgChip.astro';
-import VideoFacade from './VideoFacade.astro';
+import CaseCover from './CaseCover.astro';
 import Footer from './Footer.astro';
-import { ui, casePath, showMissing, type Lang } from '../i18n/ui';
+import { ui, casePath, projectsPath, aboutPath, showMissing, contact, type Lang } from '../i18n/ui';
 import { cases, hasPage } from '../data/cases';
+import { fronts, numbers, timeline, countByFront, examplesByFront } from '../data/fronts';
 
 interface Props { lang: Lang }
 const { lang } = Astro.props;
 const t = ui[lang];
-const projectsId = lang === 'es' ? 'proyectos' : 'projects';
+const L = t.caseL;
 const contactId = lang === 'es' ? 'contacto' : 'contact';
-const brands = [
-  { name: 'Iterum', shot: 'iterum' },
-  { name: 'Domi', shot: 'domi' },
-  { name: 'Vocatio', shot: 'vocatio' },
-];
+const featured = ['mcp', 'einstein', 'iterum', 'domi'].map((id) => cases.find((c) => c.id === id)!);
+const about = aboutPath(lang);
 ---
 <Hero lang={lang} />
+
+<section class="numbers page-x" aria-labelledby="numbers-title">
+  <div class="head"><span class="tag">{t.numbersTag}</span><h2 id="numbers-title">{t.numbersTitle}</h2></div>
+  <dl class="nums">
+    {numbers.map((n) => (
+      <div class="num">
+        <dt class="num-l">{n.l[lang]}</dt>
+        <dd class="num-v">{n.v}</dd>
+        <dd class="num-s">{L.source}: {n.source[lang]}</dd>
+      </div>
+    ))}
+  </dl>
+</section>
+
+<section class="block block--cases page-x" aria-labelledby="cases-title">
+  <div class="head head--row">
+    <div class="head"><span class="tag">{t.featuredTag}</span><h2 id="cases-title">{t.featuredTitle}</h2></div>
+    <a class="link" href={projectsPath(lang)}>{t.allWork}<Icon name="arrow" /></a>
+  </div>
+  <ul class="cases">
+    {featured.map((c, i) => {
+      const linked = hasPage(c.id);
+      const Tag = linked ? 'a' : 'div';
+      return (
+        <li>
+          <Tag class:list={['case', { flip: i % 2 === 1, linked }]} href={linked ? casePath(lang, c.id) : undefined}>
+            <div class="shot-wrap"><CaseCover lang={lang} c={c} /></div>
+            <div class="body">
+              <div class="meta"><span class="tag">{String(i + 1).padStart(2, '0')} / 04</span><span class="bar" aria-hidden="true"></span><span class="cname">{c.name[lang]}</span></div>
+              <p class="hook">{c.hook[lang]}</p>
+              <div class="chips"><OrgChip lang={lang} org={c.org} status={c.status} /></div>
+              {linked ? <span class="link read">{t.readCase}<Icon name="arrow" /></span> : <span class="soon tag">{t.soon}</span>}
+            </div>
+          </Tag>
+        </li>
+      );
+    })}
+  </ul>
+</section>
+
+<section class="block page-x" aria-labelledby="doors-title">
+  <div class="head"><span class="tag">{t.doorsTag}</span><h2 id="doors-title">{t.doorsTitle}</h2></div>
+  <ul class="doors">
+    {fronts.map((f) => (
+      <li>
+        <a class="door" href={`${projectsPath(lang)}?frente=${f.id}`}>
+          <span class="tag">{t.doorCount(countByFront(f.id))}</span>
+          <span class="d-name">{f.name[lang]}</span>
+          <span class="d-blurb">{f.blurb[lang]}</span>
+          <span class="d-ex">{examplesByFront(f.id, lang).join(' · ')}</span>
+          <Icon name="arrow" size={18} class="d-arrow" />
+        </a>
+      </li>
+    ))}
+  </ul>
+</section>
 
 <section class="block page-x" aria-labelledby="thesis">
   <div class="head"><span class="tag">{t.thesisTag}</span><h2 id="thesis">{t.thesisTitle}</h2></div>
@@ -36,60 +90,53 @@ const brands = [
   </ol>
 </section>
 
-<section class="block block--cases page-x" id={projectsId} aria-labelledby="cases-title">
-  <div class="head"><span class="tag">{t.casesTag}</span><h2 id="cases-title">{t.casesTitle}</h2></div>
-  <ul class="cases">
-    {cases.map((c, i) => {
-      const linked = hasPage(c.id);
-      const Tag = linked ? 'a' : 'div';
-      return (
-        <li>
-          <Tag class:list={['case', { flip: i % 2 === 1, linked }]} href={linked ? casePath(lang, c.id) : undefined}>
-            <div class="shot-wrap"><div class="shot shot-ph" data-shot={c.shot}>{showMissing ? `PLACEHOLDER · ${c.name[lang]}` : ''}</div></div>
-            <div class="body">
-              <div class="meta"><span class="tag">{String(i + 1).padStart(2, '0')} / 08</span><span class="bar" aria-hidden="true"></span><span class="cname">{c.name[lang]}</span></div>
-              <p class="hook">{c.hook[lang]}</p>
-              <div class="chips"><OrgChip lang={lang} org={c.org} status={c.status === 'post' ? 'post' : undefined} /></div>
-              {linked && <span class="link read">{t.readCase}<Icon name="arrow" /></span>}
-            </div>
-          </Tag>
-        </li>
-      );
-    })}
-  </ul>
-</section>
-
-<section class="chassis page-x" aria-labelledby="chassis-title">
-  <div class="c-left">
-    <div class="head"><span class="tag">{t.chassisTag}</span><h2 id="chassis-title">{t.chassisTitle}</h2></div>
-    <div class="diagram" role="img" aria-label={t.chassisDiagram}>
-      <div class="apps">
-        {brands.map((b) => <span class="app-node"><span class="dot" data-shot={b.shot}></span>{b.name}</span>)}
-      </div>
-      <div class="wires" aria-hidden="true"><span></span><span></span><span></span></div>
-      <div class="base"><span class="base-name">Fundamentum</span><span class="base-sub">{t.chassisSub}</span></div>
-    </div>
+<section class="block page-x" aria-labelledby="timeline-title">
+  <div class="head head--row">
+    <div class="head"><span class="tag">{t.timelineTag}</span><h2 id="timeline-title">{t.timelineTitle}</h2></div>
+    <a class="link" href={about}>{t.nav.find((n) => n.key === 'about')!.label}<Icon name="arrow" /></a>
   </div>
-  <VideoFacade lang={lang} title={t.chassisVideo} duration="1:00" poster="fundamentum" />
+  <ol class="timeline" style={`--n:${timeline.length}`}>
+    {timeline.map((m) => (
+      <li class:list={[m.mark && `t-${m.mark}`]}>
+        <span class="t-dot" aria-hidden="true"></span>
+        <span class="tag t-year">{m.mark === 'now' ? (lang === 'es' ? 'Hoy' : 'Today') : m.year || '\u00a0'}</span>
+        <span class="t-text">{m.t[lang]}</span>
+      </li>
+    ))}
+  </ol>
 </section>
 
 <section class="close page-x" id={contactId} aria-labelledby="close-title">
   <div class="close-body">
     <h2 id="close-title">{t.closeTitle}</h2>
     <p>{t.closeBody}</p>
+    <span class="chip chip--prod chip--lg open-to"><Icon name="check" size={12} />{t.openTo}</span>
     <div class="close-ctas">
-      <a class="btn btn--primary btn--lg" href="mailto:hola@josecarloscorona.dev"><Icon name="mail" />{t.hero.cta2}</a>
-      <a class="btn btn--secondary btn--lg" href="https://www.linkedin.com/in/josecarloscorona"><Icon name="linkedin" />LinkedIn</a>
+      {contact.email && <a class="btn btn--primary btn--lg" href={`mailto:${contact.email}`}><Icon name="mail" />{t.hero.cta2}</a>}
+      <a class:list={['btn', 'btn--lg', contact.email ? 'btn--secondary' : 'btn--primary']} href={contact.linkedin}><Icon name="linkedin" />LinkedIn</a>
+      {showMissing && !contact.email && <span class="missing">correo · {t.caseL.missing}</span>}
     </div>
   </div>
   <Footer lang={lang} />
 </section>
 
 <style>
+  .soon { font-size: 12px; }
+  .open-to { align-self: flex-start; white-space: normal; height: auto; min-height: 28px; padding-block: 4px; }
   .block { padding-top: 96px; padding-bottom: 96px; border-top: 1px solid var(--jc-hairline); display: flex; flex-direction: column; gap: 48px; }
   .block--cases { gap: 40px; }
   .head { display: flex; flex-direction: column; gap: 8px; }
+  .head--row { flex-direction: row; justify-content: space-between; align-items: flex-end; gap: 16px 24px; flex-wrap: wrap; }
   h2 { font: 600 var(--jc-fs-h1)/1.1 var(--jc-font-sans); letter-spacing: var(--jc-ls-h1); }
+
+  .numbers { padding-top: 64px; padding-bottom: 64px; background: var(--jc-surface); display: flex; flex-direction: column; gap: 32px; }
+  .nums { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-top: 1px solid var(--jc-hairline-strong); }
+  .num { padding: 28px 24px 0 0; margin-right: 24px; border-right: 1px solid var(--jc-hairline); display: flex; flex-direction: column; gap: 8px; }
+  .num:last-child { border-right: 0; margin-right: 0; }
+  .num dd { margin: 0; }
+  .num-v { order: -1; font: 600 var(--jc-fs-display)/1 var(--jc-font-sans); letter-spacing: var(--jc-ls-display); }
+  .num-l { font-size: 15px; line-height: 1.45; color: var(--jc-text-2); }
+  .num-s { font: 400 12px/1.4 var(--jc-font-mono); color: var(--jc-text-3); }
 
   .principles { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; border-top: 2px solid var(--jc-ink); }
   .principles li { padding-top: 32px; display: flex; flex-direction: column; gap: 16px; }
@@ -107,7 +154,7 @@ const brands = [
   .case.flip { flex-direction: row-reverse; }
   .case.linked:hover, .case.linked:focus-visible { box-shadow: var(--jc-shadow-3); border-color: var(--jc-hairline-strong); color: var(--jc-ink); }
   .case:focus-visible { border-radius: var(--jc-radius-lg); }
-  .shot-wrap { flex: 0 0 520px; aspect-ratio: 16 / 10; border-radius: var(--jc-radius-md); overflow: hidden; }
+  .shot-wrap { flex: 0 0 440px; aspect-ratio: 16 / 10; border-radius: var(--jc-radius-md); overflow: hidden; }
   .shot { width: 100%; height: 100%; transition: transform var(--jc-dur-slow) var(--jc-ease); }
   .case.linked:hover .shot { transform: scale(1.03); }
   .body { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 14px; padding: 8px 16px; }
@@ -119,46 +166,46 @@ const brands = [
   .read { align-self: flex-start; }
   .case.linked:hover .read :global(svg) { transform: translateX(4px); }
 
-  .chassis {
-    padding-top: 96px; padding-bottom: 96px; background: var(--jc-surface);
-    display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 64px; align-items: center;
+  .doors { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 16px; }
+  .door {
+    position: relative; height: 100%; padding: 24px 20px 56px; border-radius: var(--jc-radius-lg); border: 1px solid var(--jc-hairline);
+    display: flex; flex-direction: column; gap: 10px; color: var(--jc-ink); text-decoration: none; background: var(--jc-card);
+    transition: box-shadow var(--jc-dur-base) var(--jc-ease), border-color var(--jc-dur-base) var(--jc-ease);
   }
-  .c-left { display: flex; flex-direction: column; gap: 28px; }
-  .diagram {
-    padding: 28px; border-radius: var(--jc-radius-lg); border: 1px solid var(--jc-hairline);
-    background-color: var(--jc-canvas); background-image: radial-gradient(var(--jc-hairline-strong) 1px, transparent 1px); background-size: 16px 16px;
-  }
-  .apps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
-  .app-node {
-    padding: 14px 16px; border-radius: var(--jc-radius-md); border: 1px solid var(--jc-hairline-strong); background: var(--jc-card);
-    display: flex; align-items: center; gap: 10px; font: 600 15px/1.2 var(--jc-font-sans); min-width: 0;
-  }
-  .dot { width: 10px; height: 10px; border-radius: 3px; flex-shrink: 0; }
-  .dot[data-shot='iterum'] { background: var(--jc-brand-iterum); }
-  .dot[data-shot='domi'] { background: var(--jc-brand-domi); }
-  .dot[data-shot='vocatio'] { background: var(--jc-brand-vocatio); }
-  .wires { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; height: 36px; }
-  .wires span { justify-self: center; width: 1.5px; background: var(--jc-text-3); }
-  .base {
-    padding: 16px 18px; border-radius: var(--jc-radius-md); border: 2px solid var(--jc-accent); background: var(--jc-accent-soft);
-    display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px 16px;
-  }
-  .base-name { font: 600 17px/1.2 var(--jc-font-sans); }
-  .base-sub { font: 400 12px/1.3 var(--jc-font-mono); color: var(--jc-accent); }
+  .door:hover { box-shadow: var(--jc-shadow-3); border-color: var(--jc-hairline-strong); color: var(--jc-ink); }
+  .d-name { font: 600 20px/1.2 var(--jc-font-sans); letter-spacing: -.3px; }
+  .d-blurb { font-size: 15px; line-height: 1.45; color: var(--jc-text-2); }
+  .d-ex { font: 400 12px/1.45 var(--jc-font-mono); color: var(--jc-text-3); }
+  .door :global(.d-arrow) { position: absolute; left: 20px; bottom: 20px; color: var(--jc-accent); transition: transform var(--jc-dur-fast) var(--jc-ease); }
+  .door:hover :global(.d-arrow) { transform: translateX(4px); }
 
-  .close { padding-top: 120px; padding-bottom: 48px; display: flex; flex-direction: column; gap: 96px; }
+  .timeline { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(var(--n), minmax(0, 1fr)); gap: 16px; position: relative; }
+  .timeline::before { content: ''; position: absolute; left: 0; right: 0; top: 6px; height: 1.5px; background: var(--jc-hairline-strong); }
+  .timeline li { position: relative; display: flex; flex-direction: column; gap: 10px; padding-top: 28px; }
+  .t-dot { position: absolute; top: 0; left: 0; width: 14px; height: 14px; border-radius: 50%; border: 2px solid var(--jc-hairline-strong); background: var(--jc-canvas); }
+  .t-origin .t-dot { border-color: var(--jc-accent); background: var(--jc-accent); }
+  .t-now .t-dot { border-color: var(--jc-ink); background: var(--jc-ink); }
+  .t-origin .t-year { color: var(--jc-accent); }
+  .t-text { font: 500 16px/1.35 var(--jc-font-sans); }
+
+  .close { padding-top: 120px; padding-bottom: 48px; border-top: 1px solid var(--jc-hairline); display: flex; flex-direction: column; gap: 96px; }
   .close-body { display: flex; flex-direction: column; gap: 20px; max-width: 900px; }
   .close h2 { font: 600 var(--jc-fs-display)/1.05 var(--jc-font-sans); letter-spacing: var(--jc-ls-display); }
   .close p { font: 400 24px/1.45 var(--jc-font-sans); color: var(--jc-text-2); }
   .close-ctas { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
   .close-ctas .btn { padding: 0 22px; }
 
+  @media (max-width: 1200px) {
+    .doors { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  }
   @media (max-width: 1100px) {
     .case, .case.flip { flex-direction: column; align-items: stretch; gap: 0; padding: 8px; }
     .shot-wrap { flex: none; }
     .body { padding: 16px 8px 8px; }
     .hook { font-size: 26px; }
-    .chassis { grid-template-columns: minmax(0, 1fr); gap: 32px; }
+    .nums { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .num:nth-child(2n) { border-right: 0; margin-right: 0; }
+    .num { padding-bottom: 24px; }
   }
   @media (max-width: 900px) {
     .principles { grid-template-columns: minmax(0, 1fr); gap: 0; border-top: 0; }
@@ -167,12 +214,25 @@ const brands = [
     .principles h3 { font-size: 22px; line-height: 1.2; letter-spacing: -.4px; }
     .principles p { font-size: 15px; line-height: 1.5; }
     .principles .link, .app { font-size: 14px; }
+    .doors { grid-template-columns: minmax(0, 1fr); gap: 10px; }
+    .door { padding: 18px 56px 18px 18px; }
+    .door :global(.d-arrow) { left: auto; right: 18px; top: 50%; bottom: auto; margin-top: -9px; }
+    .timeline { grid-template-columns: minmax(0, 1fr); gap: 0; padding-left: 28px; }
+    .timeline::before { left: 6px; right: auto; top: 6px; bottom: 6px; width: 1.5px; height: auto; }
+    .timeline li { flex-direction: row; align-items: baseline; gap: 12px; padding: 0 0 18px; }
+    .t-dot { left: -28px; top: 3px; }
+    .t-year { flex: 0 0 40px; }
   }
   @media (max-width: 640px) {
     .block { padding-top: 40px; padding-bottom: 40px; gap: 16px; }
     .block--cases .tag { display: none; }
     .head h2 { font-size: 32px; letter-spacing: -.9px; }
     #thesis { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+    .numbers { padding-top: 40px; padding-bottom: 40px; gap: 16px; }
+    .num { padding: 18px 12px 18px 0; margin-right: 12px; gap: 4px; }
+    .num-v { font-size: 36px; letter-spacing: -1px; }
+    .num-l { font-size: 14px; }
+    .num-s { font-size: 11px; }
     .cases { gap: 16px; }
     .body { gap: 6px; padding: 12px 8px 8px; }
     .meta { order: 1; }
@@ -182,16 +242,8 @@ const brands = [
     .chips { order: 0; }
     .read { order: 3; }
     .shot { font-size: 11px; padding: 10px; }
-    .chassis { padding-top: 40px; padding-bottom: 40px; gap: 16px; }
-    .chassis h2 { font-size: 28px; letter-spacing: -.6px; }
-    .chassis .tag { display: none; }
-    .diagram { padding: 12px; }
-    .apps, .wires { gap: 8px; }
-    .app-node { padding: 10px; font-size: 13px; gap: 6px; }
-    .wires { height: 18px; }
-    .base { padding: 12px; }
-    .base-name { font-size: 15px; }
-    .base-sub { font-size: 11px; }
+    .d-name { font-size: 18px; }
+    .d-blurb { font-size: 14px; }
     .close { padding-top: 48px; padding-bottom: 32px; gap: 32px; }
     .close-body { gap: 14px; }
     .close h2 { font-size: 32px; letter-spacing: -.9px; }

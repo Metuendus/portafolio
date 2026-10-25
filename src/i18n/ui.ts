@@ -3,7 +3,7 @@ export type Lang = 'es' | 'en';
 export const ui = {
   es: {
     nav: [
-      { label: 'Proyectos', href: '/#proyectos', key: 'projects' },
+      { label: 'Proyectos', href: '/proyectos/', key: 'projects' },
       { label: 'Escritos', href: '/escritos/', key: 'writing' },
       { label: 'Sobre mí', href: '/sobre-mi/', key: 'about' },
       { label: 'Contacto', href: '/#contacto', key: 'contact' },
@@ -17,13 +17,14 @@ export const ui = {
     home: 'Inicio',
     footer: 'Hecho con Astro en Google Cloud · © 2026 · CDMX',
     readCase: 'Leer el caso',
+    soon: 'Caso completo, próximamente',
     org: { epa: 'EPA', own: 'Propia' },
-    status: { prod: 'En producción', wip: 'En construcción', post: 'Postmortem' },
+    status: { prod: 'En producción', live: 'Desplegada · uso personal', wip: 'En construcción', post: 'Postmortem', exp: 'Experimento' },
     hero: {
       h1a: 'Construyo sistemas de IA que la gente usa ',
       h1b: 'todos los días',
       h1c: ', no demos.',
-      sub: 'Lidero datos e IA en una agencia de marketing digital de ~190 personas y construyo productos propios con agentes en Google Cloud. 9 años en marketing digital, desde CDMX.',
+      sub: 'Soy AI & Automation Lead en EPA.Digital, una agencia de performance marketing de unas 200 personas, y construyo productos propios con agentes en Google Cloud. Llevo 9 años ahí, de cuentas a IA, desde CDMX.',
       cta1: 'Ver proyectos',
       cta2: 'Contacto',
       agent: 'agente',
@@ -35,8 +36,46 @@ export const ui = {
       dismissed: 'Descartado. Nada cambió.',
       replay: 'Repetir',
     },
+    fiche: 'AI & Automation Lead en EPA.Digital · CDMX · desde 2017',
+    openTo: 'Abierto a roles de AI Engineer y Applied AI · CDMX, híbrido o remoto',
+    quick: {
+      open: 'Tengo 30 segundos',
+      title: 'José Carlos en 30 segundos',
+      role: 'AI & Automation Lead en EPA.Digital, una agencia de performance marketing de unas 200 personas. Construyo los sistemas de IA que usan los equipos de cuentas y dirijo a un desarrollador de IA.',
+      where: 'CDMX · 9 años en EPA.Digital · español nativo, inglés intermedio',
+      stackLabel: 'STACK',
+      stack: ['Python', 'TypeScript', 'BigQuery', 'Cloud Run', 'Vertex AI', 'MCP', 'Claude', 'Gemini', 'Next.js'],
+      winsLabel: 'LOGROS',
+      wins: [
+        { t: 'Servidor MCP de medios', d: 'Hice la primera versión y hoy soy co-dueño técnico: 28 personas activas y más de 14.7M tokens procesados.', s: 'panel de administración, oct 2026' },
+        { t: 'Librería de Prompts de la agencia', d: 'La diseñé y construí; se abrió a las 170 personas de EPA y cuesta 0 USD al mes operarla.', s: 'lanzamiento, nov 2025' },
+        { t: 'Dashboard y ETL de SKU para Coppel', d: 'El análisis diario de SKU pasó de un día completo a 30 minutos.', s: 'proyecto con Coppel, 2026' },
+      ],
+      close: 'Cerrar',
+      more: 'Ver todos los proyectos',
+    },
+    numbersTag: 'EN NÚMEROS',
+    numbersTitle: 'Lo que ya está en uso',
+    featuredTag: 'TRABAJO DESTACADO',
+    featuredTitle: 'Por dónde empezar',
+    allWork: 'Ver todos los proyectos',
+    doorsTag: 'MÁS ALLÁ DE ESTOS CASOS',
+    doorsTitle: 'Lo demás que hago',
+    doorCount: (n: number) => `${n} ${n === 1 ? 'proyecto' : 'proyectos'}`,
+    timelineTag: 'TRAYECTORIA',
+    timelineTitle: 'Cómo llegué aquí',
+    projectsPage: {
+      title: 'Proyectos',
+      intro: 'Casos completos, proyectos de EPA, productos propios y el laboratorio donde pruebo ideas. Todo con su año y su estado.',
+      filterLabel: 'Filtrar por frente',
+      all: 'Todo',
+      cases: 'CASOS',
+      others: 'TAMBIÉN',
+      noLine: '(falta) descripción de una línea',
+      exp: 'Experimento',
+    },
     thesisTag: 'CÓMO TRABAJO',
-    thesisTitle: 'Tres principios',
+    thesisTitle: 'Cómo decido',
     principles: [
       { t: 'Proponer, no imponer', d: 'El sistema sugiere el cambio; una persona lo acepta o lo descarta.', app: 'Lo muestra: Servidor MCP de medios', case: 'mcp' },
       { t: 'Toda cifra con fuente', d: 'Si un número aparece en pantalla, se puede rastrear de dónde salió.', app: 'Lo muestra: Domi', case: 'domi' },
@@ -50,7 +89,7 @@ export const ui = {
     chassisDiagram: 'Iterum, Domi y Vocatio corren sobre Fundamentum',
     chassisVideo: 'Fundamentum en 60 s',
     closeTitle: 'Soy José Carlos Corona.',
-    closeBody: 'Lidero datos e IA en EPA y construyo Iterum, Domi y Vocatio sobre Fundamentum.',
+    closeBody: 'AI & Automation Lead en EPA.Digital. Por mi cuenta construyo Iterum, Domi y Vocatio sobre Fundamentum.',
     video: {
       play: 'Reproducir',
       poster: 'PLACEHOLDER · póster del video',
@@ -60,18 +99,18 @@ export const ui = {
       youtube: 'Verlo en YouTube',
     },
     caseL: {
-      projects: 'Proyectos', problem: 'Problema', how: 'Cómo funciona', dec: 'Tres decisiones difíciles',
+      projects: 'Proyectos', problem: 'Problema', how: 'Cómo funciona', dec: 'Decisiones',
       result: 'Resultado', shots: 'Capturas', role: 'MI ROL', next: 'QUÉ SIGUE', prev: 'ANTERIOR', nextCase: 'SIGUIENTE',
       before: 'ANTES', after: 'DESPUÉS', decision: 'DECISIÓN', insteadOf: 'en lugar de', source: 'Fuente',
       missing: '(falta)', missingNext: '(falta) siguiente paso', light: 'CLARO', dark: 'OSCURO',
-      whenData: 'Cuando la haya, va aquí con su fuente.', breadcrumb: 'Migas de pan',
+      whenData: 'Cuando existan, aparecerán aquí con su fuente.', breadcrumb: 'Migas de pan',
       chapters: ['01 · PROBLEMA', '02 · MOMENTO CLAVE', '03 · RESULTADO'],
       placeholder: 'PLACEHOLDER',
     },
   },
   en: {
     nav: [
-      { label: 'Projects', href: '/en/#projects', key: 'projects' },
+      { label: 'Projects', href: '/en/projects/', key: 'projects' },
       { label: 'Writing', href: '/en/writing/', key: 'writing' },
       { label: 'About', href: '/en/about/', key: 'about' },
       { label: 'Contact', href: '/en/#contact', key: 'contact' },
@@ -85,13 +124,14 @@ export const ui = {
     home: 'Home',
     footer: 'Built with Astro on Google Cloud · © 2026 · Mexico City',
     readCase: 'Read the case',
+    soon: 'Full case coming soon',
     org: { epa: 'EPA', own: 'Personal' },
-    status: { prod: 'In production', wip: 'In progress', post: 'Postmortem' },
+    status: { prod: 'In production', live: 'Deployed · personal use', wip: 'In progress', post: 'Postmortem', exp: 'Experiment' },
     hero: {
       h1a: 'I build AI systems people use ',
       h1b: 'every day',
       h1c: ', not demos.',
-      sub: 'I lead data and AI at a ~190-person digital marketing agency and build my own agent products on Google Cloud. 9 years in digital marketing, based in Mexico City.',
+      sub: 'I’m AI & Automation Lead at EPA.Digital, a performance marketing agency of about 200 people, and I build my own agent products on Google Cloud. 9 years there, from accounts to AI, based in Mexico City.',
       cta1: 'View projects',
       cta2: 'Contact',
       agent: 'agent',
@@ -103,8 +143,46 @@ export const ui = {
       dismissed: 'Dismissed. Nothing changed.',
       replay: 'Replay',
     },
+    fiche: 'AI & Automation Lead at EPA.Digital · Mexico City · since 2017',
+    openTo: 'Open to AI Engineer and Applied AI roles · Mexico City, hybrid or remote',
+    quick: {
+      open: 'I have 30 seconds',
+      title: 'José Carlos in 30 seconds',
+      role: 'AI & Automation Lead at EPA.Digital, a performance marketing agency of about 200 people. I build the AI systems account teams use and lead one AI developer.',
+      where: 'Mexico City · 9 years at EPA.Digital · native Spanish, intermediate English',
+      stackLabel: 'STACK',
+      stack: ['Python', 'TypeScript', 'BigQuery', 'Cloud Run', 'Vertex AI', 'MCP', 'Claude', 'Gemini', 'Next.js'],
+      winsLabel: 'RESULTS',
+      wins: [
+        { t: 'Media MCP server', d: 'I built the first version and now co-own it technically: 28 active people and over 14.7M tokens processed.', s: 'admin dashboard, Oct 2026' },
+        { t: 'The agency’s Prompt Library', d: 'I designed and built it; it opened to all 170 people at EPA and costs 0 USD a month to run.', s: 'launch, Nov 2025' },
+        { t: 'SKU dashboard and ETL for Coppel', d: 'Daily SKU analysis went from a full day to 30 minutes.', s: 'Coppel project, 2026' },
+      ],
+      close: 'Close',
+      more: 'See all projects',
+    },
+    numbersTag: 'BY THE NUMBERS',
+    numbersTitle: 'What’s already in use',
+    featuredTag: 'FEATURED WORK',
+    featuredTitle: 'Where to start',
+    allWork: 'See all projects',
+    doorsTag: 'BEYOND THESE CASES',
+    doorsTitle: 'Everything else I do',
+    doorCount: (n: number) => `${n} ${n === 1 ? 'project' : 'projects'}`,
+    timelineTag: 'CAREER',
+    timelineTitle: 'How I got here',
+    projectsPage: {
+      title: 'Projects',
+      intro: 'Full cases, EPA projects, my own products and the lab where I try ideas. Each with its year and status.',
+      filterLabel: 'Filter by front',
+      all: 'All',
+      cases: 'CASES',
+      others: 'ALSO',
+      noLine: '(missing) one-line description',
+      exp: 'Experiment',
+    },
     thesisTag: 'HOW I WORK',
-    thesisTitle: 'Three principles',
+    thesisTitle: 'How I decide',
     principles: [
       { t: 'Propose, don’t impose', d: 'The system suggests the change; a person accepts or dismisses it.', app: 'See it in: Media MCP server', case: 'mcp' },
       { t: 'Every figure has a source', d: 'If a number shows up on screen, you can trace where it came from.', app: 'See it in: Domi', case: 'domi' },
@@ -118,7 +196,7 @@ export const ui = {
     chassisDiagram: 'Iterum, Domi and Vocatio run on Fundamentum',
     chassisVideo: 'Fundamentum in 60 s',
     closeTitle: 'I’m José Carlos Corona.',
-    closeBody: 'I lead data and AI at EPA and build Iterum, Domi and Vocatio on Fundamentum.',
+    closeBody: 'AI & Automation Lead at EPA.Digital. On my own time I build Iterum, Domi and Vocatio on Fundamentum.',
     video: {
       play: 'Play',
       poster: 'PLACEHOLDER · video poster',
@@ -128,11 +206,11 @@ export const ui = {
       youtube: 'Watch on YouTube',
     },
     caseL: {
-      projects: 'Projects', problem: 'Problem', how: 'How it works', dec: 'Three hard decisions',
+      projects: 'Projects', problem: 'Problem', how: 'How it works', dec: 'Decisions',
       result: 'Result', shots: 'Screenshots', role: 'MY ROLE', next: 'WHAT’S NEXT', prev: 'PREVIOUS', nextCase: 'NEXT',
       before: 'BEFORE', after: 'AFTER', decision: 'DECISION', insteadOf: 'instead of', source: 'Source',
       missing: '(missing)', missingNext: '(missing) next step', light: 'LIGHT', dark: 'DARK',
-      whenData: 'When there is, it goes here with its source.', breadcrumb: 'Breadcrumb',
+      whenData: 'When they exist, they’ll show up here with their source.', breadcrumb: 'Breadcrumb',
       chapters: ['01 · PROBLEM', '02 · KEY MOMENT', '03 · RESULT'],
       placeholder: 'PLACEHOLDER',
     },
@@ -142,7 +220,18 @@ export const ui = {
 export type UI = (typeof ui)[Lang];
 
 export const homePath = (lang: Lang) => (lang === 'es' ? '/' : '/en/');
+export const projectsPath = (lang: Lang) => (lang === 'es' ? '/proyectos/' : '/en/projects/');
 export const casePath = (lang: Lang, slug: string) => (lang === 'es' ? `/proyectos/${slug}/` : `/en/projects/${slug}/`);
 
 /** Borrador muestra los «(falta)»; producción los oculta (Tweak `mode` del handoff). */
 export const showMissing = import.meta.env.DEV || import.meta.env.PUBLIC_BORRADOR === '1';
+export const aboutPath = (lang: Lang) => (lang === 'es' ? '/sobre-mi/' : '/en/about/');
+
+/** Contacto público. El correo del dominio todavía no existe: sin correo, el sitio lleva a LinkedIn. */
+export const contact = {
+  email: null as string | null,
+  linkedin: 'https://www.linkedin.com/in/josecarloscorona/',
+};
+
+/** Escritos aún no tiene contenido: solo aparece en borrador. */
+export const navItems = (lang: Lang) => ui[lang].nav.filter((l) => l.key !== 'writing' || showMissing);

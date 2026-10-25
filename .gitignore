@@ -1,4 +1,5 @@
 node_modules/
 dist/
+dist-borrador/
 .astro/
 .env
