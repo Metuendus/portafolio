@@ -28,12 +28,12 @@ const nextText = c.nextText ?? (showMissing ? L.missingNext : undefined);
         {c.stack.map((s) => <span class="chip chip--stack chip--lg">{s}</span>)}
       </div>
     </div>
-    <div class="video-block">
+    {(c.videoId || showMissing) && <div class="video-block">
       <VideoFacade lang={lang} title={c.videoTitle} duration="60–90 s" poster={detail.poster} videoId={c.videoId} size="lg" />
       <ol class="chapters" aria-hidden={c.videoId ? undefined : 'true'}>
         {L.chapters.map((ch, i) => <li class:list={[`ch${i}`]}><span class="tick"></span><span class="tag">{ch}</span></li>)}
       </ol>
-    </div>
+    </div>}
   </header>
 
   <section class="row page-x" aria-labelledby="s-problem">
@@ -70,7 +70,8 @@ const nextText = c.nextText ?? (showMissing ? L.missingNext : undefined);
       {c.decisions.map((d, j) => (
         <div class="decision">
           <span class="d-tag">{L.decision} {String(j + 1).padStart(2, '0')}</span>
-          <p class="d-text">{c.lead} <strong>{d.what}</strong>{d.alt && <> {L.insteadOf} <s>{d.alt}</s></>} {d.why}</p>
+          <h3 class="d-title">{d.title}</h3>
+          <p class="d-text">{d.body}</p>
           {d.before && (
             <div class="ba">
               <div class="b"><span class="tag">{L.before}</span><span>{d.before}</span></div>
@@ -111,7 +112,7 @@ const nextText = c.nextText ?? (showMissing ? L.missingNext : undefined);
     </div>
   </section>
 
-  <section class="shots-sec page-x" aria-labelledby="s-shots">
+  {showMissing && <section class="shots-sec page-x" aria-labelledby="s-shots">
     <h2 id="s-shots">{L.shots}</h2>
     <div class="shots">
       {c.shots.map((g) => (
@@ -124,7 +125,7 @@ const nextText = c.nextText ?? (showMissing ? L.missingNext : undefined);
         </figure>
       ))}
     </div>
-  </section>
+  </section>}
 
   <section class="end page-x">
     <div class="cards">
@@ -194,9 +195,8 @@ const nextText = c.nextText ?? (showMissing ? L.missingNext : undefined);
   .decisions { display: flex; flex-direction: column; gap: 20px; }
   .decision { border: 1px solid var(--jc-hairline); border-radius: var(--jc-radius-lg); padding: 28px 32px; display: flex; flex-direction: column; gap: 20px; background: var(--jc-card); }
   .d-tag { font: 400 12px/1 var(--jc-font-mono); color: var(--jc-accent); }
-  .d-text { font: 500 22px/1.4 var(--jc-font-sans); }
-  .d-text strong { font-weight: 700; }
-  .d-text s { color: var(--jc-text-3); }
+  .d-title { font: 600 22px/1.35 var(--jc-font-sans); }
+  .d-text { font: 400 17px/1.6 var(--jc-font-sans); color: var(--jc-text-2); max-width: 720px; }
   .ba { display: grid; grid-template-columns: 1fr auto 1fr; gap: 12px; }
   .ba > div { padding: 16px; border-radius: var(--jc-radius-md); display: flex; flex-direction: column; gap: 6px; font-size: 15px; line-height: 1.45; }
   .b { background: var(--jc-surface); color: var(--jc-text-2); }
@@ -290,7 +290,8 @@ const nextText = c.nextText ?? (showMissing ? L.missingNext : undefined);
     .decisions { gap: 12px; }
     .decision { padding: 20px; gap: 10px; }
     .d-tag { font-size: 11px; }
-    .d-text { font-size: 18px; }
+    .d-title { font-size: 19px; }
+    .d-text { font-size: 16px; }
     .ba { display: none; }
     .quote { padding-top: 48px; padding-bottom: 48px; border-top: 0; }
     .quote figure { padding-top: 24px; gap: 16px; }

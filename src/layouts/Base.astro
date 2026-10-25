@@ -6,6 +6,9 @@ import { type Lang } from '../i18n/ui';
 interface Props { lang: Lang; title: string; description: string; altHref: string; current?: string }
 const { lang, title, description, altHref, current } = Astro.props;
 const skip = lang === 'es' ? 'Saltar al contenido' : 'Skip to content';
+const site = Astro.site ?? new URL('https://josecarloscorona.dev');
+const canonical = new URL(Astro.url.pathname, site).href;
+const og = new URL(`/og-${lang}.png`, site).href;
 ---
 <!doctype html>
 <html lang={lang}>
@@ -16,6 +19,17 @@ const skip = lang === 'es' ? 'Saltar al contenido' : 'Skip to content';
     <meta name="description" content={description} />
     <link rel="alternate" hreflang={lang === 'es' ? 'en' : 'es'} href={altHref} />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="canonical" href={canonical} />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="José Carlos Corona" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={og} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content={lang === 'es' ? 'es_MX' : 'en_US'} />
+    <meta name="twitter:card" content="summary_large_image" />
     <meta name="theme-color" content="#FFFFFF" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#0E1011" media="(prefers-color-scheme: dark)" />
     <script is:inline>

@@ -1,6 +1,7 @@
 ---
 import Icon from './Icon.astro';
 import OrgChip from './OrgChip.astro';
+import CaseCover from './CaseCover.astro';
 import Footer from './Footer.astro';
 import { ui, casePath, showMissing, type Lang } from '../i18n/ui';
 import { cases, hasPage } from '../data/cases';
@@ -32,13 +33,13 @@ const frontName = (id: string) => fronts.find((f) => f.id === id)!.name[lang];
       return (
         <li data-front={caseFront(c.org)}>
           <Tag class:list={['card', { linked }]} href={linked ? casePath(lang, c.id) : undefined}>
-            <div class="shot-wrap"><div class="shot shot-ph" data-shot={c.shot}>{showMissing ? 'PLACEHOLDER' : ''}</div></div>
+            <div class="shot-wrap"><CaseCover lang={lang} c={c} size="sm" /></div>
             <div class="c-body">
               <span class="tag">{String(i + 1).padStart(2, '0')} / 08</span>
               <span class="c-name">{c.name[lang]}</span>
               <span class="c-hook">{c.hook[lang]}</span>
               <div class="chips"><OrgChip lang={lang} org={c.org} status={c.status} /></div>
-              {linked && <span class="c-read">{t.readCase}<Icon name="arrow" /></span>}
+              {linked ? <span class="c-read">{t.readCase}<Icon name="arrow" /></span> : <span class="soon tag">{t.soon}</span>}
             </div>
           </Tag>
         </li>
@@ -69,6 +70,7 @@ const frontName = (id: string) => fronts.find((f) => f.id === id)!.name[lang];
 <div class="foot page-x"><Footer lang={lang} /></div>
 
 <style>
+  .soon { font-size: 12px; margin-top: auto; }
   .intro { padding-top: 96px; padding-bottom: 48px; display: flex; flex-direction: column; gap: 20px; }
   h1 { font: 600 var(--jc-fs-display)/1.05 var(--jc-font-sans); letter-spacing: var(--jc-ls-display); }
   .intro > p { max-width: 720px; font: 400 20px/1.55 var(--jc-font-sans); color: var(--jc-text-2); }

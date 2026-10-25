@@ -1,7 +1,7 @@
 import type { Lang } from '../i18n/ui';
 
 export type Org = 'epa' | 'own';
-export type Status = 'prod' | 'wip' | 'post' | 'exp';
+export type Status = 'prod' | 'live' | 'wip' | 'post' | 'exp';
 export type NodeKind = 'ext' | 'svc' | 'focus';
 
 export interface CaseSummary {
@@ -12,10 +12,12 @@ export interface CaseSummary {
   status?: Status;
   name: Record<Lang, string>;
   hook: Record<Lang, string>;
+  /** Portada mientras no haya captura: un dato o una idea del caso, nunca una caja vacía. */
+  cover: { v: string; l: Record<Lang, string> };
 }
 
 export interface Figure { v: string; l: string; source?: string }
-export interface Decision { what: string; alt?: string; why: string; before?: string; after?: string }
+export interface Decision { title: string; body: string; before?: string; after?: string }
 
 export interface CaseContent {
   short: string;
@@ -28,7 +30,6 @@ export interface CaseContent {
   nodes: [NodeKind, string, string][];
   diagramNote: string;
   steps: string[];
-  lead: string;
   decisions: Decision[];
   quote: string;
   quoteCap: string;
@@ -48,14 +49,14 @@ export interface CaseDetail {
 
 /** Orden de los 8 casos: alterna EPA y Propia (README §4 · Casos). */
 export const cases: CaseSummary[] = [
-  { id: 'mcp', org: 'epa', status: 'prod', name: { es: 'Servidor MCP de medios', en: 'Media MCP server' }, hook: { es: 'Automatiza el criterio, no la tarea', en: 'Automate judgment, not the task' } },
-  { id: 'iterum', org: 'own', shot: 'iterum', status: 'prod', name: { es: 'Iterum', en: 'Iterum' }, hook: { es: 'Una agencia de viajes personal, no un cuaderno con asistente', en: 'A personal travel agency, not a notebook with an assistant' } },
-  { id: 'dash', org: 'epa', status: 'prod', name: { es: 'Dashboards y Hopper', en: 'Dashboards and Hopper' }, hook: { es: 'De un Excel de 993 filas a QA guiado', en: 'From a 993-row spreadsheet to guided QA' } },
-  { id: 'domi', org: 'own', shot: 'domi', status: 'wip', name: { es: 'Domi', en: 'Domi' }, hook: { es: 'No es un buscador con chatbot: los agentes juzgan y explican', en: 'Not a search engine with a chatbot: agents judge and explain' } },
-  { id: 'einstein', org: 'epa', status: 'post', name: { es: 'Einstein, un postmortem', en: 'Einstein, a postmortem' }, hook: { es: 'Construimos el cerebro de la agencia y nadie lo usó', en: 'We built the agency’s brain and nobody used it' } },
-  { id: 'vocatio', org: 'own', shot: 'vocatio', status: 'wip', name: { es: 'Vocatio', en: 'Vocatio' }, hook: { es: 'Tu equipo trabaja hasta que te llamen', en: 'Your team keeps working until they call you' } },
-  { id: 'prompts', org: 'epa', status: 'prod', name: { es: 'Librería de Prompts', en: 'Prompt Library' }, hook: { es: 'Un solo lugar para los prompts de 170 personas', en: 'One home for the prompts of 170 people' } },
-  { id: 'fundamentum', org: 'own', shot: 'fundamentum', name: { es: 'Fundamentum', en: 'Fundamentum' }, hook: { es: 'Un chasis para tres apps', en: 'One chassis for three apps' } },
+  { id: 'mcp', org: 'epa', status: 'prod', name: { es: 'Servidor MCP de medios', en: 'Media MCP server' }, hook: { es: 'Un asistente que consulta Meta, Google Ads, GA4 y tres medios más por los equipos de cuentas', en: 'An assistant that queries Meta, Google Ads, GA4 and three more channels for account teams' } , cover: { v: '484', l: { es: 'conversaciones reales revisadas para medir la calidad', en: 'real conversations reviewed to measure quality' } } },
+  { id: 'iterum', org: 'own', shot: 'iterum', status: 'live', name: { es: 'Iterum', en: 'Iterum' }, hook: { es: 'Planea el viaje contigo y verifica cada lugar antes de proponerlo', en: 'Plans the trip with you and checks every place before proposing it' } , cover: { v: '0', l: { es: 'lugares sin verificar en un itinerario', en: 'unverified places in an itinerary' } } },
+  { id: 'dash', org: 'epa', status: 'prod', name: { es: 'Dashboards y Hopper', en: 'Dashboards and Hopper' }, hook: { es: 'De un Excel de 993 filas a QA guiado', en: 'From a 993-row spreadsheet to guided QA' } , cover: { v: '993', l: { es: 'filas de Excel que dejaron de llenarse a mano', en: 'spreadsheet rows nobody fills by hand anymore' } } },
+  { id: 'domi', org: 'own', shot: 'domi', status: 'wip', name: { es: 'Domi', en: 'Domi' }, hook: { es: 'Busca departamento en CDMX, mide la zona y desconfía de lo sospechoso', en: 'Hunts for apartments in Mexico City, measures the area and distrusts what looks off' } , cover: { v: 'CDMX', l: { es: 'cada zona medida con datos abiertos de la FGJ y el DENUE', en: 'every area measured with open FGJ and DENUE data' } } },
+  { id: 'einstein', org: 'epa', status: 'post', name: { es: 'Einstein, un postmortem', en: 'Einstein, a postmortem' }, hook: { es: 'Construimos el cerebro de la agencia y nadie lo usó', en: 'We built the agency’s brain and nobody used it' } , cover: { v: 'Postmortem', l: { es: 'lo que aprendí cuando nadie lo usó', en: 'what I learned when nobody used it' } } },
+  { id: 'vocatio', org: 'own', shot: 'vocatio', status: 'wip', name: { es: 'Vocatio', en: 'Vocatio' }, hook: { es: 'Busca vacantes, prepara tu CV y sigue tu correo mientras buscas trabajo', en: 'Finds openings, tailors your CV and tracks your inbox while you job hunt' } , cover: { v: 'MX', l: { es: 'vacantes, CV y correo para profesionistas en México', en: 'jobs, CVs and email for professionals in Mexico' } } },
+  { id: 'prompts', org: 'epa', status: 'prod', name: { es: 'Librería de Prompts', en: 'Prompt Library' }, hook: { es: 'Un solo lugar para los prompts de 170 personas', en: 'One home for the prompts of 170 people' } , cover: { v: '170', l: { es: 'personas con acceso desde el lanzamiento', en: 'people with access from launch' } } },
+  { id: 'fundamentum', org: 'own', shot: 'fundamentum', name: { es: 'Fundamentum', en: 'Fundamentum' }, hook: { es: 'El código que comparten Iterum, Domi y Vocatio', en: 'The code Iterum, Domi and Vocatio share' } , cover: { v: '3', l: { es: 'apps sobre el mismo chasis', en: 'apps on the same chassis' } } },
 ];
 
 export const details: Record<string, CaseDetail> = {
@@ -72,11 +73,10 @@ export const details: Record<string, CaseDetail> = {
         nodes: [['ext', 'Equipo de la agencia', 'personas'], ['svc', 'Documentos', 'Markdown · [[enlaces]] · grafo'], ['focus', 'Búsqueda y chat', 'Qdrant · Claude en Vertex AI'], ['svc', 'Conector MCP', 'Claude.ai y Desktop']],
         diagramNote: 'Desplegado con Docker Compose en Compute Engine',
         steps: ['Cada documento es Markdown, con [[enlaces]] entre notas y un grafo para navegarlas.', 'La búsqueda semántica arma el contexto y el chat responde con citas.', 'Un conector MCP lleva la misma base a Claude.ai y Claude Desktop.'],
-        lead: 'Decidimos',
         decisions: [
-          { what: 'que cada respuesta del chat lleve citas', alt: 'respuestas sin fuente', why: 'para poder revisar de dónde sale cada afirmación.' },
-          { what: 'abrir la base por MCP', alt: 'quedarnos solo en la web', why: 'para consultarla desde Claude sin cambiar de herramienta.' },
-          { what: 'quitar roles y flujo de aprobación', alt: 'mantener borrador, revisión y publicación', why: 'y pasar a un modelo donde todo es personal salvo lo que publiques.', before: 'Borrador → en revisión → publicado.', after: 'Todo es personal salvo lo que publiques.' },
+          { title: 'Toda respuesta trae citas.', body: 'El chat enlaza los documentos de donde sacó cada afirmación, para que cualquiera pueda revisarla.' },
+          { title: 'Einstein también vive dentro de Claude.', body: 'Además de la web, un conector MCP deja consultar la misma base desde Claude.ai y Claude Desktop, sin cambiar de herramienta.' },
+          { title: 'Quitamos el trámite de publicar.', body: 'En septiembre de 2026 eliminamos los roles y el flujo de borrador, revisión y publicación. Ahora todo es personal salvo lo que tú decidas publicar.', before: 'Borrador → en revisión → publicado.', after: 'Todo es personal salvo lo que publiques.' },
         ],
         quote: 'Construimos el cerebro de la agencia y nadie lo usó. Ni los tres fundadores.',
         quoteCap: 'Momento clave · la adopción',
@@ -95,11 +95,10 @@ export const details: Record<string, CaseDetail> = {
         nodes: [['ext', 'Agency team', 'people'], ['svc', 'Documents', 'Markdown · [[links]] · graph'], ['focus', 'Search and chat', 'Qdrant · Claude on Vertex AI'], ['svc', 'MCP connector', 'Claude.ai and Desktop']],
         diagramNote: 'Deployed with Docker Compose on Compute Engine',
         steps: ['Every document is Markdown, with [[links]] between notes and a graph to browse them.', 'Semantic search builds the context and the chat answers with citations.', 'An MCP connector brings the same base into Claude.ai and Claude Desktop.'],
-        lead: 'We decided',
         decisions: [
-          { what: 'that every chat answer carries citations', alt: 'answers without a source', why: 'so you can check where each claim comes from.' },
-          { what: 'to open the base over MCP', alt: 'staying web-only', why: 'so people could query it from Claude without switching tools.' },
-          { what: 'to remove roles and the approval flow', alt: 'keeping draft, review and publish', why: 'and move to a model where everything is personal unless you publish it.', before: 'Draft → in review → published.', after: 'Everything is personal unless you publish it.' },
+          { title: 'Every answer comes with citations.', body: 'The chat links the documents behind each claim, so anyone can check it.' },
+          { title: 'Einstein also lives inside Claude.', body: 'Besides the web app, an MCP connector lets people query the same base from Claude.ai and Claude Desktop without switching tools.' },
+          { title: 'We dropped the publishing paperwork.', body: 'In September 2026 we removed roles and the draft, review and publish flow. Now everything is personal unless you choose to publish it.', before: 'Draft → in review → published.', after: 'Everything is personal unless you publish it.' },
         ],
         quote: 'We built the agency’s brain and nobody used it. Not even the three founders.',
         quoteCap: 'Key moment · adoption',
@@ -123,11 +122,10 @@ export const details: Record<string, CaseDetail> = {
         nodes: [['ext', 'Viajero', 'chat'], ['focus', 'Concierge', 'única voz'], ['svc', 'Especialistas', 'tarjetas firmadas'], ['svc', 'Auditoría', 'factibilidad · semáforo']],
         diagramNote: 'Desplegada en Cloud Run',
         steps: ['Hablas solo con Concierge.', 'Los especialistas preparan tarjetas firmadas; Concierge te las presenta como propuestas.', 'Antes de mostrar el plan, una auditoría de factibilidad lo marca con semáforo.'],
-        lead: 'Decidí',
         decisions: [
-          { what: 'que Concierge sea la única voz', alt: 'varios agentes hablándote a la vez', why: 'y los especialistas trabajan detrás, firmando sus tarjetas.' },
-          { what: 'que todo cambio llegue como propuesta', alt: 'editar el itinerario por su cuenta', why: 'con tres salidas: Aceptar · Editar · Rechazar.', before: 'El asistente cambia el plan.', after: 'Tú decides cada cambio.' },
-          { what: 'auditar la factibilidad con semáforo', why: 'y no mostrar lugares que no se pudieron verificar.' },
+          { title: 'Solo Concierge te habla.', body: 'Los especialistas trabajan detrás y firman sus tarjetas en el plan. En el chat escribe uno solo, para que nunca tengas que adivinar quién te está hablando.' },
+          { title: 'Nada cambia sin tu sí.', body: 'Cada cambio que propone un agente llega con Aceptar, Editar y Rechazar, y una vista de antes y después. Dinero y compromisos siempre piden aprobación explícita.', before: 'El asistente cambia el plan.', after: 'Tú decides cada cambio.' },
+          { title: 'Un lugar entra solo si existe.', body: 'Cada lugar se verifica contra Google Places antes de entrar al plan, y una auditoría de factibilidad marca el itinerario con semáforo, ícono y explicación. Si algo no se encuentra, Iterum lo dice.' },
         ],
         quote: 'Iterum propone; tú aceptas, editas o rechazas.',
         quoteCap: 'Momento clave · la primera propuesta',
@@ -147,11 +145,10 @@ export const details: Record<string, CaseDetail> = {
         nodes: [['ext', 'Traveler', 'chat'], ['focus', 'Concierge', 'single voice'], ['svc', 'Specialists', 'signed cards'], ['svc', 'Audit', 'feasibility · traffic light']],
         diagramNote: 'Deployed on Cloud Run',
         steps: ['You only talk to Concierge.', 'Specialists prepare signed cards; Concierge presents them to you as proposals.', 'Before showing the plan, a feasibility audit marks it with a traffic light.'],
-        lead: 'I decided',
         decisions: [
-          { what: 'to make Concierge the only voice', alt: 'several agents talking to you at once', why: 'and to have the specialists work behind it, signing their cards.' },
-          { what: 'that every change arrives as a proposal', alt: 'editing the itinerary on its own', why: 'with three ways out: Accept · Edit · Reject.', before: 'The assistant changes the plan.', after: 'You decide every change.' },
-          { what: 'to audit feasibility with a traffic light', why: 'and not show places that couldn’t be verified.' },
+          { title: 'Only Concierge talks to you.', body: 'Specialists work behind the scenes and sign their cards in the plan. Only one voice writes in the chat, so you never have to guess who is talking.' },
+          { title: 'Nothing changes without your yes.', body: 'Every change an agent proposes comes with Accept, Edit and Reject, plus a before-and-after view. Money and commitments always need explicit approval.', before: 'The assistant changes the plan.', after: 'You decide every change.' },
+          { title: 'A place gets in only if it exists.', body: 'Every place is checked against Google Places before it enters the plan, and a feasibility audit marks the itinerary with a traffic light, icon and explanation. If something can’t be found, Iterum says so.' },
         ],
         quote: 'Iterum proposes; you accept, edit or reject.',
         quoteCap: 'Key moment · the first proposal',

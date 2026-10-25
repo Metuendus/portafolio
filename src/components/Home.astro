@@ -2,6 +2,7 @@
 import Hero from './Hero.astro';
 import Icon from './Icon.astro';
 import OrgChip from './OrgChip.astro';
+import CaseCover from './CaseCover.astro';
 import Footer from './Footer.astro';
 import { ui, casePath, projectsPath, aboutPath, showMissing, contact, type Lang } from '../i18n/ui';
 import { cases, hasPage } from '../data/cases';
@@ -12,7 +13,7 @@ const { lang } = Astro.props;
 const t = ui[lang];
 const L = t.caseL;
 const contactId = lang === 'es' ? 'contacto' : 'contact';
-const featured = ['mcp', 'iterum', 'prompts', 'domi'].map((id) => cases.find((c) => c.id === id)!);
+const featured = ['mcp', 'einstein', 'iterum', 'domi'].map((id) => cases.find((c) => c.id === id)!);
 const about = aboutPath(lang);
 ---
 <Hero lang={lang} />
@@ -42,12 +43,12 @@ const about = aboutPath(lang);
       return (
         <li>
           <Tag class:list={['case', { flip: i % 2 === 1, linked }]} href={linked ? casePath(lang, c.id) : undefined}>
-            <div class="shot-wrap"><div class="shot shot-ph" data-shot={c.shot}>{showMissing ? `PLACEHOLDER · ${c.name[lang]}` : ''}</div></div>
+            <div class="shot-wrap"><CaseCover lang={lang} c={c} /></div>
             <div class="body">
               <div class="meta"><span class="tag">{String(i + 1).padStart(2, '0')} / 04</span><span class="bar" aria-hidden="true"></span><span class="cname">{c.name[lang]}</span></div>
               <p class="hook">{c.hook[lang]}</p>
-              <div class="chips"><OrgChip lang={lang} org={c.org} status={c.status === 'post' ? 'post' : undefined} /></div>
-              {linked && <span class="link read">{t.readCase}<Icon name="arrow" /></span>}
+              <div class="chips"><OrgChip lang={lang} org={c.org} status={c.status} /></div>
+              {linked ? <span class="link read">{t.readCase}<Icon name="arrow" /></span> : <span class="soon tag">{t.soon}</span>}
             </div>
           </Tag>
         </li>
@@ -120,6 +121,7 @@ const about = aboutPath(lang);
 </section>
 
 <style>
+  .soon { font-size: 12px; }
   .open-to { align-self: flex-start; white-space: normal; height: auto; min-height: 28px; padding-block: 4px; }
   .block { padding-top: 96px; padding-bottom: 96px; border-top: 1px solid var(--jc-hairline); display: flex; flex-direction: column; gap: 48px; }
   .block--cases { gap: 40px; }

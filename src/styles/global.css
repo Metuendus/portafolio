@@ -68,7 +68,7 @@ em, i { font-style: normal; }
   border-radius: var(--jc-radius-pill); font: 500 12px/1 var(--jc-font-sans); white-space: nowrap;
 }
 .chip--org { border: 1px solid var(--jc-hairline-strong); color: var(--jc-ink); }
-.chip--prod { background: var(--jc-ok-bg); color: var(--jc-ok); }
+.chip--prod, .chip--live { background: var(--jc-ok-bg); color: var(--jc-ok); }
 .chip--wip { background: var(--jc-warn-bg); color: var(--jc-warn); }
 .chip--post { background: var(--jc-neutral-bg); color: var(--jc-neutral); }
 .chip--exp { border: 1px dashed var(--jc-hairline-strong); color: var(--jc-text-2); }

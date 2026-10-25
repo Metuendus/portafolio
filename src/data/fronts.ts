@@ -57,10 +57,10 @@ export const examplesByFront = (f: Front, lang: Lang) =>
 
 /** Cifras con fuente para «En números» y la tarjeta de 30 segundos. */
 export const numbers: { v: string; l: Record<Lang, string>; source: Record<Lang, string> }[] = [
-  { v: '9', l: { es: 'años en EPA.Digital, de cuentas a IA', en: 'years at EPA.Digital, from accounts to AI' }, source: { es: 'trayectoria, desde julio de 2017', en: 'career, since July 2017' } },
-  { v: '170', l: { es: 'personas, toda la agencia, con acceso a la Librería de Prompts desde su lanzamiento', en: 'people, the whole agency, with access to the Prompt Library from launch' }, source: { es: 'lanzamiento, nov 2025', en: 'launch, Nov 2025' } },
   { v: '28', l: { es: 'personas activas en el servidor MCP de medios, con más de 14.7M tokens', en: 'active people on the media MCP server, with over 14.7M tokens' }, source: { es: 'panel de administración, oct 2026', en: 'admin dashboard, Oct 2026' } },
-  { v: '30 min', l: { es: 'dura ahora el análisis diario de SKU para Coppel; antes era un día completo', en: 'is what Coppel’s daily SKU analysis takes now; it used to take a full day' }, source: { es: 'proyecto con Coppel, 2026', en: 'Coppel project, 2026' } },
+  { v: '30 min', l: { es: 'para el análisis diario de SKU de Coppel; antes tomaba un día completo', en: 'for Coppel’s daily SKU analysis, down from a full day' }, source: { es: 'proyecto con Coppel, 2026', en: 'Coppel project, 2026' } },
+  { v: '170', l: { es: 'personas, toda la agencia en ese momento, con acceso a la Librería de Prompts', en: 'people, the whole agency at the time, with access to the Prompt Library' }, source: { es: 'lanzamiento, nov 2025', en: 'launch, Nov 2025' } },
+  { v: '420,150', l: { es: 'registros cargados a BigQuery por ETL serverless con reintentos y backfill, para Tickspot y Coppel', en: 'records loaded into BigQuery by serverless ETLs with retries and backfill, for Tickspot and Coppel' }, source: { es: 'ETL de Tickspot y Coppel, 2025', en: 'Tickspot and Coppel ETLs, 2025' } },
 ];
 
 export const timeline: { year: string; t: Record<Lang, string>; mark?: 'origin' | 'now' }[] = [
