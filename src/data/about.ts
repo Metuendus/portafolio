@@ -19,6 +19,9 @@ export const aboutCopy = {
       'Una mañana, un boletín de PPC Hero contaba cómo alguien había usado R y una regresión lineal para reasignar presupuesto. Descargué RStudio pensando que sería algo como AdWords Editor, y a los dos minutos vi que era un lenguaje de programación con estadística incluida. Lo aprendí en las tardes. El CEO de la agencia me decía que lo estaba haciendo de la forma más difícil posible; no le hice caso.',
       'Ese gusto por el camino difícil también me costó. Llegué a juntas con matrices de correlación que el cliente no sabía leer, y tuve que aprender a explicar los datos en su idioma. Años después, cuando salió ChatGPT, lo usé primero para algo que no había podido resolver con modelos de NLP: los copies. Luego vi que también servía para programar, y desde entonces me dedico a eso.',
       'Hoy soy AI & Automation Lead en EPA.Digital, una agencia de unas 200 personas. Dirijo a un desarrollador de IA, soy product owner de productos internos como Einstein, Kalman y la Librería de Prompts, y co-dueño técnico del servidor MCP de medios que usan los equipos de cuentas. Por mi cuenta construyo Iterum, Domi y Vocatio.',
+      'Las hago después del trabajo, en Claude Code y Claude Design. La parte que más disfruto es el diseño: rebotar ideas para decidir qué entra y qué no, siempre con dos pilares, la IA como núcleo y la experiencia de uso. Ahí aprendí algo que en EPA no: sacar una app de principio a fin sin coordinar con otro equipo, siendo yo el primer usuario, y después probarla con usuarios beta.',
+      'Lo que sigo trabajando: el orden al implementar (por eso hice Fundamentum), hablar menos rápido cuando explico ideas largas y el inglés, que está entre B1 y B2.',
+      'Fuera del trabajo me gusta viajar, por México y fuera. Viví un tiempo en Baja California Sur y soy fan de los viajes por carretera y off-road. Veo mucha serie de HBO, como Succession y The Wire, Los Simpson y toda la ciencia ficción que pueda.',
     ],
     expTag: 'EXPERIENCIA',
     expTitle: 'Todo en EPA.Digital, desde 2017',
@@ -32,7 +35,7 @@ export const aboutCopy = {
     certLabel: 'Certificaciones',
     degreeLabel: 'Licenciatura',
     ctaTitle: '¿Hablamos?',
-    ctaBody: 'Estoy abierto a roles de AI Engineer y Applied AI en CDMX, híbridos o remotos.',
+    ctaBody: 'Busco un rol de AI Engineer o Applied AI en CDMX, híbrido o remoto, con un equipo propositivo que avance sin esperar a que le digan qué hacer. Después de cinco puestos distintos, quiero especializarme en IA y agentes.',
   },
   en: {
     title: 'About',
@@ -43,6 +46,9 @@ export const aboutCopy = {
       'One morning a PPC Hero newsletter described someone using R and a linear regression to reallocate budget. I downloaded RStudio thinking it would be like AdWords Editor, and two minutes later realized it was a programming language with statistics built in. I learned it in the afternoons. The agency’s CEO kept telling me I was doing it the hardest way possible; I didn’t listen.',
       'That taste for the hard way cost me too. I showed up to client meetings with correlation matrices nobody could read, and had to learn to explain data in the client’s terms. Years later, when ChatGPT came out, I first used it for something I’d failed to solve with NLP models: ad copy. Then I saw it could also write code, and that’s what I’ve done since.',
       'Today I’m AI & Automation Lead at EPA.Digital, an agency of about 200 people. I lead one AI developer, I’m product owner of internal products such as Einstein, Kalman and the Prompt Library, and technical co-owner of the media MCP server account teams use. On my own time I build Iterum, Domi and Vocatio.',
+      'I build them after work, in Claude Code and Claude Design. The part I enjoy most is design: bouncing ideas around to decide what goes in and what doesn’t, always on two pillars, AI at the core and the user experience. That’s where I learned something EPA didn’t teach me: shipping an app end to end without coordinating with another team, as its first user, and then testing it with beta users.',
+      'What I’m still working on: order when I build (that’s why I made Fundamentum), slowing down when I explain long ideas, and my English, which sits between B1 and B2.',
+      'Outside work I like to travel, around Mexico and abroad. I lived in Baja California Sur for a while and I’m a big fan of road trips and off-road driving. I watch a lot of HBO, like Succession and The Wire, The Simpsons, and all the science fiction I can.',
     ],
     expTag: 'EXPERIENCE',
     expTitle: 'All at EPA.Digital, since 2017',
@@ -56,7 +62,7 @@ export const aboutCopy = {
     certLabel: 'Certifications',
     degreeLabel: 'Degree',
     ctaTitle: 'Shall we talk?',
-    ctaBody: 'I’m open to AI Engineer and Applied AI roles in Mexico City, hybrid or remote.',
+    ctaBody: 'I’m looking for an AI Engineer or Applied AI role in Mexico City, hybrid or remote, with a proactive team that moves without waiting to be told what to do. After five different jobs, I want to specialize in AI and agents.',
   },
 };
 
