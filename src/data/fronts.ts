@@ -4,11 +4,11 @@ import { cases, type Status } from './cases';
 export type Front = 'epa' | 'own' | 'data' | 'teach' | 'lab';
 
 export const fronts: { id: Front; name: Record<Lang, string>; blurb: Record<Lang, string> }[] = [
-  { id: 'epa', name: { es: 'Trabajo en EPA', en: 'Work at EPA' }, blurb: { es: 'IA aplicada en una agencia de unas 200 personas: sistemas, adopción y gobierno.', en: 'Applied AI at an agency of about 200 people: systems, adoption and governance.' } },
-  { id: 'own', name: { es: 'Productos propios', en: 'Own products' }, blurb: { es: 'De cero a producción, con agentes sobre un chasis común.', en: 'From zero to production, with agents on a shared chassis.' } },
-  { id: 'data', name: { es: 'Datos y análisis', en: 'Data and analytics' }, blurb: { es: 'SQL, ETL y estadística antes de que todo fuera LLM.', en: 'SQL, ETL and statistics before everything was an LLM.' } },
-  { id: 'teach', name: { es: 'Enseñar y divulgar', en: 'Teaching and talks' }, blurb: { es: 'Programas, cursos y charlas para que otros construyan.', en: 'Programs, courses and talks so others can build.' } },
-  { id: 'lab', name: { es: 'Laboratorio', en: 'Lab' }, blurb: { es: 'Experimentos chicos, cada uno con su lección.', en: 'Small experiments, each with its lesson.' } },
+  { id: 'epa', name: { es: 'Trabajo en EPA', en: 'Work at EPA' }, blurb: { es: 'Herramientas de IA para los equipos de la agencia, y las reglas y cursos para usarlas.', en: 'AI tools for the agency’s teams, plus the rules and courses to use them.' } },
+  { id: 'own', name: { es: 'Productos propios', en: 'Own products' }, blurb: { es: 'Apps que hago después del trabajo, con la IA como núcleo y la app alrededor.', en: 'Apps I build after work, with AI at the core and the app built around it.' } },
+  { id: 'data', name: { es: 'Datos y análisis', en: 'Data and analytics' }, blurb: { es: 'Lo que hice como Gerente de Datos de 2020 a 2024: BigQuery, R y muchos reportes.', en: 'My work as Data Manager from 2020 to 2024: BigQuery, R and a lot of reports.' } },
+  { id: 'teach', name: { es: 'Enseñar y divulgar', en: 'Teaching and talks' }, blurb: { es: 'Cursos internos y un curso de GEO en la Universidad Panamericana.', en: 'Internal courses and a GEO course at Universidad Panamericana.' } },
+  { id: 'lab', name: { es: 'Laboratorio', en: 'Lab' }, blurb: { es: 'Pruebas chicas para aprender algo. Algunas ya las dejé.', en: 'Small tries to learn something. I’ve dropped a few.' } },
 ];
 
 export interface Work {
@@ -64,8 +64,8 @@ export const numbers: { v: string; l: Record<Lang, string>; source: Record<Lang,
 ];
 
 export const timeline: { year: string; t: Record<Lang, string>; mark?: 'origin' | 'now' }[] = [
-  { year: '2017', t: { es: 'Ejecutivo de cuentas', en: 'Account executive' } },
-  { year: '2018', t: { es: 'Analista de marketing digital', en: 'Digital marketing analyst' } },
+  { year: '2017', t: { es: 'Ejecutivo de cuentas; mis primeros reportes automáticos', en: 'Account executive; my first automated reports' } },
+  { year: '2018', t: { es: 'Analista de marketing digital; aprendí R por un boletín', en: 'Digital marketing analyst; learned R from a newsletter' } },
   { year: '2019', t: { es: 'CRO & Data Analytics Lead, con equipo de 3', en: 'CRO & Data Analytics Lead, team of 3' } },
   { year: '2020', t: { es: 'Gerente de Datos', en: 'Data Manager' } },
   { year: '2024', t: { es: 'AI & Automation Lead; Verne, mi primera herramienta con IA', en: 'AI & Automation Lead; Verne, my first AI tool' }, mark: 'origin' },

@@ -12,6 +12,11 @@ const { lang } = Astro.props;
 const t = ui[lang];
 const P = t.projectsPage;
 const others = more.filter((m) => m.line || showMissing);
+const FIRST = 8;
+// Lo que se ve antes de «Ver más»: un reparto entre frentes, no los primeros 8 de la lista.
+const byFront = fronts.map((f) => others.filter((m) => m.front === f.id));
+const firstSet = new Set<(typeof others)[number]>();
+for (let r = 0; firstSet.size < Math.min(FIRST, others.length); r++) byFront.forEach((g) => { if (g[r] && firstSet.size < FIRST) firstSet.add(g[r]); });
 const frontName = (id: string) => fronts.find((f) => f.id === id)!.name[lang];
 ---
 <section class="intro page-x">
@@ -50,9 +55,9 @@ const frontName = (id: string) => fronts.find((f) => f.id === id)!.name[lang];
 
 <section class="group page-x" data-group aria-labelledby="g-more">
   <h2 id="g-more" class="tag">{P.others}</h2>
-  <ul class="rows">
+  <ul class="rows" id="more-rows">
     {others.map((m) => (
-      <li class="row" data-front={m.front}>
+      <li class="row" data-front={m.front} data-extra={firstSet.has(m) ? undefined : ''}>
         <span class="r-year tag">{m.year}</span>
         <div class="r-main">
           <span class="r-name">{m.name[lang]}</span>
@@ -65,6 +70,11 @@ const frontName = (id: string) => fronts.find((f) => f.id === id)!.name[lang];
       </li>
     ))}
   </ul>
+  {others.length > FIRST && (
+    <button type="button" class="btn btn--secondary more-btn" aria-expanded="false" aria-controls="more-rows" data-more data-less={P.showLess}>
+      {P.showMore.replace('{n}', String(others.length - FIRST))}
+    </button>
+  )}
 </section>
 
 <div class="foot page-x"><Footer lang={lang} /></div>
@@ -108,6 +118,8 @@ const frontName = (id: string) => fronts.find((f) => f.id === id)!.name[lang];
   .r-name { font: 600 20px/1.25 var(--jc-font-sans); letter-spacing: -.3px; }
   .r-line { font-size: 16px; line-height: 1.5; color: var(--jc-text-2); }
   .r-meta { display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-end; gap: 8px; }
+  .more-btn { align-self: flex-start; }
+  .more-btn[hidden] { display: none; }
   .foot { padding-top: 48px; padding-bottom: 48px; }
 
   @media (max-width: 1100px) { .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
@@ -134,16 +146,22 @@ const frontName = (id: string) => fronts.find((f) => f.id === id)!.name[lang];
   const status = document.querySelector<HTMLElement>('[data-filter-status]');
   if (bar) {
     const buttons = [...bar.querySelectorAll<HTMLButtonElement>('button')];
+    const moreBtn = document.querySelector<HTMLButtonElement>('[data-more]');
+    const moreLabel = moreBtn?.textContent?.trim() ?? '';
+    let expanded = false;
+    let current = 'all';
     const apply = (f: string, push: boolean) => {
+      current = f;
       buttons.forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.f === f)));
       let shown = 0;
       document.querySelectorAll<HTMLElement>('[data-front]').forEach((el) => {
-        el.hidden = f !== 'all' && el.dataset.front !== f;
+        el.hidden = (f !== 'all' && el.dataset.front !== f) || (f === 'all' && !expanded && el.hasAttribute('data-extra'));
         if (!el.hidden) shown++;
       });
       document.querySelectorAll<HTMLElement>('[data-group]').forEach((g) => {
         g.hidden = !g.querySelector('[data-front]:not([hidden])');
       });
+      if (moreBtn) moreBtn.hidden = f !== 'all';
       if (status) status.textContent = String(shown);
       if (push) {
         const u = new URL(location.href);
@@ -152,6 +170,13 @@ const frontName = (id: string) => fronts.find((f) => f.id === id)!.name[lang];
       }
     };
     buttons.forEach((b) => b.addEventListener('click', () => apply(b.dataset.f ?? 'all', true)));
+    moreBtn?.addEventListener('click', () => {
+      expanded = !expanded;
+      moreBtn.setAttribute('aria-expanded', String(expanded));
+      moreBtn.textContent = expanded ? (moreBtn.dataset.less ?? '') : moreLabel;
+      apply(current, false);
+    });
+    apply('all', false);
     const initial = new URL(location.href).searchParams.get('frente');
     if (initial && buttons.some((b) => b.dataset.f === initial)) apply(initial, false);
   }
