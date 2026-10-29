@@ -56,7 +56,7 @@ export const examplesByFront = (f: Front, lang: Lang) =>
 
 /** Cifras con fuente para «En números» y la tarjeta de 30 segundos. */
 export const numbers: { v: string; l: Record<Lang, string>; source: Record<Lang, string> }[] = [
-  { v: '28', l: { es: 'personas activas en Osaka, el servidor MCP de medios, con más de 14.7M tokens', en: 'active people on Osaka, the media MCP server, with over 14.7M tokens' }, source: { es: 'panel de administración, oct 2026', en: 'admin dashboard, Oct 2026' } },
+  { v: '47', l: { es: 'personas con acceso activo a Osaka, el servidor MCP de medios; casi todas lo usan vía MCP', en: 'people with active access to Osaka, the media MCP server; most use it through MCP' }, source: { es: 'panel de administración, oct 2026', en: 'admin dashboard, Oct 2026' } },
   { v: '30 min', l: { es: 'para el análisis diario de SKU de clientes de EPA; antes tomaba un día completo', en: 'for EPA clients’ daily SKU analysis, down from a full day' }, source: { es: 'proyecto de SKU, 2026', en: 'SKU project, 2026' } },
   { v: '170', l: { es: 'personas, toda la agencia en ese momento, con acceso a la Librería de Prompts', en: 'people, the whole agency at the time, with access to the Prompt Library' }, source: { es: 'lanzamiento, nov 2025', en: 'launch, Nov 2025' } },
   { v: '420,150', l: { es: 'registros cargados a BigQuery por ETL serverless con reintentos y backfill, para Tickspot y clientes de EPA', en: 'records loaded into BigQuery by serverless ETLs with retries and backfill, for Tickspot and EPA clients' }, source: { es: 'ETL de Tickspot y de clientes, 2025', en: 'Tickspot and client ETLs, 2025' } },

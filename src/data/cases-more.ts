@@ -23,8 +23,7 @@ export const moreDetails: Record<string, CaseDetail> = {
           { title: 'Medir la calidad con conversaciones reales.', body: 'Lideré un diagnóstico sobre 484 conversaciones reales para encontrar dónde fallaban las respuestas y por qué.' },
         ],
         figures: [
-          { v: '28', l: 'personas activas', source: 'panel de administración, oct 2026' },
-          { v: '14.7M', l: 'tokens procesados', source: 'panel de administración, oct 2026' },
+          { v: '47', l: 'personas con acceso activo; casi todas lo usan vía MCP', source: 'panel de administración, oct 2026' },
           { v: '484', l: 'conversaciones reales revisadas en el diagnóstico de calidad', source: 'diagnóstico de calidad, 2026' },
         ],
         quote: 'La gente empezó a usarlo sin que se lo pidiéramos, para preguntas puntuales como cómo les fue a sus campañas la semana pasada, sin armar un reporte.',
@@ -49,8 +48,7 @@ export const moreDetails: Record<string, CaseDetail> = {
           { title: 'Measure quality on real conversations.', body: 'I led a review of 484 real conversations to find where answers failed and why.' },
         ],
         figures: [
-          { v: '28', l: 'active people', source: 'admin dashboard, Oct 2026' },
-          { v: '14.7M', l: 'tokens processed', source: 'admin dashboard, Oct 2026' },
+          { v: '47', l: 'people with active access; most use it through MCP', source: 'admin dashboard, Oct 2026' },
           { v: '484', l: 'real conversations reviewed in the quality review', source: 'quality review, 2026' },
         ],
         quote: 'People started using it without us asking, for one-off questions like how their campaigns did last week, without building a report.',
