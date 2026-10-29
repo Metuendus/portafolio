@@ -49,7 +49,7 @@ export const ui = {
       wins: [
         { t: 'Osaka, servidor MCP de medios', d: 'Hice la primera versión y hoy soy co-dueño técnico: 28 personas activas y más de 14.7M tokens procesados.', s: 'panel de administración, oct 2026' },
         { t: 'Librería de Prompts de la agencia', d: 'La diseñé y construí; se abrió a las 170 personas de EPA y cuesta 0 USD al mes operarla.', s: 'lanzamiento, nov 2025' },
-        { t: 'Dashboard y ETL de SKU para Coppel', d: 'El análisis diario de SKU pasó de un día completo a 30 minutos.', s: 'proyecto con Coppel, 2026' },
+        { t: 'Dashboard y ETL de SKU para clientes de EPA', d: 'El análisis diario de SKU pasó de un día completo a 30 minutos.', s: 'proyecto de SKU, 2026' },
       ],
       close: 'Cerrar',
       more: 'Ver todos los proyectos',
@@ -159,7 +159,7 @@ export const ui = {
       wins: [
         { t: 'Osaka, media MCP server', d: 'I built the first version and now co-own it technically: 28 active people and over 14.7M tokens processed.', s: 'admin dashboard, Oct 2026' },
         { t: 'The agency’s Prompt Library', d: 'I designed and built it; it opened to all 170 people at EPA and costs 0 USD a month to run.', s: 'launch, Nov 2025' },
-        { t: 'SKU dashboard and ETL for Coppel', d: 'Daily SKU analysis went from a full day to 30 minutes.', s: 'Coppel project, 2026' },
+        { t: 'SKU dashboard and ETL for EPA clients', d: 'Daily SKU analysis went from a full day to 30 minutes.', s: 'SKU project, 2026' },
       ],
       close: 'Close',
       more: 'See all projects',
