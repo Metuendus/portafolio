@@ -233,9 +233,9 @@ export const casePath = (lang: Lang, slug: string) => (lang === 'es' ? `/proyect
 export const showMissing = import.meta.env.DEV || import.meta.env.PUBLIC_BORRADOR === '1';
 export const aboutPath = (lang: Lang) => (lang === 'es' ? '/sobre-mi/' : '/en/about/');
 
-/** Contacto público. El correo del dominio todavía no existe: sin correo, el sitio lleva a LinkedIn. */
+/** Contacto público: correo personal y LinkedIn. */
 export const contact = {
-  email: null as string | null,
+  email: 'josecarloscorona.c@gmail.com' as string | null,
   linkedin: 'https://www.linkedin.com/in/josecarloscorona/',
 };
 
