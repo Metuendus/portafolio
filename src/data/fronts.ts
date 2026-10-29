@@ -64,8 +64,8 @@ export const numbers: { v: string; l: Record<Lang, string>; source: Record<Lang,
 ];
 
 export const timeline: { year: string; t: Record<Lang, string>; mark?: 'origin' | 'now' }[] = [
-  { year: '2017', t: { es: 'Ejecutivo de cuentas', en: 'Account executive' } },
-  { year: '2018', t: { es: 'Analista de marketing digital', en: 'Digital marketing analyst' } },
+  { year: '2017', t: { es: 'Ejecutivo de cuentas; mis primeros reportes automáticos', en: 'Account executive; my first automated reports' } },
+  { year: '2018', t: { es: 'Analista de marketing digital; aprendí R por un boletín', en: 'Digital marketing analyst; learned R from a newsletter' } },
   { year: '2019', t: { es: 'CRO & Data Analytics Lead, con equipo de 3', en: 'CRO & Data Analytics Lead, team of 3' } },
   { year: '2020', t: { es: 'Gerente de Datos', en: 'Data Manager' } },
   { year: '2024', t: { es: 'AI & Automation Lead; Verne, mi primera herramienta con IA', en: 'AI & Automation Lead; Verne, my first AI tool' }, mark: 'origin' },

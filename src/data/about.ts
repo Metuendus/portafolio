@@ -14,8 +14,11 @@ export const aboutCopy = {
     title: 'Sobre mí',
     h1: 'Nueve años en la misma agencia y cinco puestos distintos.',
     intro: [
-      'Soy AI & Automation Lead en EPA.Digital, una agencia mexicana de performance marketing de unas 200 personas. Entré en 2017 como ejecutivo de cuentas, pasé por analítica, CRO y datos, y desde 2020 construyo la infraestructura de datos e IA de la agencia sobre Google Cloud.',
-      'Hoy dirijo a un desarrollador de IA, soy product owner de productos internos como Einstein, Kalman y la Librería de Prompts, y co-dueño técnico del servidor MCP de medios que usan los equipos de cuentas. Por mi cuenta construyo Iterum, Domi y Vocatio.',
+      'Antes de EPA hice marketing BTL, y me chocaba que nadie supiera si algo funcionaba: se seguía haciendo porque siempre se había hecho. Quería algo que se pudiera medir, así que me fui a digital. Entré a EPA.Digital en 2017 como ejecutivo de cuentas.',
+      'Lo primero que automaticé fueron mis reportes, en lo que entonces se llamaba Google Data Studio, porque odiaba repetirme en cada presentación. Luego quise automatizar las OET y la carga de anuncios y no pude. Estaba muy por encima de lo que sabía hacer, y eso me desesperaba.',
+      'Una mañana, un boletín de PPC Hero contaba cómo alguien había usado R y una regresión lineal para reasignar presupuesto. Descargué RStudio pensando que sería algo como AdWords Editor, y a los dos minutos vi que era un lenguaje de programación con estadística incluida. Lo aprendí en las tardes. El CEO de la agencia me decía que lo estaba haciendo de la forma más difícil posible; no le hice caso.',
+      'Ese gusto por el camino difícil también me costó. Llegué a juntas con matrices de correlación que el cliente no sabía leer, y tuve que aprender a explicar los datos en su idioma. Años después, cuando salió ChatGPT, lo usé primero para algo que no había podido resolver con modelos de NLP: los copies. Luego vi que también servía para programar, y desde entonces me dedico a eso.',
+      'Hoy soy AI & Automation Lead en EPA.Digital, una agencia de unas 200 personas. Dirijo a un desarrollador de IA, soy product owner de productos internos como Einstein, Kalman y la Librería de Prompts, y co-dueño técnico del servidor MCP de medios que usan los equipos de cuentas. Por mi cuenta construyo Iterum, Domi y Vocatio.',
     ],
     expTag: 'EXPERIENCIA',
     expTitle: 'Todo en EPA.Digital, desde 2017',
@@ -35,8 +38,11 @@ export const aboutCopy = {
     title: 'About',
     h1: 'Nine years at the same agency, five different jobs.',
     intro: [
-      'I’m AI & Automation Lead at EPA.Digital, a Mexican performance marketing agency of about 200 people. I joined in 2017 as an account executive, moved through analytics, CRO and data, and since 2020 I’ve been building the agency’s data and AI infrastructure on Google Cloud.',
-      'Today I lead one AI developer, I’m product owner of internal products such as Einstein, Kalman and the Prompt Library, and technical co-owner of the media MCP server account teams use. On my own time I build Iterum, Domi and Vocatio.',
+      'Before EPA I worked in below-the-line marketing, and it bugged me that nobody knew whether anything worked: things kept happening because they always had. I wanted something I could measure, so I moved to digital. I joined EPA.Digital in 2017 as an account executive.',
+      'The first thing I automated was my reporting, in what was then called Google Data Studio, because I hated repeating myself in every presentation. Then I tried to automate insertion orders and ad uploads and couldn’t. It was way beyond what I knew how to do, and that drove me crazy.',
+      'One morning a PPC Hero newsletter described someone using R and a linear regression to reallocate budget. I downloaded RStudio thinking it would be like AdWords Editor, and two minutes later realized it was a programming language with statistics built in. I learned it in the afternoons. The agency’s CEO kept telling me I was doing it the hardest way possible; I didn’t listen.',
+      'That taste for the hard way cost me too. I showed up to client meetings with correlation matrices nobody could read, and had to learn to explain data in the client’s terms. Years later, when ChatGPT came out, I first used it for something I’d failed to solve with NLP models: ad copy. Then I saw it could also write code, and that’s what I’ve done since.',
+      'Today I’m AI & Automation Lead at EPA.Digital, an agency of about 200 people. I lead one AI developer, I’m product owner of internal products such as Einstein, Kalman and the Prompt Library, and technical co-owner of the media MCP server account teams use. On my own time I build Iterum, Domi and Vocatio.',
     ],
     expTag: 'EXPERIENCE',
     expTitle: 'All at EPA.Digital, since 2017',
@@ -119,16 +125,16 @@ export const stages: Stage[] = [
     role: { es: 'Analista de marketing digital', en: 'Digital marketing analyst' },
     dates: { es: 'sep 2018 – dic 2018', en: 'Sep 2018 – Dec 2018' },
     what: {
-      es: 'Análisis con Google Analytics y RStudio, scripts de Google Ads y automatización de reportes.',
-      en: 'Analysis with Google Analytics and RStudio, Google Ads scripts and report automation.',
+      es: 'Análisis con Google Analytics y R, que aprendí por mi cuenta, scripts de Google Ads y automatización de reportes.',
+      en: 'Analysis with Google Analytics and R, which I taught myself, Google Ads scripts and report automation.',
     },
   },
   {
     role: { es: 'Ejecutivo de cuentas', en: 'Account executive' },
     dates: { es: 'jul 2017 – sep 2018', en: 'Jul 2017 – Sep 2018' },
     what: {
-      es: 'Campañas en Google, Facebook y Bing, con herramientas de inteligencia competitiva.',
-      en: 'Campaigns on Google, Facebook and Bing, with competitive intelligence tools.',
+      es: 'Llevaba la relación con los clientes de campañas en Google, Facebook y Bing: llamadas, ajustes, copies con sus rondas de correcciones y OET hechas a mano. Ahí automaticé mis primeros reportes en Google Data Studio.',
+      en: 'I handled client relationships for campaigns on Google, Facebook and Bing: calls, tweaks, ad copy with its rounds of revisions and insertion orders done by hand. That’s where I automated my first reports in Google Data Studio.',
     },
   },
 ];
