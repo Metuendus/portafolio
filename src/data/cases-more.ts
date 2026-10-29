@@ -11,7 +11,7 @@ export const moreDetails: Record<string, CaseDetail> = {
       es: {
         short: 'Servidor MCP',
         stack: ['TypeScript', 'Hono', 'Next.js', 'MCP', 'Claude · OpenAI', 'Firestore', 'Cloud Run'],
-        videoTitle: 'El servidor MCP de medios, de una pregunta a una respuesta',
+        videoTitle: 'Osaka, de una pregunta a una respuesta',
         problemTitle: 'Los equipos de cuentas trabajan entre seis plataformas de medios.',
         problemBody: 'Para responder algo como «¿qué campaña va adelantada en su presupuesto?» había que abrir Meta, Google Ads, GA4, TikTok, Bing o DV360 y cruzar datos a mano. La idea fue darles un asistente que consulte esas fuentes por ellos.',
         nodes: [['ext', 'Equipo de cuentas', 'web · Claude.ai'], ['svc', 'API REST + MCP', 'Hono · OAuth'], ['focus', 'Agentes y skills', 'pujas · presupuesto · GA4'], ['svc', 'Plataformas', 'Meta · Google Ads · GA4 · TikTok · Bing · DV360']],
@@ -37,7 +37,7 @@ export const moreDetails: Record<string, CaseDetail> = {
       en: {
         short: 'MCP server',
         stack: ['TypeScript', 'Hono', 'Next.js', 'MCP', 'Claude · OpenAI', 'Firestore', 'Cloud Run'],
-        videoTitle: 'The media MCP server, from a question to an answer',
+        videoTitle: 'Osaka, from a question to an answer',
         problemTitle: 'Account teams work across six media platforms.',
         problemBody: 'Answering something like “which campaign is ahead of its budget?” meant opening Meta, Google Ads, GA4, TikTok, Bing or DV360 and joining data by hand. The idea was to give them an assistant that queries those sources for them.',
         nodes: [['ext', 'Account team', 'web · Claude.ai'], ['svc', 'REST API + MCP', 'Hono · OAuth'], ['focus', 'Agents and skills', 'bids · budget · GA4'], ['svc', 'Platforms', 'Meta · Google Ads · GA4 · TikTok · Bing · DV360']],
