@@ -12,7 +12,7 @@ export interface Stage {
 export const aboutCopy = {
   es: {
     title: 'Sobre mí',
-    h1: 'De cuentas a IA, en la misma agencia.',
+    h1: 'Nueve años en la misma agencia y cinco puestos distintos.',
     intro: [
       'Soy AI & Automation Lead en EPA.Digital, una agencia mexicana de performance marketing de unas 200 personas. Entré en 2017 como ejecutivo de cuentas, pasé por analítica, CRO y datos, y desde 2020 construyo la infraestructura de datos e IA de la agencia sobre Google Cloud.',
       'Hoy dirijo a un desarrollador de IA, soy product owner de productos internos como Einstein, Kalman y la Librería de Prompts, y co-dueño técnico del servidor MCP de medios que usan los equipos de cuentas. Por mi cuenta construyo Iterum, Domi y Vocatio.',
@@ -33,7 +33,7 @@ export const aboutCopy = {
   },
   en: {
     title: 'About',
-    h1: 'From accounts to AI, at the same agency.',
+    h1: 'Nine years at the same agency, five different jobs.',
     intro: [
       'I’m AI & Automation Lead at EPA.Digital, a Mexican performance marketing agency of about 200 people. I joined in 2017 as an account executive, moved through analytics, CRO and data, and since 2020 I’ve been building the agency’s data and AI infrastructure on Google Cloud.',
       'Today I lead one AI developer, I’m product owner of internal products such as Einstein, Kalman and the Prompt Library, and technical co-owner of the media MCP server account teams use. On my own time I build Iterum, Domi and Vocatio.',

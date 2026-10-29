@@ -4,11 +4,11 @@ import { cases, type Status } from './cases';
 export type Front = 'epa' | 'own' | 'data' | 'teach' | 'lab';
 
 export const fronts: { id: Front; name: Record<Lang, string>; blurb: Record<Lang, string> }[] = [
-  { id: 'epa', name: { es: 'Trabajo en EPA', en: 'Work at EPA' }, blurb: { es: 'IA aplicada en una agencia de unas 200 personas: sistemas, adopción y gobierno.', en: 'Applied AI at an agency of about 200 people: systems, adoption and governance.' } },
-  { id: 'own', name: { es: 'Productos propios', en: 'Own products' }, blurb: { es: 'De cero a producción, con agentes sobre un chasis común.', en: 'From zero to production, with agents on a shared chassis.' } },
-  { id: 'data', name: { es: 'Datos y análisis', en: 'Data and analytics' }, blurb: { es: 'SQL, ETL y estadística antes de que todo fuera LLM.', en: 'SQL, ETL and statistics before everything was an LLM.' } },
-  { id: 'teach', name: { es: 'Enseñar y divulgar', en: 'Teaching and talks' }, blurb: { es: 'Programas, cursos y charlas para que otros construyan.', en: 'Programs, courses and talks so others can build.' } },
-  { id: 'lab', name: { es: 'Laboratorio', en: 'Lab' }, blurb: { es: 'Experimentos chicos, cada uno con su lección.', en: 'Small experiments, each with its lesson.' } },
+  { id: 'epa', name: { es: 'Trabajo en EPA', en: 'Work at EPA' }, blurb: { es: 'Herramientas de IA para los equipos de la agencia, y las reglas y cursos para usarlas.', en: 'AI tools for the agency’s teams, plus the rules and courses to use them.' } },
+  { id: 'own', name: { es: 'Productos propios', en: 'Own products' }, blurb: { es: 'Apps que hago por mi cuenta, todas sobre la misma base en Google Cloud.', en: 'Apps I build on my own, all on the same base in Google Cloud.' } },
+  { id: 'data', name: { es: 'Datos y análisis', en: 'Data and analytics' }, blurb: { es: 'Lo que hice como Gerente de Datos de 2020 a 2024: BigQuery, R y muchos reportes.', en: 'My work as Data Manager from 2020 to 2024: BigQuery, R and a lot of reports.' } },
+  { id: 'teach', name: { es: 'Enseñar y divulgar', en: 'Teaching and talks' }, blurb: { es: 'Cursos internos y un curso de GEO en la Universidad Panamericana.', en: 'Internal courses and a GEO course at Universidad Panamericana.' } },
+  { id: 'lab', name: { es: 'Laboratorio', en: 'Lab' }, blurb: { es: 'Pruebas chicas para aprender algo. Algunas ya las dejé.', en: 'Small tries to learn something. I’ve dropped a few.' } },
 ];
 
 export interface Work {
