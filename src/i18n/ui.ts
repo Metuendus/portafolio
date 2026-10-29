@@ -237,7 +237,10 @@ export const aboutPath = (lang: Lang) => (lang === 'es' ? '/sobre-mi/' : '/en/ab
 export const contact = {
   email: 'josecarloscorona.c@gmail.com' as string | null,
   linkedin: 'https://www.linkedin.com/in/josecarloscorona/',
+  cv: { es: '/cv/josecarloscorona-cv-es.pdf', en: '/cv/josecarloscorona-cv-en.pdf' } as Record<Lang, string>,
 };
+
+export const cvLabel: Record<Lang, string> = { es: 'CV en PDF', en: 'CV (PDF)' };
 
 /** Escritos aún no tiene contenido: solo aparece en borrador. */
 export const navItems = (lang: Lang) => ui[lang].nav.filter((l) => l.key !== 'writing' || showMissing);

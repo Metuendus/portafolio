@@ -1,6 +1,6 @@
 ---
 import Icon from './Icon.astro';
-import { ui, projectsPath, showMissing, contact, type Lang } from '../i18n/ui';
+import { ui, projectsPath, showMissing, contact, cvLabel, type Lang } from '../i18n/ui';
 
 interface Props { lang: Lang }
 const { lang } = Astro.props;
@@ -43,7 +43,7 @@ const L = t.caseL;
     {contact.email && <a class="btn btn--primary" href={`mailto:${contact.email}`}><Icon name="mail" />{contact.email}</a>}
     <a class:list={['btn', contact.email ? 'btn--secondary' : 'btn--primary']} href={contact.linkedin}><Icon name="linkedin" />LinkedIn</a>
     {showMissing && !contact.email && <span class="missing">correo · {L.missing}</span>}
-    {showMissing && <span class="missing">CV · {L.missing}</span>}
+    <a class="btn btn--secondary" href={contact.cv[lang]} download><Icon name="download" />{cvLabel[lang]}</a>
   </div>
   <a class="link" href={projectsPath(lang)}>{q.more}<Icon name="arrow" /></a>
 </dialog>
