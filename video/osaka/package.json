@@ -6,7 +6,7 @@
     "studio": "remotion studio src/index.ts",
     "render:es": "remotion render src/index.ts osaka-es out/osaka-es.mp4",
     "render:en": "remotion render src/index.ts osaka-en out/osaka-en.mp4",
-    "poster": "remotion still src/index.ts osaka-es out/osaka-poster.png --frame=700"
+    "poster": "remotion still src/index.ts osaka-es out/osaka-poster-es.jpg --frame=860 --image-format=jpeg"
   },
   "dependencies": {
     "@remotion/cli": "4.0.535",

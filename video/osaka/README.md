@@ -8,7 +8,7 @@ Cuenta para qué sirve Osaka, no cómo se usa pantalla por pantalla. Tiene los m
 | --- | --- | --- |
 | 01 · Problema | 0–14 | La pregunta "¿Cómo les fue a mis campañas la semana pasada?" y las seis plataformas donde estaba la respuesta |
 | 02 · Momento clave | 14–37 | La pregunta escrita una vez en Osaka, el agente consulta Meta Ads y Google Ads por MCP y responde con una tabla y una sugerencia |
-| 03 · Resultado | 37–52 | 28 personas activas, 14.7 M de tokens y 484 conversaciones revisadas (panel de administración, oct 2026) y el cierre |
+| 03 · Resultado | 37–52 | 47 personas con acceso activo, 17.6 M de tokens solo en la app web (el uso vía MCP no se cuenta) y 484 conversaciones revisadas (panel de administración, oct 2026), y el cierre |
 
 Los datos de la tabla son ficticios, de la marca demo KUBO, y el video lo dice en pantalla. No aparecen clientes reales ni capturas de la herramienta.
 
