@@ -99,8 +99,8 @@ export const stages: Stage[] = [
     role: { es: 'Gerente de Datos', en: 'Data Manager' },
     dates: { es: 'sep 2020 – sep 2024', en: 'Sep 2020 – Sep 2024' },
     what: {
-      es: 'Responsable del área de datos: la base de datos central, la reportería automatizada, los análisis para clientes y las herramientas internas.',
-      en: 'Owned the data area: the central database, automated reporting, client analyses and internal tools.',
+      es: 'Uno de los gerentes del área de datos. Trabajé en la base de datos central, la reportería automatizada, los análisis para clientes y herramientas internas.',
+      en: 'One of the managers in the data area. I worked on the central database, automated reporting, client analyses and internal tools.',
     },
     wins: {
       es: [
