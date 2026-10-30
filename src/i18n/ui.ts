@@ -235,7 +235,7 @@ export const aboutPath = (lang: Lang) => (lang === 'es' ? '/sobre-mi/' : '/en/ab
 
 /** Contacto público: correo personal y LinkedIn. */
 export const contact = {
-  email: 'josecarloscorona.c@gmail.com' as string | null,
+  email: 'hola@josecarloscorona.dev' as string | null,
   linkedin: 'https://www.linkedin.com/in/josecarloscorona/',
   cv: { es: '/cv/josecarloscorona-cv-es.pdf', en: '/cv/josecarloscorona-cv-en.pdf' } as Record<Lang, string>,
 };
