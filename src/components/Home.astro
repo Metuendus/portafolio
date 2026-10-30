@@ -4,7 +4,7 @@ import Icon from './Icon.astro';
 import OrgChip from './OrgChip.astro';
 import CaseCover from './CaseCover.astro';
 import Footer from './Footer.astro';
-import { ui, casePath, projectsPath, aboutPath, showMissing, contact, type Lang } from '../i18n/ui';
+import { ui, casePath, projectsPath, aboutPath, showMissing, contact, cvLabel, type Lang } from '../i18n/ui';
 import { cases, hasPage } from '../data/cases';
 import { fronts, numbers, timeline, countByFront, examplesByFront } from '../data/fronts';
 
@@ -115,6 +115,7 @@ const about = aboutPath(lang);
       {contact.email && <a class="btn btn--primary btn--lg" href={`mailto:${contact.email}`}><Icon name="mail" />{t.hero.cta2}</a>}
       <a class:list={['btn', 'btn--lg', contact.email ? 'btn--secondary' : 'btn--primary']} href={contact.linkedin}><Icon name="linkedin" />LinkedIn</a>
       {showMissing && !contact.email && <span class="missing">correo · {t.caseL.missing}</span>}
+      <a class="btn btn--secondary btn--lg" href={contact.cv[lang]} download><Icon name="download" />{cvLabel[lang]}</a>
     </div>
   </div>
   <Footer lang={lang} />

@@ -24,7 +24,7 @@ export const ui = {
       h1a: 'Hago IA para gente de marketing. ',
       h1b: 'Y\u00a0para encontrar depa',
       h1c: '.',
-      sub: 'Soy AI & Automation Lead en EPA.Digital, una agencia de marketing en CDMX. 28 personas de los equipos de cuentas usan el servidor MCP de medios que empecé solo en 2025. Por mi cuenta hago apps con agentes: una para planear viajes, otra para buscar depa y otra para buscar trabajo.',
+      sub: 'Soy AI & Automation Lead en EPA.Digital, una agencia de marketing en CDMX. 47 personas de la agencia usan Osaka, el servidor MCP de medios que empecé solo en 2025. Por mi cuenta hago apps con agentes: una para planear viajes, otra para buscar depa y otra para buscar trabajo.',
       cta1: 'Ver proyectos',
       cta2: 'Contacto',
       agent: 'agente',
@@ -42,14 +42,14 @@ export const ui = {
       open: 'Tengo 30 segundos',
       title: 'José Carlos en 30 segundos',
       role: 'AI & Automation Lead en EPA.Digital, una agencia de performance marketing de unas 200 personas. Construyo los sistemas de IA que usan los equipos de cuentas y dirijo a un desarrollador de IA.',
-      where: 'CDMX · 9 años en EPA.Digital · español nativo, inglés intermedio',
+      where: 'CDMX · 9 años en EPA.Digital · español nativo, inglés intermedio alto (B2)',
       stackLabel: 'STACK',
       stack: ['Python', 'TypeScript', 'BigQuery', 'Cloud Run', 'Vertex AI', 'MCP', 'Claude', 'Gemini', 'Next.js'],
       winsLabel: 'LOGROS',
       wins: [
-        { t: 'Servidor MCP de medios', d: 'Hice la primera versión y hoy soy co-dueño técnico: 28 personas activas y más de 14.7M tokens procesados.', s: 'panel de administración, oct 2026' },
+        { t: 'Osaka, servidor MCP de medios', d: 'Hice la primera versión y hoy soy co-dueño técnico: 47 personas con acceso activo, y casi todas lo usan vía MCP.', s: 'panel de administración, oct 2026' },
         { t: 'Librería de Prompts de la agencia', d: 'La diseñé y construí; se abrió a las 170 personas de EPA y cuesta 0 USD al mes operarla.', s: 'lanzamiento, nov 2025' },
-        { t: 'Dashboard y ETL de SKU para Coppel', d: 'El análisis diario de SKU pasó de un día completo a 30 minutos.', s: 'proyecto con Coppel, 2026' },
+        { t: 'Dashboard y ETL de SKU para clientes de EPA', d: 'El análisis diario de SKU pasó de un día completo a 30 minutos.', s: 'proyecto de SKU, 2026' },
       ],
       close: 'Cerrar',
       more: 'Ver todos los proyectos',
@@ -134,7 +134,7 @@ export const ui = {
       h1a: 'I build AI for marketing people. ',
       h1b: 'And\u00a0for finding an apartment',
       h1c: '.',
-      sub: 'I’m AI & Automation Lead at EPA.Digital, a marketing agency in Mexico City. 28 people on the account teams use the media MCP server I started by myself in 2025. On my own time I build agent apps: one to plan trips, one to find an apartment and one to find a job.',
+      sub: 'I’m AI & Automation Lead at EPA.Digital, a marketing agency in Mexico City. 47 people at the agency use Osaka, the media MCP server I started by myself in 2025. On my own time I build agent apps: one to plan trips, one to find an apartment and one to find a job.',
       cta1: 'View projects',
       cta2: 'Contact',
       agent: 'agent',
@@ -152,14 +152,14 @@ export const ui = {
       open: 'I have 30 seconds',
       title: 'José Carlos in 30 seconds',
       role: 'AI & Automation Lead at EPA.Digital, a performance marketing agency of about 200 people. I build the AI systems account teams use and lead one AI developer.',
-      where: 'Mexico City · 9 years at EPA.Digital · native Spanish, intermediate English',
+      where: 'Mexico City · 9 years at EPA.Digital · native Spanish, upper intermediate English (B2)',
       stackLabel: 'STACK',
       stack: ['Python', 'TypeScript', 'BigQuery', 'Cloud Run', 'Vertex AI', 'MCP', 'Claude', 'Gemini', 'Next.js'],
       winsLabel: 'RESULTS',
       wins: [
-        { t: 'Media MCP server', d: 'I built the first version and now co-own it technically: 28 active people and over 14.7M tokens processed.', s: 'admin dashboard, Oct 2026' },
+        { t: 'Osaka, media MCP server', d: 'I built the first version and now co-own it technically: 47 people with active access, most of them through MCP.', s: 'admin dashboard, Oct 2026' },
         { t: 'The agency’s Prompt Library', d: 'I designed and built it; it opened to all 170 people at EPA and costs 0 USD a month to run.', s: 'launch, Nov 2025' },
-        { t: 'SKU dashboard and ETL for Coppel', d: 'Daily SKU analysis went from a full day to 30 minutes.', s: 'Coppel project, 2026' },
+        { t: 'SKU dashboard and ETL for EPA clients', d: 'Daily SKU analysis went from a full day to 30 minutes.', s: 'SKU project, 2026' },
       ],
       close: 'Close',
       more: 'See all projects',
@@ -237,7 +237,10 @@ export const aboutPath = (lang: Lang) => (lang === 'es' ? '/sobre-mi/' : '/en/ab
 export const contact = {
   email: 'josecarloscorona.c@gmail.com' as string | null,
   linkedin: 'https://www.linkedin.com/in/josecarloscorona/',
+  cv: { es: '/cv/josecarloscorona-cv-es.pdf', en: '/cv/josecarloscorona-cv-en.pdf' } as Record<Lang, string>,
 };
+
+export const cvLabel: Record<Lang, string> = { es: 'CV en PDF', en: 'CV (PDF)' };
 
 /** Escritos aún no tiene contenido: solo aparece en borrador. */
 export const navItems = (lang: Lang) => ui[lang].nav.filter((l) => l.key !== 'writing' || showMissing);
