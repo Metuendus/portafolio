@@ -89,8 +89,8 @@ em, i { font-style: normal; }
   display: flex; align-items: flex-end; padding: 14px;
   font: 400 12px/1 var(--jc-font-mono); color: var(--jc-text-3); background: var(--jc-surface);
 }
-.shot-ph[data-shot="iterum"] { background: var(--jc-brand-iterum); color: var(--jc-on-poster); }
-.shot-ph[data-shot="domi"] { background: var(--jc-brand-domi); color: var(--jc-on-poster); }
-.shot-ph[data-shot="vocatio"] { background: var(--jc-brand-vocatio); color: var(--jc-on-poster); }
-.shot-ph[data-shot="fundamentum"] { background: var(--jc-brand-fundamentum); color: var(--jc-on-poster); }
-[data-theme="dark"] .shot-ph[data-shot="fundamentum"] { outline: 1px solid var(--jc-hairline); outline-offset: -1px; }
+/* Las portadas comparten fondo neutro; el color de cada app queda solo en su marca */
+.shot-ph[data-shot="iterum"] { --cover-mark: var(--jc-brand-iterum); }
+.shot-ph[data-shot="domi"] { --cover-mark: var(--jc-brand-domi); }
+.shot-ph[data-shot="vocatio"] { --cover-mark: var(--jc-brand-vocatio); }
+.shot-ph[data-shot="fundamentum"] { --cover-mark: var(--jc-poster-fundamentum); }
