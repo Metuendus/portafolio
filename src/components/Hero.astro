@@ -1,21 +1,21 @@
 ---
 import Icon from './Icon.astro';
 import QuickCard from './QuickCard.astro';
-import { ui, projectsPath, type Lang } from '../i18n/ui';
+import { ui, projectsPath, casePath, type Lang } from '../i18n/ui';
 
 interface Props { lang: Lang }
 const { lang } = Astro.props;
 const t = ui[lang];
 const h = t.hero;
 ---
-<section class="hero page-x" data-hero data-accepted={h.accepted} data-dismissed={h.dismissed}>
+<section class="hero page-x" data-hero>
   <span class="chip chip--prod chip--lg open-to"><Icon name="check" size={12} />{t.openTo}</span>
   <p class="fiche tag">{t.fiche}</p>
-  <h1>{h.h1a}<span class="target" data-target>{h.h1b}</span>{h.h1c}</h1>
-  <p class="sub">{h.sub}</p>
+  <h1>{h.h1}</h1>
+  <p class="sub" data-sub>{h.sub}</p>
   <div class="ctas">
-    <button type="button" class="btn btn--primary btn--lg" aria-haspopup="dialog" data-quick-open>{t.quick.open}</button>
-    <a class="btn btn--secondary btn--lg" href={projectsPath(lang)}>{h.cta1}<Icon name="arrow" /></a>
+    <a class="btn btn--primary btn--lg" href={projectsPath(lang)}>{h.cta1}<Icon name="arrow" /></a>
+    <a class="btn btn--secondary btn--lg" href={`#${lang === 'es' ? 'contacto' : 'contact'}`}>{h.cta2}</a>
   </div>
 
   <div class="cursor" aria-hidden="true" data-cursor>
@@ -24,17 +24,39 @@ const h = t.hero;
   </div>
 
   <div class="pop" role="group" aria-labelledby="pop-label" data-pop hidden>
-    <div class="ask" data-ask>
-      <span class="pop-label" id="pop-label">{h.popLabel}</span>
-      <span class="pop-text">{h.popText}</span>
-      <div class="pop-actions">
-        <button type="button" class="pa pa--yes" data-accept>{h.accept}</button>
-        <button type="button" class="pa pa--no" data-dismiss>{h.dismiss}</button>
+    <button type="button" class="peek" aria-expanded="false" aria-controls="pop-body" data-peek>{h.peek}<Icon name="arrow" size={14} /></button>
+    <div class="body" id="pop-body" aria-live="polite">
+      <div class="step" data-step="ask">
+        <span class="pop-label" id="pop-label">{h.askLabel}</span>
+        <span class="pop-text">{h.askText}</span>
+        <div class="pop-actions">
+          <button type="button" class="pa pa--no" data-pick="hire">{h.askHire}</button>
+          <button type="button" class="pa pa--no" data-pick="look">{h.askLook}</button>
+        </div>
       </div>
-    </div>
-    <div class="done" data-done hidden>
-      <span class="done-text"><Icon name="check" class="ok" /><span data-done-text aria-live="polite"></span></span>
-      <button type="button" class="again" data-again>{h.replay}</button>
+      <div class="step" data-step="hire" hidden>
+        <span class="pop-label">{h.popLabel}</span>
+        <span class="pop-text">{h.hireText}</span>
+        <div class="pop-actions">
+          <button type="button" class="pa pa--yes" aria-haspopup="dialog" data-quick-open>{h.hireGo}</button>
+          <button type="button" class="pa pa--no" data-skip>{h.dismiss}</button>
+        </div>
+        <button type="button" class="back" data-back>{h.back}</button>
+      </div>
+      <div class="step" data-step="look" hidden>
+        <span class="pop-label">{h.popLabel}</span>
+        <span class="pop-text">{h.lookText}</span>
+        <div class="pop-actions">
+          <a class="pa pa--yes" href={casePath(lang, 'mcp')}>{h.lookGo}</a>
+          <button type="button" class="pa pa--no" data-skip>{h.dismiss}</button>
+        </div>
+        <button type="button" class="back" data-back>{h.back}</button>
+      </div>
+      <div class="step" data-step="done" hidden>
+        <span class="done-text"><Icon name="check" class="ok" />{h.dismissed}</span>
+        <button type="button" class="back" data-back>{h.replay}</button>
+      </div>
+      <p class="why">{h.why} <a class="link" href="#thesis">{h.whyLink}</a></p>
     </div>
   </div>
 </section>
@@ -48,13 +70,6 @@ const h = t.hero;
     max-width: 1000px; font: 600 var(--jc-fs-hero)/1.05 var(--jc-font-sans); letter-spacing: var(--jc-ls-hero);
     text-wrap: pretty;
   }
-  .target {
-    border-radius: 6px; -webkit-box-decoration-break: clone; box-decoration-break: clone;
-    text-decoration: underline; text-decoration-color: transparent; text-decoration-thickness: 5px; text-underline-offset: 10px;
-    transition: background-color var(--jc-dur-base) var(--jc-ease), text-decoration-color var(--jc-dur-slow) var(--jc-ease);
-  }
-  .hero[data-state='proposing'] .target { background: var(--jc-accent-soft); }
-  .hero[data-state='accepted'] .target { text-decoration-color: var(--jc-accent); }
   .sub { margin-top: 32px; max-width: 720px; font: 400 20px/1.55 var(--jc-font-sans); color: var(--jc-text-2); }
   .ctas { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 44px; }
 
@@ -72,55 +87,67 @@ const h = t.hero;
     border: 1px solid var(--jc-hairline-strong); background: var(--jc-card); box-shadow: var(--jc-shadow-2);
     animation: pop-in var(--jc-dur-base) var(--jc-ease);
   }
-  .pop[hidden], .done[hidden], .ask[hidden] { display: none; }
+  .pop[data-inline] { position: static; width: auto; max-width: 720px; margin-top: 32px; }
+  .pop[hidden], .step[hidden] { display: none; }
   @keyframes pop-in { from { opacity: 0; transform: translateY(4px); } }
-  .ask { display: flex; flex-direction: column; gap: 12px; }
+  .peek { display: none; }
+  .body { display: flex; flex-direction: column; gap: 14px; }
+  .step { display: flex; flex-direction: column; gap: 12px; animation: pop-in var(--jc-dur-base) var(--jc-ease); }
   .pop-label { font: 400 11px/1 var(--jc-font-mono); color: var(--jc-accent); }
   .pop-text { font: 500 15px/1.45 var(--jc-font-sans); color: var(--jc-ink); }
-  .pop-actions { display: flex; gap: 8px; }
+  .pop-actions { display: flex; flex-wrap: wrap; gap: 8px; }
   .pa {
-    height: 40px; padding: 0 18px; border-radius: var(--jc-radius-pill); font: 600 14px/1 var(--jc-font-sans); cursor: pointer;
+    display: inline-flex; align-items: center; justify-content: center;
+    height: 40px; padding: 0 16px; border-radius: var(--jc-radius-pill); font: 600 14px/1 var(--jc-font-sans); cursor: pointer; text-decoration: none;
     transition: background-color var(--jc-dur-fast) var(--jc-ease), color var(--jc-dur-fast) var(--jc-ease);
   }
   .pa--yes { border: 0; background: var(--jc-ink); color: var(--jc-canvas); }
   .pa--yes:hover { background: var(--jc-accent); color: var(--jc-on-accent); }
-  .pa--no { padding: 0 16px; border: 1px solid var(--jc-hairline-strong); background: transparent; color: var(--jc-ink); }
+  .pa--no { border: 1px solid var(--jc-hairline-strong); background: transparent; color: var(--jc-ink); }
   .pa--no:hover { background: var(--jc-surface); }
-  .done { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+  .back {
+    align-self: flex-start; min-height: 32px; padding: 0; border: 0; background: transparent; cursor: pointer;
+    color: var(--jc-text-2); font: 400 13px/1.3 var(--jc-font-sans); text-decoration: underline; text-underline-offset: 3px;
+  }
+  .back:hover { color: var(--jc-ink); }
   .done-text { display: inline-flex; align-items: center; gap: 8px; font: 500 14px/1.4 var(--jc-font-sans); color: var(--jc-ink); }
   .done-text :global(.ok) { color: var(--jc-accent); flex-shrink: 0; }
-  .again {
-    flex-shrink: 0; height: 36px; padding: 0 12px; border: 0; border-radius: var(--jc-radius-pill);
-    background: var(--jc-surface); color: var(--jc-ink); font: 500 13px/1 var(--jc-font-sans); cursor: pointer;
-  }
+  .why .link { display: inline; min-height: 0; font-size: inherit; line-height: inherit; }
+  .why { padding-top: 12px; border-top: 1px solid var(--jc-hairline); font: 400 13px/1.5 var(--jc-font-sans); color: var(--jc-text-2); }
 
   @media (max-width: 640px) {
     .hero { padding-top: 32px; padding-bottom: 48px; }
     .fiche { margin-bottom: 16px; font-size: 12px; line-height: 1.5; }
     h1 { text-wrap: pretty; }
-    .target { border-radius: 4px; }
     .sub { margin-top: 20px; font-size: 17px; }
     .ctas { flex-direction: column; gap: 10px; margin-top: 20px; }
     .ctas .btn { height: 48px; font-size: 15px; width: 100%; }
     .cursor { display: none; }
-    .pop { position: static; width: auto; margin-top: 20px; }
+    .pop { position: static; width: auto; margin-top: 20px; padding: 0; border: 0; box-shadow: none; background: transparent; }
+    .pop[data-open] { padding: 16px; border: 1px solid var(--jc-hairline-strong); background: var(--jc-card); }
+    .peek {
+      display: inline-flex; align-items: center; gap: 6px; min-height: 44px; padding: 0; border: 0; background: transparent;
+      color: var(--jc-accent); font: 400 13px/1.3 var(--jc-font-mono); cursor: pointer;
+    }
+    .pop[data-open] .peek { display: none; }
+    .pop:not([data-open]) .body { display: none; }
     .pop-actions { display: grid; grid-template-columns: 1fr 1fr; }
-    .pa { height: 44px; }
-    .again { height: 44px; }
+    .pa { height: 44px; padding: 0 12px; }
+    .back { min-height: 44px; }
   }
 </style>
 
 <script>
   const hero = document.querySelector<HTMLElement>('[data-hero]');
   if (hero) {
-    const target = hero.querySelector<HTMLElement>('[data-target]')!;
+    const sub = hero.querySelector<HTMLElement>('[data-sub]')!;
     const cursor = hero.querySelector<HTMLElement>('[data-cursor]')!;
     const pop = hero.querySelector<HTMLElement>('[data-pop]')!;
-    const ask = pop.querySelector<HTMLElement>('[data-ask]')!;
-    const done = pop.querySelector<HTMLElement>('[data-done]')!;
-    const doneText = pop.querySelector<HTMLElement>('[data-done-text]')!;
+    const peek = pop.querySelector<HTMLButtonElement>('[data-peek]')!;
+    const steps = [...pop.querySelectorAll<HTMLElement>('[data-step]')];
     const reduced = matchMedia('(prefers-reduced-motion: reduce)');
     const mobile = matchMedia('(max-width: 640px)');
+    const POP_W = 300;
     let timers: number[] = [];
     const later = (fn: () => void, ms: number) => timers.push(window.setTimeout(fn, ms));
     const clear = () => { timers.forEach(clearTimeout); timers = []; };
@@ -130,51 +157,58 @@ const h = t.hero;
       cursor.style.left = `${x}px`;
       cursor.style.top = `${y}px`;
     };
-    const anchor = () => {
+    // Right column when it fits beside the paragraph; otherwise below the buttons, never over text.
+    const layout = () => {
+      if (mobile.matches) { pop.removeAttribute('data-inline'); pop.style.left = ''; pop.style.top = ''; return; }
       const c = hero.getBoundingClientRect();
-      const rects = target.getClientRects();
-      const b = rects[rects.length - 1] ?? target.getBoundingClientRect();
-      return { x: b.right - c.left - 14, y: b.bottom - c.top - 10, w: hero.offsetWidth };
+      const s = sub.getBoundingClientRect();
+      const left = hero.clientWidth - parseFloat(getComputedStyle(hero).paddingRight) - POP_W;
+      if (left >= s.right - c.left + 40) {
+        pop.removeAttribute('data-inline');
+        pop.style.left = `${left}px`;
+        pop.style.top = `${s.top - c.top}px`;
+      } else {
+        pop.setAttribute('data-inline', '');
+        pop.style.left = ''; pop.style.top = '';
+      }
     };
-    const showPop = () => {
-      pop.hidden = false;
-      if (mobile.matches) { pop.style.left = ''; pop.style.top = ''; return; }
-      const a = anchor();
-      pop.style.left = `${Math.max(0, Math.min(a.x - 12, a.w - 300 - 20))}px`;
-      pop.style.top = `${a.y + 34}px`;
+    const beside = () => !mobile.matches && !pop.hasAttribute('data-inline');
+    const open = (v: boolean) => {
+      pop.toggleAttribute('data-open', v);
+      peek.setAttribute('aria-expanded', String(v));
     };
-    const set = (s: string) => { hero.dataset.state = s; };
+    const show = (name: string, focus = true) => {
+      steps.forEach((s) => { s.hidden = s.dataset.step !== name; });
+      hero.dataset.route = name;
+      if (focus) pop.querySelector<HTMLElement>(`[data-step="${name}"] button, [data-step="${name}"] a`)?.focus();
+    };
 
     const run = (delay: number) => {
       clear();
-      set('hidden');
-      pop.hidden = true; ask.hidden = false; done.hidden = true;
+      pop.hidden = true;
+      show('ask', false);
+      open(!mobile.matches);
       cursor.style.opacity = '0';
       place(hero.offsetWidth - 90, hero.offsetHeight - 50, false);
       const still = reduced.matches || mobile.matches;
       later(() => {
-        const a = anchor();
-        set('moving');
-        if (!mobile.matches) { cursor.style.opacity = '1'; place(a.x, a.y, !still); }
+        pop.hidden = false; pop.style.visibility = 'hidden'; layout();
+        const x = parseFloat(pop.style.left) - 8, y = parseFloat(pop.style.top) - 30;
+        pop.hidden = true; pop.style.visibility = '';
+        if (beside() && !still) { cursor.style.opacity = '1'; place(x, y, true); }
       }, delay);
-      later(() => { set('proposing'); showPop(); }, delay + (still ? 0 : 850));
+      later(() => { pop.hidden = false; layout(); }, delay + (still ? 0 : 750));
+      // The cursor only announces the agent; it steps aside so it never covers content.
+      later(() => { cursor.style.opacity = '0'; }, delay + (still ? 0 : 750) + 900);
     };
-    const finish = (s: 'accepted' | 'dismissed') => {
-      set(s);
-      ask.hidden = true; done.hidden = false;
-      doneText.textContent = hero.dataset[s] ?? '';
-      done.querySelector<HTMLButtonElement>('[data-again]')?.focus();
-    };
-    pop.querySelector('[data-accept]')!.addEventListener('click', () => finish('accepted'));
-    pop.querySelector('[data-dismiss]')!.addEventListener('click', () => finish('dismissed'));
-    pop.querySelector('[data-again]')!.addEventListener('click', () => run(250));
-    addEventListener('resize', () => {
-      if (hero.dataset.state === 'hidden' || hero.dataset.state === 'moving') return;
-      const a = anchor();
-      if (!mobile.matches) { place(a.x, a.y, false); showPop(); }
-    });
 
-    const start = () => run(mobile.matches ? 2000 : 1400);
+    peek.addEventListener('click', () => { open(true); show('ask'); });
+    pop.querySelectorAll<HTMLElement>('[data-pick]').forEach((b) => b.addEventListener('click', () => { show(b.dataset.pick!); layout(); }));
+    pop.querySelectorAll<HTMLElement>('[data-skip]').forEach((b) => b.addEventListener('click', () => show('done')));
+    pop.querySelectorAll<HTMLElement>('[data-back]').forEach((b) => b.addEventListener('click', () => show('ask')));
+    addEventListener('resize', () => { if (!pop.hidden) layout(); });
+
+    const start = () => run(mobile.matches ? 600 : 1200);
     (document.fonts?.ready ?? Promise.resolve()).then(start);
   }
 </script>
