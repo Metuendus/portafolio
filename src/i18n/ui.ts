@@ -22,7 +22,8 @@ export const ui = {
     status: { prod: 'En producción', live: 'Desplegada · uso personal', wip: 'En construcción', post: 'Postmortem', exp: 'Experimento' },
     hero: {
       h1: 'Hago IA para gente de marketing. Y\u00a0para encontrar depa.',
-      sub: 'Soy AI & Automation Lead en EPA.Digital, una agencia de marketing en CDMX. 47 personas de la agencia usan Osaka, el servidor MCP de medios que empecé solo en 2025. Por mi cuenta hago apps con agentes: una para planear viajes, otra para buscar depa y otra para buscar trabajo.',
+      sub: 'Soy AI & Automation Lead en EPA.Digital, una agencia de marketing en CDMX. 47 personas de la agencia usan Osaka, el servidor MCP de medios que empecé solo en 2025. Por mi cuenta hago apps con agentes: ',
+      subApps: [['iterum', ' para planear viajes, '], ['domi', ' para buscar depa y '], ['vocatio', ' para buscar trabajo.']] as [string, string][],
       cta1: 'Ver proyectos',
       cta2: 'Contacto',
       agent: 'agente',
@@ -63,8 +64,6 @@ export const ui = {
     },
     newTab: ' (abre en otra pestaña)',
     apps: {
-      tag: 'EN VIVO',
-      title: 'Las tres apps, abiertas',
       open: 'Abrir la app',
     },
     numbersTag: 'EN NÚMEROS',
@@ -145,7 +144,8 @@ export const ui = {
     status: { prod: 'In production', live: 'Deployed · personal use', wip: 'In progress', post: 'Postmortem', exp: 'Experiment' },
     hero: {
       h1: 'I build AI for marketing people. And\u00a0for finding an apartment.',
-      sub: 'I’m AI & Automation Lead at EPA.Digital, a marketing agency in Mexico City. 47 people at the agency use Osaka, the media MCP server I started by myself in 2025. On my own time I build agent apps: one to plan trips, one to find an apartment and one to find a job.',
+      sub: 'I’m AI & Automation Lead at EPA.Digital, a marketing agency in Mexico City. 47 people at the agency use Osaka, the media MCP server I started by myself in 2025. On my own time I build agent apps: ',
+      subApps: [['iterum', ' to plan trips, '], ['domi', ' to find an apartment and '], ['vocatio', ' to find a job.']] as [string, string][],
       cta1: 'View projects',
       cta2: 'Contact',
       agent: 'agent',
@@ -186,8 +186,6 @@ export const ui = {
     },
     newTab: ' (opens in a new tab)',
     apps: {
-      tag: 'LIVE',
-      title: 'The three apps, open',
       open: 'Open the app',
     },
     numbersTag: 'BY THE NUMBERS',
