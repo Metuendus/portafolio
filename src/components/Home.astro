@@ -15,6 +15,7 @@ const L = t.caseL;
 const contactId = lang === 'es' ? 'contacto' : 'contact';
 const featured = ['mcp', 'einstein', 'iterum', 'domi'].map((id) => cases.find((c) => c.id === id)!);
 const about = aboutPath(lang);
+const liveApps = ['iterum', 'domi', 'vocatio'].map((id) => cases.find((c) => c.id === id)!);
 ---
 <Hero lang={lang} />
 
@@ -29,6 +30,25 @@ const about = aboutPath(lang);
       </div>
     ))}
   </dl>
+</section>
+
+<section class="block page-x" aria-labelledby="apps-title">
+  <div class="head"><span class="tag">{t.apps.tag}</span><h2 id="apps-title">{t.apps.title}</h2></div>
+  <ul class="apps">
+    {liveApps.map((c) => (
+      <li class="live" data-shot={c.shot}>
+        <span class="app-mark" aria-hidden="true"></span>
+        <h3 class="app-name">{c.name[lang]}</h3>
+        <p class="app-hook">{c.hook[lang]}</p>
+        <span class="tag app-url">{c.app!.url.replace('https://', '')}</span>
+        <div class="app-ctas">
+          <a class="btn btn--primary" href={c.app!.demo} target="_blank" rel="noopener">{t.apps.demo}<Icon name="external" size={16} /><span class="sr-only">{t.newTab}</span></a>
+          <a class="btn btn--secondary" href={c.app!.url} target="_blank" rel="noopener">{t.apps.open}<Icon name="external" size={16} /><span class="sr-only">{t.newTab}</span></a>
+        </div>
+      </li>
+    ))}
+  </ul>
+  <p class="apps-note">{t.apps.note}</p>
 </section>
 
 <section class="block block--cases page-x" aria-labelledby="cases-title">
@@ -126,6 +146,20 @@ const about = aboutPath(lang);
   .open-to { align-self: flex-start; white-space: normal; height: auto; min-height: 28px; padding-block: 4px; }
   .block { padding-top: 96px; padding-bottom: 96px; border-top: 1px solid var(--jc-hairline); display: flex; flex-direction: column; gap: 48px; }
   .block--cases { gap: 40px; }
+  .apps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin: 0; padding: 0; list-style: none; }
+  .live {
+    display: flex; flex-direction: column; gap: 10px; padding: 24px; border: 1px solid var(--jc-hairline); border-radius: var(--jc-radius-md);
+    background: var(--jc-card);
+  }
+  .app-mark { align-self: flex-start; width: 32px; height: 4px; border-radius: 2px; background: var(--cover-mark); }
+  .live[data-shot='iterum'] { --cover-mark: var(--jc-brand-iterum); }
+  .live[data-shot='domi'] { --cover-mark: var(--jc-brand-domi); }
+  .live[data-shot='vocatio'] { --cover-mark: var(--jc-brand-vocatio); }
+  .app-name { font: 600 22px/1.2 var(--jc-font-sans); color: var(--jc-ink); }
+  .app-hook { flex: 1; font: 400 15px/1.5 var(--jc-font-sans); color: var(--jc-text-2); }
+  .app-url { color: var(--jc-text-3); }
+  .app-ctas { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 6px; }
+  .apps-note { max-width: 720px; font: 400 15px/1.5 var(--jc-font-sans); color: var(--jc-text-2); }
   .head { display: flex; flex-direction: column; gap: 8px; }
   .head--row { flex-direction: row; justify-content: space-between; align-items: flex-end; gap: 16px 24px; flex-wrap: wrap; }
   h2 { font: 600 var(--jc-fs-h1)/1.1 var(--jc-font-sans); letter-spacing: var(--jc-ls-h1); }
@@ -224,7 +258,11 @@ const about = aboutPath(lang);
     .t-dot { left: -28px; top: 3px; }
     .t-year { flex: 0 0 40px; }
   }
+  @media (max-width: 960px) { .apps { grid-template-columns: 1fr; } }
   @media (max-width: 640px) {
+    .live { padding: 18px; }
+    .app-ctas { align-self: stretch; flex-direction: column; }
+    .app-ctas .btn { height: 44px; width: 100%; justify-content: center; font-size: 15px; }
     .block { padding-top: 40px; padding-bottom: 40px; gap: 16px; }
     .block--cases .tag { display: none; }
     .head h2 { font-size: 32px; letter-spacing: -.9px; }

@@ -1,5 +1,6 @@
 ---
 import OrgChip from './OrgChip.astro';
+import Icon from './Icon.astro';
 import VideoFacade from './VideoFacade.astro';
 import Footer from './Footer.astro';
 import { ui, casePath, projectsPath, showMissing, type Lang } from '../i18n/ui';
@@ -29,6 +30,11 @@ const nativo = videos[id]?.[lang];
         <OrgChip lang={lang} org={summary.org} status={summary.status} large />
         {c.stack.map((s) => <span class="chip chip--stack chip--lg">{s}</span>)}
       </div>
+      {summary.app && <div class="app-links">
+        <a class="btn btn--primary" href={summary.app.demo} target="_blank" rel="noopener">{ui[lang].apps.demo}<Icon name="external" size={16} /><span class="sr-only">{ui[lang].newTab}</span></a>
+        <a class="btn btn--secondary" href={summary.app.url} target="_blank" rel="noopener">{ui[lang].apps.open}<Icon name="external" size={16} /><span class="sr-only">{ui[lang].newTab}</span></a>
+        <p class="app-note">{ui[lang].apps.note}</p>
+      </div>}
     </div>
     {(nativo || c.videoId || showMissing) && <div class="video-block">
       {nativo
@@ -153,6 +159,8 @@ const nativo = videos[id]?.[lang];
 </article>
 
 <style>
+  .app-links { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 24px; }
+  .app-note { flex-basis: 100%; max-width: 560px; margin-top: 4px; font: 400 14px/1.5 var(--jc-font-sans); color: var(--jc-text-2); }
   .top { padding-top: 56px; padding-bottom: 96px; display: flex; flex-direction: column; gap: 48px; }
   .intro { display: flex; flex-direction: column; gap: 24px; max-width: 960px; }
   .crumbs { font-size: 13px; }
