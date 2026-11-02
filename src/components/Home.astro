@@ -36,19 +36,16 @@ const liveApps = ['iterum', 'domi', 'vocatio'].map((id) => cases.find((c) => c.i
   <div class="head"><span class="tag">{t.apps.tag}</span><h2 id="apps-title">{t.apps.title}</h2></div>
   <ul class="apps">
     {liveApps.map((c) => (
-      <li class="live" data-shot={c.shot}>
-        <span class="app-mark" aria-hidden="true"></span>
-        <h3 class="app-name">{c.name[lang]}</h3>
-        <p class="app-hook">{c.hook[lang]}</p>
-        <span class="tag app-url">{c.app!.url.replace('https://', '')}</span>
-        <div class="app-ctas">
-          <a class="btn btn--primary" href={c.app!.demo} target="_blank" rel="noopener">{t.apps.demo}<Icon name="external" size={16} /><span class="sr-only">{t.newTab}</span></a>
-          <a class="btn btn--secondary" href={c.app!.url} target="_blank" rel="noopener">{t.apps.open}<Icon name="external" size={16} /><span class="sr-only">{t.newTab}</span></a>
-        </div>
+      <li>
+        <a class="live" data-shot={c.shot} href={c.app} target="_blank" rel="noopener">
+          <span class="app-mark" aria-hidden="true"></span>
+          <span class="app-name">{c.name[lang]}</span>
+          <span class="app-hook">{c.hook[lang]}</span>
+          <span class="app-url">{c.app!.replace('https://', '')}<Icon name="external" size={14} /><span class="sr-only">{t.newTab}</span></span>
+        </a>
       </li>
     ))}
   </ul>
-  <p class="apps-note">{t.apps.note}</p>
 </section>
 
 <section class="block block--cases page-x" aria-labelledby="cases-title">
@@ -155,11 +152,12 @@ const liveApps = ['iterum', 'domi', 'vocatio'].map((id) => cases.find((c) => c.i
   .live[data-shot='iterum'] { --cover-mark: var(--jc-brand-iterum); }
   .live[data-shot='domi'] { --cover-mark: var(--jc-brand-domi); }
   .live[data-shot='vocatio'] { --cover-mark: var(--jc-brand-vocatio); }
+  .live { height: 100%; color: inherit; text-decoration: none; transition: border-color var(--jc-dur-fast) var(--jc-ease); }
   .app-name { font: 600 22px/1.2 var(--jc-font-sans); color: var(--jc-ink); }
   .app-hook { flex: 1; font: 400 15px/1.5 var(--jc-font-sans); color: var(--jc-text-2); }
-  .app-url { color: var(--jc-text-3); }
-  .app-ctas { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 6px; }
-  .apps-note { max-width: 720px; font: 400 15px/1.5 var(--jc-font-sans); color: var(--jc-text-2); }
+  .app-url { display: inline-flex; align-items: center; gap: 6px; margin-top: 4px; font: 600 14px/1.3 var(--jc-font-sans); color: var(--jc-accent); text-decoration: underline; text-underline-offset: 4px; }
+  .live:hover { border-color: var(--jc-hairline-strong); }
+  .live:hover .app-url { text-decoration-thickness: 2px; }
   .head { display: flex; flex-direction: column; gap: 8px; }
   .head--row { flex-direction: row; justify-content: space-between; align-items: flex-end; gap: 16px 24px; flex-wrap: wrap; }
   h2 { font: 600 var(--jc-fs-h1)/1.1 var(--jc-font-sans); letter-spacing: var(--jc-ls-h1); }
@@ -261,8 +259,6 @@ const liveApps = ['iterum', 'domi', 'vocatio'].map((id) => cases.find((c) => c.i
   @media (max-width: 960px) { .apps { grid-template-columns: 1fr; } }
   @media (max-width: 640px) {
     .live { padding: 18px; }
-    .app-ctas { align-self: stretch; flex-direction: column; }
-    .app-ctas .btn { height: 44px; width: 100%; justify-content: center; font-size: 15px; }
     .block { padding-top: 40px; padding-bottom: 40px; gap: 16px; }
     .block--cases .tag { display: none; }
     .head h2 { font-size: 32px; letter-spacing: -.9px; }

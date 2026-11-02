@@ -65,9 +65,7 @@ export const ui = {
     apps: {
       tag: 'EN VIVO',
       title: 'Las tres apps, abiertas',
-      demo: 'Ver el ejemplo',
       open: 'Abrir la app',
-      note: 'El ejemplo es público y no pide cuenta. Para usar la app con tus propios datos necesitas una invitación.',
     },
     numbersTag: 'EN NÚMEROS',
     numbersTitle: 'Algunas cifras',
@@ -190,9 +188,7 @@ export const ui = {
     apps: {
       tag: 'LIVE',
       title: 'The three apps, open',
-      demo: 'See the example',
       open: 'Open the app',
-      note: 'The example is public and needs no account. Using the app with your own data takes an invitation.',
     },
     numbersTag: 'BY THE NUMBERS',
     numbersTitle: 'A few numbers',
