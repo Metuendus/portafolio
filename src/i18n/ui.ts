@@ -61,6 +61,10 @@ export const ui = {
       close: 'Cerrar',
       more: 'Ver todos los proyectos',
     },
+    newTab: ' (abre en otra pestaña)',
+    apps: {
+      open: 'Abrir la app',
+    },
     numbersTag: 'EN NÚMEROS',
     numbersTitle: 'Algunas cifras',
     featuredTag: 'TRABAJO DESTACADO',
@@ -177,6 +181,10 @@ export const ui = {
       ],
       close: 'Close',
       more: 'See all projects',
+    },
+    newTab: ' (opens in a new tab)',
+    apps: {
+      open: 'Open the app',
     },
     numbersTag: 'BY THE NUMBERS',
     numbersTitle: 'A few numbers',
