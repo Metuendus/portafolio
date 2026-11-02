@@ -2,7 +2,6 @@
 import Icon from './Icon.astro';
 import QuickCard from './QuickCard.astro';
 import { ui, projectsPath, casePath, type Lang } from '../i18n/ui';
-import { cases } from '../data/cases';
 
 interface Props { lang: Lang }
 const { lang } = Astro.props;
@@ -13,10 +12,7 @@ const h = t.hero;
   <span class="chip chip--prod chip--lg open-to"><Icon name="check" size={12} />{t.openTo}</span>
   <p class="fiche tag">{t.fiche}</p>
   <h1>{h.h1}</h1>
-  <p class="sub" data-sub>{h.sub}{h.subApps.map(([id, rest]) => {
-    const c = cases.find((x) => x.id === id)!;
-    return <><a class="app-link" href={c.app} target="_blank" rel="noopener">{c.name[lang]}<span class="sr-only">{t.newTab}</span></a>{rest}</>;
-  })}</p>
+  <p class="sub" data-sub>{h.sub}</p>
   <div class="ctas">
     <a class="btn btn--primary btn--lg" href={projectsPath(lang)}>{h.cta1}<Icon name="arrow" /></a>
     <a class="btn btn--secondary btn--lg" href={`#${lang === 'es' ? 'contacto' : 'contact'}`}>{h.cta2}</a>
@@ -75,8 +71,6 @@ const h = t.hero;
     text-wrap: pretty;
   }
   .sub { margin-top: 32px; max-width: 720px; font: 400 20px/1.55 var(--jc-font-sans); color: var(--jc-text-2); }
-  .app-link { color: var(--jc-ink); font-weight: 500; text-decoration: underline; text-decoration-color: var(--jc-accent); text-decoration-thickness: 2px; text-underline-offset: 4px; }
-  .app-link:hover { color: var(--jc-accent); }
   .ctas { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 44px; }
 
   .cursor {

@@ -34,19 +34,21 @@ const frontName = (id: string) => fronts.find((f) => f.id === id)!.name[lang];
   <ul class="grid">
     {cases.map((c, i) => {
       const linked = hasPage(c.id);
-      const Tag = linked ? 'a' : 'div';
       return (
         <li data-front={caseFront(c.org)}>
-          <Tag class:list={['card', { linked }]} href={linked ? casePath(lang, c.id) : undefined}>
+          <div class:list={['card', { linked }]}>
             <div class="shot-wrap"><CaseCover lang={lang} c={c} size="sm" /></div>
             <div class="c-body">
               <span class="tag">{String(i + 1).padStart(2, '0')} / 08</span>
               <span class="c-name">{c.name[lang]}</span>
               <span class="c-hook">{c.hook[lang]}</span>
               <div class="chips"><OrgChip lang={lang} org={c.org} status={c.status} /></div>
-              {linked ? <span class="c-read">{t.readCase}<Icon name="arrow" /></span> : <span class="soon tag">{t.soon}</span>}
+              <div class="c-links">
+                {linked ? <a class="c-read stretch" href={casePath(lang, c.id)}>{t.readCase}<Icon name="arrow" /></a> : <span class="soon tag">{t.soon}</span>}
+                {c.app && <a class="c-read app-open" href={c.app} target="_blank" rel="noopener">{t.apps.open}<Icon name="external" size={16} /><span class="sr-only">{t.newTab}</span></a>}
+              </div>
             </div>
-          </Tag>
+          </div>
         </li>
       );
     })}
@@ -100,7 +102,13 @@ const frontName = (id: string) => fronts.find((f) => f.id === id)!.name[lang];
     height: 100%; padding: 8px; border-radius: var(--jc-radius-lg); border: 1px solid var(--jc-hairline); display: flex; flex-direction: column;
     color: var(--jc-ink); text-decoration: none; transition: box-shadow var(--jc-dur-base) var(--jc-ease), border-color var(--jc-dur-base) var(--jc-ease);
   }
-  .card.linked:hover { box-shadow: var(--jc-shadow-3); border-color: var(--jc-hairline-strong); color: var(--jc-ink); }
+  .card { position: relative; }
+  .card.linked:hover, .card:has(.stretch:focus-visible) { box-shadow: var(--jc-shadow-3); border-color: var(--jc-hairline-strong); color: var(--jc-ink); }
+  .card:has(.stretch:focus-visible) { outline: 2px solid var(--jc-focus); outline-offset: 2px; }
+  .stretch::after { content: ''; position: absolute; inset: 0; border-radius: var(--jc-radius-lg); }
+  .stretch:focus-visible { outline: none; }
+  .c-links { display: flex; flex-wrap: wrap; align-items: center; gap: 0 20px; }
+  .app-open { position: relative; z-index: 1; }
   .shot-wrap { aspect-ratio: 16 / 10; border-radius: var(--jc-radius-md); overflow: hidden; }
   .shot { width: 100%; height: 100%; transition: transform var(--jc-dur-slow) var(--jc-ease); }
   .card.linked:hover .shot { transform: scale(1.03); }
@@ -110,7 +118,7 @@ const frontName = (id: string) => fronts.find((f) => f.id === id)!.name[lang];
   .chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: auto; padding-top: 6px; }
   .c-read { display: inline-flex; align-items: center; gap: 6px; min-height: 32px; font: 600 15px/1 var(--jc-font-sans); color: var(--jc-accent); text-decoration: underline; text-underline-offset: 4px; }
   .c-read :global(svg) { transition: transform var(--jc-dur-fast) var(--jc-ease); }
-  .card.linked:hover .c-read :global(svg) { transform: translateX(4px); }
+  .card.linked:hover .stretch :global(svg) { transform: translateX(4px); }
 
   .rows { list-style: none; padding: 0; border-top: 1px solid var(--jc-hairline-strong); }
   .row { display: grid; grid-template-columns: 96px minmax(0, 1fr) 260px; gap: 24px; align-items: baseline; padding: 22px 0; border-bottom: 1px solid var(--jc-hairline); }

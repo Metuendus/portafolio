@@ -39,18 +39,20 @@ const about = aboutPath(lang);
   <ul class="cases">
     {featured.map((c, i) => {
       const linked = hasPage(c.id);
-      const Tag = linked ? 'a' : 'div';
       return (
         <li>
-          <Tag class:list={['case', { flip: i % 2 === 1, linked }]} href={linked ? casePath(lang, c.id) : undefined}>
+          <div class:list={['case', { flip: i % 2 === 1, linked }]}>
             <div class="shot-wrap"><CaseCover lang={lang} c={c} /></div>
             <div class="body">
               <div class="meta"><span class="tag">{String(i + 1).padStart(2, '0')} / 04</span><span class="bar" aria-hidden="true"></span><span class="cname">{c.name[lang]}</span></div>
               <p class="hook">{c.hook[lang]}</p>
               <div class="chips"><OrgChip lang={lang} org={c.org} status={c.status} /></div>
-              {linked ? <span class="link read">{t.readCase}<Icon name="arrow" /></span> : <span class="soon tag">{t.soon}</span>}
+              <div class="links">
+                {linked ? <a class="link read stretch" href={casePath(lang, c.id)}>{t.readCase}<Icon name="arrow" /></a> : <span class="soon tag">{t.soon}</span>}
+                {c.app && <a class="link app-open" href={c.app} target="_blank" rel="noopener">{t.apps.open}<Icon name="external" size={16} /><span class="sr-only">{t.newTab}</span></a>}
+              </div>
             </div>
-          </Tag>
+          </div>
         </li>
       );
     })}
@@ -153,8 +155,13 @@ const about = aboutPath(lang);
     transition: box-shadow var(--jc-dur-base) var(--jc-ease), border-color var(--jc-dur-base) var(--jc-ease);
   }
   .case.flip { flex-direction: row-reverse; }
-  .case.linked:hover, .case.linked:focus-visible { box-shadow: var(--jc-shadow-3); border-color: var(--jc-hairline-strong); color: var(--jc-ink); }
-  .case:focus-visible { border-radius: var(--jc-radius-lg); }
+  .case { position: relative; }
+  .case.linked:hover, .case:has(.stretch:focus-visible) { box-shadow: var(--jc-shadow-3); border-color: var(--jc-hairline-strong); color: var(--jc-ink); }
+  .case:has(.stretch:focus-visible) { outline: 2px solid var(--jc-focus); outline-offset: 2px; }
+  .stretch::after { content: ''; position: absolute; inset: 0; border-radius: var(--jc-radius-lg); }
+  .stretch:focus-visible { outline: none; }
+  .links { display: flex; flex-wrap: wrap; align-items: center; gap: 0 24px; }
+  .app-open { position: relative; z-index: 1; }
   .shot-wrap { flex: 0 0 440px; aspect-ratio: 16 / 10; border-radius: var(--jc-radius-md); overflow: hidden; }
   .shot { width: 100%; height: 100%; transition: transform var(--jc-dur-slow) var(--jc-ease); }
   .case.linked:hover .shot { transform: scale(1.03); }
@@ -165,7 +172,7 @@ const about = aboutPath(lang);
   .hook { font: 600 32px/1.15 var(--jc-font-sans); letter-spacing: -.8px; }
   .chips { display: flex; gap: 6px; flex-wrap: wrap; }
   .read { align-self: flex-start; }
-  .case.linked:hover .read :global(svg) { transform: translateX(4px); }
+  .case.linked:hover .stretch :global(svg) { transform: translateX(4px); }
 
   .doors { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 16px; }
   .door {
@@ -241,7 +248,7 @@ const about = aboutPath(lang);
     .cname { font-size: 20px; line-height: 1.2; }
     .hook { order: 2; font: 400 15px/1.45 var(--jc-font-sans); letter-spacing: 0; color: var(--jc-text-2); }
     .chips { order: 0; }
-    .read { order: 3; }
+    .links { order: 3; }
     .shot { font-size: 11px; padding: 10px; }
     .d-name { font-size: 18px; }
     .d-blurb { font-size: 14px; }
