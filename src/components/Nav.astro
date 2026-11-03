@@ -8,6 +8,7 @@ const t = ui[lang];
 const esHref = lang === 'es' ? Astro.url.pathname : altHref;
 const enHref = lang === 'en' ? Astro.url.pathname : altHref;
 ---
+<div class="progress-bar" data-progress aria-hidden="true"></div>
 <header class="nav">
   <div class="bar page-x">
     <a class="brand" href={homePath(lang)}>
@@ -21,6 +22,9 @@ const enHref = lang === 'en' ? Astro.url.pathname : altHref;
         ))}
       </ul>
       <span class="sep" aria-hidden="true"></span>
+      <button class="quick30 btn btn--primary" type="button" aria-haspopup="dialog" data-quick-open data-quick-sticky>
+        {t.quick.open}
+      </button>
       <div class="seg" role="group" aria-label={t.langLabel}>
         <a href={esHref} lang="es" hreflang="es" aria-current={lang === 'es' ? 'true' : undefined}>ES</a>
         <a href={enHref} lang="en" hreflang="en" aria-current={lang === 'en' ? 'true' : undefined}>EN</a>
@@ -62,6 +66,11 @@ const enHref = lang === 'en' ? Astro.url.pathname : altHref;
 </header>
 
 <style>
+  .progress-bar {
+    position: fixed; top: 0; left: 0; width: 0; height: 3px;
+    background: var(--jc-accent); z-index: 100; pointer-events: none;
+    transition: width 80ms linear;
+  }
   .nav { position: sticky; top: 0; z-index: 20; background: var(--jc-canvas); border-bottom: 1px solid var(--jc-hairline); }
   .bar { height: 72px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
   .brand { display: flex; align-items: center; gap: 10px; min-height: 44px; color: var(--jc-ink); text-decoration: none; }
@@ -125,6 +134,9 @@ const enHref = lang === 'en' ? Astro.url.pathname : altHref;
   .menu-foot { margin-top: auto; padding: 20px; display: flex; align-items: center; justify-content: space-between; border-top: 1px solid var(--jc-hairline); }
   .seg--m a { height: 38px; min-width: 52px; }
 
+  .quick30 { height: 36px; padding: 0 14px; font-size: 14px; display: none; }
+  .quick30.show { display: inline-flex; }
+
   @media (max-width: 1000px) {
     .desk { display: none; }
     .burger { display: flex; }
@@ -150,6 +162,28 @@ const enHref = lang === 'en' ? Astro.url.pathname : altHref;
     }),
   );
   sync();
+
+  // Barra de progreso de lectura
+  const bar = document.querySelector<HTMLElement>('[data-progress]');
+  if (bar) {
+    const updateBar = () => {
+      const total = document.documentElement.scrollHeight - window.innerHeight;
+      if (total > 0) bar.style.width = `${(window.scrollY / total) * 100}%`;
+    };
+    window.addEventListener('scroll', updateBar, { passive: true });
+    updateBar();
+  }
+
+  // Botón "30 segundos" aparece cuando el hero sale del viewport
+  const heroEl = document.querySelector('[data-hero]');
+  const sticky30 = document.querySelector<HTMLElement>('[data-quick-sticky]');
+  if (heroEl && sticky30) {
+    const heroObs = new IntersectionObserver(
+      ([entry]) => { sticky30.classList.toggle('show', !entry.isIntersecting); },
+      { threshold: 0.1 }
+    );
+    heroObs.observe(heroEl);
+  }
 
   const menu = document.querySelector<HTMLDialogElement>('[data-menu]');
   const opener = document.querySelector<HTMLButtonElement>('[data-menu-open]');

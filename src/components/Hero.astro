@@ -73,6 +73,14 @@ const h = t.hero;
   .sub { margin-top: 32px; max-width: 720px; font: 400 20px/1.55 var(--jc-font-sans); color: var(--jc-text-2); }
   .ctas { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 44px; }
 
+  /* Entrada escalonada del hero */
+  @keyframes hero-in { from { opacity: 0; transform: translateY(16px); } }
+  .open-to, .fiche, h1, .sub, .ctas { animation: hero-in 550ms var(--jc-ease) both; }
+  .fiche   { animation-delay:  80ms; }
+  h1       { animation-delay: 160ms; }
+  .sub     { animation-delay: 270ms; }
+  .ctas    { animation-delay: 390ms; }
+
   .cursor {
     position: absolute; left: 0; top: 0; z-index: 3; pointer-events: none; opacity: 0;
     display: flex; align-items: flex-start; gap: 2px;

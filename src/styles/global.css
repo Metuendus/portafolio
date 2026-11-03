@@ -94,3 +94,11 @@ em, i { font-style: normal; }
 .shot-ph[data-shot="domi"] { --cover-mark: var(--jc-brand-domi); }
 .shot-ph[data-shot="vocatio"] { --cover-mark: var(--jc-brand-vocatio); }
 .shot-ph[data-shot="fundamentum"] { --cover-mark: var(--jc-poster-fundamentum); }
+
+/* Scroll-reveal — solo activo cuando JS añade .js-ready a <html> */
+.js-ready .reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 600ms var(--jc-ease), transform 600ms var(--jc-ease);
+}
+.js-ready .reveal.is-visible { opacity: 1; transform: none; }

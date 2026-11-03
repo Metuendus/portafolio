@@ -18,7 +18,7 @@ const about = aboutPath(lang);
 ---
 <Hero lang={lang} />
 
-<section class="numbers page-x" aria-labelledby="numbers-title">
+<section class="numbers page-x reveal" aria-labelledby="numbers-title">
   <div class="head"><span class="tag">{t.numbersTag}</span><h2 id="numbers-title">{t.numbersTitle}</h2></div>
   <dl class="nums">
     {numbers.map((n) => (
@@ -31,7 +31,7 @@ const about = aboutPath(lang);
   </dl>
 </section>
 
-<section class="block block--cases page-x" aria-labelledby="cases-title">
+<section class="block block--cases page-x reveal" aria-labelledby="cases-title">
   <div class="head head--row">
     <div class="head"><span class="tag">{t.featuredTag}</span><h2 id="cases-title">{t.featuredTitle}</h2></div>
     <a class="link" href={projectsPath(lang)}>{t.allWork}<Icon name="arrow" /></a>
@@ -59,7 +59,7 @@ const about = aboutPath(lang);
   </ul>
 </section>
 
-<section class="block page-x" aria-labelledby="doors-title">
+<section class="block page-x reveal" aria-labelledby="doors-title">
   <div class="head"><span class="tag">{t.doorsTag}</span><h2 id="doors-title">{t.doorsTitle}</h2></div>
   <ul class="doors">
     {fronts.map((f) => (
@@ -76,7 +76,7 @@ const about = aboutPath(lang);
   </ul>
 </section>
 
-<section class="block page-x" aria-labelledby="thesis">
+<section class="block page-x reveal" aria-labelledby="thesis">
   <div class="head"><span class="tag">{t.thesisTag}</span><h2 id="thesis">{t.thesisTitle}</h2></div>
   <ol class="principles">
     {t.principles.map((p, i) => (
@@ -92,7 +92,7 @@ const about = aboutPath(lang);
   </ol>
 </section>
 
-<section class="block page-x" aria-labelledby="timeline-title">
+<section class="block page-x reveal" aria-labelledby="timeline-title">
   <div class="head head--row">
     <div class="head"><span class="tag">{t.timelineTag}</span><h2 id="timeline-title">{t.timelineTitle}</h2></div>
     <a class="link" href={about}>{t.nav.find((n) => n.key === 'about')!.label}<Icon name="arrow" /></a>
@@ -235,7 +235,8 @@ const about = aboutPath(lang);
     .block { padding-top: 40px; padding-bottom: 40px; gap: 16px; }
     .block--cases .tag { display: none; }
     .head h2 { font-size: 32px; letter-spacing: -.9px; }
-    #thesis { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+    #thesis .principles h3 { font-size: 18px; }
+    #thesis .principles p { font-size: 14px; }
     .numbers { padding-top: 40px; padding-bottom: 40px; gap: 16px; }
     .num { padding: 18px 12px 18px 0; margin-right: 12px; gap: 4px; }
     .num-v { font-size: 36px; letter-spacing: -1px; }
@@ -260,3 +261,55 @@ const about = aboutPath(lang);
     .close-ctas .btn { height: 48px; font-size: 15px; width: 100%; }
   }
 </style>
+
+<script>
+  // ─── scroll reveal ────────────────────────────────────────────────────────
+  document.documentElement.classList.add('js-ready');
+  const revealer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach(({ target, isIntersecting }) => {
+        if (isIntersecting) { target.classList.add('is-visible'); revealer.unobserve(target); }
+      });
+    },
+    { threshold: 0.06 }
+  );
+  document.querySelectorAll('.reveal').forEach((el) => revealer.observe(el));
+
+  // ─── count-up de cifras ───────────────────────────────────────────────────
+  const fmtNum = (n: number) =>
+    n >= 1000 ? n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') : String(n);
+  const easeOut = (t: number) => 1 - Math.pow(1 - t, 3);
+
+  function countUp(el: HTMLElement, target: number, suffix: string, duration = 1400) {
+    const original = el.textContent ?? '';
+    const start = performance.now();
+    const step = (now: number) => {
+      const t = Math.min((now - start) / duration, 1);
+      const v = Math.round(easeOut(t) * target);
+      el.textContent = suffix ? `${fmtNum(v)} ${suffix}` : fmtNum(v);
+      if (t < 1) requestAnimationFrame(step);
+      else el.textContent = original;
+    };
+    requestAnimationFrame(step);
+  }
+
+  const numsSection = document.querySelector<HTMLElement>('.numbers');
+  if (numsSection) {
+    let fired = false;
+    const numObs = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !fired) {
+          fired = true;
+          numsSection.querySelectorAll<HTMLElement>('.num-v').forEach((el) => {
+            const text = (el.textContent ?? '').trim();
+            const m = text.match(/^([\d,]+)\s*(.*)/);
+            if (m) countUp(el, parseInt(m[1].replace(/,/g, ''), 10), m[2].trim());
+          });
+          numObs.disconnect();
+        }
+      },
+      { threshold: 0.5 }
+    );
+    numObs.observe(numsSection);
+  }
+</script>
