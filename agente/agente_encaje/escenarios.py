@@ -69,7 +69,6 @@ Requirements:
 - Working English.
 """,
         },
-        debe_citar=((("rag",), ("perfil.geo", "perfil.doppel")),),
     ),
     Escenario(
         id="adopcion",
