@@ -5,9 +5,9 @@
  "vacante": "ML Research Engineer (sample job posting)\n\nA lab that trains its own language models.\n\nRequirements:\n- PhD in machine learning or a related field.\n- Publications at NeurIPS, ICML or ACL.\n- Training large models with PyTorch on GPU clusters.\n- Inference optimization in C++ or Rust.\n- Running workloads on Kubernetes.\n- Designing evaluations for language models.\n",
  "trampa": null,
  "grabado": "2026-11-06",
- "commit": "1d3be95",
- "hash_corpus": "b69f987c8bc950b1",
- "hash_prompts": "f460c0ddf516afb8",
+ "commit": "5c16c5f",
+ "hash_corpus": "6beaa74621c0e807",
+ "hash_prompts": "70bb169cd7ccc19c",
  "pasos": [
   {
    "id": "extraer",
@@ -18,18 +18,18 @@
    "tokens_entrada": 434,
    "tokens_salida": 91,
    "costo_usd": 0.000358,
-   "latencia_ms": 2379
+   "latencia_ms": 1479
   },
   {
    "id": "evaluar",
    "tipo": "modelo",
    "titulo": "Evaluate against his case studies",
-   "resumen": "One judgment per requirement, with 151 excerpts from the portfolio.",
+   "resumen": "One judgment per requirement, with 159 excerpts from the portfolio.",
    "modelo": "gemini-3.8-flash",
-   "tokens_entrada": 7280,
-   "tokens_salida": 3751,
-   "costo_usd": 0.039052,
-   "latencia_ms": 24551
+   "tokens_entrada": 7961,
+   "tokens_salida": 3001,
+   "costo_usd": 0.034449,
+   "latencia_ms": 59009
   },
   {
    "id": "validar",
@@ -43,42 +43,42 @@
   {
    "texto": "PhD in machine learning or a related field",
    "estado": "sin_evidencia",
-   "motivo": "His portfolio shows a bachelor's degree in business administration and does not record a doctorate in machine learning or any related discipline.",
+   "motivo": "His portfolio shows a bachelor's degree in business administration, with no record of a doctoral degree.",
    "evidencia": [],
    "degradado": false
   },
   {
    "texto": "Publications at NeurIPS, ICML or ACL",
    "estado": "sin_evidencia",
-   "motivo": "His portfolio contains no records of academic publications at NeurIPS, ICML, ACL, or other venues.",
+   "motivo": "His portfolio contains no record of research publications at conferences such as NeurIPS, ICML, or ACL.",
    "evidencia": [],
    "degradado": false
   },
   {
    "texto": "Training large models with PyTorch on GPU clusters",
    "estado": "sin_evidencia",
-   "motivo": "His cases focus on integrating existing model APIs and do not show experience training large models with PyTorch on GPU clusters.",
+   "motivo": "His portfolio focuses on integrating external foundation models and APIs rather than training models with PyTorch on GPU clusters.",
    "evidencia": [],
    "degradado": false
   },
   {
    "texto": "Inference optimization in C++ or Rust",
    "estado": "sin_evidencia",
-   "motivo": "His portfolio shows development in TypeScript and Python, without evidence of C++, Rust, or inference optimization.",
+   "motivo": "His portfolio shows no evidence of using C++ or Rust for inference optimization.",
    "evidencia": [],
    "degradado": false
   },
   {
    "texto": "Running workloads on Kubernetes",
    "estado": "sin_evidencia",
-   "motivo": "His cases document deploying containerized workloads to Cloud Run, but provide no evidence of operating workloads on Kubernetes.",
+   "motivo": "His cases document deployments on Cloud Run, with no evidence of managing or running workloads on Kubernetes.",
    "evidencia": [],
    "degradado": false
   },
   {
    "texto": "Designing evaluations for language models",
    "estado": "parcial",
-   "motivo": "He built an evaluation runner with cost and latency gates and analyzed failure modes in conversation logs, but his portfolio does not show designing systematic quality or accuracy evaluations for language models.",
+   "motivo": "He built an evaluation runner with cost and latency gates and analyzed conversation failures, but his cases do not document designing evaluations for model output quality.",
    "evidencia": [
     {
      "id": "fundamentum.paso2",
@@ -98,9 +98,9 @@
  ],
  "instrucciones_ignoradas": [],
  "totales": {
-  "costo_usd": 0.03941,
-  "latencia_ms": 26930,
-  "tokens": 11556
+  "costo_usd": 0.034807,
+  "latencia_ms": 60488,
+  "tokens": 11487
  },
  "costo_ataques_usd": 0.0,
  "evals": [

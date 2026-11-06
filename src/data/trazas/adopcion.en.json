@@ -5,9 +5,9 @@
  "vacante": "AI Adoption Lead (sample job posting)\n\nA 2,000-person company wants to move from scattered pilots to daily use of AI.\n\nRequirements:\n- Having taken an internal AI tool from zero to recurring use.\n- Measuring adoption with data, not surveys.\n- Designing and delivering training for non-technical people.\n- Setting the roadmap and priorities as a product owner.\n- Change management experience at companies with over 1,000 employees.\n- Leading a team of at least five people.\n",
  "trampa": null,
  "grabado": "2026-11-06",
- "commit": "1d3be95",
- "hash_corpus": "b69f987c8bc950b1",
- "hash_prompts": "f460c0ddf516afb8",
+ "commit": "5c16c5f",
+ "hash_corpus": "6beaa74621c0e807",
+ "hash_prompts": "70bb169cd7ccc19c",
  "pasos": [
   {
    "id": "extraer",
@@ -18,18 +18,18 @@
    "tokens_entrada": 463,
    "tokens_salida": 106,
    "costo_usd": 0.000404,
-   "latencia_ms": 2196
+   "latencia_ms": 1422
   },
   {
    "id": "evaluar",
    "tipo": "modelo",
    "titulo": "Evaluate against his case studies",
-   "resumen": "One judgment per requirement, with 151 excerpts from the portfolio.",
+   "resumen": "One judgment per requirement, with 159 excerpts from the portfolio.",
    "modelo": "gemini-3.8-flash",
-   "tokens_entrada": 7302,
-   "tokens_salida": 8685,
-   "costo_usd": 0.076091,
-   "latencia_ms": 66422
+   "tokens_entrada": 7977,
+   "tokens_salida": 4937,
+   "costo_usd": 0.048993,
+   "latencia_ms": 21811
   },
   {
    "id": "validar",
@@ -41,15 +41,15 @@
  ],
  "requisitos": [
   {
-   "texto": "Having taken an internal AI tool from zero to recurring use.",
+   "texto": "Having taken an internal AI tool from zero to recurring use",
    "estado": "con_evidencia",
-   "motivo": "He built the first version of an internal AI assistant that reached recurring production use with 47 active users.",
+   "motivo": "He created the first version of Osaka alone and guided it to 47 active users in production.",
    "evidencia": [
     {
      "id": "mcp.rol",
      "fuente": "Osaka, media MCP server",
      "url": "/en/projects/mcp/",
-     "fragmento": "I built v1 alone in 2025."
+     "fragmento": "First version and product owner. I built v1 alone in 2025."
     },
     {
      "id": "mcp.cifra0",
@@ -61,43 +61,43 @@
    "degradado": false
   },
   {
-   "texto": "Measuring adoption with data, not surveys.",
+   "texto": "Measuring adoption with data, not surveys",
    "estado": "con_evidencia",
-   "motivo": "He tracks adoption and active users through built-in analytics dashboards rather than surveys.",
+   "motivo": "He tracked user adoption through platform telemetry and admin dashboards measuring active users and recurring activity.",
    "evidencia": [
-    {
-     "id": "prompts.decision1",
-     "fuente": "Prompt Library",
-     "url": "/en/projects/prompts/",
-     "fragmento": "Active-user analytics live in the library itself, to see whether people come back."
-    },
     {
      "id": "mcp.paso2",
      "fuente": "Osaka, media MCP server",
      "url": "/en/projects/mcp/",
      "fragmento": "Conversations are stored in Firestore and an admin dashboard shows usage per person."
+    },
+    {
+     "id": "prompts.decision1",
+     "fuente": "Prompt Library",
+     "url": "/en/projects/prompts/",
+     "fragmento": "Active-user analytics live in the library itself, to see whether people come back."
     }
    ],
    "degradado": false
   },
   {
-   "texto": "Designing and delivering training for non-technical people.",
+   "texto": "Designing and delivering training for non-technical people",
    "estado": "parcial",
-   "motivo": "He designed and delivered internal courses on AI and tools, but his portfolio does not specify whether they were targeted at non-technical audiences.",
+   "motivo": "He designed and taught internal courses on prompting, AI fluency, and dashboards, but his cases do not specify whether the audience was non-technical.",
    "evidencia": [
     {
-     "id": "puesto0.logro6",
-     "fuente": "AI & Automation Lead (Sep 2024 – present)",
+     "id": "otro.courses",
+     "fuente": "Internal courses",
      "url": "/en/about/",
-     "fragmento": "Internal courses on prompting, AI Fluency and “Dashboards with Claude Code”, plus a GEO course at Universidad Panamericana."
+     "fragmento": "Prompting, AI Fluency (Anthropic’s program), “Dashboards with Claude Code”, SQL, Looker Studio and Sheets."
     }
    ],
    "degradado": false
   },
   {
-   "texto": "Setting the roadmap and priorities as a product owner.",
+   "texto": "Setting the roadmap and priorities as a product owner",
    "estado": "con_evidencia",
-   "motivo": "He has defined roadmaps, milestones, and feature scope while serving as product owner for internal tools.",
+   "motivo": "He acted as product owner for Osaka and Einstein, defining the roadmap, architecture, milestones, and feature scope.",
    "evidencia": [
     {
      "id": "einstein.rol",
@@ -115,22 +115,28 @@
    "degradado": false
   },
   {
-   "texto": "Change management experience at companies with over 1,000 employees.",
+   "texto": "Change management experience at companies with over 1,000 employees",
    "estado": "sin_evidencia",
-   "motivo": "His portfolio does not show change management experience at companies with over 1,000 employees.",
+   "motivo": "The portfolio contains no evidence of change management work in organizations with more than 1,000 employees.",
    "evidencia": [],
    "degradado": false
   },
   {
-   "texto": "Leading a team of at least five people.",
+   "texto": "Leading a team of at least five people",
    "estado": "parcial",
-   "motivo": "He led a conversion optimization team of three people, but his portfolio does not show experience leading a team of at least five.",
+   "motivo": "He led a migration initiative with a 5-person development team including himself, but his direct management roles have covered teams of up to three people.",
    "evidencia": [
+    {
+     "id": "perfil.migracion",
+     "fuente": "Migrating Osaka to PassportHub",
+     "url": "/en/profile/",
+     "fragmento": "Development team of 5, including me. Osaka became a module inside PassportHub. I led the migration"
+    },
     {
      "id": "puesto2.que",
      "fuente": "CRO & Data Analytics Lead (Jan 2019 – Sep 2020)",
      "url": "/en/about/",
-     "fragmento": "Created and led the conversion optimization program with a team of three"
+     "fragmento": "Created and led the conversion optimization program with a team of three (UX, development and analysis)."
     }
    ],
    "degradado": false
@@ -138,9 +144,9 @@
  ],
  "instrucciones_ignoradas": [],
  "totales": {
-  "costo_usd": 0.076495,
-  "latencia_ms": 68618,
-  "tokens": 16556
+  "costo_usd": 0.049397,
+  "latencia_ms": 23233,
+  "tokens": 13483
  },
  "costo_ataques_usd": 0.0,
  "evals": [
@@ -167,6 +173,11 @@
   {
    "id": "sin_nombres",
    "etiqueta": "No internal names appear",
+   "ok": true
+  },
+  {
+   "id": "evidencia_clave",
+   "etiqueta": "It doesn’t ignore the most relevant case in the portfolio",
    "ok": true
   }
  ]

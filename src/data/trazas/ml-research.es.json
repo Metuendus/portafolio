@@ -5,9 +5,9 @@
  "vacante": "ML Research Engineer (vacante de ejemplo)\n\nLaboratorio que entrena sus propios modelos de lenguaje.\n\nRequisitos:\n- Doctorado en aprendizaje automático o campo afín.\n- Publicaciones en NeurIPS, ICML o ACL.\n- Entrenar modelos grandes con PyTorch en clústeres de GPU.\n- Optimización de inferencia en C++ o Rust.\n- Administrar cargas de trabajo en Kubernetes.\n- Diseñar evaluaciones de modelos de lenguaje.\n",
  "trampa": null,
  "grabado": "2026-11-06",
- "commit": "1d3be95",
- "hash_corpus": "b69f987c8bc950b1",
- "hash_prompts": "f460c0ddf516afb8",
+ "commit": "5c16c5f",
+ "hash_corpus": "6beaa74621c0e807",
+ "hash_prompts": "70bb169cd7ccc19c",
  "pasos": [
   {
    "id": "extraer",
@@ -16,20 +16,20 @@
    "resumen": "6 requisitos. Instrucciones detectadas en el texto: 0.",
    "modelo": "gemini-3.5-flash-lite",
    "tokens_entrada": 454,
-   "tokens_salida": 106,
-   "costo_usd": 0.000401,
-   "latencia_ms": 2201
+   "tokens_salida": 84,
+   "costo_usd": 0.000346,
+   "latencia_ms": 4987
   },
   {
    "id": "evaluar",
    "tipo": "modelo",
    "titulo": "Evaluar contra sus casos",
-   "resumen": "Un juicio por requisito, con 151 fragmentos del portafolio.",
+   "resumen": "Un juicio por requisito, con 159 fragmentos del portafolio.",
    "modelo": "gemini-3.8-flash",
-   "tokens_entrada": 7880,
-   "tokens_salida": 3582,
-   "costo_usd": 0.038685,
-   "latencia_ms": 27186
+   "tokens_entrada": 8601,
+   "tokens_salida": 2965,
+   "costo_usd": 0.035139,
+   "latencia_ms": 28412
   },
   {
    "id": "validar",
@@ -43,48 +43,48 @@
   {
    "texto": "Doctorado en aprendizaje automático o campo afín.",
    "estado": "sin_evidencia",
-   "motivo": "El portafolio no muestra estudios de doctorado; cuenta con una licenciatura en administración.",
+   "motivo": "El portafolio no registra estudios de doctorado; cuenta con una licenciatura en Administración.",
    "evidencia": [],
    "degradado": false
   },
   {
    "texto": "Publicaciones en NeurIPS, ICML o ACL.",
    "estado": "sin_evidencia",
-   "motivo": "El portafolio no registra publicaciones académicas en conferencias de investigación.",
+   "motivo": "Sus casos no muestran publicaciones de investigación en conferencias científicas.",
    "evidencia": [],
    "degradado": false
   },
   {
    "texto": "Entrenar modelos grandes con PyTorch en clústeres de GPU.",
    "estado": "sin_evidencia",
-   "motivo": "El portafolio muestra integración y consumo de modelos por API, sin evidencia de entrenamiento con PyTorch en clústeres de GPU.",
+   "motivo": "El portafolio no presenta experiencia en entrenamiento de modelos con PyTorch ni gestión de clústeres de GPU.",
    "evidencia": [],
    "degradado": false
   },
   {
    "texto": "Optimización de inferencia en C++ o Rust.",
    "estado": "sin_evidencia",
-   "motivo": "El portafolio no muestra experiencia en optimización de inferencia ni en desarrollo con C++ o Rust.",
+   "motivo": "Sus casos no registran optimización de inferencia ni desarrollo en C++ o Rust.",
    "evidencia": [],
    "degradado": false
   },
   {
    "texto": "Administrar cargas de trabajo en Kubernetes.",
    "estado": "sin_evidencia",
-   "motivo": "El portafolio muestra despliegues en Cloud Run y gestión con Terraform, sin evidencia de administración en Kubernetes.",
+   "motivo": "El portafolio describe despliegues en Cloud Run y uso de Terraform, sin mención de Kubernetes.",
    "evidencia": [],
    "degradado": false
   },
   {
    "texto": "Diseñar evaluaciones de modelos de lenguaje.",
-   "estado": "con_evidencia",
-   "motivo": "Diseñó un ejecutor de evaluaciones de modelos con filtros de costo y latencia, y diagnosticó sistemáticamente la calidad en conversaciones reales.",
+   "estado": "parcial",
+   "motivo": "Implementó un ejecutor de evaluaciones centrado en costo y latencia y analizó respuestas en producción, pero no se describe el diseño de rúbricas o conjuntos de prueba para evaluar capacidades de modelos de lenguaje.",
    "evidencia": [
     {
      "id": "fundamentum.paso2",
      "fuente": "Fundamentum",
      "url": "/proyectos/fundamentum/",
-     "fragmento": "un runner de evals con gate de costo y latencia"
+     "fragmento": "un runner de evals con gate de costo y latencia."
     },
     {
      "id": "mcp.decision2",
@@ -98,9 +98,9 @@
  ],
  "instrucciones_ignoradas": [],
  "totales": {
-  "costo_usd": 0.039086,
-  "latencia_ms": 29387,
-  "tokens": 12022
+  "costo_usd": 0.035485,
+  "latencia_ms": 33399,
+  "tokens": 12104
  },
  "costo_ataques_usd": 0.0,
  "evals": [
