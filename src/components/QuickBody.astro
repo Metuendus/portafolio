@@ -8,11 +8,13 @@ const { lang, heading: Heading, inDialog } = Astro.props;
 const t = ui[lang];
 const q = t.quick;
 const L = t.caseL;
+// El separador se queda al final de la línea; ninguna empieza con «·».
+const keepDot = (s: string) => s.replaceAll(' · ', '\u00a0· ');
 ---
 <Heading id="quick-title" class="q-title">{q.title}</Heading>
 <p class="q-role">{q.role}</p>
-<p class="q-where">{q.where}</p>
-<p class="q-where">{t.looking}</p>
+<p class="q-where">{keepDot(q.where)}</p>
+<p class="q-where">{keepDot(t.looking)}</p>
 
 <div class="q-actions">
   <a class="btn btn--primary" href={contact.cv[lang]} download><Icon name="download" />{cvLabel[lang]}</a>
@@ -43,8 +45,10 @@ const L = t.caseL;
   {inDialog
     ? <a class="link" href={summaryPath(lang)}>{q.asPage}<Icon name="arrow" /></a>
     : <CopyButton value="location" label={t.copy.link} done={t.copy.done} failed={t.copy.failed} />}
-  <a class="link" href={contact.linkedin}>LinkedIn<Icon name="external" size={16} /></a>
-  <a class="link" href={contact.github}>GitHub<Icon name="external" size={16} /></a>
+  <div class="q-social">
+    <a class="link" href={contact.linkedin} target="_blank" rel="noopener">LinkedIn<Icon name="external" size={16} /><span class="sr-only">{t.newTab}</span></a>
+    <a class="link" href={contact.github} target="_blank" rel="noopener">GitHub<Icon name="external" size={16} /><span class="sr-only">{t.newTab}</span></a>
+  </div>
 </div>
 
 <style>
@@ -62,6 +66,7 @@ const L = t.caseL;
   .w-s { font: 400 12px/1.4 var(--jc-font-mono); color: var(--jc-text-3); }
   .stack { display: flex; flex-wrap: wrap; gap: 6px; }
   .q-foot { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 24px; padding-top: 16px; border-top: 1px solid var(--jc-hairline); }
+  .q-social { display: flex; flex-wrap: wrap; gap: 4px 24px; }
   @media (max-width: 640px) {
     .q-role { font-size: 17px; }
     .q-actions :global(.btn), .q-actions .btn { width: 100%; height: 48px; }

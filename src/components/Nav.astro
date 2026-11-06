@@ -141,6 +141,7 @@ const enHref = lang === 'en' ? Astro.url.pathname : altHref;
   const html = document.documentElement;
   const sync = () => {
     const dark = html.dataset.theme === 'dark';
+    document.querySelectorAll<HTMLMetaElement>('meta[name="theme-color"]').forEach((m) => { m.content = dark ? '#0E1011' : '#FFFFFF'; });
     document.querySelectorAll<HTMLButtonElement>('[data-theme-toggle]').forEach((b) => {
       b.setAttribute('aria-label', (dark ? b.dataset.toLight : b.dataset.toDark) ?? '');
     });

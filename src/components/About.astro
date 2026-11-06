@@ -81,8 +81,8 @@ const L = t.caseL;
     {contact.email && <a class="btn btn--primary btn--lg" href={`mailto:${contact.email}`}><Icon name="mail" />{contact.email}</a>}
     {showMissing && !contact.email && <span class="missing">correo · {L.missing}</span>}
     <a class="btn btn--secondary btn--lg" href={contact.cv[lang]} download><Icon name="download" />{cvLabel[lang]}</a>
-    <a class="link" href={contact.linkedin}>LinkedIn<Icon name="external" size={16} /></a>
-    <a class="link" href={contact.github}>GitHub<Icon name="external" size={16} /></a>
+    <a class="link" href={contact.linkedin} target="_blank" rel="noopener">LinkedIn<Icon name="external" size={16} /><span class="sr-only">{t.newTab}</span></a>
+    <a class="link" href={contact.github} target="_blank" rel="noopener">GitHub<Icon name="external" size={16} /><span class="sr-only">{t.newTab}</span></a>
   </div>
 </section>
 

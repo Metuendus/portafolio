@@ -30,7 +30,7 @@ export const moreDetails: Record<string, CaseDetail> = {
         resultText: 'Al principio costó: era un concepto nuevo y pocas personas en la agencia entendían qué pasaba por dentro. Una vez que lo entendieron, se volvió fácil de usar. Está en producción en Cloud Run y también se usa desde Claude.ai con OAuth. En octubre de 2026 la versión final entró a una etapa de endurecimiento.',
         shots: ['Chat con selector de modelo', 'Tienda de agentes', 'Panel de administración'],
         role: 'Primera versión y product owner.',
-        roleNote: 'Hice solo la v1 en 2025. En la versión actual, un desarrollador de mi equipo escribió cerca del 80 % del código. Yo diseñé buena parte de la app, creé los issues y los hitos, decidí qué features entraban y aporté el proveedor de DV360 y la autenticación del MCP. También participé en su migración como módulo de PassportHub y coordiné su QA.',
+        roleNote: 'Hice solo la v1 en 2025. En la versión actual, un desarrollador de mi equipo escribió cerca del 80 % del código. Yo diseñé buena parte de la app, creé los issues y los hitos, decidí qué features entraban y aporté el proveedor de DV360 y la autenticación del MCP. También participé en su migración como módulo de PassportHub y coordiné su QA.',
       },
       en: {
         short: 'Osaka',
