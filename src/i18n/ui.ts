@@ -24,8 +24,8 @@ export const ui = {
     org: { epa: 'EPA', own: 'Personal' },
     status: { prod: 'En producción', live: 'Desplegada', wip: 'En construcción', post: 'Postmortem', exp: 'Experimento' },
     hero: {
-      h1: 'Construyo agentes de IA que la gente sí usa. Y otros para buscar mi próximo\u00a0depa.',
-      sub: 'Soy AI & Automation Lead en EPA.Digital, una agencia de marketing en CDMX. Construyo sus sistemas de IA y dirijo a un desarrollador. Osaka, el servidor MCP que empecé solo en 2025, lo usan hoy 47 personas para consultar sus campañas. Por gusto hago apps con agentes; aquí hay algunas.',
+      h1: 'Construyo soluciones agénticas para marketing que los equipos sí\u00a0usan.',
+      sub: 'Soy AI & Automation Lead en EPA.Digital, una agencia de marketing en CDMX. Construyo sus sistemas de IA y dirijo a un desarrollador. Osaka, el servidor MCP que empecé solo en 2025, lo usan hoy 47 personas para consultar sus campañas. Por diversión hago apps con agentes; aquí hay algunas.',
       cta1: 'Ver proyectos',
       cta2: 'Contacto',
     },
@@ -174,7 +174,7 @@ export const ui = {
     org: { epa: 'EPA', own: 'Personal' },
     status: { prod: 'In production', live: 'Deployed', wip: 'In progress', post: 'Postmortem', exp: 'Experiment' },
     hero: {
-      h1: 'I build AI agents people actually use. And others to find my next\u00a0apartment.',
+      h1: 'I build agentic solutions for marketing that teams actually use.',
       sub: 'I’m AI & Automation Lead at EPA.Digital, a marketing agency in Mexico City. I build its AI systems and lead one developer. Osaka, the MCP server I started by myself in 2025, is used today by 47 people to query their campaigns. For fun, I build agent apps; a few are here.',
       cta1: 'View projects',
       cta2: 'Contact',
