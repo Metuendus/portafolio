@@ -148,6 +148,13 @@ a:hover { color: var(--jc-accent-hover); }
   --jc-ph-light-a: #F5F6F7; --jc-ph-light-b: #EEF0F2; --jc-ph-light-line: #E3E5E8; --jc-ph-light-tag: #FFFFFF; --jc-ph-light-ink: #0B0D0E;
   --jc-ph-dark-a: #16191B;  --jc-ph-dark-b: #1A1D20;  --jc-ph-dark-line: #2A2F33;  --jc-ph-dark-tag: #0E1011;  --jc-ph-dark-ink: #F2F3F4;
 
+  /* Instrumento del resumen: un aparato físico, igual en claro y en oscuro */
+  --jc-instr-rack: #14181A; --jc-instr-module: #1B2023; --jc-instr-line: #30373B;
+  --jc-instr-screen: #060808; --jc-instr-screen-edge: #000000;
+  --jc-instr-inset: inset 0 2px 10px rgba(0, 0, 0, .8);
+  --jc-instr-led: #7BE3B4; --jc-instr-ghost: rgba(123, 227, 180, .075); --jc-instr-glow: rgba(123, 227, 180, .55);
+  --jc-instr-text: #F2F3F4; --jc-instr-text-2: #BEC6CB; --jc-instr-text-3: #9CA6AC; --jc-instr-on-led: #0B0D0E;
+
   /* Escala del sitio fuera de los tokens base */
   --jc-fs-hero: 64px; --jc-ls-hero: -2.2px;
   --jc-page-x: clamp(20px, 8.34vw, 120px);
