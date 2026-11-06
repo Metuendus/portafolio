@@ -2,6 +2,14 @@
 
 *, *::before, *::after { box-sizing: border-box; }
 
+html {
+  scrollbar-color: var(--jc-hairline-strong) var(--jc-canvas);
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+}
+/* Con un diálogo abierto, la página de atrás no se desplaza ni cambia de ancho. */
+html:has(dialog[open]) { overflow: hidden; scrollbar-gutter: stable; }
+
 [id] { scroll-margin-top: 88px; }
 
 body {

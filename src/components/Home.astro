@@ -134,8 +134,8 @@ const wave = [18, 34, 52, 30, 68, 44, 86, 58, 100, 72, 40, 62, 92, 54, 28, 70, 9
       <a class="btn btn--secondary btn--lg" href={contact.cv[lang]} download><Icon name="download" />{cvLabel[lang]}</a>
     </div>
     <div class="close-links">
-      <a class="link" href={contact.linkedin}>LinkedIn<Icon name="external" size={16} /></a>
-      <a class="link" href={contact.github}>GitHub<Icon name="external" size={16} /></a>
+      <a class="link" href={contact.linkedin} target="_blank" rel="noopener">LinkedIn<Icon name="external" size={16} /><span class="sr-only">{t.newTab}</span></a>
+      <a class="link" href={contact.github} target="_blank" rel="noopener">GitHub<Icon name="external" size={16} /><span class="sr-only">{t.newTab}</span></a>
     </div>
   </div>
   <Footer lang={lang} />
@@ -220,11 +220,14 @@ const wave = [18, 34, 52, 30, 68, 44, 86, 58, 100, 72, 40, 62, 92, 54, 28, 70, 9
   .close-ctas .btn { padding: 0 22px; }
   .close-links { display: flex; gap: 4px 24px; flex-wrap: wrap; }
 
-  .doppel { padding-top: 96px; padding-bottom: 96px; background: var(--jc-ink); color: var(--jc-canvas); display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 64px; align-items: center; }
+  .doppel { padding-top: 96px; padding-bottom: 96px; --jc-focus: currentColor; background: var(--jc-ink); color: var(--jc-canvas); display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 64px; align-items: center; }
   .dp-copy { display: flex; flex-direction: column; align-items: flex-start; gap: 20px; }
   .doppel h2 { font: 600 var(--jc-fs-display)/1.05 var(--jc-font-sans); letter-spacing: var(--jc-ls-display); }
   .doppel p { max-width: 60ch; font: 400 19px/1.55 var(--jc-font-sans); opacity: .82; }
-  .dp-link { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; font: 600 15px/1.3 var(--jc-font-sans); color: inherit; text-decoration: underline; text-underline-offset: 4px; }
+  .dp-link { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; font: 600 15px/1.3 var(--jc-font-sans); color: inherit; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; }
+  .dp-link :global(svg) { transition: transform var(--jc-dur-fast) var(--jc-ease); }
+  .dp-link:hover { color: inherit; text-decoration-thickness: 2px; }
+  .dp-link:hover :global(svg) { transform: translateX(3px); }
   .wave { height: 180px; display: flex; align-items: center; justify-content: space-between; gap: 4px; }
   .wave span { flex: 1 1 0; max-width: 8px; height: calc(var(--h) * 1%); border-radius: 4px; background: currentColor; opacity: .85; transform-origin: center; }
   @media (prefers-reduced-motion: no-preference) {
@@ -251,6 +254,7 @@ const wave = [18, 34, 52, 30, 68, 44, 86, 58, 100, 72, 40, 62, 92, 54, 28, 70, 9
     .principles { grid-template-columns: minmax(0, 1fr); gap: 0; border-top: 0; }
     .principles li { padding: 16px 0; gap: 6px; border-bottom: 1px solid var(--jc-hairline); }
     .principles h3 { font-size: 22px; line-height: 1.2; letter-spacing: -.4px; }
+    .principles li:last-child { padding-bottom: 0; border-bottom: 0; }
     .principles p { font-size: 15px; line-height: 1.5; }
     .principles .link, .app { font-size: 14px; }
     .doors { grid-template-columns: minmax(0, 1fr); gap: 10px; }
