@@ -5,7 +5,7 @@
  "vacante": "AI Adoption Lead (sample job posting)\n\nA 2,000-person company wants to move from scattered pilots to daily use of AI.\n\nRequirements:\n- Having taken an internal AI tool from zero to recurring use.\n- Measuring adoption with data, not surveys.\n- Designing and delivering training for non-technical people.\n- Setting the roadmap and priorities as a product owner.\n- Change management experience at companies with over 1,000 employees.\n- Leading a team of at least five people.\n",
  "trampa": null,
  "grabado": "2026-11-06",
- "commit": "7fd230e",
+ "commit": "82ab5d2",
  "hash_corpus": "b69f987c8bc950b1",
  "hash_prompts": "f460c0ddf516afb8",
  "pasos": [
@@ -18,7 +18,7 @@
    "tokens_entrada": 463,
    "tokens_salida": 106,
    "costo_usd": 0.000404,
-   "latencia_ms": 2115
+   "latencia_ms": 11470
   },
   {
    "id": "evaluar",
@@ -27,9 +27,9 @@
    "resumen": "One judgment per requirement, with 151 excerpts from the portfolio.",
    "modelo": "gemini-3.8-flash",
    "tokens_entrada": 7296,
-   "tokens_salida": 3848,
-   "costo_usd": 0.039804,
-   "latencia_ms": 25423
+   "tokens_salida": 8828,
+   "costo_usd": 0.077154,
+   "latencia_ms": 48485
   },
   {
    "id": "validar",
@@ -43,7 +43,7 @@
   {
    "texto": "Having taken an internal AI tool from zero to recurring use",
    "estado": "con_evidencia",
-   "motivo": "He built the first version of Osaka and grew it to a production assistant with 47 active users.",
+   "motivo": "He built Osaka from scratch in 2025 and took it into production, reaching 47 active users.",
    "evidencia": [
     {
      "id": "mcp.rol",
@@ -63,19 +63,19 @@
   {
    "texto": "Measuring adoption with data, not surveys",
    "estado": "con_evidencia",
-   "motivo": "He tracked tool adoption using product analytics and admin dashboards measuring active users and queries.",
+   "motivo": "His portfolio shows he tracks tool adoption through built-in analytics dashboards measuring active users and usage per person.",
    "evidencia": [
-    {
-     "id": "prompts.decision1",
-     "fuente": "Prompt Library",
-     "url": "/en/projects/prompts/",
-     "fragmento": "Measure usage inside the app. Active-user analytics live in the library itself, to see whether people come back."
-    },
     {
      "id": "mcp.paso2",
      "fuente": "Osaka, media MCP server",
      "url": "/en/projects/mcp/",
      "fragmento": "Conversations are stored in Firestore and an admin dashboard shows usage per person."
+    },
+    {
+     "id": "prompts.decision1",
+     "fuente": "Prompt Library",
+     "url": "/en/projects/prompts/",
+     "fragmento": "Active-user analytics live in the library itself, to see whether people come back."
     }
    ],
    "degradado": false
@@ -83,7 +83,7 @@
   {
    "texto": "Designing and delivering training for non-technical people",
    "estado": "parcial",
-   "motivo": "He delivered internal courses on AI fluency and tooling, but his cases do not specify that the training was designed for non-technical audiences.",
+   "motivo": "His portfolio shows he designed and delivered internal training on AI and dashboards, but does not explicitly state it was designed for non-technical people.",
    "evidencia": [
     {
      "id": "otro.courses",
@@ -97,7 +97,7 @@
   {
    "texto": "Setting the roadmap and priorities as a product owner",
    "estado": "con_evidencia",
-   "motivo": "He defined the roadmap as product owner for Einstein and established milestones and features for Osaka.",
+   "motivo": "He served as product owner for internal tools, setting the roadmap and deciding which features shipped.",
    "evidencia": [
     {
      "id": "einstein.rol",
@@ -109,7 +109,7 @@
      "id": "mcp.rol",
      "fuente": "Osaka, media MCP server",
      "url": "/en/projects/mcp/",
-     "fragmento": "created the issues and milestones, decided which features went in"
+     "fragmento": "decided which features went in and contributed the DV360 provider and MCP authentication."
     }
    ],
    "degradado": false
@@ -117,20 +117,26 @@
   {
    "texto": "Change management experience at companies with over 1,000 employees",
    "estado": "sin_evidencia",
-   "motivo": "The portfolio only records experience at an agency of approximately 170 people, with no evidence of work at organizations with over 1,000 employees.",
+   "motivo": "His portfolio shows change management experience at an agency of 170 people, with no evidence of work at companies with over 1,000 employees.",
    "evidencia": [],
    "degradado": false
   },
   {
    "texto": "Leading a team of at least five people",
    "estado": "parcial",
-   "motivo": "He has led a team of three people in a previous role, but his cases do not show leadership of five or more people.",
+   "motivo": "His portfolio documents leading a team of three and managing one developer, but lacks evidence of leading a team of five or more.",
    "evidencia": [
     {
      "id": "puesto2.que",
      "fuente": "CRO & Data Analytics Lead (Jan 2019 – Sep 2020)",
      "url": "/en/about/",
      "fragmento": "Created and led the conversion optimization program with a team of three (UX, development and analysis)."
+    },
+    {
+     "id": "puesto0.que",
+     "fuente": "AI & Automation Lead (Sep 2024 – present)",
+     "url": "/en/about/",
+     "fragmento": "lead one AI developer and advise Development, Measurement, Data Science and UX."
     }
    ],
    "degradado": false
@@ -138,9 +144,9 @@
  ],
  "instrucciones_ignoradas": [],
  "totales": {
-  "costo_usd": 0.040208,
-  "latencia_ms": 27538,
-  "tokens": 11713
+  "costo_usd": 0.077558,
+  "latencia_ms": 59955,
+  "tokens": 16693
  },
  "costo_ataques_usd": 0.0,
  "evals": [

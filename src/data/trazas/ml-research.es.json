@@ -5,7 +5,7 @@
  "vacante": "ML Research Engineer (vacante de ejemplo)\n\nLaboratorio que entrena sus propios modelos de lenguaje.\n\nRequisitos:\n- Doctorado en aprendizaje automático o campo afín.\n- Publicaciones en NeurIPS, ICML o ACL.\n- Entrenar modelos grandes con PyTorch en clústeres de GPU.\n- Optimización de inferencia en C++ o Rust.\n- Administrar cargas de trabajo en Kubernetes.\n- Diseñar evaluaciones de modelos de lenguaje.\n",
  "trampa": null,
  "grabado": "2026-11-06",
- "commit": "7fd230e",
+ "commit": "82ab5d2",
  "hash_corpus": "b69f987c8bc950b1",
  "hash_prompts": "f460c0ddf516afb8",
  "pasos": [
@@ -18,7 +18,7 @@
    "tokens_entrada": 454,
    "tokens_salida": 84,
    "costo_usd": 0.000346,
-   "latencia_ms": 1951
+   "latencia_ms": 2049
   },
   {
    "id": "evaluar",
@@ -27,9 +27,9 @@
    "resumen": "Un juicio por requisito, con 151 fragmentos del portafolio.",
    "modelo": "gemini-3.8-flash",
    "tokens_entrada": 7874,
-   "tokens_salida": 2178,
-   "costo_usd": 0.028146,
-   "latencia_ms": 15749
+   "tokens_salida": 2084,
+   "costo_usd": 0.027441,
+   "latencia_ms": 17207
   },
   {
    "id": "validar",
@@ -43,48 +43,48 @@
   {
    "texto": "Doctorado en aprendizaje automático o campo afín",
    "estado": "sin_evidencia",
-   "motivo": "Sus casos señalan una licenciatura en administración y no muestran estudios de doctorado.",
+   "motivo": "Su portafolio acredita una licenciatura en administración y certificaciones técnicas, sin estudios de doctorado.",
    "evidencia": [],
    "degradado": false
   },
   {
    "texto": "Publicaciones en NeurIPS, ICML o ACL",
    "estado": "sin_evidencia",
-   "motivo": "El portafolio no incluye publicaciones de investigación en conferencias académicas.",
+   "motivo": "No hay registro de publicaciones académicas en conferencias de investigación.",
    "evidencia": [],
    "degradado": false
   },
   {
    "texto": "Entrenar modelos grandes con PyTorch en clústeres de GPU",
    "estado": "sin_evidencia",
-   "motivo": "El portafolio no registra entrenamiento de modelos de lenguaje grandes ni uso de PyTorch en clústeres de cómputo.",
+   "motivo": "Sus casos muestran uso e integración de modelos preentrenados mediante APIs, sin evidencia de entrenamiento en PyTorch o clústeres de GPU.",
    "evidencia": [],
    "degradado": false
   },
   {
    "texto": "Optimización de inferencia en C++ o Rust",
    "estado": "sin_evidencia",
-   "motivo": "Sus casos no muestran trabajo en optimización de inferencia de bajo nivel ni experiencia con C++ o Rust.",
+   "motivo": "El portafolio no contiene experiencia en optimización de inferencia ni en desarrollo con C++ o Rust.",
    "evidencia": [],
    "degradado": false
   },
   {
    "texto": "Administrar cargas de trabajo en Kubernetes",
    "estado": "sin_evidencia",
-   "motivo": "El portafolio describe despliegues en Cloud Run y Terraform, sin mención de administración de Kubernetes.",
+   "motivo": "Sus despliegues se concentran en Cloud Run y servicios administrados de nube, sin menciones de administración en Kubernetes.",
    "evidencia": [],
    "degradado": false
   },
   {
    "texto": "Diseñar evaluaciones de modelos de lenguaje",
    "estado": "con_evidencia",
-   "motivo": "Implementó un ejecutor de evaluaciones con controles de costo y latencia, además de diagnósticos de calidad sobre conversaciones reales.",
+   "motivo": "Diseñó un ejecutor de evaluaciones con filtros de costo y latencia, además de evaluar la calidad de cientos de conversaciones reales.",
    "evidencia": [
     {
      "id": "fundamentum.paso2",
      "fuente": "Fundamentum",
      "url": "/proyectos/fundamentum/",
-     "fragmento": "un runner de evals con gate de costo y latencia."
+     "fragmento": "Guardrails de alcance y presupuesto, y un runner de evals con gate de costo y latencia."
     },
     {
      "id": "mcp.decision2",
@@ -98,9 +98,9 @@
  ],
  "instrucciones_ignoradas": [],
  "totales": {
-  "costo_usd": 0.028492,
-  "latencia_ms": 17700,
-  "tokens": 10590
+  "costo_usd": 0.027787,
+  "latencia_ms": 19256,
+  "tokens": 10496
  },
  "costo_ataques_usd": 0.0,
  "evals": [

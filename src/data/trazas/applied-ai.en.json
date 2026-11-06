@@ -5,7 +5,7 @@
  "vacante": "Applied AI Engineer (sample job posting)\n\nWe’re looking for someone who takes AI agents to production and gets teams to use them.\n\nRequirements:\n- Experience building MCP servers or tool integrations for LLMs.\n- Production RAG with verifiable citations.\n- Automated agent evaluations and per-call cost control.\n- Python and TypeScript.\n- Deployment on Google Cloud.\n- Working with non-technical teams so they adopt the tools.\n- Working English.\n",
  "trampa": null,
  "grabado": "2026-11-06",
- "commit": "7fd230e",
+ "commit": "82ab5d2",
  "hash_corpus": "b69f987c8bc950b1",
  "hash_prompts": "f460c0ddf516afb8",
  "pasos": [
@@ -18,7 +18,7 @@
    "tokens_entrada": 450,
    "tokens_salida": 98,
    "costo_usd": 0.00038,
-   "latencia_ms": 2300
+   "latencia_ms": 8242
   },
   {
    "id": "evaluar",
@@ -27,9 +27,9 @@
    "resumen": "One judgment per requirement, with 151 excerpts from the portfolio.",
    "modelo": "gemini-3.8-flash",
    "tokens_entrada": 7285,
-   "tokens_salida": 3978,
-   "costo_usd": 0.040763,
-   "latencia_ms": 30429
+   "tokens_salida": 4398,
+   "costo_usd": 0.043913,
+   "latencia_ms": 33179
   },
   {
    "id": "validar",
@@ -43,7 +43,7 @@
   {
    "texto": "Experience building MCP servers or tool integrations for LLMs",
    "estado": "con_evidencia",
-   "motivo": "He built the initial version of an MCP server on BigQuery using FastMCP and contributed providers and authentication to its production iteration.",
+   "motivo": "He built the initial version of an MCP server on BigQuery using FastMCP and integrated further providers and authentication in production.",
    "evidencia": [
     {
      "id": "mcp.decision0",
@@ -57,7 +57,7 @@
   {
    "texto": "Production RAG with verifiable citations",
    "estado": "parcial",
-   "motivo": "He set the architecture and served as product owner for a cited production RAG tool, but a developer on his team wrote the implementation.",
+   "motivo": "He defined the architecture and roadmap for a production cited RAG system as product owner, but a developer on his team wrote the implementation.",
    "evidencia": [
     {
      "id": "einstein.rol",
@@ -69,7 +69,7 @@
      "id": "einstein.decision1",
      "fuente": "Einstein",
      "url": "/en/projects/einstein/",
-     "fragmento": "Every answer comes with citations. The chat links the documents behind each claim"
+     "fragmento": "Every answer comes with citations. The chat links the documents behind each claim, so anyone can check it."
     }
    ],
    "degradado": false
@@ -77,7 +77,7 @@
   {
    "texto": "Automated agent evaluations and per-call cost control",
    "estado": "con_evidencia",
-   "motivo": "He created a framework featuring an evaluation runner with cost and latency gates alongside per-call token and cost metering.",
+   "motivo": "His Fundamentum project meters every model call by tokens and cost and runs evaluations with cost and latency gates.",
    "evidencia": [
     {
      "id": "fundamentum.paso1",
@@ -97,19 +97,19 @@
   {
    "texto": "Python and TypeScript",
    "estado": "con_evidencia",
-   "motivo": "He lists and uses both languages across his projects, including Python for shared agent infrastructure and TypeScript for the MCP server.",
+   "motivo": "He has implemented projects using TypeScript in Osaka and Python in Domi and Fundamentum.",
    "evidencia": [
-    {
-     "id": "fundamentum.stack",
-     "fuente": "Fundamentum",
-     "url": "/en/projects/fundamentum/",
-     "fragmento": "Python, uv, ADK, Gemini · Claude, Terraform"
-    },
     {
      "id": "mcp.stack",
      "fuente": "Osaka, media MCP server",
      "url": "/en/projects/mcp/",
      "fragmento": "TypeScript, Hono, Next.js, MCP, Claude · OpenAI, Firestore, Cloud Run"
+    },
+    {
+     "id": "domi.stack",
+     "fuente": "Domi",
+     "url": "/en/projects/domi/",
+     "fragmento": "Next.js, Python, Pub/Sub, Firestore, Cloud Run, Terraform"
     }
    ],
    "degradado": false
@@ -117,13 +117,19 @@
   {
    "texto": "Deployment on Google Cloud",
    "estado": "con_evidencia",
-   "motivo": "His applications are deployed to production on Google Cloud Run.",
+   "motivo": "He has deployed multiple web applications and backends on Google Cloud Run.",
    "evidencia": [
     {
      "id": "mcp.resultado",
      "fuente": "Osaka, media MCP server",
      "url": "/en/projects/mcp/",
      "fragmento": "It runs in production on Cloud Run and is also used from Claude.ai through OAuth."
+    },
+    {
+     "id": "domi.resultado",
+     "fuente": "Domi",
+     "url": "/en/projects/domi/",
+     "fragmento": "The backend and web app are deployed on Cloud Run, and the crawler runs every day at 5:00."
     }
    ],
    "degradado": false
@@ -131,13 +137,19 @@
   {
    "texto": "Working with non-technical teams so they adopt the tools",
    "estado": "con_evidencia",
-   "motivo": "He leads agency-wide AI adoption by building systems for account teams and providing training courses.",
+   "motivo": "He leads AI adoption across the agency by building systems for account teams and providing tools and training so they can adopt them effectively.",
    "evidencia": [
     {
      "id": "puesto0.que",
      "fuente": "AI & Automation Lead (Sep 2024 – present)",
      "url": "/en/about/",
      "fragmento": "I lead AI adoption at the agency: I build and run the systems account teams use"
+    },
+    {
+     "id": "dash.decision4",
+     "fuente": "Dashboards and Hopper",
+     "url": "/en/projects/dash/",
+     "fragmento": "Instead of stopping it, we added tools and skills so they could do it well."
     }
    ],
    "degradado": false
@@ -145,7 +157,7 @@
   {
    "texto": "Working English",
    "estado": "con_evidencia",
-   "motivo": "His profile reports upper intermediate B2 English.",
+   "motivo": "His background notes upper-intermediate B2 English proficiency while continuing coursework.",
    "evidencia": [
     {
      "id": "educacion.idioma1",
@@ -159,9 +171,9 @@
  ],
  "instrucciones_ignoradas": [],
  "totales": {
-  "costo_usd": 0.041143,
-  "latencia_ms": 32729,
-  "tokens": 11811
+  "costo_usd": 0.044293,
+  "latencia_ms": 41421,
+  "tokens": 12231
  },
  "costo_ataques_usd": 0.0,
  "evals": [
