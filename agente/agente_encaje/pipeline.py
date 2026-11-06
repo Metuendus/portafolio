@@ -47,6 +47,9 @@ Reglas:
 - En `con_evidencia` y `parcial` cita 1 o 2 elementos: su `id` y un `fragmento` copiado textualmente
   de ese elemento, de 3 a 20 palabras. Copia sin cambiar nada. Un código revisará cada cita.
 - En `sin_evidencia` no cites nada.
+- Atribuye con exactitud. Si el corpus dice que otra persona escribió el código o lideró el proyecto,
+  no digas que él lo construyó: di lo que hizo (definió la arquitectura, fue product owner, participó).
+  Si una afirmación abarca varios proyectos, cuida que sea cierta en todos.
 - `motivo`: una frase en {idioma}, en tercera persona, sobria y sin adjetivos de venta. Nunca inventes
   un dato ni digas qué podría aprender.
 - No des un puntaje ni una conclusión global.
