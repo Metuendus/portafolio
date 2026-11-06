@@ -11,7 +11,7 @@ interface Paso { id: string; tipo: 'modelo' | 'codigo'; titulo: string; resumen:
 interface Traza {
   escenario: string; titulo: string; vacante: string; trampa: string | null; grabado: string; commit: string;
   pasos: Paso[];
-  requisitos: { texto: string; estado: Estado; motivo: string; evidencia: { fuente: string; url: string; fragmento: string }[] }[];
+  requisitos: { texto: string; estado: Estado; motivo: string; evidencia: { id: string; fuente: string; url: string; fragmento: string }[] }[];
   instrucciones_ignoradas: string[];
   costo_ataques_usd?: number;
   totales: { costo_usd: number; latencia_ms: number; tokens: number };
@@ -39,10 +39,28 @@ const grabacion = (x: Traza) => t.recording
   .replace('{c}', costo(x))
   .replace('{m}', modelos(x));
 const [abre, cierra] = lang === 'es' ? ['«', '»'] : ['“', '”'];
+
+// A dónde llega cada hilo. Solo citas con un elemento real en la home; las demás salen a su propia URL.
+const prueba = (id: string): string | null => {
+  if (id === 'mcp.cifra0') return 'osaka-usuarios';
+  const [origen] = id.split('.');
+  return ({ mcp: 'mcp', domi: 'domi', dash: 'dash', prompts: 'prompts-usuarios', puesto0: 'puesto0', puesto2: 'puesto2' } as Record<string, string>)[origen!] ?? null;
+};
+const destinos = (r: Traza['requisitos'][number]) => {
+  const vistos = new Map<string, { href: string; dest: string | null; fuente: string; cita: string }>();
+  for (const e of r.evidencia) {
+    const dest = prueba(e.id);
+    const href = dest ? `#prueba-${dest}` : e.url;
+    if (!vistos.has(href)) vistos.set(href, { href, dest, fuente: e.fuente, cita: `${abre}${e.fragmento}${cierra}` });
+  }
+  return [...vistos.values()];
+};
+const recuento = (x: Traza) => (Object.keys(ESTADO) as Estado[]).map((k) => ({ k, n: x.requisitos.filter((r) => r.estado === k).length }));
 ---
 {trazas.length > 0 && (
 <section class="replay page-x" aria-labelledby="replay-title" data-replay>
-  <noscript><style is:inline>[data-replay-tabs]{display:none!important}[data-replay-panel][hidden]{display:flex!important}</style></noscript>
+  <noscript><style is:inline>[data-replay-tabs],[data-replay-only]{display:none!important}[data-replay-panel][hidden]{display:flex!important}</style></noscript>
+  <p class="sr-only" aria-live="polite" data-live data-strings={JSON.stringify({ play: t.play, pause: t.pause, again: t.again, back: t.back })}></p>
   <div class="intro">
     <h2 id="replay-title">{t.title}</h2>
     <p class="lead">{t.intro}</p>
@@ -64,7 +82,26 @@ const [abre, cierra] = lang === 'es' ? ['«', '»'] : ['“', '”'];
   </div>
 
   {trazas.map((x, i) => (
-    <div class="panel" role="tabpanel" id={`panel-${x.escenario}`} aria-labelledby={`tab-${x.escenario}`} tabindex="0" hidden={i !== 0} data-replay-panel>
+    <div class="panel" role="tabpanel" id={`panel-${x.escenario}`} aria-labelledby={`tab-${x.escenario}`} tabindex="0" hidden={i !== 0} data-replay-panel data-lat={x.totales.latencia_ms}>
+      <p class="fast" data-replay-only>{t.fast}</p>
+      <div class="console" data-replay-only data-console data-mode="ended">
+        <p class="status"><span data-step>{x.pasos.at(-1)!.titulo}</span><span class="clock" data-clock>{seg(x.totales.latencia_ms)}</span></p>
+        <div class="controls">
+          <button type="button" class="ctl" data-toggle aria-label={t.again}>
+            <svg class="i-pause" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M8 5v14M16 5v14" /></svg>
+            <svg class="i-play" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M8 5v14l11-7Z" /></svg>
+            <svg class="i-again" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M4 12a8 8 0 1 0 2.6-5.9M4 4v5h5" /></svg>
+          </button>
+          <button type="button" class="ctl" data-skip aria-label={t.skip}>
+            <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M5 5v14l9-7ZM18 5v14" /></svg>
+          </button>
+          <div class="ticks" role="group" aria-label={t.ticks}>
+            {x.requisitos.map((r, n) => (
+              <button type="button" class="tick" data-tick={n} data-estado={r.estado} data-on aria-label={r.texto}><span></span></button>
+            ))}
+          </div>
+        </div>
+      </div>
       {x.trampa && (
         <div class="trap">
           {x.instrucciones_ignoradas.length > 0 && <p class="caught"><Icon name="check" size={18} />{t.caught}</p>}
@@ -77,13 +114,22 @@ const [abre, cierra] = lang === 'es' ? ['«', '»'] : ['“', '”'];
         <h3>{t.results}</h3>
         <ul class="reqs">
           {x.requisitos.map((r) => (
-            <li>
+            <li data-row data-estado={r.estado}>
               <div class="ask">
                 <p class="rt">{r.texto}</p>
                 <span class={`chip ${ESTADO[r.estado].chip}`}><Icon name={ESTADO[r.estado].icon} size={12} />{ESTADO[r.estado].label}</span>
               </div>
               <div class="answer">
                 <p class="why">{r.motivo}</p>
+                {r.evidencia.length > 0 && (
+                  <p class="follow" data-replay-only>
+                    {destinos(r).map((d) => (
+                      <a class="to" href={d.href} data-dest={d.dest} data-quote={d.cita} data-fuente={d.fuente} aria-label={`${t.follow} ${d.fuente}`}>
+                        {d.fuente}<svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d={d.dest ? 'M12 5v14M6 13l6 6 6-6' : 'M5 12h14M13 6l6 6-6 6'} /></svg>
+                      </a>
+                    ))}
+                  </p>
+                )}
                 {r.evidencia.length > 0 && (
                   <details class="cites">
                     <summary>{t.cites(r.evidencia.length)}</summary>
@@ -97,6 +143,15 @@ const [abre, cierra] = lang === 'es' ? ['«', '»'] : ['“', '”'];
           ))}
         </ul>
       </div>
+
+      <dl class="verdict" data-replay-only data-verdict>
+        {recuento(x).map(({ k, n }) => (
+          <div class="v" data-n={n}>
+            <dt><span class={`chip ${ESTADO[k].chip}`}><Icon name={ESTADO[k].icon} size={12} />{ESTADO[k].label}</span></dt>
+            <dd class="vn">{n}</dd>
+          </div>
+        ))}
+      </dl>
 
       <div class="proof">
         <p class="meta">{grabacion(x)}</p>
@@ -228,6 +283,100 @@ const [abre, cierra] = lang === 'es' ? ['«', '»'] : ['“', '”'];
 
   .cta { align-self: flex-start; }
 
+  /* Repetición: solo con JS (el noscript la oculta) y sin alterar la altura al hidratar. */
+  .fast { margin-bottom: -20px; font-size: 14px; line-height: 1.4; color: var(--jc-text-3); }
+  .console {
+    position: sticky; top: 73px; z-index: 5; display: flex; flex-direction: column; gap: 4px;
+    margin-inline: calc(var(--jc-page-x) * -1); padding: 8px var(--jc-page-x);
+    background: var(--jc-canvas); border-bottom: 1px solid var(--jc-hairline);
+  }
+  .status { display: flex; justify-content: space-between; gap: 12px; font: 400 12px/1.4 var(--jc-font-mono); color: var(--jc-text-3); }
+  .clock { font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .controls { display: flex; align-items: center; gap: 4px; min-height: 40px; }
+  [data-replay]:not([data-ready]) .controls { visibility: hidden; }
+  .ctl {
+    flex: none; width: 40px; height: 40px; display: grid; place-items: center; padding: 0; cursor: pointer;
+    border: 1px solid var(--jc-hairline-strong); border-radius: 50%; background: transparent; color: var(--jc-ink);
+    transition: background-color var(--jc-dur-fast) var(--jc-ease);
+  }
+  .ctl:hover { background: var(--jc-surface); }
+  .ctl svg { grid-area: 1 / 1; fill: none; stroke: currentColor; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; }
+  .ctl .i-pause, .ctl .i-play, .ctl .i-again { display: none; }
+  [data-mode='playing'] .i-pause, [data-mode='paused'] .i-play, [data-mode='ended'] .i-again { display: block; }
+  [data-mode='ended'] [data-skip] { visibility: hidden; }
+  .ticks { display: flex; flex-wrap: wrap; min-width: 0; margin-left: 6px; }
+  .tick { width: 28px; height: 40px; display: grid; place-items: center; padding: 0; border: 0; background: transparent; cursor: pointer; }
+  .tick span {
+    width: 14px; height: 14px; border-radius: 3px; box-shadow: inset 0 0 0 1.5px var(--jc-hairline-strong);
+    transition: background-color var(--jc-dur-base) var(--jc-ease), box-shadow var(--jc-dur-base) var(--jc-ease);
+  }
+  .tick[data-on][data-estado='con_evidencia'] span { background: var(--jc-ok); box-shadow: inset 0 0 0 1.5px var(--jc-ok); }
+  .tick[data-on][data-estado='parcial'] span { background: linear-gradient(90deg, var(--jc-warn) 50%, transparent 50%); box-shadow: inset 0 0 0 1.5px var(--jc-warn); }
+  .tick[data-on][data-estado='sin_evidencia'] span { background: linear-gradient(var(--jc-text-3), var(--jc-text-3)) center / 8px 1.5px no-repeat; box-shadow: inset 0 0 0 1.5px var(--jc-text-3); }
+
+  .reqs > li { position: relative; }
+  .reqs > li::before { content: ''; position: absolute; left: 0; right: 0; top: -1px; height: 1px; background: var(--jc-ink); transform: scaleX(0); transform-origin: left; }
+  .reqs > li[data-scan]::before { transform: scaleX(1); transition: transform 520ms var(--jc-ease); }
+  .rt, .answer, .caught { transition: opacity 320ms var(--jc-ease); }
+  .panel[data-run] .reqs > li:not([data-read]) .rt { opacity: .45; }
+  .panel[data-run] .reqs > li:not([data-done]) .chip { opacity: 0; }
+  .panel[data-run] .reqs > li:not([data-done]) .answer { opacity: .2; }
+  .panel[data-run]:not([data-caught]) .caught { opacity: 0; }
+  mark { transition: background-color 200ms var(--jc-ease), color 200ms var(--jc-ease); }
+  .panel[data-attack] mark { background: var(--jc-risk-bg); color: var(--jc-risk); }
+
+  .follow { display: flex; flex-wrap: wrap; gap: 0 16px; margin-top: 4px; }
+  .to {
+    min-height: 40px; display: inline-flex; align-items: center; gap: 6px; font: 600 14px/1.3 var(--jc-font-sans);
+    color: var(--jc-ink); text-decoration: underline; text-decoration-color: var(--jc-hairline-strong); text-underline-offset: 4px;
+  }
+  .to:hover, .to:active { text-decoration-color: currentColor; color: var(--jc-ink); }
+  .to svg { flex: none; fill: none; stroke: currentColor; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; }
+
+  .verdict { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 2px solid var(--jc-ink); }
+  .v { display: flex; flex-direction: column; gap: 10px; padding: 20px 12px 4px 0; }
+  .v dd { margin: 0; }
+  .vn { order: -1; font: 600 clamp(64px, 11vw, 112px)/.9 var(--jc-font-sans); letter-spacing: -.04em; font-variant-numeric: tabular-nums; transform-origin: 50% 100%; }
+  .v[data-n='0'] .vn { color: var(--jc-text-3); font-weight: 400; }
+  .v dt { min-height: 24px; }
+  .panel[data-run]:not([data-settled]) .vn, .panel[data-run]:not([data-settled]) .v dt { opacity: 0; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .fast, .ctl, .status .clock { display: none; }
+    .ticks { margin-left: 0; }
+    .rt, .answer, .caught, mark, .tick span, .reqs > li[data-scan]::before { transition: none; }
+  }
+
+  :global(.replay-threads) { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; overflow: hidden; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+  :global(.replay-threads path) { stroke-width: 1.25; transition: opacity 200ms var(--jc-ease); }
+  :global(.replay-threads .th-node) { stroke: none; }
+  :global(.replay-threads .con_evidencia) { stroke: var(--jc-ok); fill: none; }
+  :global(.replay-threads .parcial) { stroke: var(--jc-warn); }
+  :global(.replay-threads .sin_evidencia) { stroke: var(--jc-text-3); }
+  :global(.replay-threads .attack) { stroke: var(--jc-risk); stroke-width: 1.5; }
+  :global(.replay-threads .gate) { stroke: var(--jc-ink); stroke-width: 2.5; }
+  :global(.replay-threads[data-hot] path:not([data-hot])) { opacity: .15; }
+  :global(.replay-threads[data-hot] path[data-hot]) { stroke-width: 2; }
+
+  :global([data-cited]) { outline: 1.5px solid var(--jc-accent); outline-offset: 3px; border-radius: var(--jc-radius-sm); transition: outline-color var(--jc-dur-slow) var(--jc-ease); }
+  :global(.case[data-cited]) { border-radius: var(--jc-radius-lg); }
+  :global(li[data-cited]) { outline: none; }
+  :global(li[data-cited] .t-dot) { border-color: var(--jc-accent) !important; background: var(--jc-accent) !important; box-shadow: 0 0 0 4px var(--jc-accent-soft); }
+  :global([data-spot]) { outline-width: 3px; }
+  :global(li[data-spot] .t-text) { text-decoration: underline; text-decoration-color: var(--jc-accent); text-decoration-thickness: 2px; text-underline-offset: 4px; }
+
+  :global(.replay-dock) {
+    position: fixed; z-index: 15; left: 12px; right: 12px; bottom: calc(12px + env(safe-area-inset-bottom)); max-width: 560px; margin-inline: auto;
+    display: flex; flex-direction: column; align-items: flex-start; gap: 8px; padding: 14px 16px;
+    background: var(--jc-ink); color: var(--jc-canvas); border-radius: var(--jc-radius-md); box-shadow: var(--jc-shadow-3); --jc-focus: currentColor;
+  }
+  :global(.replay-dock p) { font-size: 15px; line-height: 1.45; }
+  :global(.replay-dock small) { display: block; margin-top: 4px; font: 400 12px/1.4 var(--jc-font-mono); opacity: .75; }
+  :global(.replay-dock button) { min-height: 40px; margin-left: -8px; padding: 0 8px; border: 0; background: transparent; color: inherit; font: 600 14px/1.3 var(--jc-font-sans); text-decoration: underline; text-underline-offset: 4px; cursor: pointer; }
+
+  @media (max-width: 1180px) {
+    .console { top: 61px; }
+  }
   @media (max-width: 900px) {
     .reqs > li { grid-template-columns: minmax(0, 1fr); }
     .how-body { grid-template-columns: minmax(0, 1fr); }
@@ -238,16 +387,19 @@ const [abre, cierra] = lang === 'es' ? ['«', '»'] : ['“', '”'];
     .intro p { font-size: 16px; }
     .tabs { display: grid; grid-template-columns: 1fr 1fr; }
     .tab { padding: 8px 10px; min-height: 48px; }
+    .vn { font-size: 64px; }
   }
 </style>
 
 <script>
+  // Las pestañas funcionan solas: si la isla no carga, queda la tabla de siempre.
   const root = document.querySelector<HTMLElement>('[data-replay]');
   if (root) {
     const tabs = [...root.querySelectorAll<HTMLButtonElement>('[role="tab"]')];
     const panels = [...root.querySelectorAll<HTMLElement>('[data-replay-panel]')];
 
     const select = (tab: HTMLButtonElement, focus = false) => {
+      if (tab.getAttribute('aria-selected') === 'true') { if (focus) tab.focus(); return; }
       tabs.forEach((x) => {
         const on = x === tab;
         x.setAttribute('aria-selected', String(on));
@@ -255,6 +407,7 @@ const [abre, cierra] = lang === 'es' ? ['«', '»'] : ['“', '”'];
       });
       panels.forEach((p) => { p.hidden = p.id !== tab.getAttribute('aria-controls'); });
       if (focus) tab.focus();
+      root.dispatchEvent(new CustomEvent('replay:select'));
     };
 
     tabs.forEach((tab, i) => {
@@ -266,5 +419,13 @@ const [abre, cierra] = lang === 'es' ? ['«', '»'] : ['“', '”'];
         select(tabs[(to + tabs.length) % tabs.length]!, true);
       });
     });
+
+    // Equivalente a client:visible, que en Astro solo existe para componentes de framework.
+    const io = new IntersectionObserver((es) => {
+      if (!es.some((e) => e.isIntersecting)) return;
+      io.disconnect();
+      void import('../scripts/replay-island').then((m) => m.arrancar(root)).catch(() => {});
+    }, { rootMargin: '300px 0px' });
+    io.observe(root);
   }
 </script>

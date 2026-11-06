@@ -56,18 +56,18 @@ export const examplesByFront = (f: Front, lang: Lang) =>
   [...cases.filter((c) => caseFront(c.org) === f).map((c) => c.name[lang]), ...more.filter((m) => m.front === f).map((m) => m.name[lang])].slice(0, 2);
 
 /** Cifras con fuente para «En números» y la tarjeta de 30 segundos. */
-export const numbers: { v: string; l: Record<Lang, string>; source: Record<Lang, string> }[] = [
-  { v: '47', l: { es: 'usuarios activos de Osaka, el servidor MCP de medios; casi todos lo usan vía MCP', en: 'active users of Osaka, the media MCP server; most use it through MCP' }, source: { es: 'panel de administración, oct 2026', en: 'admin dashboard, Oct 2026' } },
+export const numbers: { v: string; proof?: string; l: Record<Lang, string>; source: Record<Lang, string> }[] = [
+  { v: '47', proof: 'osaka-usuarios', l: { es: 'usuarios activos de Osaka, el servidor MCP de medios; casi todos lo usan vía MCP', en: 'active users of Osaka, the media MCP server; most use it through MCP' }, source: { es: 'panel de administración, oct 2026', en: 'admin dashboard, Oct 2026' } },
   { v: '~30 min', l: { es: 'para el análisis diario de SKU en un cliente de EPA; antes tomaba un día completo', en: 'for daily SKU analysis at one EPA client, down from a full day' }, source: { es: 'estimación propia, proyecto de SKU, 2026', en: 'my own estimate, SKU project, 2026' } },
-  { v: '38', l: { es: 'personas usaron la Librería de Prompts en los últimos 30 días, con 44 recursos publicados', en: 'people used the Prompt Library in the last 30 days, with 44 published resources' }, source: { es: 'panel de administración, nov 2026', en: 'admin dashboard, Nov 2026' } },
+  { v: '38', proof: 'prompts-usuarios', l: { es: 'personas usaron la Librería de Prompts en los últimos 30 días, con 44 recursos publicados', en: 'people used the Prompt Library in the last 30 days, with 44 published resources' }, source: { es: 'panel de administración, nov 2026', en: 'admin dashboard, Nov 2026' } },
 ];
 
-export const timeline: { year: string; t: Record<Lang, string>; mark?: 'origin' | 'now' }[] = [
+export const timeline: { year: string; proof?: string; t: Record<Lang, string>; mark?: 'origin' | 'now' }[] = [
   { year: '2017', t: { es: 'Ejecutivo de cuentas; mis primeros reportes automáticos', en: 'Account executive; my first automated reports' } },
   { year: '2018', t: { es: 'Analista de marketing digital; aprendí R por un boletín', en: 'Digital marketing analyst; learned R from a newsletter' } },
-  { year: '2019', t: { es: 'CRO & Data Analytics Lead, con equipo de 3', en: 'CRO & Data Analytics Lead, team of 3' } },
+  { year: '2019', proof: 'puesto2', t: { es: 'CRO & Data Analytics Lead, con equipo de 3', en: 'CRO & Data Analytics Lead, team of 3' } },
   { year: '2020', t: { es: 'Gerente de Datos', en: 'Data Manager' } },
-  { year: '2024', t: { es: 'AI & Automation Lead; Verne, mi primera herramienta con IA', en: 'AI & Automation Lead; Verne, my first AI tool' }, mark: 'origin' },
+  { year: '2024', proof: 'puesto0', t: { es: 'AI & Automation Lead; Verne, mi primera herramienta con IA', en: 'AI & Automation Lead; Verne, my first AI tool' }, mark: 'origin' },
   { year: '2025', t: { es: 'Primeros servidores MCP', en: 'First MCP servers' } },
   { year: '', t: { es: 'Osaka, Hopper, Einstein y productos propios', en: 'Osaka, Hopper, Einstein and my own products' }, mark: 'now' },
 ];

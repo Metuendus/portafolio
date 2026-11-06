@@ -26,7 +26,7 @@ const wave = [18, 34, 52, 30, 68, 44, 86, 58, 100, 72, 40, 62, 92, 54, 28, 70, 9
   <div class="head"><h2 id="numbers-title">{t.numbersTitle}</h2></div>
   <dl class="nums">
     {numbers.map((n) => (
-      <div class="num">
+      <div class="num" id={n.proof && `prueba-${n.proof}`} data-proof={n.proof}>
         <dt class="num-l">{n.l[lang]}</dt>
         <dd class="num-v">{n.v}</dd>
         <dd class="num-s">{L.source}: {n.source[lang]}</dd>
@@ -45,7 +45,7 @@ const wave = [18, 34, 52, 30, 68, 44, 86, 58, 100, 72, 40, 62, 92, 54, 28, 70, 9
       const linked = hasPage(c.id);
       return (
         <li>
-          <div class:list={['case', { flip: i % 2 === 1, linked }]}>
+          <div class:list={['case', { flip: i % 2 === 1, linked }]} id={`prueba-${c.id}`} data-proof={c.id}>
             <div class="shot-wrap"><CaseCover lang={lang} c={c} /></div>
             <div class="body">
               <div class="meta"><span class="cname">{c.name[lang]}</span></div>
@@ -97,7 +97,7 @@ const wave = [18, 34, 52, 30, 68, 44, 86, 58, 100, 72, 40, 62, 92, 54, 28, 70, 9
   </div>
   <ol class="timeline" style={`--n:${timeline.length}`}>
     {timeline.map((m) => (
-      <li class:list={[m.mark && `t-${m.mark}`]}>
+      <li class:list={[m.mark && `t-${m.mark}`]} id={m.proof && `prueba-${m.proof}`} data-proof={m.proof}>
         <span class="t-dot" aria-hidden="true"></span>
         <span class="tag t-year">{m.mark === 'now' ? (lang === 'es' ? 'Hoy' : 'Today') : m.year || '\u00a0'}</span>
         <span class="t-text">{m.t[lang]}</span>
@@ -220,7 +220,7 @@ const wave = [18, 34, 52, 30, 68, 44, 86, 58, 100, 72, 40, 62, 92, 54, 28, 70, 9
   .close-ctas .btn { padding: 0 22px; }
   .close-links { display: flex; gap: 4px 24px; flex-wrap: wrap; }
 
-  .doppel { padding-top: 96px; padding-bottom: 96px; --jc-focus: currentColor; background: var(--jc-ink); color: var(--jc-canvas); display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 64px; align-items: center; }
+  .doppel { position: relative; z-index: 1; padding-top: 96px; padding-bottom: 96px; --jc-focus: currentColor; background: var(--jc-ink); color: var(--jc-canvas); display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 64px; align-items: center; }
   .dp-copy { display: flex; flex-direction: column; align-items: flex-start; gap: 20px; }
   .doppel h2 { font: 600 var(--jc-fs-display)/1.05 var(--jc-font-sans); letter-spacing: var(--jc-ls-display); }
   .doppel p { max-width: 60ch; font: 400 19px/1.55 var(--jc-font-sans); opacity: .82; }
