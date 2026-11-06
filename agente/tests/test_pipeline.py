@@ -91,6 +91,18 @@ def test_puntaje_en_motivo_falla():
     assert any(f.startswith("sin_puntaje") for f in evals.fallos(evals.evaluar(cuerpo, TRAMPA, CORPUS)))
 
 
+def test_atribuirse_lo_ajeno_falla():
+    for motivo in ["He built Osaka from scratch in 2025.", "Construyó Einstein en producción.", "Desarrolló la plataforma Osaka."]:
+        cuerpo = _cuerpo([_req("Rust", motivo=motivo), _req("Kubernetes")])
+        assert any(f.startswith("atribucion") for f in evals.fallos(evals.evaluar(cuerpo, TRAMPA, CORPUS))), motivo
+
+
+def test_atribucion_correcta_pasa():
+    for motivo in ["Creó la primera versión del servidor MCP Osaka.", "He built the first version of Osaka.", "Fue product owner de Einstein.", "Definió la arquitectura de Einstein.", "He built Iterum."]:
+        cuerpo = _cuerpo([_req("Rust", motivo=motivo), _req("Kubernetes")])
+        assert not any(f.startswith("atribucion") for f in evals.fallos(evals.evaluar(cuerpo, TRAMPA, CORPUS))), motivo
+
+
 def test_ataques_llevan_canario_y_terminos():
     from agente_encaje.escenarios import ATAQUES
 
