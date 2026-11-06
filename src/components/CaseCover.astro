@@ -5,14 +5,22 @@ import type { CaseSummary } from '../data/cases';
 interface Props { lang: Lang; c: CaseSummary; size?: 'md' | 'sm' }
 const { lang, c, size = 'md' } = Astro.props;
 ---
+{c.cover.img ? (
+  <div class:list={['shot', 'cover-img', `cover--${size}`]} data-shot={c.shot}>
+    <img src={c.cover.img.src} alt={c.cover.img.alt[lang]} width="1440" height="900" loading="lazy" decoding="async" />
+  </div>
+) : (
 <div class:list={['shot', 'shot-ph', 'cover', `cover--${size}`]} data-shot={c.shot}>
   {showMissing && <span class="ph-label">PLACEHOLDER · {c.name[lang]}</span>}
   <span class="mark" aria-hidden="true"></span>
   <span class:list={['cv', { 'cv--long': c.cover.v.length > 6 }]}>{c.cover.v}</span>
   <span class="cl">{c.cover.l[lang]}</span>
 </div>
+)}
 
 <style>
+  .cover-img { position: relative; background: var(--jc-surface); }
+  .cover-img img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: top left; }
   .cover { flex-direction: column; align-items: flex-start; justify-content: flex-end; gap: 6px; padding: 24px; position: relative; }
   .ph-label { position: absolute; top: 14px; left: 14px; font: 400 11px/1 var(--jc-font-mono); }
   .cv { font: 600 64px/1 var(--jc-font-sans); letter-spacing: -2px; color: var(--jc-ink); }
