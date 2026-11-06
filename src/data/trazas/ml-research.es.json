@@ -5,7 +5,7 @@
  "vacante": "ML Research Engineer (vacante de ejemplo)\n\nLaboratorio que entrena sus propios modelos de lenguaje.\n\nRequisitos:\n- Doctorado en aprendizaje automático o campo afín.\n- Publicaciones en NeurIPS, ICML o ACL.\n- Entrenar modelos grandes con PyTorch en clústeres de GPU.\n- Optimización de inferencia en C++ o Rust.\n- Administrar cargas de trabajo en Kubernetes.\n- Diseñar evaluaciones de modelos de lenguaje.\n",
  "trampa": null,
  "grabado": "2026-11-06",
- "commit": "82ab5d2",
+ "commit": "1d3be95",
  "hash_corpus": "b69f987c8bc950b1",
  "hash_prompts": "f460c0ddf516afb8",
  "pasos": [
@@ -16,9 +16,9 @@
    "resumen": "6 requisitos. Instrucciones detectadas en el texto: 0.",
    "modelo": "gemini-3.5-flash-lite",
    "tokens_entrada": 454,
-   "tokens_salida": 84,
-   "costo_usd": 0.000346,
-   "latencia_ms": 2049
+   "tokens_salida": 106,
+   "costo_usd": 0.000401,
+   "latencia_ms": 2201
   },
   {
    "id": "evaluar",
@@ -26,10 +26,10 @@
    "titulo": "Evaluar contra sus casos",
    "resumen": "Un juicio por requisito, con 151 fragmentos del portafolio.",
    "modelo": "gemini-3.8-flash",
-   "tokens_entrada": 7874,
-   "tokens_salida": 2084,
-   "costo_usd": 0.027441,
-   "latencia_ms": 17207
+   "tokens_entrada": 7880,
+   "tokens_salida": 3582,
+   "costo_usd": 0.038685,
+   "latencia_ms": 27186
   },
   {
    "id": "validar",
@@ -41,50 +41,50 @@
  ],
  "requisitos": [
   {
-   "texto": "Doctorado en aprendizaje automático o campo afín",
+   "texto": "Doctorado en aprendizaje automático o campo afín.",
    "estado": "sin_evidencia",
-   "motivo": "Su portafolio acredita una licenciatura en administración y certificaciones técnicas, sin estudios de doctorado.",
+   "motivo": "El portafolio no muestra estudios de doctorado; cuenta con una licenciatura en administración.",
    "evidencia": [],
    "degradado": false
   },
   {
-   "texto": "Publicaciones en NeurIPS, ICML o ACL",
+   "texto": "Publicaciones en NeurIPS, ICML o ACL.",
    "estado": "sin_evidencia",
-   "motivo": "No hay registro de publicaciones académicas en conferencias de investigación.",
+   "motivo": "El portafolio no registra publicaciones académicas en conferencias de investigación.",
    "evidencia": [],
    "degradado": false
   },
   {
-   "texto": "Entrenar modelos grandes con PyTorch en clústeres de GPU",
+   "texto": "Entrenar modelos grandes con PyTorch en clústeres de GPU.",
    "estado": "sin_evidencia",
-   "motivo": "Sus casos muestran uso e integración de modelos preentrenados mediante APIs, sin evidencia de entrenamiento en PyTorch o clústeres de GPU.",
+   "motivo": "El portafolio muestra integración y consumo de modelos por API, sin evidencia de entrenamiento con PyTorch en clústeres de GPU.",
    "evidencia": [],
    "degradado": false
   },
   {
-   "texto": "Optimización de inferencia en C++ o Rust",
+   "texto": "Optimización de inferencia en C++ o Rust.",
    "estado": "sin_evidencia",
-   "motivo": "El portafolio no contiene experiencia en optimización de inferencia ni en desarrollo con C++ o Rust.",
+   "motivo": "El portafolio no muestra experiencia en optimización de inferencia ni en desarrollo con C++ o Rust.",
    "evidencia": [],
    "degradado": false
   },
   {
-   "texto": "Administrar cargas de trabajo en Kubernetes",
+   "texto": "Administrar cargas de trabajo en Kubernetes.",
    "estado": "sin_evidencia",
-   "motivo": "Sus despliegues se concentran en Cloud Run y servicios administrados de nube, sin menciones de administración en Kubernetes.",
+   "motivo": "El portafolio muestra despliegues en Cloud Run y gestión con Terraform, sin evidencia de administración en Kubernetes.",
    "evidencia": [],
    "degradado": false
   },
   {
-   "texto": "Diseñar evaluaciones de modelos de lenguaje",
+   "texto": "Diseñar evaluaciones de modelos de lenguaje.",
    "estado": "con_evidencia",
-   "motivo": "Diseñó un ejecutor de evaluaciones con filtros de costo y latencia, además de evaluar la calidad de cientos de conversaciones reales.",
+   "motivo": "Diseñó un ejecutor de evaluaciones de modelos con filtros de costo y latencia, y diagnosticó sistemáticamente la calidad en conversaciones reales.",
    "evidencia": [
     {
      "id": "fundamentum.paso2",
      "fuente": "Fundamentum",
      "url": "/proyectos/fundamentum/",
-     "fragmento": "Guardrails de alcance y presupuesto, y un runner de evals con gate de costo y latencia."
+     "fragmento": "un runner de evals con gate de costo y latencia"
     },
     {
      "id": "mcp.decision2",
@@ -98,9 +98,9 @@
  ],
  "instrucciones_ignoradas": [],
  "totales": {
-  "costo_usd": 0.027787,
-  "latencia_ms": 19256,
-  "tokens": 10496
+  "costo_usd": 0.039086,
+  "latencia_ms": 29387,
+  "tokens": 12022
  },
  "costo_ataques_usd": 0.0,
  "evals": [
@@ -117,6 +117,11 @@
   {
    "id": "sin_puntaje",
    "etiqueta": "No da puntaje ni porcentaje global",
+   "ok": true
+  },
+  {
+   "id": "atribucion",
+   "etiqueta": "No se atribuye lo que construyó otra persona",
    "ok": true
   },
   {

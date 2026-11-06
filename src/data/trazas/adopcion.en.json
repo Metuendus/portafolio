@@ -5,7 +5,7 @@
  "vacante": "AI Adoption Lead (sample job posting)\n\nA 2,000-person company wants to move from scattered pilots to daily use of AI.\n\nRequirements:\n- Having taken an internal AI tool from zero to recurring use.\n- Measuring adoption with data, not surveys.\n- Designing and delivering training for non-technical people.\n- Setting the roadmap and priorities as a product owner.\n- Change management experience at companies with over 1,000 employees.\n- Leading a team of at least five people.\n",
  "trampa": null,
  "grabado": "2026-11-06",
- "commit": "82ab5d2",
+ "commit": "1d3be95",
  "hash_corpus": "b69f987c8bc950b1",
  "hash_prompts": "f460c0ddf516afb8",
  "pasos": [
@@ -18,7 +18,7 @@
    "tokens_entrada": 463,
    "tokens_salida": 106,
    "costo_usd": 0.000404,
-   "latencia_ms": 11470
+   "latencia_ms": 2196
   },
   {
    "id": "evaluar",
@@ -26,10 +26,10 @@
    "titulo": "Evaluate against his case studies",
    "resumen": "One judgment per requirement, with 151 excerpts from the portfolio.",
    "modelo": "gemini-3.8-flash",
-   "tokens_entrada": 7296,
-   "tokens_salida": 8828,
-   "costo_usd": 0.077154,
-   "latencia_ms": 48485
+   "tokens_entrada": 7302,
+   "tokens_salida": 8685,
+   "costo_usd": 0.076091,
+   "latencia_ms": 66422
   },
   {
    "id": "validar",
@@ -41,15 +41,15 @@
  ],
  "requisitos": [
   {
-   "texto": "Having taken an internal AI tool from zero to recurring use",
+   "texto": "Having taken an internal AI tool from zero to recurring use.",
    "estado": "con_evidencia",
-   "motivo": "He built Osaka from scratch in 2025 and took it into production, reaching 47 active users.",
+   "motivo": "He built the first version of an internal AI assistant that reached recurring production use with 47 active users.",
    "evidencia": [
     {
      "id": "mcp.rol",
      "fuente": "Osaka, media MCP server",
      "url": "/en/projects/mcp/",
-     "fragmento": "First version and product owner. I built v1 alone in 2025."
+     "fragmento": "I built v1 alone in 2025."
     },
     {
      "id": "mcp.cifra0",
@@ -61,43 +61,43 @@
    "degradado": false
   },
   {
-   "texto": "Measuring adoption with data, not surveys",
+   "texto": "Measuring adoption with data, not surveys.",
    "estado": "con_evidencia",
-   "motivo": "His portfolio shows he tracks tool adoption through built-in analytics dashboards measuring active users and usage per person.",
+   "motivo": "He tracks adoption and active users through built-in analytics dashboards rather than surveys.",
    "evidencia": [
-    {
-     "id": "mcp.paso2",
-     "fuente": "Osaka, media MCP server",
-     "url": "/en/projects/mcp/",
-     "fragmento": "Conversations are stored in Firestore and an admin dashboard shows usage per person."
-    },
     {
      "id": "prompts.decision1",
      "fuente": "Prompt Library",
      "url": "/en/projects/prompts/",
      "fragmento": "Active-user analytics live in the library itself, to see whether people come back."
+    },
+    {
+     "id": "mcp.paso2",
+     "fuente": "Osaka, media MCP server",
+     "url": "/en/projects/mcp/",
+     "fragmento": "Conversations are stored in Firestore and an admin dashboard shows usage per person."
     }
    ],
    "degradado": false
   },
   {
-   "texto": "Designing and delivering training for non-technical people",
+   "texto": "Designing and delivering training for non-technical people.",
    "estado": "parcial",
-   "motivo": "His portfolio shows he designed and delivered internal training on AI and dashboards, but does not explicitly state it was designed for non-technical people.",
+   "motivo": "He designed and delivered internal courses on AI and tools, but his portfolio does not specify whether they were targeted at non-technical audiences.",
    "evidencia": [
     {
-     "id": "otro.courses",
-     "fuente": "Internal courses",
+     "id": "puesto0.logro6",
+     "fuente": "AI & Automation Lead (Sep 2024 – present)",
      "url": "/en/about/",
-     "fragmento": "Internal courses (2026). Prompting, AI Fluency (Anthropic’s program), “Dashboards with Claude Code”, SQL, Looker Studio and Sheets."
+     "fragmento": "Internal courses on prompting, AI Fluency and “Dashboards with Claude Code”, plus a GEO course at Universidad Panamericana."
     }
    ],
    "degradado": false
   },
   {
-   "texto": "Setting the roadmap and priorities as a product owner",
+   "texto": "Setting the roadmap and priorities as a product owner.",
    "estado": "con_evidencia",
-   "motivo": "He served as product owner for internal tools, setting the roadmap and deciding which features shipped.",
+   "motivo": "He has defined roadmaps, milestones, and feature scope while serving as product owner for internal tools.",
    "evidencia": [
     {
      "id": "einstein.rol",
@@ -109,34 +109,28 @@
      "id": "mcp.rol",
      "fuente": "Osaka, media MCP server",
      "url": "/en/projects/mcp/",
-     "fragmento": "decided which features went in and contributed the DV360 provider and MCP authentication."
+     "fragmento": "created the issues and milestones, decided which features went in"
     }
    ],
    "degradado": false
   },
   {
-   "texto": "Change management experience at companies with over 1,000 employees",
+   "texto": "Change management experience at companies with over 1,000 employees.",
    "estado": "sin_evidencia",
-   "motivo": "His portfolio shows change management experience at an agency of 170 people, with no evidence of work at companies with over 1,000 employees.",
+   "motivo": "His portfolio does not show change management experience at companies with over 1,000 employees.",
    "evidencia": [],
    "degradado": false
   },
   {
-   "texto": "Leading a team of at least five people",
+   "texto": "Leading a team of at least five people.",
    "estado": "parcial",
-   "motivo": "His portfolio documents leading a team of three and managing one developer, but lacks evidence of leading a team of five or more.",
+   "motivo": "He led a conversion optimization team of three people, but his portfolio does not show experience leading a team of at least five.",
    "evidencia": [
     {
      "id": "puesto2.que",
      "fuente": "CRO & Data Analytics Lead (Jan 2019 – Sep 2020)",
      "url": "/en/about/",
-     "fragmento": "Created and led the conversion optimization program with a team of three (UX, development and analysis)."
-    },
-    {
-     "id": "puesto0.que",
-     "fuente": "AI & Automation Lead (Sep 2024 – present)",
-     "url": "/en/about/",
-     "fragmento": "lead one AI developer and advise Development, Measurement, Data Science and UX."
+     "fragmento": "Created and led the conversion optimization program with a team of three"
     }
    ],
    "degradado": false
@@ -144,9 +138,9 @@
  ],
  "instrucciones_ignoradas": [],
  "totales": {
-  "costo_usd": 0.077558,
-  "latencia_ms": 59955,
-  "tokens": 16693
+  "costo_usd": 0.076495,
+  "latencia_ms": 68618,
+  "tokens": 16556
  },
  "costo_ataques_usd": 0.0,
  "evals": [
@@ -163,6 +157,11 @@
   {
    "id": "sin_puntaje",
    "etiqueta": "It gives no overall score or percentage",
+   "ok": true
+  },
+  {
+   "id": "atribucion",
+   "etiqueta": "It doesn’t claim what someone else built",
    "ok": true
   },
   {

@@ -5,7 +5,7 @@
  "vacante": "Líder de adopción de IA (vacante de ejemplo)\n\nUna empresa de 2,000 personas quiere pasar de pilotos sueltos a uso diario de IA.\n\nRequisitos:\n- Haber llevado una herramienta interna de IA de cero a uso recurrente.\n- Medir la adopción con datos, no con encuestas.\n- Diseñar y dar capacitación a personas no técnicas.\n- Definir roadmap y prioridades como product owner.\n- Experiencia en gestión del cambio en empresas de más de 1,000 empleados.\n- Dirigir un equipo de al menos cinco personas.\n",
  "trampa": null,
  "grabado": "2026-11-06",
- "commit": "82ab5d2",
+ "commit": "1d3be95",
  "hash_corpus": "b69f987c8bc950b1",
  "hash_prompts": "f460c0ddf516afb8",
  "pasos": [
@@ -18,7 +18,7 @@
    "tokens_entrada": 484,
    "tokens_salida": 121,
    "costo_usd": 0.000448,
-   "latencia_ms": 5892
+   "latencia_ms": 2161
   },
   {
    "id": "evaluar",
@@ -27,9 +27,9 @@
    "resumen": "Un juicio por requisito, con 151 fragmentos del portafolio.",
    "modelo": "gemini-3.8-flash",
    "tokens_entrada": 7893,
-   "tokens_salida": 4979,
-   "costo_usd": 0.049182,
-   "latencia_ms": 30153
+   "tokens_salida": 10525,
+   "costo_usd": 0.085346,
+   "latencia_ms": 71722
   },
   {
    "id": "validar",
@@ -43,19 +43,19 @@
   {
    "texto": "Haber llevado una herramienta interna de IA de cero a uso recurrente.",
    "estado": "con_evidencia",
-   "motivo": "Creó la primera versión del servidor MCP Osaka y continuó como product owner hasta alcanzar 47 usuarios activos recurrentes.",
+   "motivo": "Diseñó y construyó la Librería de Prompts, alcanzando 38 usuarios activos en los últimos 30 días.",
    "evidencia": [
     {
-     "id": "mcp.rol",
-     "fuente": "Osaka, servidor MCP de medios",
-     "url": "/proyectos/mcp/",
-     "fragmento": "Hice solo la v1 en 2025."
+     "id": "prompts.rol",
+     "fuente": "Librería de Prompts",
+     "url": "/proyectos/prompts/",
+     "fragmento": "La diseñé y la construí. Diseño, código y despliegue."
     },
     {
-     "id": "mcp.cifra0",
-     "fuente": "Osaka, servidor MCP de medios",
-     "url": "/proyectos/mcp/",
-     "fragmento": "47: usuarios activos; casi todos lo usan vía MCP (panel de administración, oct 2026)"
+     "id": "prompts.cifra0",
+     "fuente": "Librería de Prompts",
+     "url": "/proyectos/prompts/",
+     "fragmento": "38: usuarios activos en los últimos 30 días"
     }
    ],
    "degradado": false
@@ -63,7 +63,7 @@
   {
    "texto": "Medir la adopción con datos, no con encuestas.",
    "estado": "con_evidencia",
-   "motivo": "Implementó la medición de usuarios activos y recurrencia directamente dentro de la plataforma.",
+   "motivo": "Mide la adopción mediante analítica de usuarios activos registrada dentro de la propia aplicación.",
    "evidencia": [
     {
      "id": "prompts.decision1",
@@ -77,7 +77,7 @@
   {
    "texto": "Diseñar y dar capacitación a personas no técnicas.",
    "estado": "parcial",
-   "motivo": "Ha diseñado e impartido cursos internos sobre herramientas de IA, pero el portafolio no especifica que estuvieran dirigidos a audiencias no técnicas.",
+   "motivo": "Impartió cursos internos de IA y herramientas, pero sus casos no especifican que la audiencia fuera no técnica.",
    "evidencia": [
     {
      "id": "puesto0.logro6",
@@ -91,7 +91,7 @@
   {
    "texto": "Definir roadmap y prioridades como product owner.",
    "estado": "con_evidencia",
-   "motivo": "Definió la arquitectura, permisos y roadmap de producto en el desarrollo de Einstein.",
+   "motivo": "Se desempeñó como product owner definiendo la arquitectura, permisos y roadmap en Einstein.",
    "evidencia": [
     {
      "id": "einstein.rol",
@@ -105,14 +105,14 @@
   {
    "texto": "Experiencia en gestión del cambio en empresas de más de 1,000 empleados.",
    "estado": "sin_evidencia",
-   "motivo": "El portafolio muestra programas de transformación en una agencia de 170 personas, sin experiencia en organizaciones de más de 1,000 empleados.",
+   "motivo": "El portafolio no registra experiencia en procesos de gestión del cambio en empresas de más de 1,000 empleados.",
    "evidencia": [],
    "degradado": false
   },
   {
    "texto": "Dirigir un equipo de al menos cinco personas.",
    "estado": "parcial",
-   "motivo": "Lideró anteriormente a un equipo de tres personas y actualmente dirige a un desarrollador, sin alcanzar las cinco personas requeridas.",
+   "motivo": "Lideró un equipo de tres personas en optimización de conversión, pero no de al menos cinco.",
    "evidencia": [
     {
      "id": "puesto2.que",
@@ -126,9 +126,9 @@
  ],
  "instrucciones_ignoradas": [],
  "totales": {
-  "costo_usd": 0.04963,
-  "latencia_ms": 36045,
-  "tokens": 13477
+  "costo_usd": 0.085794,
+  "latencia_ms": 73883,
+  "tokens": 19023
  },
  "costo_ataques_usd": 0.0,
  "evals": [
@@ -145,6 +145,11 @@
   {
    "id": "sin_puntaje",
    "etiqueta": "No da puntaje ni porcentaje global",
+   "ok": true
+  },
+  {
+   "id": "atribucion",
+   "etiqueta": "No se atribuye lo que construyó otra persona",
    "ok": true
   },
   {

@@ -5,7 +5,7 @@
  "vacante": "ML Research Engineer (sample job posting)\n\nA lab that trains its own language models.\n\nRequirements:\n- PhD in machine learning or a related field.\n- Publications at NeurIPS, ICML or ACL.\n- Training large models with PyTorch on GPU clusters.\n- Inference optimization in C++ or Rust.\n- Running workloads on Kubernetes.\n- Designing evaluations for language models.\n",
  "trampa": null,
  "grabado": "2026-11-06",
- "commit": "82ab5d2",
+ "commit": "1d3be95",
  "hash_corpus": "b69f987c8bc950b1",
  "hash_prompts": "f460c0ddf516afb8",
  "pasos": [
@@ -18,7 +18,7 @@
    "tokens_entrada": 434,
    "tokens_salida": 91,
    "costo_usd": 0.000358,
-   "latencia_ms": 2121
+   "latencia_ms": 2379
   },
   {
    "id": "evaluar",
@@ -27,9 +27,9 @@
    "resumen": "One judgment per requirement, with 151 excerpts from the portfolio.",
    "modelo": "gemini-3.8-flash",
    "tokens_entrada": 7280,
-   "tokens_salida": 3600,
-   "costo_usd": 0.03792,
-   "latencia_ms": 27733
+   "tokens_salida": 3751,
+   "costo_usd": 0.039052,
+   "latencia_ms": 24551
   },
   {
    "id": "validar",
@@ -43,48 +43,48 @@
   {
    "texto": "PhD in machine learning or a related field",
    "estado": "sin_evidencia",
-   "motivo": "His cases document a bachelor's degree in business administration, with no record of a doctoral degree in machine learning or related disciplines.",
+   "motivo": "His portfolio shows a bachelor's degree in business administration and does not record a doctorate in machine learning or any related discipline.",
    "evidencia": [],
    "degradado": false
   },
   {
    "texto": "Publications at NeurIPS, ICML or ACL",
    "estado": "sin_evidencia",
-   "motivo": "The portfolio contains no evidence of academic research publications at venues such as NeurIPS, ICML, or ACL.",
+   "motivo": "His portfolio contains no records of academic publications at NeurIPS, ICML, ACL, or other venues.",
    "evidencia": [],
    "degradado": false
   },
   {
    "texto": "Training large models with PyTorch on GPU clusters",
    "estado": "sin_evidencia",
-   "motivo": "His cases focus on integrating existing models via APIs and frameworks, with no mention of training models using PyTorch on GPU clusters.",
+   "motivo": "His cases focus on integrating existing model APIs and do not show experience training large models with PyTorch on GPU clusters.",
    "evidencia": [],
    "degradado": false
   },
   {
    "texto": "Inference optimization in C++ or Rust",
    "estado": "sin_evidencia",
-   "motivo": "The portfolio shows work in Python, TypeScript, and R, without evidence of low-level inference optimization or work in C++ or Rust.",
+   "motivo": "His portfolio shows development in TypeScript and Python, without evidence of C++, Rust, or inference optimization.",
    "evidencia": [],
    "degradado": false
   },
   {
    "texto": "Running workloads on Kubernetes",
    "estado": "sin_evidencia",
-   "motivo": "His cases document deployments on Cloud Run and serverless services, with no record of running workloads on Kubernetes.",
+   "motivo": "His cases document deploying containerized workloads to Cloud Run, but provide no evidence of operating workloads on Kubernetes.",
    "evidencia": [],
    "degradado": false
   },
   {
    "texto": "Designing evaluations for language models",
    "estado": "parcial",
-   "motivo": "He built an eval runner focused on cost and latency gates and analyzed conversation failures, but his cases lack evidence of designing evaluations for model output quality or accuracy.",
+   "motivo": "He built an evaluation runner with cost and latency gates and analyzed failure modes in conversation logs, but his portfolio does not show designing systematic quality or accuracy evaluations for language models.",
    "evidencia": [
     {
      "id": "fundamentum.paso2",
      "fuente": "Fundamentum",
      "url": "/en/projects/fundamentum/",
-     "fragmento": "Scope and budget guardrails, plus an eval runner with a cost and latency gate."
+     "fragmento": "plus an eval runner with a cost and latency gate."
     },
     {
      "id": "mcp.decision2",
@@ -98,9 +98,9 @@
  ],
  "instrucciones_ignoradas": [],
  "totales": {
-  "costo_usd": 0.038278,
-  "latencia_ms": 29854,
-  "tokens": 11405
+  "costo_usd": 0.03941,
+  "latencia_ms": 26930,
+  "tokens": 11556
  },
  "costo_ataques_usd": 0.0,
  "evals": [
@@ -117,6 +117,11 @@
   {
    "id": "sin_puntaje",
    "etiqueta": "It gives no overall score or percentage",
+   "ok": true
+  },
+  {
+   "id": "atribucion",
+   "etiqueta": "It doesn’t claim what someone else built",
    "ok": true
   },
   {

@@ -5,7 +5,7 @@
  "vacante": "Applied AI Engineer (vacante de ejemplo)\n\nBuscamos a alguien que lleve agentes de IA a producción y logre que los equipos los usen.\n\nRequisitos:\n- Experiencia construyendo servidores MCP o integraciones de herramientas para LLM.\n- RAG en producción, con citas verificables.\n- Evaluaciones automatizadas de agentes y control de costo por llamada.\n- Python y TypeScript.\n- Despliegue en Google Cloud.\n- Trabajar con equipos no técnicos para que adopten las herramientas.\n- Inglés de trabajo.\n",
  "trampa": null,
  "grabado": "2026-11-06",
- "commit": "82ab5d2",
+ "commit": "1d3be95",
  "hash_corpus": "b69f987c8bc950b1",
  "hash_prompts": "f460c0ddf516afb8",
  "pasos": [
@@ -16,9 +16,9 @@
    "resumen": "7 requisitos. Instrucciones detectadas en el texto: 0.",
    "modelo": "gemini-3.5-flash-lite",
    "tokens_entrada": 471,
-   "tokens_salida": 117,
-   "costo_usd": 0.000434,
-   "latencia_ms": 2963
+   "tokens_salida": 113,
+   "costo_usd": 0.000424,
+   "latencia_ms": 3415
   },
   {
    "id": "evaluar",
@@ -26,10 +26,10 @@
    "titulo": "Evaluar contra sus casos",
    "resumen": "Un juicio por requisito, con 151 fragmentos del portafolio.",
    "modelo": "gemini-3.8-flash",
-   "tokens_entrada": 7882,
-   "tokens_salida": 9331,
-   "costo_usd": 0.081806,
-   "latencia_ms": 73381
+   "tokens_entrada": 7886,
+   "tokens_salida": 9289,
+   "costo_usd": 0.081496,
+   "latencia_ms": 54412
   },
   {
    "id": "validar",
@@ -41,43 +41,43 @@
  ],
  "requisitos": [
   {
-   "texto": "Experiencia construyendo servidores MCP o integraciones de herramientas para LLM",
+   "texto": "Experiencia construyendo servidores MCP o integraciones de herramientas para LLM.",
    "estado": "con_evidencia",
-   "motivo": "Construyó la primera versión de servidores MCP sobre BigQuery y desarrolló componentes para la versión de producción.",
+   "motivo": "Construyó la primera versión de servidores MCP con FastMCP y aportó componentes de autenticación e integración.",
    "evidencia": [
     {
      "id": "mcp.decision0",
      "fuente": "Osaka, servidor MCP de medios",
      "url": "/proyectos/mcp/",
-     "fragmento": "En 2025 hice la primera versión solo: servidores MCP sobre BigQuery con FastMCP"
+     "fragmento": "hice la primera versión solo: servidores MCP sobre BigQuery con FastMCP y una extensión para Claude Desktop."
     }
    ],
    "degradado": false
   },
   {
-   "texto": "RAG en producción, con citas verificables",
-   "estado": "con_evidencia",
-   "motivo": "Definió la arquitectura y fue product owner de Einstein, una base de conocimiento con RAG y respuestas con citas desplegada en producción.",
+   "texto": "RAG en producción, con citas verificables.",
+   "estado": "parcial",
+   "motivo": "Definió la arquitectura de un sistema RAG con citas en producción como product owner, pero el código lo desarrolló otra persona de su equipo.",
    "evidencia": [
     {
      "id": "einstein.rol",
      "fuente": "Einstein",
      "url": "/proyectos/einstein/",
-     "fragmento": "Product owner. Definí arquitectura, permisos y roadmap; lo construyó un desarrollador de mi equipo."
+     "fragmento": "Definí arquitectura, permisos y roadmap; lo construyó un desarrollador de mi equipo."
     },
     {
      "id": "einstein.decision1",
      "fuente": "Einstein",
      "url": "/proyectos/einstein/",
-     "fragmento": "Toda respuesta trae citas. El chat enlaza los documentos de donde sacó cada afirmación"
+     "fragmento": "El chat enlaza los documentos de donde sacó cada afirmación, para que cualquiera pueda revisarla."
     }
    ],
    "degradado": false
   },
   {
-   "texto": "Evaluaciones automatizadas de agentes y control de costo por llamada",
+   "texto": "Evaluaciones automatizadas de agentes y control de costo por llamada.",
    "estado": "con_evidencia",
-   "motivo": "Diseñó e implementó en Fundamentum un runner de evaluaciones y el control de costos y tokens por llamada.",
+   "motivo": "Implementó en Fundamentum la medición de costo por llamada y un runner de evaluaciones automáticas con control de costo y latencia.",
    "evidencia": [
     {
      "id": "fundamentum.paso1",
@@ -95,57 +95,69 @@
    "degradado": false
   },
   {
-   "texto": "Manejo de Python y TypeScript",
+   "texto": "Python y TypeScript.",
    "estado": "con_evidencia",
-   "motivo": "Utilizó TypeScript en Osaka y Python en proyectos como Fundamentum y Domi.",
+   "motivo": "Ha desarrollado proyectos en Python y utilizó TypeScript en el desarrollo de Osaka.",
    "evidencia": [
+    {
+     "id": "domi.stack",
+     "fuente": "Domi",
+     "url": "/proyectos/domi/",
+     "fragmento": "Next.js, Python, Pub/Sub, Firestore, Cloud Run, Terraform"
+    },
     {
      "id": "mcp.stack",
      "fuente": "Osaka, servidor MCP de medios",
      "url": "/proyectos/mcp/",
      "fragmento": "TypeScript, Hono, Next.js, MCP, Claude · OpenAI, Firestore, Cloud Run"
-    },
-    {
-     "id": "fundamentum.stack",
-     "fuente": "Fundamentum",
-     "url": "/proyectos/fundamentum/",
-     "fragmento": "Python, uv, ADK, Gemini · Claude, Terraform"
     }
    ],
    "degradado": false
   },
   {
-   "texto": "Despliegue en Google Cloud",
+   "texto": "Despliegue en Google Cloud.",
    "estado": "con_evidencia",
-   "motivo": "Ha desplegado servicios web y agentes en producción utilizando Cloud Run.",
+   "motivo": "Ha desplegado y operado múltiples aplicaciones y servicios en Google Cloud usando Cloud Run.",
    "evidencia": [
+    {
+     "id": "prompts.decision0",
+     "fuente": "Librería de Prompts",
+     "url": "/proyectos/prompts/",
+     "fragmento": "Con Cloud Run y Firestore la librería cuesta 0 USD al mes"
+    },
     {
      "id": "domi.resultado",
      "fuente": "Domi",
      "url": "/proyectos/domi/",
-     "fragmento": "El backend y la web están desplegados en Cloud Run"
+     "fragmento": "El backend y la web están desplegados en Cloud Run y el crawler corre todos los días"
     }
    ],
    "degradado": false
   },
   {
-   "texto": "Trabajar con equipos no técnicos para que adopten las herramientas",
+   "texto": "Trabajar con equipos no técnicos para que adopten las herramientas.",
    "estado": "con_evidencia",
-   "motivo": "Lidera la adopción de herramientas de IA construyendo y operando sistemas directamente para los equipos de cuentas.",
+   "motivo": "Lidera la adopción de IA en la agencia facilitando el uso de herramientas a los equipos de cuentas.",
    "evidencia": [
     {
      "id": "puesto0.que",
      "fuente": "AI & Automation Lead (sep 2024 – hoy)",
      "url": "/sobre-mi/",
      "fragmento": "Lidero la adopción de IA en la agencia: construyo y opero los sistemas que usan los equipos de cuentas"
+    },
+    {
+     "id": "mcp.resultado",
+     "fuente": "Osaka, servidor MCP de medios",
+     "url": "/proyectos/mcp/",
+     "fragmento": "Una vez que lo entendieron, se volvió fácil de usar."
     }
    ],
    "degradado": false
   },
   {
-   "texto": "Inglés de trabajo",
+   "texto": "Inglés de trabajo.",
    "estado": "con_evidencia",
-   "motivo": "Cuenta con un nivel de inglés intermedio alto (B2).",
+   "motivo": "El portafolio acredita un nivel intermedio alto (B2) de inglés.",
    "evidencia": [
     {
      "id": "educacion.idioma1",
@@ -159,9 +171,9 @@
  ],
  "instrucciones_ignoradas": [],
  "totales": {
-  "costo_usd": 0.08224,
-  "latencia_ms": 76344,
-  "tokens": 17801
+  "costo_usd": 0.08192,
+  "latencia_ms": 57827,
+  "tokens": 17759
  },
  "costo_ataques_usd": 0.0,
  "evals": [
@@ -178,6 +190,11 @@
   {
    "id": "sin_puntaje",
    "etiqueta": "No da puntaje ni porcentaje global",
+   "ok": true
+  },
+  {
+   "id": "atribucion",
+   "etiqueta": "No se atribuye lo que construyó otra persona",
    "ok": true
   },
   {

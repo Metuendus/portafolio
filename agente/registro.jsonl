@@ -14,3 +14,11 @@
 {"fecha": "2026-11-06", "commit": "82ab5d2", "escenario": "ml-research", "lang": "en", "publicada": true, "evals_rotas": [], "costo_usd": 0.038278}
 {"fecha": "2026-11-06", "commit": "82ab5d2", "escenario": "trampa", "lang": "es", "publicada": true, "evals_rotas": [], "costo_usd": 0.065591}
 {"fecha": "2026-11-06", "commit": "82ab5d2", "escenario": "trampa", "lang": "en", "publicada": true, "evals_rotas": [], "costo_usd": 0.069037}
+{"fecha": "2026-11-06", "commit": "1d3be95", "escenario": "applied-ai", "lang": "es", "publicada": true, "evals_rotas": [], "costo_usd": 0.08192}
+{"fecha": "2026-11-06", "commit": "1d3be95", "escenario": "applied-ai", "lang": "en", "publicada": true, "evals_rotas": [], "costo_usd": 0.054441}
+{"fecha": "2026-11-06", "commit": "1d3be95", "escenario": "adopcion", "lang": "es", "publicada": true, "evals_rotas": [], "costo_usd": 0.085794}
+{"fecha": "2026-11-06", "commit": "1d3be95", "escenario": "adopcion", "lang": "en", "publicada": true, "evals_rotas": [], "costo_usd": 0.076495}
+{"fecha": "2026-11-06", "commit": "1d3be95", "escenario": "ml-research", "lang": "es", "publicada": true, "evals_rotas": [], "costo_usd": 0.039086}
+{"fecha": "2026-11-06", "commit": "1d3be95", "escenario": "ml-research", "lang": "en", "publicada": true, "evals_rotas": [], "costo_usd": 0.03941}
+{"fecha": "2026-11-06", "commit": "1d3be95", "escenario": "trampa", "lang": "es", "publicada": true, "evals_rotas": [], "costo_usd": 0.074273}
+{"fecha": "2026-11-06", "commit": "1d3be95", "escenario": "trampa", "lang": "en", "publicada": true, "evals_rotas": [], "costo_usd": 0.076537}
