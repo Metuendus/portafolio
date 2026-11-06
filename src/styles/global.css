@@ -2,6 +2,8 @@
 
 *, *::before, *::after { box-sizing: border-box; }
 
+[id] { scroll-margin-top: 88px; }
+
 body {
   margin: 0;
   background: var(--jc-canvas);
@@ -61,6 +63,8 @@ em, i { font-style: normal; }
 .link svg { transition: transform var(--jc-dur-fast) var(--jc-ease); }
 .link:hover { text-decoration-thickness: 2px; }
 .link:hover svg { transform: translateX(3px); }
+
+::selection { background: var(--jc-accent); color: var(--jc-on-accent); }
 
 /* Chips */
 .chip {

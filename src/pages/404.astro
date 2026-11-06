@@ -1,0 +1,80 @@
+---
+import Base from '../layouts/Base.astro';
+import { ui, projectsPath, homePath, type Lang } from '../i18n/ui';
+
+const copy = (lang: Lang) => ui[lang].notFound;
+const langs: Lang[] = ['es', 'en'];
+---
+<Base lang="es" title={ui.es.notFound.title} description={ui.es.notFound.source} altHref="/en/" bare>
+  {langs.map((lang) => (
+    <section class="nf page-x" lang={lang} data-nf={lang} hidden={lang === 'en'} data-title={copy(lang).title}>
+      <a class="brand" href={homePath(lang)}><span class="mono-gram" aria-hidden="true">JC</span>José Carlos Corona</a>
+      <h1 class="code">404</h1>
+      <p class="found">{copy(lang).found}</p>
+      <p class="src">{copy(lang).source}</p>
+      <div class="prop" data-prop>
+        <span class="label">{ui[lang].hero.popLabel}</span>
+        <div data-ask>
+          <p class="text">{copy(lang).ask}</p>
+          <div class="acts">
+            <a class="btn btn--primary" href={projectsPath(lang)}>{copy(lang).accept}</a>
+            <button type="button" class="btn btn--secondary" data-no>{copy(lang).dismiss}</button>
+          </div>
+        </div>
+        <div data-done hidden>
+          <p class="text" tabindex="-1">{copy(lang).dismissed}</p>
+          <div class="acts">
+            <a class="btn btn--primary" href={homePath(lang)}>{copy(lang).home}</a>
+            <button type="button" class="btn btn--secondary" data-again>{copy(lang).again}</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  ))}
+</Base>
+
+<script is:inline>
+  // Firebase sirve un solo /404.html: el idioma sale de la dirección que falló.
+  if (location.pathname.startsWith('/en/')) {
+    document.documentElement.lang = 'en';
+    document.querySelector('[data-nf="es"]').hidden = true;
+    const en = document.querySelector('[data-nf="en"]');
+    en.hidden = false;
+    document.title = en.dataset.title;
+  }
+</script>
+<script>
+  document.querySelectorAll<HTMLElement>('[data-prop]').forEach((p) => {
+    const ask = p.querySelector<HTMLElement>('[data-ask]')!;
+    const done = p.querySelector<HTMLElement>('[data-done]')!;
+    p.querySelector('[data-no]')?.addEventListener('click', () => {
+      ask.hidden = true; done.hidden = false;
+      done.querySelector<HTMLElement>('.text')?.focus();
+    });
+    p.querySelector('[data-again]')?.addEventListener('click', () => {
+      done.hidden = true; ask.hidden = false;
+      ask.querySelector<HTMLElement>('a')?.focus();
+    });
+  });
+</script>
+
+<style>
+  .nf { min-height: 100dvh; padding-top: 32px; padding-bottom: 64px; display: flex; flex-direction: column; align-items: flex-start; gap: 12px; }
+  .nf[hidden] { display: none; }
+  .brand { display: flex; align-items: center; gap: 10px; min-height: 44px; margin-bottom: 48px; color: var(--jc-ink); text-decoration: none; font: 600 17px/1 var(--jc-font-sans); letter-spacing: -.3px; }
+  .mono-gram { width: 32px; height: 32px; border-radius: 8px; background: var(--jc-ink); color: var(--jc-canvas); display: flex; align-items: center; justify-content: center; font: 600 15px/1 var(--jc-font-sans); letter-spacing: -.8px; }
+  .code { font: 600 220px/.9 var(--jc-font-sans); letter-spacing: -8px; }
+  .found { font: 400 24px/1.4 var(--jc-font-sans); color: var(--jc-text-2); }
+  .src { font: 400 13px/1.5 var(--jc-font-mono); color: var(--jc-text-3); }
+  .prop { margin-top: 32px; width: min(460px, 100%); padding: 20px; display: flex; flex-direction: column; gap: 12px; border: 1px solid var(--jc-hairline-strong); border-radius: var(--jc-radius-md); background: var(--jc-card); box-shadow: var(--jc-shadow-2); }
+  .prop [hidden] { display: none; }
+  .label { font: 400 12px/1 var(--jc-font-mono); color: var(--jc-accent); }
+  .text { font: 500 16px/1.45 var(--jc-font-sans); }
+  .text:focus { outline: none; }
+  .acts { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+  @media (max-width: 640px) {
+    .brand { margin-bottom: 24px; }
+    .code { font-size: 120px; letter-spacing: -4px; }
+    .found { font-size: 19px; }
+  }
+</style>

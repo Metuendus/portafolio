@@ -1,0 +1,24 @@
+# Despliegue del sitio a Firebase Hosting (josecarloscorona.dev). Lo dispara `portafolio-main` en cada merge a main
+# (infra/cicd.sh); el CI del PR corre en GitHub Actions (.github/workflows/ci.yml).
+# A mano: gcloud builds triggers run portafolio-main --branch=main --project=josecarloscorona-web
+# firebase-tools usa las credenciales de la cuenta del build (portafolio-build); no hay token en el repo.
+substitutions:
+  _FIREBASE_TOOLS: 15.34.1
+
+steps:
+  - id: build
+    name: node:22-bookworm-slim
+    entrypoint: bash
+    env: [ASTRO_TELEMETRY_DISABLED=1]
+    args: ["-ceu", "npm ci && npm run build"]
+
+  - id: deploy
+    name: node:22-bookworm-slim
+    entrypoint: bash
+    args:
+      - -ceu
+      - npx --yes firebase-tools@${_FIREBASE_TOOLS} deploy --only hosting --project ${PROJECT_ID} --non-interactive
+
+options:
+  logging: CLOUD_LOGGING_ONLY
+timeout: 900s

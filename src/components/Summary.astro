@@ -1,0 +1,21 @@
+---
+import QuickBody from './QuickBody.astro';
+import Footer from './Footer.astro';
+import type { Lang } from '../i18n/ui';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+---
+<article class="summary page-x">
+  <QuickBody lang={lang} heading="h1" />
+</article>
+<div class="foot page-x"><Footer lang={lang} /></div>
+
+<style>
+  .summary { padding-top: 72px; padding-bottom: 72px; max-width: calc(760px + 2 * var(--jc-page-x)); display: flex; flex-direction: column; gap: 20px; }
+  .foot { padding-bottom: 48px; }
+  @media (max-width: 640px) {
+    .summary { padding-top: 32px; padding-bottom: 40px; }
+    .foot { padding-bottom: 32px; }
+  }
+</style>

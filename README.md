@@ -4,15 +4,16 @@ Portafolio de José Carlos Corona. Astro 7, estático, ES en `/` y EN en `/en/`,
 
 ## Estado
 
-Implementado desde `design/design_handoff_portafolio/JC Oscuro e inglés.dc.html` (4e y 4f):
-
 | Ruta | Pantalla |
 | --- | --- |
-| `/` · `/en/` | Inicio: héroe con la propuesta del agente, tres principios, 8 casos, chasis, cierre |
-| `/proyectos/einstein/` · `/en/projects/einstein/` | Caso Einstein (el EN es traducción propia, por revisar) |
-| `/proyectos/iterum/` · `/en/projects/iterum/` | Caso Iterum |
+| `/` · `/en/` | Inicio: héroe, cifras, cuatro casos, Doppel, reglas, trayectoria, áreas y cierre |
+| `/resumen/` · `/en/summary/` | Resumen enlazable de 30 segundos, con CV y contacto |
+| `/proyectos/` · `/en/projects/` | Índice: 8 casos y otros proyectos |
+| `/proyectos/<id>/` · `/en/projects/<id>/` | Página de cada caso |
+| `/sobre-mi/` · `/en/about/` | Sobre mí |
+| `/404.html` | 404 en ambos idiomas; el idioma sale de la dirección que falló |
 
-Pendiente del handoff: índice de Proyectos (2a–2c), Sobre mí, Contacto, Escritos, 404 y Open Graph (`JC Secundarias`), los otros 6 casos y los recursos de la sección 5 del README del handoff (capturas, videos, fuentes de cifras).
+Pendiente: Escritos, rutas públicas de demo de las apps propias y la siguiente ronda del agente del héroe.
 
 ## Comandos
 
@@ -25,12 +26,21 @@ PUBLIC_BORRADOR=1 npm run build  # build con los «(falta)» visibles
 
 Node ≥ 22.22. Astro fijado en 7.4.1 (7.4.2 pide Node ≥ 22.23.4).
 
+## Despliegue
+
+Cada merge a `main` despliega solo: el trigger `portafolio-main` de Cloud Build (proyecto `josecarloscorona-web`)
+corre `cloudbuild.yaml`, que hace `npm ci`, `npm run build` y `firebase deploy --only hosting` con la cuenta
+`portafolio-build`. Cambios solo en `README.md`, `design/`, `video/` o `.github/` no despliegan. La cuenta y el
+trigger los crea `infra/cicd.sh` (una vez, desde Cloud Shell). A mano:
+`gcloud builds triggers run portafolio-main --branch=main --project=josecarloscorona-web`.
+
 ## Reglas
 
 - `src/styles/jc-tokens.css` es copia literal del handoff; lo nuestro va en el bloque de extensiones del final.
 - Nunca un color en hexadecimal dentro de un componente: colores de producto y pósters son tokens `--jc-brand-*` y `--jc-poster-*`.
 - Los `.dc.html` del handoff son especificación, no código.
 - Textos en `src/i18n/ui.ts`; casos en `src/data/cases.ts`. Un caso sin `details` aparece en Inicio sin enlace.
+- Las capturas de `public/shots/` salen de las apps publicadas; donde no hay captura, la portada del caso muestra un dato.
 - Un video aparece como póster fijo hasta que su caso tenga `videoId` (YouTube); con él, la fachada carga `youtube-nocookie` al dar clic y muestra error a los 8 s.
 - Una cifra sin `source` muestra «Fuente: (falta)» en borrador y nada en producción.
 

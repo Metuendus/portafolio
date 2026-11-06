@@ -1,0 +1,69 @@
+---
+import Icon from './Icon.astro';
+import CopyButton from './CopyButton.astro';
+import { ui, projectsPath, summaryPath, contact, cvLabel, type Lang } from '../i18n/ui';
+
+interface Props { lang: Lang; heading: 'h1' | 'h2'; inDialog?: boolean }
+const { lang, heading: Heading, inDialog } = Astro.props;
+const t = ui[lang];
+const q = t.quick;
+const L = t.caseL;
+---
+<Heading id="quick-title" class="q-title">{q.title}</Heading>
+<p class="q-role">{q.role}</p>
+<p class="q-where">{q.where}</p>
+<p class="q-where">{t.looking}</p>
+
+<div class="q-actions">
+  <a class="btn btn--primary" href={contact.cv[lang]} download><Icon name="download" />{cvLabel[lang]}</a>
+  {contact.email && <a class="btn btn--secondary" href={`mailto:${contact.email}`}><Icon name="mail" />{contact.email}</a>}
+  {contact.email && <CopyButton value={contact.email} label={t.copy.email} done={t.copy.done} failed={t.copy.failed} />}
+</div>
+
+<div class="q-block">
+  <h2 class="q-label">{q.winsLabel}</h2>
+  <ul class="wins">
+    {q.wins.map((w) => (
+      <li>
+        <span class="w-t">{w.t}</span>
+        <span class="w-d">{w.d}</span>
+        {w.s ? <span class="w-s">{L.source}: {w.s}</span> : null}
+      </li>
+    ))}
+  </ul>
+</div>
+
+<div class="q-block">
+  <h2 class="q-label">{q.stackLabel}</h2>
+  <div class="stack">{q.stack.map((s) => <span class="chip chip--stack">{s}</span>)}</div>
+</div>
+
+<div class="q-foot">
+  <a class="link" href={projectsPath(lang)}>{q.more}<Icon name="arrow" /></a>
+  {inDialog
+    ? <a class="link" href={summaryPath(lang)}>{q.asPage}<Icon name="arrow" /></a>
+    : <CopyButton value="location" label={t.copy.link} done={t.copy.done} failed={t.copy.failed} />}
+  <a class="link" href={contact.linkedin}>LinkedIn<Icon name="external" size={16} /></a>
+  <a class="link" href={contact.github}>GitHub<Icon name="external" size={16} /></a>
+</div>
+
+<style>
+  .q-title { font: 600 var(--jc-fs-h1)/1.1 var(--jc-font-sans); letter-spacing: var(--jc-ls-h1); }
+  .q-role { font: 400 19px/1.5 var(--jc-font-sans); color: var(--jc-text-2); max-width: 68ch; }
+  .q-where { font: 400 13px/1.5 var(--jc-font-mono); color: var(--jc-text-3); }
+  .q-where + .q-where { margin-top: -12px; }
+  .q-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+  .q-block { display: flex; flex-direction: column; gap: 12px; padding-top: 16px; border-top: 1px solid var(--jc-hairline); }
+  .q-label { font: 400 var(--jc-fs-micro)/1 var(--jc-font-mono); letter-spacing: normal; color: var(--jc-text-3); }
+  .wins { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 14px; }
+  .wins li { display: flex; flex-direction: column; gap: 2px; }
+  .w-t { font: 600 17px/1.35 var(--jc-font-sans); }
+  .w-d { font-size: 15px; line-height: 1.45; color: var(--jc-text-2); max-width: 68ch; }
+  .w-s { font: 400 12px/1.4 var(--jc-font-mono); color: var(--jc-text-3); }
+  .stack { display: flex; flex-wrap: wrap; gap: 6px; }
+  .q-foot { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 24px; padding-top: 16px; border-top: 1px solid var(--jc-hairline); }
+  @media (max-width: 640px) {
+    .q-role { font-size: 17px; }
+    .q-actions :global(.btn), .q-actions .btn { width: 100%; height: 48px; }
+  }
+</style>

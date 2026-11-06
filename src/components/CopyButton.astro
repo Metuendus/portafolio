@@ -1,0 +1,26 @@
+---
+import Icon from './Icon.astro';
+
+interface Props { value: string; label: string; done: string; failed: string; class?: string; large?: boolean }
+const { value, label, done, failed, class: extra, large } = Astro.props;
+---
+<button type="button" class:list={['btn', 'btn--secondary', { 'btn--lg': large }, extra]} data-copy={value} data-done={done} data-failed={failed}>
+  <Icon name="copy" size={16} /><span data-copy-text aria-live="polite">{label}</span>
+</button>
+
+<script>
+  document.querySelectorAll<HTMLButtonElement>('[data-copy]').forEach((b) => {
+    const text = b.querySelector<HTMLElement>('[data-copy-text]')!;
+    const label = text.textContent ?? '';
+    let timer = 0;
+    b.addEventListener('click', async () => {
+      const value = b.dataset.copy === 'location' ? location.href : (b.dataset.copy ?? '');
+      let ok = false;
+      try { await navigator.clipboard.writeText(value); ok = true; } catch {}
+      // Sin portapapeles, el botón enseña el valor para que se pueda copiar a mano.
+      text.textContent = ok ? (b.dataset.done ?? '') : `${b.dataset.failed ?? ''} ${value}`;
+      clearTimeout(timer);
+      if (ok) timer = window.setTimeout(() => { text.textContent = label; }, 2000);
+    });
+  });
+</script>

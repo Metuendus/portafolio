@@ -2,6 +2,7 @@
 import Hero from './Hero.astro';
 import Icon from './Icon.astro';
 import OrgChip from './OrgChip.astro';
+import CopyButton from './CopyButton.astro';
 import CaseCover from './CaseCover.astro';
 import Footer from './Footer.astro';
 import { ui, casePath, projectsPath, aboutPath, showMissing, contact, cvLabel, type Lang } from '../i18n/ui';
@@ -13,13 +14,14 @@ const { lang } = Astro.props;
 const t = ui[lang];
 const L = t.caseL;
 const contactId = lang === 'es' ? 'contacto' : 'contact';
-const featured = ['mcp', 'einstein', 'iterum', 'domi'].map((id) => cases.find((c) => c.id === id)!);
+const featured = ['iterum', 'mcp', 'dash', 'domi'].map((id) => cases.find((c) => c.id === id)!);
 const about = aboutPath(lang);
+const wave = [18, 34, 52, 30, 68, 44, 86, 58, 100, 72, 40, 62, 92, 54, 28, 70, 96, 48, 66, 36, 80, 50, 24, 42, 16];
 ---
 <Hero lang={lang} />
 
 <section class="numbers page-x" aria-labelledby="numbers-title">
-  <div class="head"><span class="tag">{t.numbersTag}</span><h2 id="numbers-title">{t.numbersTitle}</h2></div>
+  <div class="head"><h2 id="numbers-title">{t.numbersTitle}</h2></div>
   <dl class="nums">
     {numbers.map((n) => (
       <div class="num">
@@ -33,7 +35,7 @@ const about = aboutPath(lang);
 
 <section class="block block--cases page-x" aria-labelledby="cases-title">
   <div class="head head--row">
-    <div class="head"><span class="tag">{t.featuredTag}</span><h2 id="cases-title">{t.featuredTitle}</h2></div>
+    <div class="head"><h2 id="cases-title">{t.featuredTitle}</h2></div>
     <a class="link" href={projectsPath(lang)}>{t.allWork}<Icon name="arrow" /></a>
   </div>
   <ul class="cases">
@@ -44,7 +46,7 @@ const about = aboutPath(lang);
           <div class:list={['case', { flip: i % 2 === 1, linked }]}>
             <div class="shot-wrap"><CaseCover lang={lang} c={c} /></div>
             <div class="body">
-              <div class="meta"><span class="tag">{String(i + 1).padStart(2, '0')} / 04</span><span class="bar" aria-hidden="true"></span><span class="cname">{c.name[lang]}</span></div>
+              <div class="meta"><span class="cname">{c.name[lang]}</span></div>
               <p class="hook">{c.hook[lang]}</p>
               <div class="chips"><OrgChip lang={lang} org={c.org} status={c.status} /></div>
               <div class="links">
@@ -59,8 +61,51 @@ const about = aboutPath(lang);
   </ul>
 </section>
 
+<section class="doppel page-x" aria-labelledby="doppel-title">
+  <div class="dp-copy">
+    <span class="chip chip--wip chip--lg"><Icon name="check" size={12} />{t.status.wip}</span>
+    <h2 id="doppel-title">{t.doppel.title}</h2>
+    <p>{t.doppel.body}</p>
+    <a class="dp-link" href={`${projectsPath(lang)}?frente=own`}>{t.doppel.more}<Icon name="arrow" /></a>
+  </div>
+  <div class="wave" aria-hidden="true" data-wave>
+    {wave.map((h, i) => <span style={`--h:${h};--i:${i}`}></span>)}
+  </div>
+</section>
+
+<section class="block page-x" aria-labelledby="thesis">
+  <div class="head"><h2 id="thesis">{t.thesisTitle}</h2></div>
+  <ol class="principles">
+    {t.principles.map((p) => (
+      <li>
+        <h3>{p.t}</h3>
+        <p>{p.d}</p>
+        {hasPage(p.case)
+          ? <a class="link" href={casePath(lang, p.case)}>{p.app}</a>
+          : <span class="app">{p.app}</span>}
+      </li>
+    ))}
+  </ol>
+</section>
+
+<section class="block page-x" aria-labelledby="timeline-title">
+  <div class="head head--row">
+    <div class="head"><h2 id="timeline-title">{t.timelineTitle}</h2></div>
+    <a class="link" href={about}>{t.nav.find((n) => n.key === 'about')!.label}<Icon name="arrow" /></a>
+  </div>
+  <ol class="timeline" style={`--n:${timeline.length}`}>
+    {timeline.map((m) => (
+      <li class:list={[m.mark && `t-${m.mark}`]}>
+        <span class="t-dot" aria-hidden="true"></span>
+        <span class="tag t-year">{m.mark === 'now' ? (lang === 'es' ? 'Hoy' : 'Today') : m.year || '\u00a0'}</span>
+        <span class="t-text">{m.t[lang]}</span>
+      </li>
+    ))}
+  </ol>
+</section>
+
 <section class="block page-x" aria-labelledby="doors-title">
-  <div class="head"><span class="tag">{t.doorsTag}</span><h2 id="doors-title">{t.doorsTitle}</h2></div>
+  <div class="head"><h2 id="doors-title">{t.doorsTitle}</h2></div>
   <ul class="doors">
     {fronts.map((f) => (
       <li>
@@ -76,48 +121,19 @@ const about = aboutPath(lang);
   </ul>
 </section>
 
-<section class="block page-x" aria-labelledby="thesis">
-  <div class="head"><span class="tag">{t.thesisTag}</span><h2 id="thesis">{t.thesisTitle}</h2></div>
-  <ol class="principles">
-    {t.principles.map((p, i) => (
-      <li>
-        <span class="tag">{String(i + 1).padStart(2, '0')}</span>
-        <h3>{p.t}</h3>
-        <p>{p.d}</p>
-        {hasPage(p.case)
-          ? <a class="link" href={casePath(lang, p.case)}>{p.app}</a>
-          : <span class="app">{p.app}</span>}
-      </li>
-    ))}
-  </ol>
-</section>
-
-<section class="block page-x" aria-labelledby="timeline-title">
-  <div class="head head--row">
-    <div class="head"><span class="tag">{t.timelineTag}</span><h2 id="timeline-title">{t.timelineTitle}</h2></div>
-    <a class="link" href={about}>{t.nav.find((n) => n.key === 'about')!.label}<Icon name="arrow" /></a>
-  </div>
-  <ol class="timeline" style={`--n:${timeline.length}`}>
-    {timeline.map((m) => (
-      <li class:list={[m.mark && `t-${m.mark}`]}>
-        <span class="t-dot" aria-hidden="true"></span>
-        <span class="tag t-year">{m.mark === 'now' ? (lang === 'es' ? 'Hoy' : 'Today') : m.year || '\u00a0'}</span>
-        <span class="t-text">{m.t[lang]}</span>
-      </li>
-    ))}
-  </ol>
-</section>
-
 <section class="close page-x" id={contactId} aria-labelledby="close-title">
   <div class="close-body">
     <h2 id="close-title">{t.closeTitle}</h2>
     <p>{t.closeBody}</p>
-    <span class="chip chip--prod chip--lg open-to"><Icon name="check" size={12} />{t.openTo}</span>
     <div class="close-ctas">
-      {contact.email && <a class="btn btn--primary btn--lg" href={`mailto:${contact.email}`}><Icon name="mail" />{t.hero.cta2}</a>}
-      <a class:list={['btn', 'btn--lg', contact.email ? 'btn--secondary' : 'btn--primary']} href={contact.linkedin}><Icon name="linkedin" />LinkedIn</a>
+      {contact.email && <a class="btn btn--primary btn--lg" href={`mailto:${contact.email}`}><Icon name="mail" />{contact.email}</a>}
+      {contact.email && <CopyButton value={contact.email} label={t.copy.email} done={t.copy.done} failed={t.copy.failed} large />}
       {showMissing && !contact.email && <span class="missing">correo · {t.caseL.missing}</span>}
       <a class="btn btn--secondary btn--lg" href={contact.cv[lang]} download><Icon name="download" />{cvLabel[lang]}</a>
+    </div>
+    <div class="close-links">
+      <a class="link" href={contact.linkedin}>LinkedIn<Icon name="external" size={16} /></a>
+      <a class="link" href={contact.github}>GitHub<Icon name="external" size={16} /></a>
     </div>
   </div>
   <Footer lang={lang} />
@@ -125,7 +141,6 @@ const about = aboutPath(lang);
 
 <style>
   .soon { font-size: 12px; }
-  .open-to { align-self: flex-start; white-space: normal; height: auto; min-height: 28px; padding-block: 4px; }
   .block { padding-top: 96px; padding-bottom: 96px; border-top: 1px solid var(--jc-hairline); display: flex; flex-direction: column; gap: 48px; }
   .block--cases { gap: 40px; }
   .head { display: flex; flex-direction: column; gap: 8px; }
@@ -133,7 +148,7 @@ const about = aboutPath(lang);
   h2 { font: 600 var(--jc-fs-h1)/1.1 var(--jc-font-sans); letter-spacing: var(--jc-ls-h1); }
 
   .numbers { padding-top: 64px; padding-bottom: 64px; background: var(--jc-surface); display: flex; flex-direction: column; gap: 32px; }
-  .nums { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-top: 1px solid var(--jc-hairline-strong); }
+  .nums { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid var(--jc-hairline-strong); }
   .num { padding: 28px 24px 0 0; margin-right: 24px; border-right: 1px solid var(--jc-hairline); display: flex; flex-direction: column; gap: 8px; }
   .num:last-child { border-right: 0; margin-right: 0; }
   .num dd { margin: 0; }
@@ -162,12 +177,11 @@ const about = aboutPath(lang);
   .stretch:focus-visible { outline: none; }
   .links { display: flex; flex-wrap: wrap; align-items: center; gap: 0 24px; }
   .app-open { position: relative; z-index: 1; }
-  .shot-wrap { flex: 0 0 440px; aspect-ratio: 16 / 10; border-radius: var(--jc-radius-md); overflow: hidden; }
-  .shot { width: 100%; height: 100%; transition: transform var(--jc-dur-slow) var(--jc-ease); }
-  .case.linked:hover .shot { transform: scale(1.03); }
+  .shot-wrap { flex: 0 0 min(50%, 560px); border: 1px solid var(--jc-hairline); aspect-ratio: 16 / 10; border-radius: var(--jc-radius-md); overflow: hidden; }
+  .shot-wrap :global(.shot) { transition: transform var(--jc-dur-slow) var(--jc-ease); }
+  .case.linked:hover :global(.shot) { transform: scale(1.03); }
   .body { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 14px; padding: 8px 16px; }
   .meta { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
-  .bar { width: 1px; height: 14px; background: var(--jc-hairline-strong); }
   .cname { font: 600 15px/1.3 var(--jc-font-sans); }
   .hook { font: 600 32px/1.15 var(--jc-font-sans); letter-spacing: -.8px; }
   .chips { display: flex; gap: 6px; flex-wrap: wrap; }
@@ -202,6 +216,19 @@ const about = aboutPath(lang);
   .close p { font: 400 24px/1.45 var(--jc-font-sans); color: var(--jc-text-2); }
   .close-ctas { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
   .close-ctas .btn { padding: 0 22px; }
+  .close-links { display: flex; gap: 4px 24px; flex-wrap: wrap; }
+
+  .doppel { padding-top: 96px; padding-bottom: 96px; background: var(--jc-ink); color: var(--jc-canvas); display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 64px; align-items: center; }
+  .dp-copy { display: flex; flex-direction: column; align-items: flex-start; gap: 20px; }
+  .doppel h2 { font: 600 var(--jc-fs-display)/1.05 var(--jc-font-sans); letter-spacing: var(--jc-ls-display); }
+  .doppel p { max-width: 60ch; font: 400 19px/1.55 var(--jc-font-sans); opacity: .82; }
+  .dp-link { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; font: 600 15px/1.3 var(--jc-font-sans); color: inherit; text-decoration: underline; text-underline-offset: 4px; }
+  .wave { height: 180px; display: flex; align-items: center; justify-content: space-between; gap: 4px; }
+  .wave span { flex: 1 1 0; max-width: 8px; height: calc(var(--h) * 1%); border-radius: 4px; background: currentColor; opacity: .85; transform-origin: center; }
+  @media (prefers-reduced-motion: no-preference) {
+    .wave.is-on span { animation: talk 1200ms var(--jc-ease) 4 alternate; animation-delay: calc(var(--i) * -90ms); }
+  }
+  @keyframes talk { from { transform: scaleY(.45); } to { transform: scaleY(1); } }
 
   @media (max-width: 1200px) {
     .doors { grid-template-columns: repeat(3, minmax(0, 1fr)); }
@@ -211,14 +238,16 @@ const about = aboutPath(lang);
     .shot-wrap { flex: none; }
     .body { padding: 16px 8px 8px; }
     .hook { font-size: 26px; }
-    .nums { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    .num:nth-child(2n) { border-right: 0; margin-right: 0; }
     .num { padding-bottom: 24px; }
   }
   @media (max-width: 900px) {
+    .nums { grid-template-columns: minmax(0, 1fr); }
+    .num, .num:last-child { margin-right: 0; border-right: 0; border-bottom: 1px solid var(--jc-hairline); padding-right: 0; }
+    .num:last-child { border-bottom: 0; }
+    .doppel { grid-template-columns: minmax(0, 1fr); gap: 32px; }
+    .wave { height: 96px; }
     .principles { grid-template-columns: minmax(0, 1fr); gap: 0; border-top: 0; }
     .principles li { padding: 16px 0; gap: 6px; border-bottom: 1px solid var(--jc-hairline); }
-    .principles .tag { display: none; }
     .principles h3 { font-size: 22px; line-height: 1.2; letter-spacing: -.4px; }
     .principles p { font-size: 15px; line-height: 1.5; }
     .principles .link, .app { font-size: 14px; }
@@ -233,18 +262,17 @@ const about = aboutPath(lang);
   }
   @media (max-width: 640px) {
     .block { padding-top: 40px; padding-bottom: 40px; gap: 16px; }
-    .block--cases .tag { display: none; }
     .head h2 { font-size: 32px; letter-spacing: -.9px; }
-    #thesis { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
     .numbers { padding-top: 40px; padding-bottom: 40px; gap: 16px; }
-    .num { padding: 18px 12px 18px 0; margin-right: 12px; gap: 4px; }
+    .num { padding: 18px 0; gap: 4px; }
     .num-v { font-size: 36px; letter-spacing: -1px; }
     .num-l { font-size: 14px; }
-    .num-s { font-size: 11px; }
+    .doppel { padding-top: 48px; padding-bottom: 48px; }
+    .doppel h2 { font-size: 32px; letter-spacing: -.9px; }
+    .doppel p { font-size: 16px; }
     .cases { gap: 16px; }
     .body { gap: 6px; padding: 12px 8px 8px; }
     .meta { order: 1; }
-    .meta .tag, .meta .bar { display: none; }
     .cname { font-size: 20px; line-height: 1.2; }
     .hook { order: 2; font: 400 15px/1.45 var(--jc-font-sans); letter-spacing: 0; color: var(--jc-text-2); }
     .chips { order: 0; }
@@ -257,6 +285,17 @@ const about = aboutPath(lang);
     .close h2 { font-size: 32px; letter-spacing: -.9px; }
     .close p { font-size: 17px; line-height: 1.55; }
     .close-ctas { flex-direction: column; margin-top: 8px; }
-    .close-ctas .btn { height: 48px; font-size: 15px; width: 100%; }
+    .close-ctas :global(.btn), .close-ctas .btn { height: 48px; font-size: 15px; width: 100%; }
   }
 </style>
+
+<script>
+  // La onda habla una sola vez, menos de 5 s, cuando entra en pantalla.
+  const wave = document.querySelector<HTMLElement>('[data-wave]');
+  if (wave) {
+    const io = new IntersectionObserver((es) => {
+      if (es.some((e) => e.isIntersecting)) { wave.classList.add('is-on'); io.disconnect(); }
+    }, { threshold: 0.4 });
+    io.observe(wave);
+  }
+</script>

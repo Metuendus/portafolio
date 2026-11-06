@@ -32,14 +32,13 @@ const frontName = (id: string) => fronts.find((f) => f.id === id)!.name[lang];
 <section class="group page-x" data-group aria-labelledby="g-cases">
   <h2 id="g-cases" class="tag">{P.cases}</h2>
   <ul class="grid">
-    {cases.map((c, i) => {
+    {cases.map((c) => {
       const linked = hasPage(c.id);
       return (
         <li data-front={caseFront(c.org)}>
           <div class:list={['card', { linked }]}>
             <div class="shot-wrap"><CaseCover lang={lang} c={c} size="sm" /></div>
             <div class="c-body">
-              <span class="tag">{String(i + 1).padStart(2, '0')} / 08</span>
               <span class="c-name">{c.name[lang]}</span>
               <span class="c-hook">{c.hook[lang]}</span>
               <div class="chips"><OrgChip lang={lang} org={c.org} status={c.status} /></div>
@@ -110,13 +109,13 @@ const frontName = (id: string) => fronts.find((f) => f.id === id)!.name[lang];
   .c-links { display: flex; flex-wrap: wrap; align-items: center; gap: 0 20px; }
   .app-open { position: relative; z-index: 1; }
   .shot-wrap { aspect-ratio: 16 / 10; border-radius: var(--jc-radius-md); overflow: hidden; }
-  .shot { width: 100%; height: 100%; transition: transform var(--jc-dur-slow) var(--jc-ease); }
-  .card.linked:hover .shot { transform: scale(1.03); }
+  .shot-wrap :global(.shot) { transition: transform var(--jc-dur-slow) var(--jc-ease); }
+  .card.linked:hover :global(.shot) { transform: scale(1.03); }
   .c-body { padding: 14px 8px 8px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
   .c-name { font: 600 20px/1.2 var(--jc-font-sans); letter-spacing: -.3px; }
   .c-hook { font-size: 15px; line-height: 1.45; color: var(--jc-text-2); }
   .chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: auto; padding-top: 6px; }
-  .c-read { display: inline-flex; align-items: center; gap: 6px; min-height: 32px; font: 600 15px/1 var(--jc-font-sans); color: var(--jc-accent); text-decoration: underline; text-underline-offset: 4px; }
+  .c-read { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; font: 600 15px/1 var(--jc-font-sans); color: var(--jc-accent); text-decoration: underline; text-underline-offset: 4px; }
   .c-read :global(svg) { transition: transform var(--jc-dur-fast) var(--jc-ease); }
   .card.linked:hover .stretch :global(svg) { transform: translateX(4px); }
 
