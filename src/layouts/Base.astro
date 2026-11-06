@@ -1,14 +1,27 @@
 ---
 import '../styles/global.css';
 import Nav from '../components/Nav.astro';
-import { type Lang } from '../i18n/ui';
+import { contact, type Lang } from '../i18n/ui';
 
-interface Props { lang: Lang; title: string; description: string; altHref: string; current?: string }
-const { lang, title, description, altHref, current } = Astro.props;
+interface Props { lang: Lang; title: string; description: string; altHref: string; current?: string; bare?: boolean }
+const { lang, title, description, altHref, current, bare } = Astro.props;
 const skip = lang === 'es' ? 'Saltar al contenido' : 'Skip to content';
 const site = Astro.site ?? new URL('https://josecarloscorona.dev');
 const canonical = new URL(Astro.url.pathname, site).href;
 const og = new URL(`/og-${lang}.png`, site).href;
+const esHref = new URL(lang === 'es' ? Astro.url.pathname : altHref, site).href;
+const enHref = new URL(lang === 'en' ? Astro.url.pathname : altHref, site).href;
+const person = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'José Carlos Corona',
+  url: site.href,
+  jobTitle: 'AI & Automation Lead',
+  worksFor: { '@type': 'Organization', name: 'EPA.Digital' },
+  address: { '@type': 'PostalAddress', addressLocality: 'Ciudad de México', addressCountry: 'MX' },
+  email: contact.email ?? undefined,
+  sameAs: [contact.linkedin, contact.github],
+};
 ---
 <!doctype html>
 <html lang={lang}>
@@ -17,9 +30,14 @@ const og = new URL(`/og-${lang}.png`, site).href;
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
-    <link rel="alternate" hreflang={lang === 'es' ? 'en' : 'es'} href={altHref} />
+    {bare ? <meta name="robots" content="noindex" /> : <>
+      <link rel="alternate" hreflang="es" href={esHref} />
+      <link rel="alternate" hreflang="en" href={enHref} />
+      <link rel="alternate" hreflang="x-default" href={esHref} />
+      <link rel="canonical" href={canonical} />
+      <script type="application/ld+json" set:html={JSON.stringify(person)} />
+    </>}
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-    <link rel="canonical" href={canonical} />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="José Carlos Corona" />
     <meta property="og:title" content={title} />
@@ -46,7 +64,7 @@ const og = new URL(`/og-${lang}.png`, site).href;
   </head>
   <body>
     <a class="skip" href="#main">{skip}</a>
-    <Nav lang={lang} current={current} altHref={altHref} />
+    {!bare && <Nav lang={lang} current={current} altHref={altHref} />}
     <main id="main" tabindex="-1">
       <slot />
     </main>
