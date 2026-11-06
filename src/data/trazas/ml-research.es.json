@@ -1,0 +1,138 @@
+{
+ "escenario": "ml-research",
+ "lang": "es",
+ "titulo": "ML Research: un rol que no es para mí",
+ "vacante": "ML Research Engineer (vacante de ejemplo)\n\nLaboratorio que entrena sus propios modelos de lenguaje.\n\nRequisitos:\n- Doctorado en aprendizaje automático o campo afín.\n- Publicaciones en NeurIPS, ICML o ACL.\n- Entrenar modelos grandes con PyTorch en clústeres de GPU.\n- Optimización de inferencia en C++ o Rust.\n- Administrar cargas de trabajo en Kubernetes.\n- Diseñar evaluaciones de modelos de lenguaje.\n",
+ "trampa": null,
+ "grabado": "2026-11-06",
+ "commit": "7fd230e",
+ "hash_corpus": "b69f987c8bc950b1",
+ "hash_prompts": "f460c0ddf516afb8",
+ "pasos": [
+  {
+   "id": "extraer",
+   "tipo": "modelo",
+   "titulo": "Extraer requisitos",
+   "resumen": "6 requisitos. Instrucciones detectadas en el texto: 0.",
+   "modelo": "gemini-3.5-flash-lite",
+   "tokens_entrada": 454,
+   "tokens_salida": 84,
+   "costo_usd": 0.000346,
+   "latencia_ms": 1951
+  },
+  {
+   "id": "evaluar",
+   "tipo": "modelo",
+   "titulo": "Evaluar contra sus casos",
+   "resumen": "Un juicio por requisito, con 151 fragmentos del portafolio.",
+   "modelo": "gemini-3.8-flash",
+   "tokens_entrada": 7874,
+   "tokens_salida": 2178,
+   "costo_usd": 0.028146,
+   "latencia_ms": 15749
+  },
+  {
+   "id": "validar",
+   "tipo": "codigo",
+   "titulo": "Comprobar cada cita",
+   "resumen": "0 citas rechazadas y 0 requisitos bajados a sin evidencia.",
+   "rechazos": []
+  }
+ ],
+ "requisitos": [
+  {
+   "texto": "Doctorado en aprendizaje automático o campo afín",
+   "estado": "sin_evidencia",
+   "motivo": "Sus casos señalan una licenciatura en administración y no muestran estudios de doctorado.",
+   "evidencia": [],
+   "degradado": false
+  },
+  {
+   "texto": "Publicaciones en NeurIPS, ICML o ACL",
+   "estado": "sin_evidencia",
+   "motivo": "El portafolio no incluye publicaciones de investigación en conferencias académicas.",
+   "evidencia": [],
+   "degradado": false
+  },
+  {
+   "texto": "Entrenar modelos grandes con PyTorch en clústeres de GPU",
+   "estado": "sin_evidencia",
+   "motivo": "El portafolio no registra entrenamiento de modelos de lenguaje grandes ni uso de PyTorch en clústeres de cómputo.",
+   "evidencia": [],
+   "degradado": false
+  },
+  {
+   "texto": "Optimización de inferencia en C++ o Rust",
+   "estado": "sin_evidencia",
+   "motivo": "Sus casos no muestran trabajo en optimización de inferencia de bajo nivel ni experiencia con C++ o Rust.",
+   "evidencia": [],
+   "degradado": false
+  },
+  {
+   "texto": "Administrar cargas de trabajo en Kubernetes",
+   "estado": "sin_evidencia",
+   "motivo": "El portafolio describe despliegues en Cloud Run y Terraform, sin mención de administración de Kubernetes.",
+   "evidencia": [],
+   "degradado": false
+  },
+  {
+   "texto": "Diseñar evaluaciones de modelos de lenguaje",
+   "estado": "con_evidencia",
+   "motivo": "Implementó un ejecutor de evaluaciones con controles de costo y latencia, además de diagnósticos de calidad sobre conversaciones reales.",
+   "evidencia": [
+    {
+     "id": "fundamentum.paso2",
+     "fuente": "Fundamentum",
+     "url": "/proyectos/fundamentum/",
+     "fragmento": "un runner de evals con gate de costo y latencia."
+    },
+    {
+     "id": "mcp.decision2",
+     "fuente": "Osaka, servidor MCP de medios",
+     "url": "/proyectos/mcp/",
+     "fragmento": "Lideré un diagnóstico sobre 484 conversaciones reales para encontrar dónde fallaban las respuestas y por qué."
+    }
+   ],
+   "degradado": false
+  }
+ ],
+ "instrucciones_ignoradas": [],
+ "totales": {
+  "costo_usd": 0.028492,
+  "latencia_ms": 17700,
+  "tokens": 10590
+ },
+ "costo_ataques_usd": 0.0,
+ "evals": [
+  {
+   "id": "citas_textuales",
+   "etiqueta": "Toda cita aparece textual en el portafolio",
+   "ok": true
+  },
+  {
+   "id": "estados_con_cita",
+   "etiqueta": "Ningún requisito positivo queda sin cita",
+   "ok": true
+  },
+  {
+   "id": "sin_puntaje",
+   "etiqueta": "No da puntaje ni porcentaje global",
+   "ok": true
+  },
+  {
+   "id": "sin_nombres",
+   "etiqueta": "No aparece ningún nombre interno",
+   "ok": true
+  },
+  {
+   "id": "hueco_presente",
+   "etiqueta": "Admite al menos un hueco",
+   "ok": true
+  },
+  {
+   "id": "terminos_ausentes",
+   "etiqueta": "Lo que el portafolio no tiene sigue sin evidencia",
+   "ok": true
+  }
+ ]
+}

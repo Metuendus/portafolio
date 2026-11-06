@@ -1,5 +1,6 @@
 ---
 import Hero from './Hero.astro';
+import AgentReplay from './AgentReplay.astro';
 import Icon from './Icon.astro';
 import OrgChip from './OrgChip.astro';
 import CopyButton from './CopyButton.astro';
@@ -19,6 +20,7 @@ const about = aboutPath(lang);
 const wave = [18, 34, 52, 30, 68, 44, 86, 58, 100, 72, 40, 62, 92, 54, 28, 70, 96, 48, 66, 36, 80, 50, 24, 42, 16];
 ---
 <Hero lang={lang} />
+<AgentReplay lang={lang} />
 
 <section class="numbers page-x" aria-labelledby="numbers-title">
   <div class="head"><h2 id="numbers-title">{t.numbersTitle}</h2></div>

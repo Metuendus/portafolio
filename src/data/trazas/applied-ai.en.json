@@ -1,0 +1,189 @@
+{
+ "escenario": "applied-ai",
+ "lang": "en",
+ "titulo": "Applied AI Engineer",
+ "vacante": "Applied AI Engineer (sample job posting)\n\nWe’re looking for someone who takes AI agents to production and gets teams to use them.\n\nRequirements:\n- Experience building MCP servers or tool integrations for LLMs.\n- Production RAG with verifiable citations.\n- Automated agent evaluations and per-call cost control.\n- Python and TypeScript.\n- Deployment on Google Cloud.\n- Working with non-technical teams so they adopt the tools.\n- Working English.\n",
+ "trampa": null,
+ "grabado": "2026-11-06",
+ "commit": "7fd230e",
+ "hash_corpus": "b69f987c8bc950b1",
+ "hash_prompts": "f460c0ddf516afb8",
+ "pasos": [
+  {
+   "id": "extraer",
+   "tipo": "modelo",
+   "titulo": "Extract requirements",
+   "resumen": "7 requirements. Instructions detected in the text: 0.",
+   "modelo": "gemini-3.5-flash-lite",
+   "tokens_entrada": 450,
+   "tokens_salida": 98,
+   "costo_usd": 0.00038,
+   "latencia_ms": 2300
+  },
+  {
+   "id": "evaluar",
+   "tipo": "modelo",
+   "titulo": "Evaluate against his case studies",
+   "resumen": "One judgment per requirement, with 151 excerpts from the portfolio.",
+   "modelo": "gemini-3.8-flash",
+   "tokens_entrada": 7285,
+   "tokens_salida": 3978,
+   "costo_usd": 0.040763,
+   "latencia_ms": 30429
+  },
+  {
+   "id": "validar",
+   "tipo": "codigo",
+   "titulo": "Check every citation",
+   "resumen": "0 citations rejected and 0 requirements lowered to no evidence.",
+   "rechazos": []
+  }
+ ],
+ "requisitos": [
+  {
+   "texto": "Experience building MCP servers or tool integrations for LLMs",
+   "estado": "con_evidencia",
+   "motivo": "He built the initial version of an MCP server on BigQuery using FastMCP and contributed providers and authentication to its production iteration.",
+   "evidencia": [
+    {
+     "id": "mcp.decision0",
+     "fuente": "Osaka, media MCP server",
+     "url": "/en/projects/mcp/",
+     "fragmento": "In 2025 I built the first version on my own: MCP servers on BigQuery with FastMCP"
+    }
+   ],
+   "degradado": false
+  },
+  {
+   "texto": "Production RAG with verifiable citations",
+   "estado": "parcial",
+   "motivo": "He set the architecture and served as product owner for a cited production RAG tool, but a developer on his team wrote the implementation.",
+   "evidencia": [
+    {
+     "id": "einstein.rol",
+     "fuente": "Einstein",
+     "url": "/en/projects/einstein/",
+     "fragmento": "Product owner. I set the architecture, permissions and roadmap; a developer on my team built it."
+    },
+    {
+     "id": "einstein.decision1",
+     "fuente": "Einstein",
+     "url": "/en/projects/einstein/",
+     "fragmento": "Every answer comes with citations. The chat links the documents behind each claim"
+    }
+   ],
+   "degradado": false
+  },
+  {
+   "texto": "Automated agent evaluations and per-call cost control",
+   "estado": "con_evidencia",
+   "motivo": "He created a framework featuring an evaluation runner with cost and latency gates alongside per-call token and cost metering.",
+   "evidencia": [
+    {
+     "id": "fundamentum.paso1",
+     "fuente": "Fundamentum",
+     "url": "/en/projects/fundamentum/",
+     "fragmento": "Every call goes through ADK and is metered with model, tokens and cost."
+    },
+    {
+     "id": "fundamentum.paso2",
+     "fuente": "Fundamentum",
+     "url": "/en/projects/fundamentum/",
+     "fragmento": "Scope and budget guardrails, plus an eval runner with a cost and latency gate."
+    }
+   ],
+   "degradado": false
+  },
+  {
+   "texto": "Python and TypeScript",
+   "estado": "con_evidencia",
+   "motivo": "He lists and uses both languages across his projects, including Python for shared agent infrastructure and TypeScript for the MCP server.",
+   "evidencia": [
+    {
+     "id": "fundamentum.stack",
+     "fuente": "Fundamentum",
+     "url": "/en/projects/fundamentum/",
+     "fragmento": "Python, uv, ADK, Gemini · Claude, Terraform"
+    },
+    {
+     "id": "mcp.stack",
+     "fuente": "Osaka, media MCP server",
+     "url": "/en/projects/mcp/",
+     "fragmento": "TypeScript, Hono, Next.js, MCP, Claude · OpenAI, Firestore, Cloud Run"
+    }
+   ],
+   "degradado": false
+  },
+  {
+   "texto": "Deployment on Google Cloud",
+   "estado": "con_evidencia",
+   "motivo": "His applications are deployed to production on Google Cloud Run.",
+   "evidencia": [
+    {
+     "id": "mcp.resultado",
+     "fuente": "Osaka, media MCP server",
+     "url": "/en/projects/mcp/",
+     "fragmento": "It runs in production on Cloud Run and is also used from Claude.ai through OAuth."
+    }
+   ],
+   "degradado": false
+  },
+  {
+   "texto": "Working with non-technical teams so they adopt the tools",
+   "estado": "con_evidencia",
+   "motivo": "He leads agency-wide AI adoption by building systems for account teams and providing training courses.",
+   "evidencia": [
+    {
+     "id": "puesto0.que",
+     "fuente": "AI & Automation Lead (Sep 2024 – present)",
+     "url": "/en/about/",
+     "fragmento": "I lead AI adoption at the agency: I build and run the systems account teams use"
+    }
+   ],
+   "degradado": false
+  },
+  {
+   "texto": "Working English",
+   "estado": "con_evidencia",
+   "motivo": "His profile reports upper intermediate B2 English.",
+   "evidencia": [
+    {
+     "id": "educacion.idioma1",
+     "fuente": "English · upper intermediate (B2), taking classes",
+     "url": "/en/about/",
+     "fragmento": "English · upper intermediate (B2), taking classes"
+    }
+   ],
+   "degradado": false
+  }
+ ],
+ "instrucciones_ignoradas": [],
+ "totales": {
+  "costo_usd": 0.041143,
+  "latencia_ms": 32729,
+  "tokens": 11811
+ },
+ "costo_ataques_usd": 0.0,
+ "evals": [
+  {
+   "id": "citas_textuales",
+   "etiqueta": "Every citation appears word for word in the portfolio",
+   "ok": true
+  },
+  {
+   "id": "estados_con_cita",
+   "etiqueta": "No positive requirement is left without a citation",
+   "ok": true
+  },
+  {
+   "id": "sin_puntaje",
+   "etiqueta": "It gives no overall score or percentage",
+   "ok": true
+  },
+  {
+   "id": "sin_nombres",
+   "etiqueta": "No internal names appear",
+   "ok": true
+  }
+ ]
+}

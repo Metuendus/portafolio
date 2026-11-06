@@ -1,0 +1,138 @@
+{
+ "escenario": "ml-research",
+ "lang": "en",
+ "titulo": "ML Research: a role that isn’t for me",
+ "vacante": "ML Research Engineer (sample job posting)\n\nA lab that trains its own language models.\n\nRequirements:\n- PhD in machine learning or a related field.\n- Publications at NeurIPS, ICML or ACL.\n- Training large models with PyTorch on GPU clusters.\n- Inference optimization in C++ or Rust.\n- Running workloads on Kubernetes.\n- Designing evaluations for language models.\n",
+ "trampa": null,
+ "grabado": "2026-11-06",
+ "commit": "7fd230e",
+ "hash_corpus": "b69f987c8bc950b1",
+ "hash_prompts": "f460c0ddf516afb8",
+ "pasos": [
+  {
+   "id": "extraer",
+   "tipo": "modelo",
+   "titulo": "Extract requirements",
+   "resumen": "6 requirements. Instructions detected in the text: 0.",
+   "modelo": "gemini-3.5-flash-lite",
+   "tokens_entrada": 434,
+   "tokens_salida": 91,
+   "costo_usd": 0.000358,
+   "latencia_ms": 2286
+  },
+  {
+   "id": "evaluar",
+   "tipo": "modelo",
+   "titulo": "Evaluate against his case studies",
+   "resumen": "One judgment per requirement, with 151 excerpts from the portfolio.",
+   "modelo": "gemini-3.8-flash",
+   "tokens_entrada": 7280,
+   "tokens_salida": 2032,
+   "costo_usd": 0.02616,
+   "latencia_ms": 14645
+  },
+  {
+   "id": "validar",
+   "tipo": "codigo",
+   "titulo": "Check every citation",
+   "resumen": "0 citations rejected and 0 requirements lowered to no evidence.",
+   "rechazos": []
+  }
+ ],
+ "requisitos": [
+  {
+   "texto": "PhD in machine learning or a related field",
+   "estado": "sin_evidencia",
+   "motivo": "His cases list a bachelor's degree in business administration, with no evidence of a doctoral degree.",
+   "evidencia": [],
+   "degradado": false
+  },
+  {
+   "texto": "Publications at NeurIPS, ICML or ACL",
+   "estado": "sin_evidencia",
+   "motivo": "His portfolio contains no record of academic publications in machine learning conferences.",
+   "evidencia": [],
+   "degradado": false
+  },
+  {
+   "texto": "Training large models with PyTorch on GPU clusters",
+   "estado": "sin_evidencia",
+   "motivo": "His cases focus on foundation model APIs and application development, with no evidence of training large models on GPU clusters with PyTorch.",
+   "evidencia": [],
+   "degradado": false
+  },
+  {
+   "texto": "Inference optimization in C++ or Rust",
+   "estado": "sin_evidencia",
+   "motivo": "His portfolio documents work in TypeScript and Python, with no evidence of inference optimization in C++ or Rust.",
+   "evidencia": [],
+   "degradado": false
+  },
+  {
+   "texto": "Running workloads on Kubernetes",
+   "estado": "sin_evidencia",
+   "motivo": "His cases demonstrate deployments on Cloud Run, with no evidence of running workloads on Kubernetes.",
+   "evidencia": [],
+   "degradado": false
+  },
+  {
+   "texto": "Designing evaluations for language models",
+   "estado": "con_evidencia",
+   "motivo": "He designed evaluations for language models by building an eval runner and reviewing failure modes across real conversations.",
+   "evidencia": [
+    {
+     "id": "fundamentum.paso2",
+     "fuente": "Fundamentum",
+     "url": "/en/projects/fundamentum/",
+     "fragmento": "plus an eval runner with a cost and latency gate."
+    },
+    {
+     "id": "mcp.decision2",
+     "fuente": "Osaka, media MCP server",
+     "url": "/en/projects/mcp/",
+     "fragmento": "I led a review of 484 real conversations to find where answers failed and why."
+    }
+   ],
+   "degradado": false
+  }
+ ],
+ "instrucciones_ignoradas": [],
+ "totales": {
+  "costo_usd": 0.026518,
+  "latencia_ms": 16931,
+  "tokens": 9837
+ },
+ "costo_ataques_usd": 0.0,
+ "evals": [
+  {
+   "id": "citas_textuales",
+   "etiqueta": "Every citation appears word for word in the portfolio",
+   "ok": true
+  },
+  {
+   "id": "estados_con_cita",
+   "etiqueta": "No positive requirement is left without a citation",
+   "ok": true
+  },
+  {
+   "id": "sin_puntaje",
+   "etiqueta": "It gives no overall score or percentage",
+   "ok": true
+  },
+  {
+   "id": "sin_nombres",
+   "etiqueta": "No internal names appear",
+   "ok": true
+  },
+  {
+   "id": "hueco_presente",
+   "etiqueta": "It admits at least one gap",
+   "ok": true
+  },
+  {
+   "id": "terminos_ausentes",
+   "etiqueta": "What the portfolio lacks stays at no evidence",
+   "ok": true
+  }
+ ]
+}

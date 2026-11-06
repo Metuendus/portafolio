@@ -1,0 +1,156 @@
+{
+ "escenario": "adopcion",
+ "lang": "es",
+ "titulo": "Líder de adopción de IA",
+ "vacante": "Líder de adopción de IA (vacante de ejemplo)\n\nUna empresa de 2,000 personas quiere pasar de pilotos sueltos a uso diario de IA.\n\nRequisitos:\n- Haber llevado una herramienta interna de IA de cero a uso recurrente.\n- Medir la adopción con datos, no con encuestas.\n- Diseñar y dar capacitación a personas no técnicas.\n- Definir roadmap y prioridades como product owner.\n- Experiencia en gestión del cambio en empresas de más de 1,000 empleados.\n- Dirigir un equipo de al menos cinco personas.\n",
+ "trampa": null,
+ "grabado": "2026-11-06",
+ "commit": "7fd230e",
+ "hash_corpus": "b69f987c8bc950b1",
+ "hash_prompts": "f460c0ddf516afb8",
+ "pasos": [
+  {
+   "id": "extraer",
+   "tipo": "modelo",
+   "titulo": "Extraer requisitos",
+   "resumen": "6 requisitos. Instrucciones detectadas en el texto: 0.",
+   "modelo": "gemini-3.5-flash-lite",
+   "tokens_entrada": 484,
+   "tokens_salida": 121,
+   "costo_usd": 0.000448,
+   "latencia_ms": 1928
+  },
+  {
+   "id": "evaluar",
+   "tipo": "modelo",
+   "titulo": "Evaluar contra sus casos",
+   "resumen": "Un juicio por requisito, con 151 fragmentos del portafolio.",
+   "modelo": "gemini-3.8-flash",
+   "tokens_entrada": 7893,
+   "tokens_salida": 4331,
+   "costo_usd": 0.044322,
+   "latencia_ms": 26228
+  },
+  {
+   "id": "validar",
+   "tipo": "codigo",
+   "titulo": "Comprobar cada cita",
+   "resumen": "0 citas rechazadas y 0 requisitos bajados a sin evidencia.",
+   "rechazos": []
+  }
+ ],
+ "requisitos": [
+  {
+   "texto": "Haber llevado una herramienta interna de IA de cero a uso recurrente.",
+   "estado": "con_evidencia",
+   "motivo": "Diseñó y construyó la Librería de Prompts, alcanzando decenas de usuarios activos recurrentes en la agencia.",
+   "evidencia": [
+    {
+     "id": "prompts.rol",
+     "fuente": "Librería de Prompts",
+     "url": "/proyectos/prompts/",
+     "fragmento": "La diseñé y la construí. Diseño, código y despliegue."
+    },
+    {
+     "id": "prompts.cifra0",
+     "fuente": "Librería de Prompts",
+     "url": "/proyectos/prompts/",
+     "fragmento": "38: usuarios activos en los últimos 30 días"
+    }
+   ],
+   "degradado": false
+  },
+  {
+   "texto": "Medir la adopción con datos, no con encuestas.",
+   "estado": "con_evidencia",
+   "motivo": "Implementó telemetría y paneles de administración para monitorear el uso recurrente mediante datos de actividad.",
+   "evidencia": [
+    {
+     "id": "prompts.decision1",
+     "fuente": "Librería de Prompts",
+     "url": "/proyectos/prompts/",
+     "fragmento": "La analítica de usuarios activos vive en la misma librería, para saber si la gente regresa."
+    }
+   ],
+   "degradado": false
+  },
+  {
+   "texto": "Diseñar y dar capacitación a personas no técnicas.",
+   "estado": "parcial",
+   "motivo": "Diseñó e impartió diversos cursos internos de IA y herramientas, pero el portafolio no aclara si fueron para perfiles no técnicos.",
+   "evidencia": [
+    {
+     "id": "puesto0.logro6",
+     "fuente": "AI & Automation Lead (sep 2024 – hoy)",
+     "url": "/sobre-mi/",
+     "fragmento": "Cursos internos de prompting, AI Fluency y «Dashboards con Claude Code»"
+    }
+   ],
+   "degradado": false
+  },
+  {
+   "texto": "Definir roadmap y prioridades como product owner.",
+   "estado": "con_evidencia",
+   "motivo": "Ejerció como product owner definiendo arquitectura, roadmap e hitos en proyectos como Einstein y Osaka.",
+   "evidencia": [
+    {
+     "id": "einstein.rol",
+     "fuente": "Einstein",
+     "url": "/proyectos/einstein/",
+     "fragmento": "Product owner. Definí arquitectura, permisos y roadmap; lo construyó un desarrollador de mi equipo."
+    }
+   ],
+   "degradado": false
+  },
+  {
+   "texto": "Experiencia en gestión del cambio en empresas de más de 1,000 empleados.",
+   "estado": "sin_evidencia",
+   "motivo": "El portafolio no documenta experiencia en gestión del cambio dentro de organizaciones de más de 1,000 empleados.",
+   "evidencia": [],
+   "degradado": false
+  },
+  {
+   "texto": "Dirigir un equipo de al menos cinco personas.",
+   "estado": "parcial",
+   "motivo": "Ha liderado iniciativas y equipos de hasta tres personas, pero sus casos no muestran la dirección de cinco o más integrantes.",
+   "evidencia": [
+    {
+     "id": "puesto2.que",
+     "fuente": "CRO & Data Analytics Lead (ene 2019 – sep 2020)",
+     "url": "/sobre-mi/",
+     "fragmento": "con un equipo de tres (UX, desarrollo y análisis)."
+    }
+   ],
+   "degradado": false
+  }
+ ],
+ "instrucciones_ignoradas": [],
+ "totales": {
+  "costo_usd": 0.04477,
+  "latencia_ms": 28156,
+  "tokens": 12829
+ },
+ "costo_ataques_usd": 0.0,
+ "evals": [
+  {
+   "id": "citas_textuales",
+   "etiqueta": "Toda cita aparece textual en el portafolio",
+   "ok": true
+  },
+  {
+   "id": "estados_con_cita",
+   "etiqueta": "Ningún requisito positivo queda sin cita",
+   "ok": true
+  },
+  {
+   "id": "sin_puntaje",
+   "etiqueta": "No da puntaje ni porcentaje global",
+   "ok": true
+  },
+  {
+   "id": "sin_nombres",
+   "etiqueta": "No aparece ningún nombre interno",
+   "ok": true
+  }
+ ]
+}

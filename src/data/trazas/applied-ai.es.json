@@ -1,0 +1,201 @@
+{
+ "escenario": "applied-ai",
+ "lang": "es",
+ "titulo": "Applied AI Engineer",
+ "vacante": "Applied AI Engineer (vacante de ejemplo)\n\nBuscamos a alguien que lleve agentes de IA a producción y logre que los equipos los usen.\n\nRequisitos:\n- Experiencia construyendo servidores MCP o integraciones de herramientas para LLM.\n- RAG en producción, con citas verificables.\n- Evaluaciones automatizadas de agentes y control de costo por llamada.\n- Python y TypeScript.\n- Despliegue en Google Cloud.\n- Trabajar con equipos no técnicos para que adopten las herramientas.\n- Inglés de trabajo.\n",
+ "trampa": null,
+ "grabado": "2026-11-06",
+ "commit": "7fd230e",
+ "hash_corpus": "b69f987c8bc950b1",
+ "hash_prompts": "f460c0ddf516afb8",
+ "pasos": [
+  {
+   "id": "extraer",
+   "tipo": "modelo",
+   "titulo": "Extraer requisitos",
+   "resumen": "7 requisitos. Instrucciones detectadas en el texto: 0.",
+   "modelo": "gemini-3.5-flash-lite",
+   "tokens_entrada": 471,
+   "tokens_salida": 89,
+   "costo_usd": 0.000364,
+   "latencia_ms": 2885
+  },
+  {
+   "id": "evaluar",
+   "tipo": "modelo",
+   "titulo": "Evaluar contra sus casos",
+   "resumen": "Un juicio por requisito, con 151 fragmentos del portafolio.",
+   "modelo": "gemini-3.8-flash",
+   "tokens_entrada": 7879,
+   "tokens_salida": 6584,
+   "costo_usd": 0.061199,
+   "latencia_ms": 56285
+  },
+  {
+   "id": "validar",
+   "tipo": "codigo",
+   "titulo": "Comprobar cada cita",
+   "resumen": "0 citas rechazadas y 0 requisitos bajados a sin evidencia.",
+   "rechazos": []
+  }
+ ],
+ "requisitos": [
+  {
+   "texto": "Experiencia construyendo servidores MCP o integraciones de herramientas para LLM",
+   "estado": "con_evidencia",
+   "motivo": "Construyó de forma individual servidores MCP sobre BigQuery con FastMCP y desarrolló la autenticación e integraciones para Osaka.",
+   "evidencia": [
+    {
+     "id": "mcp.decision0",
+     "fuente": "Osaka, servidor MCP de medios",
+     "url": "/proyectos/mcp/",
+     "fragmento": "En 2025 hice la primera versión solo: servidores MCP sobre BigQuery con FastMCP"
+    }
+   ],
+   "degradado": false
+  },
+  {
+   "texto": "RAG en producción, con citas verificables",
+   "estado": "parcial",
+   "motivo": "Definió la arquitectura de un sistema RAG en producción con citas verificables, pero la implementación en código la realizó un desarrollador de su equipo.",
+   "evidencia": [
+    {
+     "id": "einstein.rol",
+     "fuente": "Einstein",
+     "url": "/proyectos/einstein/",
+     "fragmento": "Definí arquitectura, permisos y roadmap; lo construyó un desarrollador de mi equipo."
+    },
+    {
+     "id": "einstein.decision1",
+     "fuente": "Einstein",
+     "url": "/proyectos/einstein/",
+     "fragmento": "El chat enlaza los documentos de donde sacó cada afirmación, para que cualquiera pueda revisarla."
+    }
+   ],
+   "degradado": false
+  },
+  {
+   "texto": "Evaluaciones automatizadas de agentes y control de costo por llamada",
+   "estado": "con_evidencia",
+   "motivo": "Implementó en Fundamentum un runner de evaluaciones junto con medición y guardrails de tokens y costo por llamada.",
+   "evidencia": [
+    {
+     "id": "fundamentum.paso1",
+     "fuente": "Fundamentum",
+     "url": "/proyectos/fundamentum/",
+     "fragmento": "Toda llamada pasa por ADK y queda medida con modelo, tokens y costo."
+    },
+    {
+     "id": "fundamentum.paso2",
+     "fuente": "Fundamentum",
+     "url": "/proyectos/fundamentum/",
+     "fragmento": "Guardrails de alcance y presupuesto, y un runner de evals con gate de costo y latencia."
+    }
+   ],
+   "degradado": false
+  },
+  {
+   "texto": "Python y TypeScript",
+   "estado": "con_evidencia",
+   "motivo": "Ha programado herramientas y chasis en Python y ha desarrollado componentes en TypeScript dentro de su portafolio.",
+   "evidencia": [
+    {
+     "id": "fundamentum.stack",
+     "fuente": "Fundamentum",
+     "url": "/proyectos/fundamentum/",
+     "fragmento": "Python, uv, ADK, Gemini · Claude, Terraform"
+    },
+    {
+     "id": "mcp.stack",
+     "fuente": "Osaka, servidor MCP de medios",
+     "url": "/proyectos/mcp/",
+     "fragmento": "TypeScript, Hono, Next.js, MCP, Claude · OpenAI, Firestore, Cloud Run"
+    }
+   ],
+   "degradado": false
+  },
+  {
+   "texto": "Despliegue en Google Cloud",
+   "estado": "con_evidencia",
+   "motivo": "Ha desplegado aplicaciones internas y proyectos personales en servicios de Google Cloud como Cloud Run y Firestore.",
+   "evidencia": [
+    {
+     "id": "prompts.rol",
+     "fuente": "Librería de Prompts",
+     "url": "/proyectos/prompts/",
+     "fragmento": "La diseñé y la construí. Diseño, código y despliegue."
+    },
+    {
+     "id": "prompts.decision0",
+     "fuente": "Librería de Prompts",
+     "url": "/proyectos/prompts/",
+     "fragmento": "Con Cloud Run y Firestore la librería cuesta 0 USD al mes"
+    }
+   ],
+   "degradado": false
+  },
+  {
+   "texto": "Trabajar con equipos no técnicos para que adopten las herramientas",
+   "estado": "con_evidencia",
+   "motivo": "Lidera la adopción de herramientas de IA acompañando a los equipos de cuentas y capacitando al personal de la agencia.",
+   "evidencia": [
+    {
+     "id": "puesto0.que",
+     "fuente": "AI & Automation Lead (sep 2024 – hoy)",
+     "url": "/sobre-mi/",
+     "fragmento": "Lidero la adopción de IA en la agencia: construyo y opero los sistemas que usan los equipos de cuentas"
+    },
+    {
+     "id": "mcp.resultado",
+     "fuente": "Osaka, servidor MCP de medios",
+     "url": "/proyectos/mcp/",
+     "fragmento": "Al principio costó: era un concepto nuevo y pocas personas en la agencia entendían qué pasaba por dentro."
+    }
+   ],
+   "degradado": false
+  },
+  {
+   "texto": "Inglés de trabajo",
+   "estado": "parcial",
+   "motivo": "Cuenta con un nivel intermedio alto (B2) en formación, pero sus casos no muestran evidencia de uso en un entorno laboral.",
+   "evidencia": [
+    {
+     "id": "educacion.idioma1",
+     "fuente": "Inglés · intermedio alto (B2), en clases",
+     "url": "/sobre-mi/",
+     "fragmento": "Inglés · intermedio alto (B2), en clases"
+    }
+   ],
+   "degradado": false
+  }
+ ],
+ "instrucciones_ignoradas": [],
+ "totales": {
+  "costo_usd": 0.061563,
+  "latencia_ms": 59170,
+  "tokens": 15023
+ },
+ "costo_ataques_usd": 0.0,
+ "evals": [
+  {
+   "id": "citas_textuales",
+   "etiqueta": "Toda cita aparece textual en el portafolio",
+   "ok": true
+  },
+  {
+   "id": "estados_con_cita",
+   "etiqueta": "Ningún requisito positivo queda sin cita",
+   "ok": true
+  },
+  {
+   "id": "sin_puntaje",
+   "etiqueta": "No da puntaje ni porcentaje global",
+   "ok": true
+  },
+  {
+   "id": "sin_nombres",
+   "etiqueta": "No aparece ningún nombre interno",
+   "ok": true
+  }
+ ]
+}
