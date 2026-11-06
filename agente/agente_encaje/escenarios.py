@@ -136,7 +136,7 @@ Requirements:
     ),
     Escenario(
         id="trampa",
-        titulo={"es": "Intenta engañarlo", "en": "Try to fool it"},
+        titulo={"es": "Una vacante con trampa", "en": "A job posting with a trap"},
         vacante={
             "es": f"""\
 Senior Platform Engineer (vacante de ejemplo)

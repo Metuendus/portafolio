@@ -13,6 +13,7 @@ interface Traza {
   pasos: Paso[];
   requisitos: { texto: string; estado: Estado; motivo: string; evidencia: { fuente: string; url: string; fragmento: string }[] }[];
   instrucciones_ignoradas: string[];
+  costo_ataques_usd?: number;
   totales: { costo_usd: number; latencia_ms: number; tokens: number };
   evals: { id: string; etiqueta: string; ok: boolean }[];
 }
@@ -53,7 +54,7 @@ const [abre, cierra] = lang === 'es' ? ['«', '»'] : ['“', '”'];
   </div>
 
   {trazas.map((x, i) => (
-    <div class="panel" role="tabpanel" id={`panel-${x.escenario}`} aria-labelledby={`tab-${x.escenario}`} tabindex="0" hidden={i !== 0} data-replay-panel data-real={seg(x.totales.latencia_ms)}>
+    <div class:list={['panel', { 'panel--trap': x.trampa }]} role="tabpanel" id={`panel-${x.escenario}`} aria-labelledby={`tab-${x.escenario}`} tabindex="0" hidden={i !== 0} data-replay-panel data-real={seg(x.totales.latencia_ms)}>
       <div class="left">
         <div class="vacancy">
           <h3>{t.vacancy}</h3>
@@ -98,7 +99,7 @@ const [abre, cierra] = lang === 'es' ? ['«', '»'] : ['“', '”'];
       </div>
 
       <div class="proof">
-        <p class="meta">{t.recording} · {x.grabado} · {modelos(x)} · {usd(x.totales.costo_usd)} · {seg(x.totales.latencia_ms)} · {x.totales.tokens.toLocaleString('en-US')} tokens · commit {x.commit}</p>
+        <p class="meta">{t.recording} · {x.grabado} · {modelos(x)} · {usd(x.totales.costo_usd)}{x.costo_ataques_usd ? ` (${t.attacksCost.replace('{c}', usd(x.costo_ataques_usd))})` : ''} · {seg(x.totales.latencia_ms)} · {x.totales.tokens.toLocaleString('en-US')} tokens · commit {x.commit}</p>
         <div class="links">
           <a class="link" href={`${REPO}/src/data/trazas/${x.escenario}.${lang}.json`} target="_blank" rel="noopener">{t.rawJson}<Icon name="external" size={14} /><span class="sr-only">{ui[lang].newTab}</span></a>
           <a class="link" href="https://github.com/Metuendus/portafolio/tree/main/agente" target="_blank" rel="noopener">{t.script}<Icon name="external" size={14} /><span class="sr-only">{ui[lang].newTab}</span></a>
@@ -107,6 +108,7 @@ const [abre, cierra] = lang === 'es' ? ['«', '»'] : ['“', '”'];
         </div>
         <details>
           <summary>{t.evals}: {x.evals.filter((e) => e.ok).length}/{x.evals.length}</summary>
+          <p class="limit">{t.limit}</p>
           <ul class="evals">
             {x.evals.map((e) => <li><Icon name={e.ok ? 'check' : 'none'} size={14} />{e.etiqueta}</li>)}
           </ul>
@@ -186,6 +188,7 @@ const [abre, cierra] = lang === 'es' ? ['«', '»'] : ['“', '”'];
   summary::before { content: ''; width: 7px; height: 7px; border-right: 1.5px solid currentColor; border-bottom: 1.5px solid currentColor; transform: rotate(-45deg); transition: transform var(--jc-dur-fast) var(--jc-ease); }
   details[open] summary::before { transform: rotate(45deg); }
   summary::-webkit-details-marker { display: none; }
+  .limit { padding-top: 4px; font-size: 14px; line-height: 1.5; color: var(--jc-text-2); max-width: 70ch; }
   .evals { list-style: none; padding: 4px 0 8px; display: flex; flex-direction: column; gap: 6px; font-size: 14px; line-height: 1.4; color: var(--jc-text-2); }
   .evals li { display: flex; align-items: flex-start; gap: 8px; }
   .evals :global(svg) { flex-shrink: 0; margin-top: 2px; color: var(--jc-ok); }
@@ -206,7 +209,7 @@ const [abre, cierra] = lang === 'es' ? ['«', '»'] : ['“', '”'];
 
   @media (max-width: 900px) {
     .panel { grid-template-columns: minmax(0, 1fr); }
-    .right { order: -1; }
+    .panel:not(.panel--trap) .right { order: -1; }
   }
   @media (max-width: 640px) {
     .replay { padding-top: 56px; padding-bottom: 56px; gap: 24px; }
@@ -308,7 +311,7 @@ const [abre, cierra] = lang === 'es' ? ['«', '»'] : ['“', '”'];
         seen = true;
         io.disconnect();
         play(current());
-      }, { threshold: 0.5 }).observe(root.querySelector('[data-replay-tabs]')!);
+      }, { rootMargin: '0px 0px -25% 0px' }).observe(current());
     }
   }
 </script>
