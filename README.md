@@ -26,6 +26,14 @@ PUBLIC_BORRADOR=1 npm run build  # build con los «(falta)» visibles
 
 Node ≥ 22.22. Astro fijado en 7.4.1 (7.4.2 pide Node ≥ 22.23.4).
 
+## Despliegue
+
+Cada merge a `main` despliega solo: el trigger `portafolio-main` de Cloud Build (proyecto `josecarloscorona-web`)
+corre `cloudbuild.yaml`, que hace `npm ci`, `npm run build` y `firebase deploy --only hosting` con la cuenta
+`portafolio-build`. Cambios solo en `README.md`, `design/`, `video/` o `.github/` no despliegan. La cuenta y el
+trigger los crea `infra/cicd.sh` (una vez, desde Cloud Shell). A mano:
+`gcloud builds triggers run portafolio-main --branch=main --project=josecarloscorona-web`.
+
 ## Reglas
 
 - `src/styles/jc-tokens.css` es copia literal del handoff; lo nuestro va en el bloque de extensiones del final.
