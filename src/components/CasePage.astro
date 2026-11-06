@@ -32,7 +32,7 @@ const nativo = videos[id]?.[lang];
         <OrgChip lang={lang} org={summary.org} status={summary.status} large />
         {c.stack.map((s) => <span class="chip chip--stack chip--lg">{s}</span>)}
       </div>
-      <div class="role"><span class="tag">{L.role}</span><p class="role-t">{c.role}</p><p class="role-n">{c.roleNote}</p></div>
+      <div class="role"><span class="tag">{L.role}</span><p class="role-t">{c.role}</p><p class="role-n">{c.roleNote.replace(/(\d) %/g, '$1 %')}</p></div>
       {summary.app && <div class="app-links">
         <a class="btn btn--primary" href={summary.app} target="_blank" rel="noopener">{ui[lang].apps.open}<Icon name="external" size={16} /><span class="sr-only">{ui[lang].newTab}</span></a>
       </div>}
