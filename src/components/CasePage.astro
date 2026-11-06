@@ -100,7 +100,7 @@ const nativo = videos[id]?.[lang];
 
   {c.quote && <section class="quote page-x">
     <figure>
-      <blockquote><span class="q" aria-hidden="true">“</span>{c.quote}<span class="q" aria-hidden="true">”</span></blockquote>
+      <p class="pull">{c.quote}</p>
       <figcaption>{c.quoteCap}</figcaption>
     </figure>
   </section>}
@@ -239,8 +239,7 @@ const nativo = videos[id]?.[lang];
 
   .quote { padding-top: 120px; padding-bottom: 120px; border-top: 1px solid var(--jc-hairline); }
   .quote figure { padding-top: 48px; border-top: 2px solid var(--jc-ink); display: flex; flex-direction: column; gap: 32px; max-width: 1080px; }
-  blockquote { font: 600 64px/1.08 var(--jc-font-sans); letter-spacing: -2px; text-wrap: pretty; }
-  .q { color: var(--jc-accent); }
+  .pull { font: 600 64px/1.08 var(--jc-font-sans); letter-spacing: -2px; text-wrap: pretty; }
   .quote figcaption { font-size: 15px; color: var(--jc-text-2); }
 
   .result { display: flex; flex-direction: column; gap: 32px; min-width: 0; }
@@ -285,7 +284,7 @@ const nativo = videos[id]?.[lang];
     .row { grid-template-columns: minmax(0, 1fr); gap: 24px; }
     .steps { grid-template-columns: minmax(0, 1fr); gap: 0; }
     .steps li { flex-direction: row; gap: 12px; padding: 12px 0; }
-    blockquote { font-size: 48px; letter-spacing: -1.4px; }
+    .pull { font-size: 48px; letter-spacing: -1.4px; }
   }
   @media (max-width: 900px) {
     .nodes { flex-direction: column; align-items: stretch; }
@@ -333,7 +332,7 @@ const nativo = videos[id]?.[lang];
     .role-n { font-size: 15px; }
     .quote { padding-top: 48px; padding-bottom: 48px; border-top: 0; }
     .quote figure { padding-top: 24px; gap: 16px; }
-    blockquote { font-size: 32px; line-height: 1.12; letter-spacing: -.9px; }
+    .pull { font-size: 32px; line-height: 1.12; letter-spacing: -.9px; }
     .quote figcaption { font-size: 14px; }
     .result { gap: 4px; }
     .fig-v { font-size: 40px; letter-spacing: -1.2px; }

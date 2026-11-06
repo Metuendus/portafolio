@@ -23,14 +23,14 @@ export const textos = {
     ficticio: 'Datos ficticios de KUBO, marca demo',
     claudeAi: 'También funciona dentro de Claude.ai.',
     cifras: [
-      { v: 47, fmt: (n: number) => `${Math.round(n)}`, l: 'personas con acceso activo' },
+      { v: 47, fmt: (n: number) => `${Math.round(n)}`, l: 'usuarios activos' },
       { v: 17.6, fmt: (n: number) => `${n.toFixed(1)} M`, l: 'tokens solo en la app web; el uso vía MCP no se cuenta' },
       { v: 484, fmt: (n: number) => `${Math.round(n)}`, l: 'conversaciones reales revisadas para medir la calidad' },
     ],
     fuente: 'Fuente: panel de administración de Osaka, octubre de 2026',
     cita: 'La gente empezó a usarlo sin que se lo pidiéramos, para preguntas puntuales como esta.',
     cierre1: 'Osaka · servidor MCP de medios de EPA',
-    cierre2: 'Hice la primera versión en 2025. Hoy soy co-dueño técnico.',
+    cierre2: 'Hice la primera versión en 2025. Hoy soy product owner.',
     firma: 'José Carlos Corona · josecarloscorona.dev',
   },
   en: {
@@ -55,14 +55,14 @@ export const textos = {
     ficticio: 'Fictional data from KUBO, a demo brand',
     claudeAi: 'It also works inside Claude.ai.',
     cifras: [
-      { v: 47, fmt: (n: number) => `${Math.round(n)}`, l: 'people with active access' },
+      { v: 47, fmt: (n: number) => `${Math.round(n)}`, l: 'active users' },
       { v: 17.6, fmt: (n: number) => `${n.toFixed(1)}M`, l: 'tokens in the web app alone; MCP use is not counted' },
       { v: 484, fmt: (n: number) => `${Math.round(n)}`, l: 'real conversations reviewed to measure quality' },
     ],
     fuente: 'Source: Osaka admin dashboard, October 2026',
     cita: 'People started using it without being asked, for one-off questions like this one.',
     cierre1: 'Osaka · EPA’s media MCP server',
-    cierre2: 'I built the first version in 2025. Today I am its technical co-owner.',
+    cierre2: 'I built the first version in 2025. Today I’m its product owner.',
     firma: 'José Carlos Corona · josecarloscorona.dev',
   },
 };
