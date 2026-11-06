@@ -1,0 +1,206 @@
+{
+ "escenario": "applied-ai",
+ "lang": "en",
+ "titulo": "Applied AI Engineer",
+ "vacante": "Applied AI Engineer (sample job posting)\n\nWe’re looking for someone who takes AI agents to production and gets teams to use them.\n\nRequirements:\n- Experience building MCP servers or tool integrations for LLMs.\n- Production RAG with verifiable citations.\n- Automated agent evaluations and per-call cost control.\n- Python and TypeScript.\n- Deployment on Google Cloud.\n- Working with non-technical teams so they adopt the tools.\n- Working English.\n",
+ "trampa": null,
+ "grabado": "2026-11-06",
+ "commit": "6b7592c",
+ "hash_corpus": "6beaa74621c0e807",
+ "hash_prompts": "70bb169cd7ccc19c",
+ "pasos": [
+  {
+   "id": "extraer",
+   "tipo": "modelo",
+   "titulo": "Extract requirements",
+   "resumen": "7 requirements. Instructions detected in the text: 0.",
+   "modelo": "gemini-3.5-flash-lite",
+   "tokens_entrada": 450,
+   "tokens_salida": 98,
+   "costo_usd": 0.00038,
+   "latencia_ms": 1718
+  },
+  {
+   "id": "evaluar",
+   "tipo": "modelo",
+   "titulo": "Evaluate against his case studies",
+   "resumen": "One judgment per requirement, with 159 excerpts from the portfolio.",
+   "modelo": "gemini-3.8-flash",
+   "tokens_entrada": 7966,
+   "tokens_salida": 8648,
+   "costo_usd": 0.076809,
+   "latencia_ms": 53210
+  },
+  {
+   "id": "validar",
+   "tipo": "codigo",
+   "titulo": "Check every citation",
+   "resumen": "0 citations rejected and 0 requirements lowered to no evidence.",
+   "rechazos": []
+  }
+ ],
+ "requisitos": [
+  {
+   "texto": "Experience building MCP servers or tool integrations for LLMs",
+   "estado": "con_evidencia",
+   "motivo": "He built the initial version of the Osaka media MCP server and contributed its DV360 provider and authentication.",
+   "evidencia": [
+    {
+     "id": "mcp.decision0",
+     "fuente": "Osaka, media MCP server",
+     "url": "/en/projects/mcp/",
+     "fragmento": "MCP servers on BigQuery with FastMCP and a Claude Desktop extension"
+    },
+    {
+     "id": "mcp.rol",
+     "fuente": "Osaka, media MCP server",
+     "url": "/en/projects/mcp/",
+     "fragmento": "contributed the DV360 provider and MCP authentication"
+    }
+   ],
+   "degradado": false
+  },
+  {
+   "texto": "Production RAG with verifiable citations",
+   "estado": "con_evidencia",
+   "motivo": "He defined the architecture and served as product owner for Einstein, a production cited knowledge base, while a developer on his team built it.",
+   "evidencia": [
+    {
+     "id": "einstein.rol",
+     "fuente": "Einstein",
+     "url": "/en/projects/einstein/",
+     "fragmento": "Product owner. I set the architecture, permissions and roadmap; a developer on my team built it."
+    },
+    {
+     "id": "einstein.decision1",
+     "fuente": "Einstein",
+     "url": "/en/projects/einstein/",
+     "fragmento": "Every answer comes with citations."
+    }
+   ],
+   "degradado": false
+  },
+  {
+   "texto": "Automated agent evaluations and per-call cost control",
+   "estado": "con_evidencia",
+   "motivo": "He built Fundamentum with per-call token and cost metering, as well as an evaluation runner with a cost gate.",
+   "evidencia": [
+    {
+     "id": "fundamentum.paso1",
+     "fuente": "Fundamentum",
+     "url": "/en/projects/fundamentum/",
+     "fragmento": "Every call goes through ADK and is metered with model, tokens and cost."
+    },
+    {
+     "id": "fundamentum.paso2",
+     "fuente": "Fundamentum",
+     "url": "/en/projects/fundamentum/",
+     "fragmento": "Scope and budget guardrails, plus an eval runner with a cost and latency gate."
+    }
+   ],
+   "degradado": false
+  },
+  {
+   "texto": "Python and TypeScript",
+   "estado": "con_evidencia",
+   "motivo": "His projects demonstrate development experience in both TypeScript and Python.",
+   "evidencia": [
+    {
+     "id": "mcp.stack",
+     "fuente": "Osaka, media MCP server",
+     "url": "/en/projects/mcp/",
+     "fragmento": "TypeScript, Hono, Next.js, MCP, Claude · OpenAI, Firestore, Cloud Run"
+    },
+    {
+     "id": "fundamentum.stack",
+     "fuente": "Fundamentum",
+     "url": "/en/projects/fundamentum/",
+     "fragmento": "Python, uv, ADK, Gemini · Claude, Terraform"
+    }
+   ],
+   "degradado": false
+  },
+  {
+   "texto": "Deployment on Google Cloud",
+   "estado": "con_evidencia",
+   "motivo": "He has deployed multiple production systems on Google Cloud Run.",
+   "evidencia": [
+    {
+     "id": "mcp.resultado",
+     "fuente": "Osaka, media MCP server",
+     "url": "/en/projects/mcp/",
+     "fragmento": "It runs in production on Cloud Run and is also used from Claude.ai through OAuth."
+    }
+   ],
+   "degradado": false
+  },
+  {
+   "texto": "Working with non-technical teams so they adopt the tools",
+   "estado": "con_evidencia",
+   "motivo": "He builds systems for account teams and added tools and skills to support non-technical user adoption.",
+   "evidencia": [
+    {
+     "id": "puesto0.que",
+     "fuente": "AI & Automation Lead (Sep 2024 – present)",
+     "url": "/en/about/",
+     "fragmento": "I build and run the systems account teams use"
+    },
+    {
+     "id": "dash.decision4",
+     "fuente": "Dashboards and Hopper",
+     "url": "/en/projects/dash/",
+     "fragmento": "Instead of stopping it, we added tools and skills so they could do it well."
+    }
+   ],
+   "degradado": false
+  },
+  {
+   "texto": "Working English",
+   "estado": "con_evidencia",
+   "motivo": "His profile records upper intermediate (B2) English, satisfying the working English requirement.",
+   "evidencia": [
+    {
+     "id": "educacion.idioma1",
+     "fuente": "English · upper intermediate (B2), taking classes",
+     "url": "/en/about/",
+     "fragmento": "English · upper intermediate (B2), taking classes"
+    }
+   ],
+   "degradado": false
+  }
+ ],
+ "instrucciones_ignoradas": [],
+ "totales": {
+  "costo_usd": 0.077189,
+  "latencia_ms": 54928,
+  "tokens": 17162
+ },
+ "costo_ataques_usd": 0.0,
+ "evals": [
+  {
+   "id": "citas_textuales",
+   "etiqueta": "Every citation appears word for word in the portfolio",
+   "ok": true
+  },
+  {
+   "id": "estados_con_cita",
+   "etiqueta": "No positive requirement is left without a citation",
+   "ok": true
+  },
+  {
+   "id": "sin_puntaje",
+   "etiqueta": "It gives no overall score or percentage",
+   "ok": true
+  },
+  {
+   "id": "atribucion",
+   "etiqueta": "It doesn’t claim what someone else built",
+   "ok": true
+  },
+  {
+   "id": "sin_nombres",
+   "etiqueta": "No internal names appear",
+   "ok": true
+  }
+ ]
+}

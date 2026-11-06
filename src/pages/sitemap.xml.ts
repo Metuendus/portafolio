@@ -13,6 +13,7 @@ export const GET: APIRoute = ({ site }) => {
     ...pair('/resumen/', '/en/summary/'),
     ...pair('/proyectos/', '/en/projects/'),
     ...pair('/sobre-mi/', '/en/about/'),
+    ...pair('/perfil/', '/en/profile/'),
     ...cases.filter((c) => hasPage(c.id)).flatMap((c) => pair(`/proyectos/${c.id}/`, `/en/projects/${c.id}/`)),
   ];
   const body = pages.map((p) => `  <url>

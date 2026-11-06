@@ -1,0 +1,143 @@
+{
+ "escenario": "ml-research",
+ "lang": "en",
+ "titulo": "ML Research: a role that isn’t for me",
+ "vacante": "ML Research Engineer (sample job posting)\n\nA lab that trains its own language models.\n\nRequirements:\n- PhD in machine learning or a related field.\n- Publications at NeurIPS, ICML or ACL.\n- Training large models with PyTorch on GPU clusters.\n- Inference optimization in C++ or Rust.\n- Running workloads on Kubernetes.\n- Designing evaluations for language models.\n",
+ "trampa": null,
+ "grabado": "2026-11-06",
+ "commit": "5c16c5f",
+ "hash_corpus": "6beaa74621c0e807",
+ "hash_prompts": "70bb169cd7ccc19c",
+ "pasos": [
+  {
+   "id": "extraer",
+   "tipo": "modelo",
+   "titulo": "Extract requirements",
+   "resumen": "6 requirements. Instructions detected in the text: 0.",
+   "modelo": "gemini-3.5-flash-lite",
+   "tokens_entrada": 434,
+   "tokens_salida": 91,
+   "costo_usd": 0.000358,
+   "latencia_ms": 1479
+  },
+  {
+   "id": "evaluar",
+   "tipo": "modelo",
+   "titulo": "Evaluate against his case studies",
+   "resumen": "One judgment per requirement, with 159 excerpts from the portfolio.",
+   "modelo": "gemini-3.8-flash",
+   "tokens_entrada": 7961,
+   "tokens_salida": 3001,
+   "costo_usd": 0.034449,
+   "latencia_ms": 59009
+  },
+  {
+   "id": "validar",
+   "tipo": "codigo",
+   "titulo": "Check every citation",
+   "resumen": "0 citations rejected and 0 requirements lowered to no evidence.",
+   "rechazos": []
+  }
+ ],
+ "requisitos": [
+  {
+   "texto": "PhD in machine learning or a related field",
+   "estado": "sin_evidencia",
+   "motivo": "His portfolio shows a bachelor's degree in business administration, with no record of a doctoral degree.",
+   "evidencia": [],
+   "degradado": false
+  },
+  {
+   "texto": "Publications at NeurIPS, ICML or ACL",
+   "estado": "sin_evidencia",
+   "motivo": "His portfolio contains no record of research publications at conferences such as NeurIPS, ICML, or ACL.",
+   "evidencia": [],
+   "degradado": false
+  },
+  {
+   "texto": "Training large models with PyTorch on GPU clusters",
+   "estado": "sin_evidencia",
+   "motivo": "His portfolio focuses on integrating external foundation models and APIs rather than training models with PyTorch on GPU clusters.",
+   "evidencia": [],
+   "degradado": false
+  },
+  {
+   "texto": "Inference optimization in C++ or Rust",
+   "estado": "sin_evidencia",
+   "motivo": "His portfolio shows no evidence of using C++ or Rust for inference optimization.",
+   "evidencia": [],
+   "degradado": false
+  },
+  {
+   "texto": "Running workloads on Kubernetes",
+   "estado": "sin_evidencia",
+   "motivo": "His cases document deployments on Cloud Run, with no evidence of managing or running workloads on Kubernetes.",
+   "evidencia": [],
+   "degradado": false
+  },
+  {
+   "texto": "Designing evaluations for language models",
+   "estado": "parcial",
+   "motivo": "He built an evaluation runner with cost and latency gates and analyzed conversation failures, but his cases do not document designing evaluations for model output quality.",
+   "evidencia": [
+    {
+     "id": "fundamentum.paso2",
+     "fuente": "Fundamentum",
+     "url": "/en/projects/fundamentum/",
+     "fragmento": "plus an eval runner with a cost and latency gate."
+    },
+    {
+     "id": "mcp.decision2",
+     "fuente": "Osaka, media MCP server",
+     "url": "/en/projects/mcp/",
+     "fragmento": "I led a review of 484 real conversations to find where answers failed and why."
+    }
+   ],
+   "degradado": false
+  }
+ ],
+ "instrucciones_ignoradas": [],
+ "totales": {
+  "costo_usd": 0.034807,
+  "latencia_ms": 60488,
+  "tokens": 11487
+ },
+ "costo_ataques_usd": 0.0,
+ "evals": [
+  {
+   "id": "citas_textuales",
+   "etiqueta": "Every citation appears word for word in the portfolio",
+   "ok": true
+  },
+  {
+   "id": "estados_con_cita",
+   "etiqueta": "No positive requirement is left without a citation",
+   "ok": true
+  },
+  {
+   "id": "sin_puntaje",
+   "etiqueta": "It gives no overall score or percentage",
+   "ok": true
+  },
+  {
+   "id": "atribucion",
+   "etiqueta": "It doesn’t claim what someone else built",
+   "ok": true
+  },
+  {
+   "id": "sin_nombres",
+   "etiqueta": "No internal names appear",
+   "ok": true
+  },
+  {
+   "id": "hueco_presente",
+   "etiqueta": "It admits at least one gap",
+   "ok": true
+  },
+  {
+   "id": "terminos_ausentes",
+   "etiqueta": "What the portfolio lacks stays at no evidence",
+   "ok": true
+  }
+ ]
+}
