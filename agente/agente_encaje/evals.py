@@ -100,10 +100,10 @@ def evaluar(cuerpo: dict, escenario: Escenario, corpus: list[dict]) -> dict[str,
 
     if escenario.debe_citar:
         ignorados = [
-            clave
-            for terminos, clave in escenario.debe_citar
+            claves
+            for terminos, claves in escenario.debe_citar
             if not any(
-                e["id"] == clave
+                e["id"] in claves
                 for r in requisitos
                 if any(t in r["texto"].casefold() for t in terminos)
                 for e in r["evidencia"]
