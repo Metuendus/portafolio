@@ -21,6 +21,14 @@ for (const archivo of readdirSync(DIR).filter((f) => f.endsWith('.json'))) {
   }
 }
 
+// Cada hilo de la repetición debe llegar a un elemento que exista en la home.
+for (const pagina of ['dist/index.html', 'dist/en/index.html']) {
+  const html = readFileSync(pagina, 'utf8');
+  for (const [, dest] of html.matchAll(/href="#prueba-([^"]+)"/g)) {
+    if (!html.includes(`id="prueba-${dest}"`)) errores.push(`${pagina}: el hilo a ${dest} no tiene destino`);
+  }
+}
+
 if (viejas.length) console.warn(`Aviso: el corpus cambió desde la grabación de ${viejas.length} trazas. Vuelve a grabar (agente/README.md).`);
 if (errores.length) {
   console.error(errores.join('\n'));
