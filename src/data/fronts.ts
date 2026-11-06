@@ -24,6 +24,7 @@ export interface Work {
 export const more: Work[] = [
   // EPA
   { id: 'sku-coppel', front: 'epa', year: '2026', status: 'prod', name: { es: 'Dashboard y ETL de SKU para clientes de EPA', en: 'SKU dashboard and ETL for EPA clients' }, line: { es: 'Co-desarrollado, con CI/CD a Cloud Run. En un cliente, el análisis diario de SKU pasó de un día completo a unos 30 minutos, según mi estimación.', en: 'Co-developed, with CI/CD to Cloud Run. For one client, daily SKU analysis went from a full day to about 30 minutes, by my estimate.' } },
+  { id: 'passporthub', front: 'epa', year: '2026', name: { es: 'PassportHub', en: 'PassportHub' }, line: { es: 'Lo lideró el gerente de Desarrollo. Participé en la UX y en decidir qué features salían, en la migración de Osaka como módulo y en la coordinación de QA.', en: 'Led by the head of Development. I worked on the UX and on deciding which features shipped, on migrating Osaka as a module and on coordinating QA.' } },
   { id: 'plugins', front: 'epa', year: '2026', name: { es: 'Plugins de Claude Code para dashboards', en: 'Claude Code plugins for dashboards' }, line: { es: 'El marketplace de plugins de Claude Code de la agencia para hacer dashboards: stack cerrado, convenciones de BigQuery, despliegue a Cloud Run y guardrails de seguridad.', en: 'The agency’s Claude Code plugin marketplace for building dashboards: a fixed stack, BigQuery conventions, Cloud Run deployment and security guardrails.' } },
   { id: 'revolution', front: 'epa', year: '2025', name: { es: 'Programa de transformación con IA', en: 'AI transformation program' }, line: { es: 'Project lead: AI Score, plan de 90 días y la propuesta de EPA Labs. Impulsé la migración de la agencia de OpenAI a Claude.', en: 'Project lead: AI Score, a 90-day plan and the EPA Labs proposal. I pushed the agency’s move from OpenAI to Claude.' } },
   { id: 'text-sql', front: 'epa', year: '2024', status: 'exp', name: { es: 'Agente de texto a SQL con gráficas', en: 'Text-to-SQL agent with charts' }, line: { es: 'Mi primer agente con LangGraph: genera la consulta, la valida, la corrige y elige la gráfica.', en: 'My first LangGraph agent: it writes the query, validates it, fixes it and picks the chart.' } },
@@ -56,9 +57,9 @@ export const examplesByFront = (f: Front, lang: Lang) =>
 
 /** Cifras con fuente para «En números» y la tarjeta de 30 segundos. */
 export const numbers: { v: string; l: Record<Lang, string>; source: Record<Lang, string> }[] = [
-  { v: '47', l: { es: 'personas con acceso activo a Osaka, el servidor MCP de medios; casi todas lo usan vía MCP', en: 'people with active access to Osaka, the media MCP server; most use it through MCP' }, source: { es: 'panel de administración, oct 2026', en: 'admin dashboard, Oct 2026' } },
+  { v: '47', l: { es: 'usuarios activos de Osaka, el servidor MCP de medios; casi todos lo usan vía MCP', en: 'active users of Osaka, the media MCP server; most use it through MCP' }, source: { es: 'panel de administración, oct 2026', en: 'admin dashboard, Oct 2026' } },
   { v: '~30 min', l: { es: 'para el análisis diario de SKU en un cliente de EPA; antes tomaba un día completo', en: 'for daily SKU analysis at one EPA client, down from a full day' }, source: { es: 'estimación propia, proyecto de SKU, 2026', en: 'my own estimate, SKU project, 2026' } },
-  { v: '170', l: { es: 'personas, toda la agencia en ese momento, con acceso a la Librería de Prompts', en: 'people, the whole agency at the time, with access to the Prompt Library' }, source: { es: 'lanzamiento, nov 2025', en: 'launch, Nov 2025' } },
+  { v: '38', l: { es: 'personas usaron la Librería de Prompts en los últimos 30 días, con 44 recursos publicados', en: 'people used the Prompt Library in the last 30 days, with 44 published resources' }, source: { es: 'panel de administración, nov 2026', en: 'admin dashboard, Nov 2026' } },
 ];
 
 export const timeline: { year: string; t: Record<Lang, string>; mark?: 'origin' | 'now' }[] = [

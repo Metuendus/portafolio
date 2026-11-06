@@ -13,7 +13,7 @@ Portafolio de José Carlos Corona. Astro 7, estático, ES en `/` y EN en `/en/`,
 | `/sobre-mi/` · `/en/about/` | Sobre mí |
 | `/404.html` | 404 en ambos idiomas; el idioma sale de la dirección que falló |
 
-Pendiente: Escritos, rutas públicas de demo de las apps propias y la siguiente ronda del agente del héroe.
+Pendiente: Escritos y la siguiente ronda del agente del héroe.
 
 ## Comandos
 
@@ -40,7 +40,7 @@ trigger los crea `infra/cicd.sh` (una vez, desde Cloud Shell). A mano:
 - Nunca un color en hexadecimal dentro de un componente: colores de producto y pósters son tokens `--jc-brand-*` y `--jc-poster-*`.
 - Los `.dc.html` del handoff son especificación, no código.
 - Textos en `src/i18n/ui.ts`; casos en `src/data/cases.ts`. Un caso sin `details` aparece en Inicio sin enlace.
-- Las capturas de `public/shots/` salen de las apps publicadas; donde no hay captura, la portada del caso muestra un dato.
+- Las capturas de `public/capturas/` salen de las apps publicadas; donde no hay captura, la portada del caso muestra un dato.
 - Un video aparece como póster fijo hasta que su caso tenga `videoId` (YouTube); con él, la fachada carga `youtube-nocookie` al dar clic y muestra error a los 8 s.
 - Una cifra sin `source` muestra «Fuente: (falta)» en borrador y nada en producción.
 
