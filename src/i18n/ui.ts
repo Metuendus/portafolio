@@ -84,7 +84,7 @@ export const ui = {
     },
     newTab: ' (abre en otra pestaña)',
     apps: {
-      open: 'Abrir la app',
+      open: 'Ver la demo',
     },
     numbersTitle: 'Cifras con fuente, no adjetivos',
     featuredTitle: 'Cuatro proyectos para empezar',
@@ -221,7 +221,7 @@ export const ui = {
     },
     newTab: ' (opens in a new tab)',
     apps: {
-      open: 'Open the app',
+      open: 'See the demo (in Spanish)',
     },
     numbersTitle: 'Numbers with sources, not adjectives',
     featuredTitle: 'Four projects to start with',
