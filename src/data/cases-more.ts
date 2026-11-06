@@ -124,7 +124,7 @@ export const moreDetails: Record<string, CaseDetail> = {
         problemBody: 'Los anuncios viven regados en varios portales, y lo que más importaba no venía en ellos: el índice delictivo de la zona, qué tan bonita es o si te sirve con mascota. Domi es mi segundo intento, después de un CLI de febrero de 2026: junta los anuncios, mide cada zona con datos abiertos y los ordena con los pesos que tú eliges.',
         nodes: [['ext', 'Portales', 'anuncios'], ['svc', 'Crawler', 'normaliza · deduplica'], ['focus', 'Agentes', 'juicio · zona · revisión'], ['svc', 'Tu mazo', 'ordenado con tus pesos']],
         diagramNote: 'Servicios en Cloud Run conectados por Pub/Sub',
-        steps: ['Un crawler diario recolecta anuncios respetando robots.txt y una petición cada 2 a 4 segundos por portal.', 'Un servicio de geografía mide cada zona con datos abiertos de la FGJ (el comercio del DENUE está en camino), y los agentes marcan señales que conviene verificar.', 'El orden es un producto punto entre tus pesos y los puntajes de cada anuncio.'],
+        steps: ['Un crawler diario recolecta anuncios respetando robots.txt y una petición cada 2 a 4 segundos por portal.', 'Un servicio de geografía mide cada zona con datos abiertos de la FGJ y el comercio del DENUE del INEGI, y los agentes marcan señales que conviene verificar.', 'El orden es un producto punto entre tus pesos y los puntajes de cada anuncio.'],
         decisions: [
           { title: 'El orden lo calcula código con pruebas.', body: 'Crawler, deduplicación, indicadores de zona, distancias y ranking son código determinista con pruebas. Ningún modelo se llama por inmueble para ordenar.' },
           { title: 'Domi no dice «fraude».', body: 'Domi muestra «señales que conviene verificar» con su evidencia. La decisión de confiar es tuya.' },
@@ -145,7 +145,7 @@ export const moreDetails: Record<string, CaseDetail> = {
         problemBody: 'Listings are scattered across several sites, and what mattered most wasn’t in them: the area’s crime rate, how nice it is, or whether it works with a pet. Domi is my second try, after a CLI from February 2026: it gathers the listings, measures each area with open data and ranks them with the weights you choose.',
         nodes: [['ext', 'Listing sites', 'listings'], ['svc', 'Crawler', 'normalize · dedupe'], ['focus', 'Agents', 'judgment · area · review'], ['svc', 'Your deck', 'ranked by your weights']],
         diagramNote: 'Cloud Run services connected through Pub/Sub',
-        steps: ['A daily crawler collects listings, honoring robots.txt and one request every 2 to 4 seconds per site.', 'A geo service measures each area with open FGJ crime data (DENUE business data is on the way), and the agents flag signals worth checking.', 'The ranking is a dot product between your weights and each listing’s scores.'],
+        steps: ['A daily crawler collects listings, honoring robots.txt and one request every 2 to 4 seconds per site.', 'A geo service measures each area with open FGJ crime data and INEGI’s DENUE business data, and the agents flag signals worth checking.', 'The ranking is a dot product between your weights and each listing’s scores.'],
         decisions: [
           { title: 'Tested code does the ranking.', body: 'Crawler, deduplication, area indicators, distances and ranking are deterministic, tested code. No model is called per listing to rank.' },
           { title: 'Domi never says “fraud”.', body: 'Domi shows “signals worth checking” with their evidence. Deciding whether to trust is up to you.' },
