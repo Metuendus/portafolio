@@ -17,6 +17,8 @@ export interface CaseSummary {
   hook: Record<Lang, string>;
   /** Portada mientras no haya captura: un dato o una idea del caso, nunca una caja vacía. */
   cover: { v: string; l: Record<Lang, string> };
+  /** Captura real del producto; donde no existe se queda la portada con un dato. */
+  image?: { src: Record<Lang, string>; width: number; height: number; alt: Record<Lang, string> };
 }
 
 export interface Figure { v: string; l: string; source?: string }
@@ -52,12 +54,12 @@ export interface CaseDetail {
 
 /** Orden de los 8 casos: alterna EPA y Propia (README §4 · Casos). */
 export const cases: CaseSummary[] = [
-  { id: 'mcp', org: 'epa', status: 'prod', name: { es: 'Osaka, servidor MCP de medios', en: 'Osaka, media MCP server' }, hook: { es: 'Un asistente que consulta Meta, Google Ads, GA4 y tres medios más por los equipos de cuentas', en: 'An assistant that queries Meta, Google Ads, GA4 and three more channels for account teams' } , cover: { v: '484', l: { es: 'conversaciones reales revisadas para medir la calidad', en: 'real conversations reviewed to measure quality' } } },
-  { id: 'iterum', org: 'own', shot: 'iterum', app: 'https://iterum.josecarloscorona.dev', status: 'live', name: { es: 'Iterum', en: 'Iterum' }, hook: { es: 'Planea el viaje contigo y verifica cada lugar antes de proponerlo', en: 'Plans the trip with you and checks every place before proposing it' } , cover: { v: '0', l: { es: 'lugares sin verificar en un itinerario', en: 'unverified places in an itinerary' } } },
+  { id: 'mcp', org: 'epa', status: 'prod', name: { es: 'Osaka, servidor MCP de medios', en: 'Osaka, media MCP server' }, hook: { es: 'Un asistente que consulta Meta, Google Ads, GA4 y tres medios más por los equipos de cuentas', en: 'An assistant that queries Meta, Google Ads, GA4 and three more channels for account teams' } , cover: { v: '484', l: { es: 'conversaciones reales revisadas para medir la calidad', en: 'real conversations reviewed to measure quality' } }, image: { src: { es: '/video/osaka-poster-es.jpg', en: '/video/osaka-poster-en.jpg' }, width: 1920, height: 1080, alt: { es: 'Portada del video de Osaka, con datos ficticios de una marca demo.', en: 'Cover of the Osaka video, with fictional data from a demo brand.' } } },
+  { id: 'iterum', org: 'own', shot: 'iterum', app: 'https://iterum.josecarloscorona.dev', status: 'live', name: { es: 'Iterum', en: 'Iterum' }, hook: { es: 'Planea el viaje contigo y verifica cada lugar antes de proponerlo', en: 'Plans the trip with you and checks every place before proposing it' } , cover: { v: '0', l: { es: 'lugares sin verificar en un itinerario', en: 'unverified places in an itinerary' } }, image: { src: { es: '/shots/iterum.webp', en: '/shots/iterum.webp' }, width: 1180, height: 738, alt: { es: 'Iterum con un viaje de ejemplo a Lisboa: el plan del día, precios con su fuente y una propuesta de la guía local para aceptar o rechazar.', en: 'Iterum with a sample trip to Lisbon: the day’s plan, prices with their source and a local guide’s proposal to accept or reject.' } } },
   { id: 'dash', org: 'epa', status: 'prod', name: { es: 'Dashboards y Hopper', en: 'Dashboards and Hopper' }, hook: { es: 'De un Excel de 993 filas a QA guiado', en: 'From a 993-row spreadsheet to guided QA' } , cover: { v: '993', l: { es: 'filas de Excel que dejaron de llenarse a mano', en: 'spreadsheet rows nobody fills by hand anymore' } } },
-  { id: 'domi', org: 'own', shot: 'domi', app: 'https://domi.josecarloscorona.dev', status: 'wip', name: { es: 'Domi', en: 'Domi' }, hook: { es: 'Busca departamento en CDMX, mide la zona y desconfía de lo sospechoso', en: 'Hunts for apartments in Mexico City, measures the area and distrusts what looks off' } , cover: { v: 'CDMX', l: { es: 'cada zona medida con datos abiertos de la FGJ y el DENUE', en: 'every area measured with open FGJ and DENUE data' } } },
+  { id: 'domi', org: 'own', shot: 'domi', app: 'https://domi.josecarloscorona.dev', status: 'wip', name: { es: 'Domi', en: 'Domi' }, hook: { es: 'Busca departamento en CDMX, mide la zona y desconfía de lo sospechoso', en: 'Hunts for apartments in Mexico City, measures the area and distrusts what looks off' } , cover: { v: 'CDMX', l: { es: 'cada zona medida con datos abiertos de la FGJ y el DENUE', en: 'every area measured with open FGJ and DENUE data' } }, image: { src: { es: '/shots/domi.webp', en: '/shots/domi.webp' }, width: 1040, height: 650, alt: { es: 'Domi con un departamento de ejemplo: precio, tiempos a tus lugares y datos de la colonia con su fuente.', en: 'Domi with a sample apartment: price, travel times to your places and area data with its source.' } } },
   { id: 'einstein', org: 'epa', status: 'prod', name: { es: 'Einstein', en: 'Einstein' }, hook: { es: 'La base de conocimiento de la agencia. La primera versión no la usamos ni nosotros', en: 'The agency’s knowledge base. Not even we used the first version' } , cover: { v: 'v1', l: { es: 'lo que aprendí cuando la primera versión no se usó', en: 'what I learned when the first version went unused' } } },
-  { id: 'vocatio', org: 'own', shot: 'vocatio', app: 'https://vocatio.josecarloscorona.dev', status: 'wip', name: { es: 'Vocatio', en: 'Vocatio' }, hook: { es: 'Busca vacantes, prepara tu CV y sigue tu correo mientras buscas trabajo', en: 'Finds openings, tailors your CV and tracks your inbox while you job hunt' } , cover: { v: 'MX', l: { es: 'vacantes, CV y correo para profesionistas en México', en: 'jobs, CVs and email for professionals in Mexico' } } },
+  { id: 'vocatio', org: 'own', shot: 'vocatio', app: 'https://vocatio.josecarloscorona.dev', status: 'wip', name: { es: 'Vocatio', en: 'Vocatio' }, hook: { es: 'Busca vacantes, prepara tu CV y sigue tu correo mientras buscas trabajo', en: 'Finds openings, tailors your CV and tracks your inbox while you job hunt' } , cover: { v: 'MX', l: { es: 'vacantes, CV y correo para profesionistas en México', en: 'jobs, CVs and email for professionals in Mexico' } }, image: { src: { es: '/shots/vocatio.webp', en: '/shots/vocatio.webp' }, width: 850, height: 531, alt: { es: 'Vocatio con datos de muestra: una vacante con su nivel de encaje y un aviso de entrevista detectado en el correo.', en: 'Vocatio with sample data: an opening with its fit level and an interview notice detected in email.' } } },
   { id: 'prompts', org: 'epa', status: 'prod', name: { es: 'Librería de Prompts', en: 'Prompt Library' }, hook: { es: 'Un solo lugar para los prompts de 170 personas', en: 'One home for the prompts of 170 people' } , cover: { v: '170', l: { es: 'personas con acceso desde el lanzamiento', en: 'people with access from launch' } } },
   { id: 'fundamentum', org: 'own', shot: 'fundamentum', name: { es: 'Fundamentum', en: 'Fundamentum' }, hook: { es: 'El código que comparten Iterum, Domi y Vocatio', en: 'The code Iterum, Domi and Vocatio share' } , cover: { v: '3', l: { es: 'apps sobre el mismo chasis', en: 'apps on the same chassis' } } },
 ];
@@ -131,9 +133,9 @@ export const details: Record<string, CaseDetail> = {
           { title: 'Cada cambio pide tu aprobación.', body: 'Cada cambio que propone un agente llega con Aceptar, Editar y Rechazar, y una vista de antes y después. Dinero y compromisos siempre piden aprobación explícita.', before: 'El asistente cambia el plan.', after: 'Tú decides cada cambio.' },
           { title: 'Cada lugar se verifica en Google Places.', body: 'Cada lugar se verifica contra Google Places antes de entrar al plan, y una auditoría de factibilidad marca el itinerario con semáforo, ícono y explicación. Si algo no se encuentra, Iterum lo dice.' },
         ],
-        figures: [{ v: '0', l: 'lugares inventados en los itinerarios' }],
+        figures: [],
         noUsageText: 'Todavía no hay cifras de uso.',
-        resultText: 'Desplegada en Cloud Run.',
+        resultText: 'Desplegada en Cloud Run. Ningún lugar entra al plan sin verificarse en Google Places; si no se encuentra, Iterum lo dice.',
         shots: ['Concierge y tarjetas firmadas', 'Propuesta · Aceptar · Editar · Rechazar', 'Auditoría de factibilidad · semáforo'],
         role: 'Proyecto propio.',
         roleNote: 'Producto, agentes y despliegue.',
@@ -152,9 +154,9 @@ export const details: Record<string, CaseDetail> = {
           { title: 'Every change asks for your approval.', body: 'Every change an agent proposes comes with Accept, Edit and Reject, plus a before-and-after view. Money and commitments always need explicit approval.', before: 'The assistant changes the plan.', after: 'You decide every change.' },
           { title: 'Every place is checked on Google Places.', body: 'Every place is checked against Google Places before it enters the plan, and a feasibility audit marks the itinerary with a traffic light, icon and explanation. If something can’t be found, Iterum says so.' },
         ],
-        figures: [{ v: '0', l: 'invented places in itineraries' }],
+        figures: [],
         noUsageText: 'No usage figures yet.',
-        resultText: 'Deployed on Cloud Run.',
+        resultText: 'Deployed on Cloud Run. No place enters the plan without being checked on Google Places; if it can’t be found, Iterum says so.',
         shots: ['Concierge and signed cards', 'Proposal · Accept · Edit · Reject', 'Feasibility audit · traffic light'],
         role: 'Personal project.',
         roleNote: 'Product, agents and deployment.',
@@ -163,5 +165,4 @@ export const details: Record<string, CaseDetail> = {
   },
 };
 
-export const caseNum = (id: string) => String(cases.findIndex((c) => c.id === id) + 1).padStart(2, '0');
 export const hasPage = (id: string) => id in details;

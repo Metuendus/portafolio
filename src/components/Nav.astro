@@ -1,6 +1,6 @@
 ---
 import Icon from './Icon.astro';
-import { ui, homePath, navItems, type Lang } from '../i18n/ui';
+import { ui, homePath, navItems, contact, type Lang } from '../i18n/ui';
 
 interface Props { lang: Lang; current?: string; altHref: string }
 const { lang, current, altHref } = Astro.props;
@@ -19,6 +19,7 @@ const enHref = lang === 'en' ? Astro.url.pathname : altHref;
         {navItems(lang).map((l) => (
           <li><a href={l.href} aria-current={current === l.key ? 'page' : undefined}>{l.label}</a></li>
         ))}
+        <li><a href={contact.cv[lang]} download><Icon name="download" size={15} />CV</a></li>
       </ul>
       <span class="sep" aria-hidden="true"></span>
       <div class="seg" role="group" aria-label={t.langLabel}>
@@ -47,6 +48,8 @@ const enHref = lang === 'en' ? Astro.url.pathname : altHref;
         {navItems(lang).map((l) => (
           <li><a href={l.href} aria-current={current === l.key ? 'page' : undefined} data-menu-link>{l.label}<Icon name="arrow" size={18} /></a></li>
         ))}
+        <li><a href={contact.cv[lang]} download data-menu-link>CV<Icon name="download" size={18} /></a></li>
+        {contact.email && <li><a class="row-mail" href={`mailto:${contact.email}`} data-menu-link>{contact.email}<Icon name="mail" size={18} /></a></li>}
       </ul>
     </nav>
     <div class="menu-foot">
@@ -70,12 +73,12 @@ const enHref = lang === 'en' ? Astro.url.pathname : altHref;
     width: 32px; height: 32px; border-radius: 8px; background: var(--jc-ink); color: var(--jc-canvas);
     display: flex; align-items: center; justify-content: center; font: 600 15px/1 var(--jc-font-sans); letter-spacing: -.8px;
   }
-  .name { font: 600 17px/1 var(--jc-font-sans); letter-spacing: -.3px; }
+  .name { font: 600 17px/1 var(--jc-font-sans); letter-spacing: -.3px; white-space: nowrap; }
   .desk { display: flex; align-items: center; gap: 8px; }
   .links { display: flex; gap: 4px; list-style: none; padding: 0; }
   .links a {
-    height: 44px; padding: 0 14px; display: flex; align-items: center; border-radius: var(--jc-radius-pill);
-    font: 500 15px/1 var(--jc-font-sans); color: var(--jc-text-2); text-decoration: none;
+    height: 44px; padding: 0 14px; display: flex; align-items: center; gap: 6px; border-radius: var(--jc-radius-pill);
+    font: 500 15px/1 var(--jc-font-sans); color: var(--jc-text-2); text-decoration: none; white-space: nowrap;
     transition: background-color var(--jc-dur-fast) var(--jc-ease), color var(--jc-dur-fast) var(--jc-ease);
   }
   .links a:hover { background: var(--jc-surface); color: var(--jc-ink); }
@@ -122,10 +125,11 @@ const enHref = lang === 'en' ? Astro.url.pathname : altHref;
     font: 600 22px/1 var(--jc-font-sans); letter-spacing: -.4px; color: var(--jc-ink); text-decoration: none;
   }
   .rows a[aria-current='page'] { color: var(--jc-accent); }
+  .rows .row-mail { font: 500 17px/1 var(--jc-font-sans); letter-spacing: 0; }
   .menu-foot { margin-top: auto; padding: 20px; display: flex; align-items: center; justify-content: space-between; border-top: 1px solid var(--jc-hairline); }
   .seg--m a { height: 38px; min-width: 52px; }
 
-  @media (max-width: 1000px) {
+  @media (max-width: 1180px) {
     .desk { display: none; }
     .burger { display: flex; }
     .bar { height: 60px; padding-left: 20px; padding-right: 12px; }
@@ -157,5 +161,5 @@ const enHref = lang === 'en' ? Astro.url.pathname : altHref;
   menu?.querySelector('[data-menu-close]')?.addEventListener('click', () => menu.close());
   menu?.querySelectorAll('[data-menu-link]').forEach((a) => a.addEventListener('click', () => menu.close()));
   menu?.addEventListener('close', () => opener?.focus());
-  matchMedia('(min-width: 1001px)').addEventListener('change', (e) => { if (e.matches) menu?.close(); });
+  matchMedia('(min-width: 1181px)').addEventListener('change', (e) => { if (e.matches) menu?.close(); });
 </script>

@@ -3,13 +3,15 @@ import OrgChip from './OrgChip.astro';
 import Icon from './Icon.astro';
 import VideoFacade from './VideoFacade.astro';
 import Footer from './Footer.astro';
-import { ui, casePath, projectsPath, showMissing, type Lang } from '../i18n/ui';
-import { cases, details, hasPage, caseNum } from '../data/cases';
+import CopyButton from './CopyButton.astro';
+import { ui, casePath, projectsPath, showMissing, contact, cvLabel, type Lang } from '../i18n/ui';
+import { cases, details, hasPage } from '../data/cases';
 import { videos } from '../data/videos';
 
 interface Props { lang: Lang; id: string }
 const { lang, id } = Astro.props;
-const L = ui[lang].caseL;
+const t = ui[lang];
+const L = t.caseL;
 const summary = cases.find((c) => c.id === id)!;
 const detail = details[id];
 const c = detail.content[lang];
@@ -23,13 +25,14 @@ const nativo = videos[id]?.[lang];
 <article class="case">
   <header class="top page-x">
     <div class="intro">
-      <nav aria-label={L.breadcrumb} class="crumbs tag"><a href={projects}>{L.projects}</a> / {c.short} · {caseNum(id)} / 08</nav>
+      <nav aria-label={L.breadcrumb} class="crumbs tag"><a href={projects}>{L.projects}</a> / {c.short}</nav>
       <h1>{summary.name[lang]}</h1>
       <p class="hook">{summary.hook[lang]}</p>
       <div class="chips">
         <OrgChip lang={lang} org={summary.org} status={summary.status} large />
         {c.stack.map((s) => <span class="chip chip--stack chip--lg">{s}</span>)}
       </div>
+      <div class="role"><span class="tag">{L.role}</span><p class="role-t">{c.role}</p><p class="role-n">{c.roleNote}</p></div>
       {summary.app && <div class="app-links">
         <a class="btn btn--primary" href={summary.app} target="_blank" rel="noopener">{ui[lang].apps.open}<Icon name="external" size={16} /><span class="sr-only">{ui[lang].newTab}</span></a>
       </div>}
@@ -38,10 +41,13 @@ const nativo = videos[id]?.[lang];
       {nativo
         ? <video class="native" src={nativo.src} poster={nativo.poster} controls muted playsinline preload="metadata" aria-label={`${c.videoTitle}, ${nativo.duration}`}></video>
         : <VideoFacade lang={lang} title={c.videoTitle} duration="60–90 s" poster={detail.poster} videoId={c.videoId} size="lg" />}
-      <ol class="chapters" aria-hidden={nativo || c.videoId ? undefined : 'true'}>
-        {L.chapters.map((ch, i) => <li class:list={[`ch${i}`]}><span class="tick"></span><span class="tag">{ch}</span></li>)}
-      </ol>
+      {nativo
+        ? <details class="transcript"><summary>{L.transcript}</summary>{nativo.transcript.map((p) => <p>{p}</p>)}</details>
+        : <ol class="chapters" aria-hidden={c.videoId ? undefined : 'true'}>
+            {L.chapters.map((ch, i) => <li class:list={[`ch${i}`]}><span class="tick"></span><span class="tag">{ch}</span></li>)}
+          </ol>}
     </div>}
+    {!nativo && summary.image && <img class="product" src={summary.image.src[lang]} alt={summary.image.alt[lang]} width={summary.image.width} height={summary.image.height} loading="lazy" decoding="async" />}
   </header>
 
   <section class="row page-x" aria-labelledby="s-problem">
@@ -137,11 +143,18 @@ const nativo = videos[id]?.[lang];
 
   <section class="end page-x">
     <div class="cards">
-      <div class="card"><span class="tag">{L.role}</span><span class="c-big">{c.role}</span><span class="c-note">{c.roleNote}</span></div>
       {nextText && <div class="card card--surface"><span class="tag">{L.next}</span><span class:list={['c-big', { warn: !c.nextText }]}>{nextText}</span></div>}
     </div>
+    <div class="hire">
+      <h2 class="hire-t">{L.hireTitle}</h2>
+      <div class="hire-a">
+        {contact.email && <a class="btn btn--primary btn--lg" href={`mailto:${contact.email}`}><Icon name="mail" />{contact.email}</a>}
+        {contact.email && <CopyButton value={contact.email} label={t.copy.email} done={t.copy.done} failed={t.copy.failed} large />}
+        <a class="btn btn--secondary btn--lg" href={contact.cv[lang]} download><Icon name="download" />{cvLabel[lang]}</a>
+      </div>
+    </div>
     <nav class="pn" aria-label={`${L.prev} / ${L.nextCase}`}>
-      {[{ k: 'prev', c: prev, label: `← ${L.prev} · ${caseNum(prev.id)}` }, { k: 'next', c: next, label: `${L.nextCase} · ${caseNum(next.id)} →` }].map((p) => {
+      {[{ k: 'prev', c: prev, label: `← ${L.prev}` }, { k: 'next', c: next, label: `${L.nextCase} →` }].map((p) => {
         const Tag = hasPage(p.c.id) ? 'a' : 'div';
         return (
           <Tag class:list={['pn-item', `pn-${p.k}`]} href={hasPage(p.c.id) ? casePath(lang, p.c.id) : undefined} rel={p.k}>
@@ -166,6 +179,16 @@ const nativo = videos[id]?.[lang];
   h1 { font: 600 var(--jc-fs-hero)/1.05 var(--jc-font-sans); letter-spacing: var(--jc-ls-hero); text-wrap: balance; }
   .hook { font: 400 24px/1.45 var(--jc-font-sans); color: var(--jc-text-2); }
   .chips { display: flex; gap: 8px; flex-wrap: wrap; }
+  .role { display: flex; flex-direction: column; gap: 6px; padding: 16px 0 0; border-top: 1px solid var(--jc-hairline); max-width: 760px; }
+  .role-t { font: 600 20px/1.3 var(--jc-font-sans); }
+  .role-n { font-size: 16px; line-height: 1.55; color: var(--jc-text-2); }
+  .product { display: block; width: 100%; max-width: 920px; height: auto; border-radius: var(--jc-radius-xl); border: 1px solid var(--jc-hairline); background: var(--jc-surface); }
+  .transcript { font-size: 15px; line-height: 1.55; color: var(--jc-text-2); }
+  .transcript summary { display: inline-flex; align-items: center; min-height: 44px; cursor: pointer; font: 600 15px/1.3 var(--jc-font-sans); color: var(--jc-accent); text-decoration: underline; text-underline-offset: 4px; }
+  .transcript p { max-width: 68ch; margin-top: 10px; }
+  .hire { display: flex; flex-direction: column; gap: 20px; }
+  .hire-t { font: 600 var(--jc-fs-h1)/1.1 var(--jc-font-sans); letter-spacing: var(--jc-ls-h1); }
+  .hire-a { display: flex; flex-wrap: wrap; gap: 8px; }
   .video-block { display: flex; flex-direction: column; gap: 12px; }
   .native { display: block; width: 100%; aspect-ratio: 16 / 9; border-radius: var(--jc-radius-xl); border: 1px solid var(--jc-hairline); background: var(--jc-surface); }
   .chapters { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; }
@@ -180,7 +203,7 @@ const nativo = videos[id]?.[lang];
   h2 { font: 600 var(--jc-fs-h2)/1.15 var(--jc-font-sans); letter-spacing: var(--jc-ls-h2); }
   .problem { display: flex; flex-direction: column; gap: 20px; max-width: 760px; }
   .statement { font: 600 40px/1.12 var(--jc-font-sans); letter-spacing: -1.2px; }
-  .para { font-size: 19px; line-height: 1.6; color: var(--jc-text-2); max-width: 760px; }
+  .para { font-size: 19px; line-height: 1.6; color: var(--jc-text-2); max-width: 68ch; }
 
   .how { display: flex; flex-direction: column; gap: 32px; min-width: 0; }
   .diagram {
@@ -221,13 +244,13 @@ const nativo = videos[id]?.[lang];
   .quote figcaption { font-size: 15px; color: var(--jc-text-2); }
 
   .result { display: flex; flex-direction: column; gap: 32px; min-width: 0; }
-  .figures { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid var(--jc-hairline); border-bottom: 1px solid var(--jc-hairline); }
-  .fig { padding: 32px 28px 32px 0; margin-right: 28px; border-right: 1px solid var(--jc-hairline); display: flex; flex-direction: column; gap: 8px; min-width: 0; }
-  .fig:nth-child(3n) { border-right: 0; margin-right: 0; }
+  .figures { display: flex; flex-wrap: wrap; border-top: 1px solid var(--jc-hairline); border-bottom: 1px solid var(--jc-hairline); }
+  .fig { flex: 1 1 240px; padding: 32px 28px 32px 0; margin-right: 28px; border-right: 1px solid var(--jc-hairline); display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+  .fig:last-child { border-right: 0; margin-right: 0; }
   .fig-v { font: 600 56px/1 var(--jc-font-sans); letter-spacing: -1.8px; }
   .fig-l { font-size: 15px; line-height: 1.45; color: var(--jc-text-2); }
   .fig-s { font: 400 12px/1.4 var(--jc-font-mono); color: var(--jc-text-3); }
-  .no-usage { grid-column: span 2; padding: 32px 0; display: flex; flex-direction: column; gap: 8px; justify-content: center; }
+  .no-usage { flex: 2 1 320px; padding: 32px 0; display: flex; flex-direction: column; gap: 8px; justify-content: center; }
   .nu-t { font: 600 28px/1.2 var(--jc-font-sans); }
   .nu-s { font-size: 15px; color: var(--jc-text-3); }
 
@@ -267,14 +290,14 @@ const nativo = videos[id]?.[lang];
   @media (max-width: 900px) {
     .nodes { flex-direction: column; align-items: stretch; }
     .node { flex: none; flex-direction: row; justify-content: space-between; align-items: baseline; gap: 8px; padding: 12px 14px; border-radius: 10px; }
-    .n-s { text-align: right; font-size: 11px; }
+    .n-s { text-align: right; font-size: 12px; }
     .arrow { flex: none; height: 18px; min-width: 0; justify-content: center; padding: 0; }
     .arrow .line { flex: none; width: 1.5px; height: 100%; }
     .arrow svg { display: none; }
     .diagram { padding: 16px; gap: 16px; }
-    .figures { grid-template-columns: minmax(0, 1fr); border-top: 0; }
-    .fig { padding: 18px 0; margin-right: 0; border-right: 0; border-bottom: 1px solid var(--jc-hairline); }
-    .no-usage { grid-column: auto; padding: 18px 0; }
+    .figures { flex-direction: column; border-top: 0; }
+    .fig { flex: none; padding: 18px 0; margin-right: 0; border-right: 0; border-bottom: 1px solid var(--jc-hairline); }
+    .no-usage { flex: none; padding: 18px 0; }
     .shots { grid-template-columns: minmax(0, 1fr); gap: 12px; }
     .cards, .pn { grid-template-columns: minmax(0, 1fr); }
     .pn-item, .pn-next { padding: 14px 0; min-height: 72px; justify-content: center; align-items: flex-start; text-align: left; gap: 6px; border-right: 0; border-bottom: 1px solid var(--jc-hairline); }
@@ -299,10 +322,15 @@ const nativo = videos[id]?.[lang];
     .steps { gap: 8px; }
     .decisions { gap: 12px; }
     .decision { padding: 20px; gap: 10px; }
-    .d-tag { font-size: 11px; }
+    .d-tag { font-size: 12px; }
     .d-title { font-size: 19px; }
     .d-text { font-size: 16px; }
-    .ba { display: none; }
+    .ba { grid-template-columns: minmax(0, 1fr); gap: 8px; }
+    .ba-arrow { display: none; }
+    .hire-a :global(.btn), .hire-a .btn { width: 100%; height: 48px; }
+    .hire-t { font-size: 28px; letter-spacing: -.7px; }
+    .role-t { font-size: 18px; }
+    .role-n { font-size: 15px; }
     .quote { padding-top: 48px; padding-bottom: 48px; border-top: 0; }
     .quote figure { padding-top: 24px; gap: 16px; }
     blockquote { font-size: 32px; line-height: 1.12; letter-spacing: -.9px; }

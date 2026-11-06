@@ -9,7 +9,7 @@ export const moreDetails: Record<string, CaseDetail> = {
     poster: 'einstein',
     content: {
       es: {
-        short: 'Servidor MCP',
+        short: 'Osaka',
         stack: ['TypeScript', 'Hono', 'Next.js', 'MCP', 'Claude · OpenAI', 'Firestore', 'Cloud Run'],
         videoTitle: 'Osaka, de una pregunta a una respuesta',
         problemTitle: 'Los equipos de cuentas trabajan entre seis plataformas de medios.',
@@ -34,7 +34,7 @@ export const moreDetails: Record<string, CaseDetail> = {
         roleNote: 'Hice solo la v1 en 2025. En la de 2026 aporté el proveedor de DV360, la autenticación del MCP y el diseño de la interfaz, y lideré el diagnóstico de calidad; la mayor parte del código es de un desarrollador de mi equipo.',
       },
       en: {
-        short: 'MCP server',
+        short: 'Osaka',
         stack: ['TypeScript', 'Hono', 'Next.js', 'MCP', 'Claude · OpenAI', 'Firestore', 'Cloud Run'],
         videoTitle: 'Osaka, from a question to an answer',
         problemTitle: 'Account teams work across six media platforms.',
@@ -80,7 +80,7 @@ export const moreDetails: Record<string, CaseDetail> = {
         ],
         figures: [
           { v: '993', l: 'filas de la matriz de Excel que Hopper reemplazó', source: 'matriz de QA anterior' },
-          { v: '30 min', l: 'para el análisis diario de SKU de clientes de EPA; antes, un día completo', source: 'proyecto de SKU, 2026' },
+          { v: '~30 min', l: 'para el análisis diario de SKU en un cliente de EPA; antes, un día completo', source: 'estimación propia, proyecto de SKU, 2026' },
         ],
         resultText: 'Hopper reemplazó la matriz de Excel. Además co-desarrollé el dashboard de Paid Media y eCommerce y el dashboard y ETL de SKU para clientes de EPA, con CI/CD a Cloud Run.',
         shots: ['Flujo guiado de Hopper', 'Issue priorizado en GitHub', 'Dashboard de SKU'],
@@ -104,7 +104,7 @@ export const moreDetails: Record<string, CaseDetail> = {
         ],
         figures: [
           { v: '993', l: 'rows in the spreadsheet Hopper replaced', source: 'previous QA matrix' },
-          { v: '30 min', l: 'for EPA clients’ daily SKU analysis, down from a full day', source: 'SKU project, 2026' },
+          { v: '~30 min', l: 'for daily SKU analysis at one EPA client, down from a full day', source: 'my own estimate, SKU project, 2026' },
         ],
         resultText: 'Hopper replaced the spreadsheet. I also co-developed the Paid Media and eCommerce dashboard and the SKU dashboard and ETL for EPA clients, with CI/CD to Cloud Run.',
         shots: ['Hopper’s guided flow', 'Prioritized GitHub issue', 'SKU dashboard'],
