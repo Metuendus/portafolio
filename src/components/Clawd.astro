@@ -1,0 +1,139 @@
+---
+import { ui, type Lang } from '../i18n/ui';
+
+interface Props { lang: Lang }
+const says = ui[Astro.props.lang].clawdSays;
+---
+<div class="stage" aria-hidden="true" data-clawd-stage hidden>
+  <div class="walker" data-clawd-walker>
+    <p class="bubble" data-clawd-bubble hidden>{says}</p>
+    <svg class="sprite" data-clawd-sprite viewBox="0 0 16 10" shape-rendering="crispEdges">
+      <g class="body">
+        <rect x="2" y="0" width="12" height="4" />
+        <rect x="0" y="4" width="16" height="2" />
+        <rect x="2" y="6" width="12" height="2" />
+      </g>
+      <g class="body" data-clawd-legs="a"><rect x="3" y="8" width="1" height="2" /><rect x="10" y="8" width="1" height="2" /></g>
+      <g class="body" data-clawd-legs="b"><rect x="5" y="8" width="1" height="2" /><rect x="12" y="8" width="1" height="2" /></g>
+      <g class="eyes"><rect x="4" y="2" width="1" height="2" /><rect x="11" y="2" width="1" height="2" /></g>
+    </svg>
+  </div>
+</div>
+<span class="said" role="status" data-clawd-said data-says={says}></span>
+
+<style>
+  .stage {
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 30; height: 220px; overflow: hidden; pointer-events: none;
+  }
+  .stage[hidden], .bubble[hidden] { display: none; }
+  .walker {
+    --w: 96px;
+    position: absolute; left: 0; bottom: calc(16px + env(safe-area-inset-bottom)); width: var(--w); will-change: transform;
+  }
+  .sprite { display: block; width: 100%; height: auto; overflow: visible; }
+  .body { fill: #D97757; }
+  .eyes { fill: #0B0D0E; }
+  .bubble {
+    position: absolute; left: 50%; bottom: calc(100% + 12px); transform: translateX(-50%);
+    width: max-content; max-width: min(280px, calc(100vw - 32px)); padding: 10px 14px;
+    border: 1px solid var(--jc-hairline-strong); border-radius: var(--jc-radius-md);
+    background: var(--jc-card); box-shadow: var(--jc-shadow-2);
+    color: var(--jc-ink); font: 400 13px/1.45 var(--jc-font-mono); text-align: center; text-wrap: balance;
+  }
+  .stage[data-still] .bubble { left: auto; right: 0; transform: none; }
+  .said {
+    position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap;
+  }
+  @media (max-width: 640px) { .walker { --w: 72px; } }
+</style>
+
+<script>
+  const CLICKS = 3;
+  const WINDOW_MS = 1200;
+
+  const trigger = document.querySelector<HTMLButtonElement>('[data-clawd-trigger]');
+  const stage = document.querySelector<HTMLElement>('[data-clawd-stage]');
+  const said = document.querySelector<HTMLElement>('[data-clawd-said]');
+  if (trigger && stage && said) {
+    // Fuera del pie, para que ningún contenedor con transform afecte al position: fixed.
+    document.body.append(stage, said);
+    const walker = stage.querySelector<HTMLElement>('[data-clawd-walker]')!;
+    const sprite = stage.querySelector<SVGElement>('[data-clawd-sprite]')!;
+    const bubble = stage.querySelector<HTMLElement>('[data-clawd-bubble]')!;
+    const legs = [...stage.querySelectorAll<SVGGElement>('[data-clawd-legs]')];
+    const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+    const wait = (ms: number) => new Promise((r) => setTimeout(r, ms));
+    let count = 0;
+    let last = 0;
+    let playing = false;
+
+    const moveTo = (x: number) => { walker.style.transform = `translateX(${x}px)`; };
+    const walk = async (from: number, to: number, ms: number) => {
+      const steps = legs.map((g, i) => g.animate(
+        [{ transform: 'translateY(0)' }, { transform: 'translateY(-1px)' }],
+        { duration: 320, iterations: Infinity, easing: 'steps(2, jump-none)', delay: i * 160 },
+      ));
+      const bob = sprite.animate(
+        [{ transform: 'translateY(0)' }, { transform: 'translateY(-3px)' }, { transform: 'translateY(0)' }],
+        { duration: 320, iterations: Infinity },
+      );
+      // La posición final va primero: al terminar la animación no hay un cuadro en la posición anterior.
+      moveTo(to);
+      const go = walker.animate(
+        [{ transform: `translateX(${from}px)` }, { transform: `translateX(${to}px)` }],
+        { duration: ms, easing: 'linear' },
+      );
+      await go.finished;
+      [...steps, bob].forEach((a) => a.cancel());
+    };
+    const hop = () => sprite.animate(
+      [
+        { transform: 'translateY(0)', easing: 'cubic-bezier(.2,0,0,1)' },
+        { transform: 'translateY(-26px)', easing: 'cubic-bezier(.6,0,1,1)' },
+        { transform: 'translateY(0)' },
+      ],
+      { duration: 420 },
+    ).finished;
+
+    const play = async () => {
+      playing = true;
+      const still = reduced.matches;
+      stage.toggleAttribute('data-still', still);
+      stage.hidden = false;
+      said.textContent = said.dataset.says ?? '';
+      const stageWidth = stage.clientWidth;
+      const width = walker.offsetWidth;
+      try {
+        if (still) {
+          moveTo(stageWidth - width - 16);
+          bubble.hidden = false;
+          await wait(3000);
+        } else {
+          const center = (stageWidth - width) / 2;
+          await walk(stageWidth, center, 1800);
+          await hop();
+          bubble.hidden = false;
+          await wait(2400);
+          bubble.hidden = true;
+          await walk(center, -width, 1500);
+        }
+      } finally {
+        bubble.hidden = true;
+        stage.hidden = true;
+        said.textContent = '';
+        playing = false;
+      }
+    };
+
+    trigger.addEventListener('click', () => {
+      if (playing) return;
+      const now = performance.now();
+      count = now - last <= WINDOW_MS ? count + 1 : 1;
+      last = now;
+      if (count >= CLICKS) {
+        count = 0;
+        void play();
+      }
+    });
+  }
+</script>

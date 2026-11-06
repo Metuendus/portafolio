@@ -1,12 +1,14 @@
 ---
+import Clawd from './Clawd.astro';
 import { ui, contact, type Lang } from '../i18n/ui';
 interface Props { lang: Lang }
 const t = ui[Astro.props.lang];
 ---
 <footer class="foot">
   {contact.email ? <a href={`mailto:${contact.email}`}>{contact.email}</a> : <a href={contact.linkedin}>linkedin.com/in/josecarloscorona</a>}
-  <span>{t.footer}</span>
+  <span>{t.footerBefore} <button class="egg" type="button" data-clawd-trigger>Claude Code</button> {t.footerAfter}</span>
 </footer>
+<Clawd lang={Astro.props.lang} />
 
 <style>
   .foot {
@@ -15,5 +17,10 @@ const t = ui[Astro.props.lang];
   }
   .foot a { color: inherit; text-decoration: none; display: inline-block; padding: 13px 0; margin: -13px 0; }
   .foot a:hover { color: var(--jc-ink); text-decoration: underline; }
+  .egg {
+    display: inline-block; padding: 13px 0; margin: -13px 0; border: 0; background: transparent; cursor: pointer;
+    user-select: none; -webkit-user-select: none; touch-action: manipulation; transition: color var(--jc-dur-fast) var(--jc-ease);
+  }
+  .egg:hover { color: var(--jc-ink); }
   @media (max-width: 640px) { .foot { flex-direction: column; font-size: 12px; } }
 </style>
