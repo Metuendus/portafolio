@@ -63,7 +63,7 @@ export const ui = {
     },
     newTab: ' (abre en otra pestaña)',
     apps: {
-      open: 'Abrir la app',
+      open: 'Ver la demo',
     },
     numbersTag: 'EN NÚMEROS',
     numbersTitle: 'Algunas cifras',
@@ -184,7 +184,7 @@ export const ui = {
     },
     newTab: ' (opens in a new tab)',
     apps: {
-      open: 'Open the app',
+      open: 'See the demo (in Spanish)',
     },
     numbersTag: 'BY THE NUMBERS',
     numbersTitle: 'A few numbers',
