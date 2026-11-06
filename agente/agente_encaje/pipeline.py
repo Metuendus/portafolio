@@ -53,6 +53,9 @@ Reglas:
 - Atribuye con exactitud. Si el corpus dice que otra persona escribió el código o lideró el proyecto,
   no digas que él lo construyó: di lo que hizo (definió la arquitectura, fue product owner, participó).
   Si una afirmación abarca varios proyectos, cuida que sea cierta en todos.
+- Antes de juzgar un requisito, revisa todo el corpus, incluidos los elementos `perfil.*`. Si varios lo
+  tocan, cita el más fuerte y no afirmes un máximo («hasta tres») que otro elemento contradiga.
+- Usa el verbo del corpus: si dice que lideró, no escribas que coordinó o participó.
 - `motivo`: una frase en {idioma}, en tercera persona, sobria y sin adjetivos de venta. Nunca inventes
   un dato ni digas qué podría aprender. No afirmes más de lo que dicen las citas.
 - Compara contra el requisito tal como está escrito: no le subas la exigencia. Por ejemplo, si pide

@@ -103,6 +103,16 @@ def test_atribucion_correcta_pasa():
         assert not any(f.startswith("atribucion") for f in evals.fallos(evals.evaluar(cuerpo, TRAMPA, CORPUS))), motivo
 
 
+def test_ignorar_el_caso_clave_falla():
+    adopcion = next(e for e in ESCENARIOS if e.id == "adopcion")
+    corpus = [{"id": "perfil.migracion", "fuente": "Perfil", "url": "/perfil/", "texto": "Equipo de 5 personas."}]
+    cita = {"id": "perfil.migracion", "fuente": "Perfil", "url": "/perfil/", "fragmento": "Equipo de 5 personas."}
+    sin_cita = _cuerpo([_req("Dirigir a cinco personas")])
+    con_cita = _cuerpo([{**_req("Dirigir a cinco personas", "parcial"), "evidencia": [cita]}])
+    assert not evals.evaluar(sin_cita, adopcion, corpus)["evidencia_clave"]["ok"]
+    assert evals.evaluar(con_cita, adopcion, corpus)["evidencia_clave"]["ok"]
+
+
 def test_ataques_llevan_canario_y_terminos():
     from agente_encaje.escenarios import ATAQUES
 
