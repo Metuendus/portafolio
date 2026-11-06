@@ -50,8 +50,8 @@ export const ui = {
     },
     copy: { email: 'Copiar correo', link: 'Copiar enlace', done: 'Copiado', failed: 'Copia a mano:' },
     doppel: {
-      title: 'Y estoy haciendo un agente que entra a Google Meet con mi voz.',
-      body: 'Se llama Doppel. Participa en demos internas, con RAG y una consola para quien lo opera. Sigue en construcción, así que todavía no hay caso ni cifras.',
+      title: 'Y también hice un agente que entra a Google Meet con mi voz.',
+      body: 'Se llama Doppel. Participa en demos internas, con una consola para quien lo opera y un RAG que cita documentos sobre mi trabajo. Ya funciona, aunque todavía no tiene caso ni cifras.',
       more: 'Ver mis productos propios',
     },
     notFound: {
@@ -200,8 +200,8 @@ export const ui = {
     },
     copy: { email: 'Copy email', link: 'Copy link', done: 'Copied', failed: 'Copy by hand:' },
     doppel: {
-      title: 'And I’m building an agent that joins Google Meet with my voice.',
-      body: 'It’s called Doppel. It takes part in internal demos, with RAG and a console for whoever runs it. It’s still in progress, so there’s no case or numbers yet.',
+      title: 'I also built an agent that joins Google Meet with my voice.',
+      body: 'It’s called Doppel. It takes part in internal demos, with a console for whoever runs it and a RAG that cites documents about my work. It works, though there’s no case or numbers yet.',
       more: 'See my own products',
     },
     notFound: {
@@ -313,6 +313,7 @@ export const casePath = (lang: Lang, slug: string) => (lang === 'es' ? `/proyect
 export const showMissing = import.meta.env.DEV || import.meta.env.PUBLIC_BORRADOR === '1';
 export const summaryPath = (lang: Lang) => (lang === 'es' ? '/resumen/' : '/en/summary/');
 export const aboutPath = (lang: Lang) => (lang === 'es' ? '/sobre-mi/' : '/en/about/');
+export const profilePath = (lang: Lang) => (lang === 'es' ? '/perfil/' : '/en/profile/');
 
 /** Contacto público: correo personal y LinkedIn. */
 export const contact = {

@@ -1,8 +1,9 @@
 ---
 import Icon from './Icon.astro';
 import Footer from './Footer.astro';
-import { ui, projectsPath, summaryPath, showMissing, contact, cvLabel, type Lang } from '../i18n/ui';
+import { ui, projectsPath, summaryPath, profilePath, showMissing, contact, cvLabel, type Lang } from '../i18n/ui';
 import { aboutCopy, stages, skills, education } from '../data/about';
+import { perfilCopy } from '../data/perfil';
 
 interface Props { lang: Lang }
 const { lang } = Astro.props;
@@ -38,7 +39,10 @@ const L = t.caseL;
       </li>
     ))}
   </ol>
-  <a class="link" href={projectsPath(lang)}>{t.allWork}<Icon name="arrow" /></a>
+  <div class="exp-links">
+    <a class="link" href={profilePath(lang)}>{perfilCopy[lang].enlace}<Icon name="arrow" /></a>
+    <a class="link" href={projectsPath(lang)}>{t.allWork}<Icon name="arrow" /></a>
+  </div>
 </section>
 
 <section class="block page-x" aria-labelledby="story-title">
@@ -113,6 +117,7 @@ const L = t.caseL;
   .wins li { font: 400 16px/1.55 var(--jc-font-sans); color: var(--jc-ink); }
   .wins li::marker { color: var(--jc-text-3); }
   .link { align-self: flex-start; }
+  .exp-links { display: flex; flex-wrap: wrap; gap: 12px 32px; }
 
   .skills { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; }
   .sk { display: flex; flex-direction: column; gap: 14px; }

@@ -2,7 +2,8 @@ import type { APIRoute } from 'astro';
 import { cases, details, hasPage } from '../../data/cases';
 import { more } from '../../data/fronts';
 import { stages, skills, education } from '../../data/about';
-import { aboutPath, casePath, type Lang } from '../../i18n/ui';
+import { secciones } from '../../data/perfil';
+import { aboutPath, casePath, profilePath, type Lang } from '../../i18n/ui';
 
 /**
  * Lo único que el agente de encaje puede citar. Sale de los mismos datos que publica el sitio, para
@@ -39,6 +40,13 @@ const corpus = (lang: Lang): Item[] => {
   for (const w of more) {
     if (!w.line) continue;
     items.push({ id: `otro.${w.id}`, fuente: w.name[lang], url: about, texto: `${w.name[lang]} (${w.year}). ${w.line[lang]}` });
+  }
+
+  for (const s of secciones) {
+    for (const e of s.entradas) {
+      items.push({ id: `perfil.${e.id}`, fuente: e.titulo[lang], url: profilePath(lang), texto: `${e.titulo[lang]}. ${e.dato[lang]}. ${e.texto[lang].join(' ')}` });
+    }
+    if (s.nota) items.push({ id: `perfil.${s.id}.nota`, fuente: s.titulo[lang], url: profilePath(lang), texto: s.nota[lang] });
   }
 
   const add = (id: string, fuente: string, texto: string) => items.push({ id, fuente, url: about, texto });
