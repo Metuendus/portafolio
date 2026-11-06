@@ -1,0 +1,184 @@
+{
+ "escenario": "adopcion",
+ "lang": "es",
+ "titulo": "Líder de adopción de IA",
+ "vacante": "Líder de adopción de IA (vacante de ejemplo)\n\nUna empresa de 2,000 personas quiere pasar de pilotos sueltos a uso diario de IA.\n\nRequisitos:\n- Haber llevado una herramienta interna de IA de cero a uso recurrente.\n- Medir la adopción con datos, no con encuestas.\n- Diseñar y dar capacitación a personas no técnicas.\n- Definir roadmap y prioridades como product owner.\n- Experiencia en gestión del cambio en empresas de más de 1,000 empleados.\n- Dirigir un equipo de al menos cinco personas.\n",
+ "trampa": null,
+ "grabado": "2026-11-06",
+ "commit": "5c16c5f",
+ "hash_corpus": "6beaa74621c0e807",
+ "hash_prompts": "70bb169cd7ccc19c",
+ "pasos": [
+  {
+   "id": "extraer",
+   "tipo": "modelo",
+   "titulo": "Extraer requisitos",
+   "resumen": "6 requisitos. Instrucciones detectadas en el texto: 0.",
+   "modelo": "gemini-3.5-flash-lite",
+   "tokens_entrada": 484,
+   "tokens_salida": 121,
+   "costo_usd": 0.000448,
+   "latencia_ms": 5482
+  },
+  {
+   "id": "evaluar",
+   "tipo": "modelo",
+   "titulo": "Evaluar contra sus casos",
+   "resumen": "Un juicio por requisito, con 159 fragmentos del portafolio.",
+   "modelo": "gemini-3.8-flash",
+   "tokens_entrada": 8614,
+   "tokens_salida": 5393,
+   "costo_usd": 0.053368,
+   "latencia_ms": 42414
+  },
+  {
+   "id": "validar",
+   "tipo": "codigo",
+   "titulo": "Comprobar cada cita",
+   "resumen": "0 citas rechazadas y 0 requisitos bajados a sin evidencia.",
+   "rechazos": []
+  }
+ ],
+ "requisitos": [
+  {
+   "texto": "Haber llevado una herramienta interna de IA de cero a uso recurrente.",
+   "estado": "con_evidencia",
+   "motivo": "Llevó herramientas internas de IA como Osaka desde la primera versión hasta su adopción recurrente en producción.",
+   "evidencia": [
+    {
+     "id": "puesto0.logro0",
+     "fuente": "AI & Automation Lead (sep 2024 – hoy)",
+     "url": "/sobre-mi/",
+     "fragmento": "hice la primera versión en 2025 y hoy soy product owner de la de producción"
+    },
+    {
+     "id": "mcp.cifra0",
+     "fuente": "Osaka, servidor MCP de medios",
+     "url": "/proyectos/mcp/",
+     "fragmento": "47: usuarios activos; casi todos lo usan vía MCP (panel de administración, oct 2026)"
+    }
+   ],
+   "degradado": false
+  },
+  {
+   "texto": "Medir la adopción con datos, no con encuestas.",
+   "estado": "con_evidencia",
+   "motivo": "Mide el uso y la adopción mediante telemetría dentro de las aplicaciones y paneles de administración.",
+   "evidencia": [
+    {
+     "id": "prompts.decision1",
+     "fuente": "Librería de Prompts",
+     "url": "/proyectos/prompts/",
+     "fragmento": "La analítica de usuarios activos vive en la misma librería, para saber si la gente regresa."
+    },
+    {
+     "id": "mcp.paso2",
+     "fuente": "Osaka, servidor MCP de medios",
+     "url": "/proyectos/mcp/",
+     "fragmento": "Las conversaciones quedan en Firestore y un panel de administración muestra el uso por persona."
+    }
+   ],
+   "degradado": false
+  },
+  {
+   "texto": "Diseñar y dar capacitación a personas no técnicas.",
+   "estado": "parcial",
+   "motivo": "Diseñó e impartió cursos internos de IA y herramientas, pero sus casos no especifican si los destinatarios eran perfiles no técnicos.",
+   "evidencia": [
+    {
+     "id": "puesto0.logro6",
+     "fuente": "AI & Automation Lead (sep 2024 – hoy)",
+     "url": "/sobre-mi/",
+     "fragmento": "Cursos internos de prompting, AI Fluency y «Dashboards con Claude Code»"
+    }
+   ],
+   "degradado": false
+  },
+  {
+   "texto": "Definir roadmap y prioridades como product owner.",
+   "estado": "con_evidencia",
+   "motivo": "Definió arquitectura, permisos, roadmap y entregables de producto en proyectos internos de IA como product owner.",
+   "evidencia": [
+    {
+     "id": "einstein.rol",
+     "fuente": "Einstein",
+     "url": "/proyectos/einstein/",
+     "fragmento": "Product owner. Definí arquitectura, permisos y roadmap; lo construyó un desarrollador de mi equipo."
+    },
+    {
+     "id": "mcp.rol",
+     "fuente": "Osaka, servidor MCP de medios",
+     "url": "/proyectos/mcp/",
+     "fragmento": "decidí qué features entraban y aporté el proveedor de DV360"
+    }
+   ],
+   "degradado": false
+  },
+  {
+   "texto": "Experiencia en gestión del cambio en empresas de más de 1,000 empleados.",
+   "estado": "sin_evidencia",
+   "motivo": "El portafolio no muestra experiencia en gestión del cambio en organizaciones de más de 1,000 empleados.",
+   "evidencia": [],
+   "degradado": false
+  },
+  {
+   "texto": "Dirigir un equipo de al menos cinco personas.",
+   "estado": "parcial",
+   "motivo": "Lideró y coordinó un proyecto con un equipo de cinco personas contándose a sí mismo, pero su reporte directo continuo ha sido de una persona y anteriormente lideró a tres.",
+   "evidencia": [
+    {
+     "id": "perfil.migracion",
+     "fuente": "Migración de Osaka a PassportHub",
+     "url": "/perfil/",
+     "fragmento": "Equipo de desarrollo de 5 personas, conmigo."
+    },
+    {
+     "id": "puesto0.que",
+     "fuente": "AI & Automation Lead (sep 2024 – hoy)",
+     "url": "/sobre-mi/",
+     "fragmento": "dirijo a un desarrollador de IA"
+    }
+   ],
+   "degradado": false
+  }
+ ],
+ "instrucciones_ignoradas": [],
+ "totales": {
+  "costo_usd": 0.053816,
+  "latencia_ms": 47896,
+  "tokens": 14612
+ },
+ "costo_ataques_usd": 0.0,
+ "evals": [
+  {
+   "id": "citas_textuales",
+   "etiqueta": "Toda cita aparece textual en el portafolio",
+   "ok": true
+  },
+  {
+   "id": "estados_con_cita",
+   "etiqueta": "Ningún requisito positivo queda sin cita",
+   "ok": true
+  },
+  {
+   "id": "sin_puntaje",
+   "etiqueta": "No da puntaje ni porcentaje global",
+   "ok": true
+  },
+  {
+   "id": "atribucion",
+   "etiqueta": "No se atribuye lo que construyó otra persona",
+   "ok": true
+  },
+  {
+   "id": "sin_nombres",
+   "etiqueta": "No aparece ningún nombre interno",
+   "ok": true
+  },
+  {
+   "id": "evidencia_clave",
+   "etiqueta": "No ignora el caso más relevante del portafolio",
+   "ok": true
+  }
+ ]
+}

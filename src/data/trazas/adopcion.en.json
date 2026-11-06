@@ -1,0 +1,184 @@
+{
+ "escenario": "adopcion",
+ "lang": "en",
+ "titulo": "AI Adoption Lead",
+ "vacante": "AI Adoption Lead (sample job posting)\n\nA 2,000-person company wants to move from scattered pilots to daily use of AI.\n\nRequirements:\n- Having taken an internal AI tool from zero to recurring use.\n- Measuring adoption with data, not surveys.\n- Designing and delivering training for non-technical people.\n- Setting the roadmap and priorities as a product owner.\n- Change management experience at companies with over 1,000 employees.\n- Leading a team of at least five people.\n",
+ "trampa": null,
+ "grabado": "2026-11-06",
+ "commit": "5c16c5f",
+ "hash_corpus": "6beaa74621c0e807",
+ "hash_prompts": "70bb169cd7ccc19c",
+ "pasos": [
+  {
+   "id": "extraer",
+   "tipo": "modelo",
+   "titulo": "Extract requirements",
+   "resumen": "6 requirements. Instructions detected in the text: 0.",
+   "modelo": "gemini-3.5-flash-lite",
+   "tokens_entrada": 463,
+   "tokens_salida": 106,
+   "costo_usd": 0.000404,
+   "latencia_ms": 1422
+  },
+  {
+   "id": "evaluar",
+   "tipo": "modelo",
+   "titulo": "Evaluate against his case studies",
+   "resumen": "One judgment per requirement, with 159 excerpts from the portfolio.",
+   "modelo": "gemini-3.8-flash",
+   "tokens_entrada": 7977,
+   "tokens_salida": 4937,
+   "costo_usd": 0.048993,
+   "latencia_ms": 21811
+  },
+  {
+   "id": "validar",
+   "tipo": "codigo",
+   "titulo": "Check every citation",
+   "resumen": "0 citations rejected and 0 requirements lowered to no evidence.",
+   "rechazos": []
+  }
+ ],
+ "requisitos": [
+  {
+   "texto": "Having taken an internal AI tool from zero to recurring use",
+   "estado": "con_evidencia",
+   "motivo": "He created the first version of Osaka alone and guided it to 47 active users in production.",
+   "evidencia": [
+    {
+     "id": "mcp.rol",
+     "fuente": "Osaka, media MCP server",
+     "url": "/en/projects/mcp/",
+     "fragmento": "First version and product owner. I built v1 alone in 2025."
+    },
+    {
+     "id": "mcp.cifra0",
+     "fuente": "Osaka, media MCP server",
+     "url": "/en/projects/mcp/",
+     "fragmento": "47: active users; most use it through MCP (admin dashboard, Oct 2026)"
+    }
+   ],
+   "degradado": false
+  },
+  {
+   "texto": "Measuring adoption with data, not surveys",
+   "estado": "con_evidencia",
+   "motivo": "He tracked user adoption through platform telemetry and admin dashboards measuring active users and recurring activity.",
+   "evidencia": [
+    {
+     "id": "mcp.paso2",
+     "fuente": "Osaka, media MCP server",
+     "url": "/en/projects/mcp/",
+     "fragmento": "Conversations are stored in Firestore and an admin dashboard shows usage per person."
+    },
+    {
+     "id": "prompts.decision1",
+     "fuente": "Prompt Library",
+     "url": "/en/projects/prompts/",
+     "fragmento": "Active-user analytics live in the library itself, to see whether people come back."
+    }
+   ],
+   "degradado": false
+  },
+  {
+   "texto": "Designing and delivering training for non-technical people",
+   "estado": "parcial",
+   "motivo": "He designed and taught internal courses on prompting, AI fluency, and dashboards, but his cases do not specify whether the audience was non-technical.",
+   "evidencia": [
+    {
+     "id": "otro.courses",
+     "fuente": "Internal courses",
+     "url": "/en/about/",
+     "fragmento": "Prompting, AI Fluency (Anthropic’s program), “Dashboards with Claude Code”, SQL, Looker Studio and Sheets."
+    }
+   ],
+   "degradado": false
+  },
+  {
+   "texto": "Setting the roadmap and priorities as a product owner",
+   "estado": "con_evidencia",
+   "motivo": "He acted as product owner for Osaka and Einstein, defining the roadmap, architecture, milestones, and feature scope.",
+   "evidencia": [
+    {
+     "id": "einstein.rol",
+     "fuente": "Einstein",
+     "url": "/en/projects/einstein/",
+     "fragmento": "Product owner. I set the architecture, permissions and roadmap; a developer on my team built it."
+    },
+    {
+     "id": "mcp.rol",
+     "fuente": "Osaka, media MCP server",
+     "url": "/en/projects/mcp/",
+     "fragmento": "created the issues and milestones, decided which features went in"
+    }
+   ],
+   "degradado": false
+  },
+  {
+   "texto": "Change management experience at companies with over 1,000 employees",
+   "estado": "sin_evidencia",
+   "motivo": "The portfolio contains no evidence of change management work in organizations with more than 1,000 employees.",
+   "evidencia": [],
+   "degradado": false
+  },
+  {
+   "texto": "Leading a team of at least five people",
+   "estado": "parcial",
+   "motivo": "He led a migration initiative with a 5-person development team including himself, but his direct management roles have covered teams of up to three people.",
+   "evidencia": [
+    {
+     "id": "perfil.migracion",
+     "fuente": "Migrating Osaka to PassportHub",
+     "url": "/en/profile/",
+     "fragmento": "Development team of 5, including me. Osaka became a module inside PassportHub. I led the migration"
+    },
+    {
+     "id": "puesto2.que",
+     "fuente": "CRO & Data Analytics Lead (Jan 2019 – Sep 2020)",
+     "url": "/en/about/",
+     "fragmento": "Created and led the conversion optimization program with a team of three (UX, development and analysis)."
+    }
+   ],
+   "degradado": false
+  }
+ ],
+ "instrucciones_ignoradas": [],
+ "totales": {
+  "costo_usd": 0.049397,
+  "latencia_ms": 23233,
+  "tokens": 13483
+ },
+ "costo_ataques_usd": 0.0,
+ "evals": [
+  {
+   "id": "citas_textuales",
+   "etiqueta": "Every citation appears word for word in the portfolio",
+   "ok": true
+  },
+  {
+   "id": "estados_con_cita",
+   "etiqueta": "No positive requirement is left without a citation",
+   "ok": true
+  },
+  {
+   "id": "sin_puntaje",
+   "etiqueta": "It gives no overall score or percentage",
+   "ok": true
+  },
+  {
+   "id": "atribucion",
+   "etiqueta": "It doesn’t claim what someone else built",
+   "ok": true
+  },
+  {
+   "id": "sin_nombres",
+   "etiqueta": "No internal names appear",
+   "ok": true
+  },
+  {
+   "id": "evidencia_clave",
+   "etiqueta": "It doesn’t ignore the most relevant case in the portfolio",
+   "ok": true
+  }
+ ]
+}

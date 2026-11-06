@@ -1,0 +1,194 @@
+{
+ "escenario": "applied-ai",
+ "lang": "es",
+ "titulo": "Applied AI Engineer",
+ "vacante": "Applied AI Engineer (vacante de ejemplo)\n\nBuscamos a alguien que lleve agentes de IA a producción y logre que los equipos los usen.\n\nRequisitos:\n- Experiencia construyendo servidores MCP o integraciones de herramientas para LLM.\n- RAG en producción, con citas verificables.\n- Evaluaciones automatizadas de agentes y control de costo por llamada.\n- Python y TypeScript.\n- Despliegue en Google Cloud.\n- Trabajar con equipos no técnicos para que adopten las herramientas.\n- Inglés de trabajo.\n",
+ "trampa": null,
+ "grabado": "2026-11-06",
+ "commit": "6b7592c",
+ "hash_corpus": "6beaa74621c0e807",
+ "hash_prompts": "70bb169cd7ccc19c",
+ "pasos": [
+  {
+   "id": "extraer",
+   "tipo": "modelo",
+   "titulo": "Extraer requisitos",
+   "resumen": "7 requisitos. Instrucciones detectadas en el texto: 0.",
+   "modelo": "gemini-3.5-flash-lite",
+   "tokens_entrada": 471,
+   "tokens_salida": 113,
+   "costo_usd": 0.000424,
+   "latencia_ms": 2511
+  },
+  {
+   "id": "evaluar",
+   "tipo": "modelo",
+   "titulo": "Evaluar contra sus casos",
+   "resumen": "Un juicio por requisito, con 159 fragmentos del portafolio.",
+   "modelo": "gemini-3.8-flash",
+   "tokens_entrada": 8600,
+   "tokens_salida": 5272,
+   "costo_usd": 0.05244,
+   "latencia_ms": 47806
+  },
+  {
+   "id": "validar",
+   "tipo": "codigo",
+   "titulo": "Comprobar cada cita",
+   "resumen": "0 citas rechazadas y 0 requisitos bajados a sin evidencia.",
+   "rechazos": []
+  }
+ ],
+ "requisitos": [
+  {
+   "texto": "Experiencia construyendo servidores MCP o integraciones de herramientas para LLM",
+   "estado": "con_evidencia",
+   "motivo": "Construyó la primera versión de servidores MCP con FastMCP y aportó componentes de autenticación y proveedores en la versión posterior.",
+   "evidencia": [
+    {
+     "id": "mcp.decision0",
+     "fuente": "Osaka, servidor MCP de medios",
+     "url": "/proyectos/mcp/",
+     "fragmento": "En 2025 hice la primera versión solo: servidores MCP sobre BigQuery con FastMCP y una extensión para Claude Desktop."
+    }
+   ],
+   "degradado": false
+  },
+  {
+   "texto": "RAG en producción, con citas verificables",
+   "estado": "parcial",
+   "motivo": "Definió la arquitectura y fue product owner de un sistema RAG desplegado con citas, pero el desarrollo lo realizó un programador de su equipo.",
+   "evidencia": [
+    {
+     "id": "einstein.rol",
+     "fuente": "Einstein",
+     "url": "/proyectos/einstein/",
+     "fragmento": "Product owner. Definí arquitectura, permisos y roadmap; lo construyó un desarrollador de mi equipo."
+    },
+    {
+     "id": "einstein.decision1",
+     "fuente": "Einstein",
+     "url": "/proyectos/einstein/",
+     "fragmento": "Toda respuesta trae citas. El chat enlaza los documentos de donde sacó cada afirmación, para que cualquiera pueda revisarla."
+    }
+   ],
+   "degradado": false
+  },
+  {
+   "texto": "Evaluaciones automatizadas de agentes y control de costo por llamada",
+   "estado": "con_evidencia",
+   "motivo": "Diseñó y programó un chasis que mide tokens y costo por llamada e incluye un runner de evaluaciones con gates de costo y latencia.",
+   "evidencia": [
+    {
+     "id": "fundamentum.paso1",
+     "fuente": "Fundamentum",
+     "url": "/proyectos/fundamentum/",
+     "fragmento": "Toda llamada pasa por ADK y queda medida con modelo, tokens y costo."
+    },
+    {
+     "id": "fundamentum.paso2",
+     "fuente": "Fundamentum",
+     "url": "/proyectos/fundamentum/",
+     "fragmento": "Guardrails de alcance y presupuesto, y un runner de evals con gate de costo y latencia."
+    }
+   ],
+   "degradado": false
+  },
+  {
+   "texto": "Python y TypeScript",
+   "estado": "con_evidencia",
+   "motivo": "Ha desarrollado proyectos utilizando TypeScript en Osaka y Python en Domi.",
+   "evidencia": [
+    {
+     "id": "mcp.stack",
+     "fuente": "Osaka, servidor MCP de medios",
+     "url": "/proyectos/mcp/",
+     "fragmento": "TypeScript, Hono, Next.js, MCP, Claude · OpenAI, Firestore, Cloud Run"
+    },
+    {
+     "id": "domi.stack",
+     "fuente": "Domi",
+     "url": "/proyectos/domi/",
+     "fragmento": "Next.js, Python, Pub/Sub, Firestore, Cloud Run, Terraform"
+    }
+   ],
+   "degradado": false
+  },
+  {
+   "texto": "Despliegue en Google Cloud",
+   "estado": "con_evidencia",
+   "motivo": "Cuenta con múltiples aplicaciones desplegadas y operando en producción en Cloud Run.",
+   "evidencia": [
+    {
+     "id": "mcp.resultado",
+     "fuente": "Osaka, servidor MCP de medios",
+     "url": "/proyectos/mcp/",
+     "fragmento": "Está en producción en Cloud Run y también se usa desde Claude.ai con OAuth."
+    }
+   ],
+   "degradado": false
+  },
+  {
+   "texto": "Trabajar con equipos no técnicos para que adopten las herramientas",
+   "estado": "con_evidencia",
+   "motivo": "Lidera la adopción de inteligencia artificial en la agencia y construye herramientas orientadas a los equipos de cuentas.",
+   "evidencia": [
+    {
+     "id": "puesto0.que",
+     "fuente": "AI & Automation Lead (sep 2024 – hoy)",
+     "url": "/sobre-mi/",
+     "fragmento": "Lidero la adopción de IA en la agencia: construyo y opero los sistemas que usan los equipos de cuentas"
+    }
+   ],
+   "degradado": false
+  },
+  {
+   "texto": "Inglés de trabajo",
+   "estado": "con_evidencia",
+   "motivo": "Acredita un nivel intermedio alto B2 de inglés.",
+   "evidencia": [
+    {
+     "id": "educacion.idioma1",
+     "fuente": "Inglés · intermedio alto (B2), en clases",
+     "url": "/sobre-mi/",
+     "fragmento": "Inglés · intermedio alto (B2), en clases"
+    }
+   ],
+   "degradado": false
+  }
+ ],
+ "instrucciones_ignoradas": [],
+ "totales": {
+  "costo_usd": 0.052864,
+  "latencia_ms": 50317,
+  "tokens": 14456
+ },
+ "costo_ataques_usd": 0.0,
+ "evals": [
+  {
+   "id": "citas_textuales",
+   "etiqueta": "Toda cita aparece textual en el portafolio",
+   "ok": true
+  },
+  {
+   "id": "estados_con_cita",
+   "etiqueta": "Ningún requisito positivo queda sin cita",
+   "ok": true
+  },
+  {
+   "id": "sin_puntaje",
+   "etiqueta": "No da puntaje ni porcentaje global",
+   "ok": true
+  },
+  {
+   "id": "atribucion",
+   "etiqueta": "No se atribuye lo que construyó otra persona",
+   "ok": true
+  },
+  {
+   "id": "sin_nombres",
+   "etiqueta": "No aparece ningún nombre interno",
+   "ok": true
+  }
+ ]
+}

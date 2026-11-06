@@ -1,5 +1,5 @@
 ---
-interface Props { name: 'arrow' | 'moon' | 'sun' | 'menu' | 'close' | 'building' | 'person' | 'archive' | 'check' | 'mail' | 'linkedin' | 'play' | 'cursor' | 'flask' | 'download' | 'external' | 'copy'; size?: number; class?: string }
+interface Props { name: 'partial' | 'none' | 'arrow' | 'moon' | 'sun' | 'menu' | 'close' | 'building' | 'person' | 'archive' | 'check' | 'mail' | 'linkedin' | 'play' | 'cursor' | 'flask' | 'download' | 'external' | 'copy'; size?: number; class?: string }
 const { name, size = 16, class: cls } = Astro.props;
 ---
 {name === 'play' ? (
@@ -8,6 +8,8 @@ const { name, size = 16, class: cls } = Astro.props;
   <svg class={cls} width={size} height={size} viewBox="0 0 24 24" aria-hidden="true"><path d="M4 2.5 19.5 12l-7 1.6-3.6 6.4z" fill="var(--jc-ink)" stroke="var(--jc-canvas)" stroke-width="1.5" stroke-linejoin="round" /></svg>
 ) : (
   <svg class={cls} width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width={name === 'building' || name === 'person' ? 2.2 : name === 'archive' ? 2.4 : 2} stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    {name === 'partial' && <><circle cx="12" cy="12" r="9" /><path d="M12 3a9 9 0 0 1 0 18Z" fill="currentColor" /></>}
+    {name === 'none' && <><circle cx="12" cy="12" r="9" /><path d="M8 12h8" /></>}
     {name === 'arrow' && <path d="M5 12h14M13 6l6 6-6 6" />}
     {name === 'copy' && <><rect width="13" height="13" x="9" y="9" rx="2" /><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" /></>}
     {name === 'external' && <path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5" />}

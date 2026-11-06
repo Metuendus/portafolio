@@ -1,0 +1,10 @@
+---
+import Base from '../../../layouts/Base.astro';
+import Profile from '../../../components/Profile.astro';
+import { perfilCopy } from '../../../data/perfil';
+
+const P = perfilCopy.en;
+---
+<Base lang="en" title={P.title} description={P.description} altHref="/perfil/" current="about">
+  <Profile lang="en" />
+</Base>
