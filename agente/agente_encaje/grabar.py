@@ -1,5 +1,7 @@
 """Graba las corridas en `src/data/trazas/`. Solo escribe las que pasan todas sus evals.
 
+Cada intento, pase o no, queda en `agente/registro.jsonl`, para que lo publicado no oculte los fallos.
+
     cd agente && uv run python -m agente_encaje.grabar --proyecto <gcp> [--escenario trampa] [--lang es]
 
 Antes hay que construir el sitio (`npm run build`), porque el corpus sale de `dist/`.
@@ -16,11 +18,12 @@ from datetime import UTC, datetime
 from pathlib import Path
 
 from agente_encaje import evals, pipeline
-from agente_encaje.escenarios import ESCENARIOS, Escenario
+from agente_encaje.escenarios import ATAQUES, ESCENARIOS, Escenario
 
 RAIZ = Path(__file__).resolve().parents[2]
 CORPUS = RAIZ / "dist" / "agente" / "corpus.json"
 SALIDA = RAIZ / "src" / "data" / "trazas"
+REGISTRO = RAIZ / "agente" / "registro.jsonl"
 
 
 def _hash(texto: bytes) -> str:
@@ -38,6 +41,17 @@ def traza(escenario: Escenario, lang: str, corpus_bytes: bytes, llamador: pipeli
     cuerpo = pipeline.correr(escenario.vacante[lang], lang, corpus, llamador)  # type: ignore[arg-type]
     resultado = evals.evaluar(cuerpo, escenario, corpus)
     con_modelo = [p for p in cuerpo["pasos"] if p["tipo"] == "modelo"]
+    etiquetas = evals.ETIQUETAS[lang]
+    lista = [{"id": k, "etiqueta": etiquetas[k], "ok": v["ok"]} for k, v in resultado.items()]
+    costo_ataques = 0.0
+    if escenario.trampa:
+        for ataque in ATAQUES:
+            otro = pipeline.correr(ataque.vacante[lang], lang, corpus, llamador)  # type: ignore[arg-type]
+            costo_ataques += sum(p["costo_usd"] for p in otro["pasos"] if p["tipo"] == "modelo")
+            rotas = evals.fallos(evals.evaluar(otro, ataque, corpus))
+            if rotas:
+                print(f"  ataque {ataque.id}.{lang}: {rotas}\n  {json.dumps(otro['requisitos'], ensure_ascii=False)}")
+            lista.append({"id": f"ataque_{ataque.id}", "etiqueta": etiquetas["ataque"].format(titulo=ataque.titulo[lang]), "ok": not rotas})
     return {
         "escenario": escenario.id,
         "lang": lang,
@@ -54,7 +68,8 @@ def traza(escenario: Escenario, lang: str, corpus_bytes: bytes, llamador: pipeli
             "latencia_ms": sum(p["latencia_ms"] for p in con_modelo),
             "tokens": sum(p["tokens_entrada"] + p["tokens_salida"] for p in con_modelo),
         },
-        "evals": [{"id": k, "etiqueta": evals.ETIQUETAS[k], "ok": v["ok"]} for k, v in resultado.items()],
+        "costo_ataques_usd": round(costo_ataques, 6),
+        "evals": lista,
     }
 
 
@@ -83,6 +98,8 @@ def main() -> int:
             t = traza(escenario, lang, corpus_bytes, llamador)
             rotas = [e["id"] for e in t["evals"] if not e["ok"]]
             resumen = f"{escenario.id}.{lang}: {t['totales']['costo_usd']:.4f} USD, {t['totales']['latencia_ms']} ms"
+            with REGISTRO.open("a", encoding="utf-8") as registro:
+                registro.write(json.dumps({"fecha": t["grabado"], "commit": t["commit"], "escenario": escenario.id, "lang": lang, "publicada": not rotas, "evals_rotas": rotas, "costo_usd": round(t["totales"]["costo_usd"] + t["costo_ataques_usd"], 6)}, ensure_ascii=False) + "\n")
             if rotas:
                 fallidas += 1
                 print(f"✗ {resumen}. Evals rotas: {rotas}. No se grabó.")

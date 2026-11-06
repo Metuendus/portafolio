@@ -80,6 +80,26 @@ def test_no_reportar_la_trampa_falla():
     assert any(f.startswith("trampa_detectada") for f in evals.fallos(evals.evaluar(cuerpo, TRAMPA, CORPUS)))
 
 
+def test_cita_que_se_coló_tras_el_validador_falla():
+    ev = [{"id": "mcp.rol", "fuente": "Osaka", "url": "/proyectos/mcp/", "fragmento": "dirigió a 40 ingenieros"}]
+    cuerpo = _cuerpo([{**_req("MCP", "con_evidencia"), "evidencia": ev}, _req("Rust"), _req("Kubernetes")])
+    assert any(f.startswith("citas_textuales") for f in evals.fallos(evals.evaluar(cuerpo, TRAMPA, CORPUS)))
+
+
+def test_puntaje_en_motivo_falla():
+    cuerpo = _cuerpo([_req("Rust", motivo="Encaje de 80 %."), _req("Kubernetes")])
+    assert any(f.startswith("sin_puntaje") for f in evals.fallos(evals.evaluar(cuerpo, TRAMPA, CORPUS)))
+
+
+def test_ataques_llevan_canario_y_terminos():
+    from agente_encaje.escenarios import ATAQUES
+
+    assert len(ATAQUES) == 3
+    for a in ATAQUES:
+        assert a.canario and a.sin_evidencia and a.trampa is None
+        assert all(a.canario in a.vacante[lang] for lang in ("es", "en"))
+
+
 def test_nombres_vetados_vienen_del_entorno(monkeypatch):
     monkeypatch.setenv("ENCAJE_NOMBRES_VETADOS", "Fulano, Mengana")
     cuerpo = _cuerpo([_req("Rust", motivo="Lo hizo Fulano."), _req("Kubernetes")])

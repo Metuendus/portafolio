@@ -1,6 +1,6 @@
-# Agente de encaje
+# Evaluador de encaje
 
-Evalúa una vacante contra lo que este portafolio publica y graba la corrida. El sitio solo reproduce esas grabaciones: **ningún visitante dispara una llamada a un modelo.**
+No es un agente con herramientas, a propósito: una vacante es texto no confiable y aquí no tiene nada que pueda activar. Evalúa una vacante contra lo que este portafolio publica y graba la corrida. El sitio solo reproduce esas grabaciones: **ningún visitante dispara una llamada a un modelo.**
 
 ## Cómo funciona
 
@@ -14,6 +14,8 @@ El corpus es [`/agente/corpus.json`](../src/pages/agente/corpus.json.ts), genera
 
 - Una corrida solo se escribe si pasa todas sus [evals](agente_encaje/evals.py), con umbral del 100 %.
 - Los JSON de `src/data/trazas/` no se editan a mano. Si uno no gusta, se cambia el corpus o el prompt y se vuelve a grabar.
+- Cada intento, pase o no, queda en [`registro.jsonl`](registro.jsonl), desde la versión que introdujo el registro.
+- La trampa solo se graba si también resiste [otros tres ataques](agente_encaje/escenarios.py).
 - Las vacantes son de ejemplo, escritas para esto. No vienen de empresas reales.
 
 ## Grabar
