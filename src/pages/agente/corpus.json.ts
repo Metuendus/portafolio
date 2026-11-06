@@ -46,7 +46,6 @@ const corpus = (lang: Lang): Item[] => {
     for (const e of s.entradas) {
       items.push({ id: `perfil.${e.id}`, fuente: e.titulo[lang], url: profilePath(lang), texto: `${e.titulo[lang]}. ${e.dato[lang]}. ${e.texto[lang].join(' ')}` });
     }
-    if (s.nota) items.push({ id: `perfil.${s.id}.nota`, fuente: s.titulo[lang], url: profilePath(lang), texto: s.nota[lang] });
   }
 
   const add = (id: string, fuente: string, texto: string) => items.push({ id, fuente, url: about, texto });
