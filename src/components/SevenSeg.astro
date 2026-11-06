@@ -1,0 +1,33 @@
+---
+// Dígito de siete segmentos. Es decorativo: la cifra siempre aparece también en el texto del logro.
+interface Props { digit: string; index?: number }
+const { digit, index = 0 } = Astro.props;
+
+const segments = {
+  a: '8,9 13,4 47,4 52,9 46,14 14,14',
+  b: '52,11 57,16 57,43 52,48 47,43 47,16',
+  c: '52,52 57,57 57,84 52,89 47,84 47,57',
+  d: '8,91 14,86 46,86 52,91 47,96 13,96',
+  e: '8,52 13,57 13,84 8,89 3,84 3,57',
+  f: '8,11 13,16 13,43 8,48 3,43 3,16',
+  g: '9,50 14,45 46,45 51,50 46,55 14,55',
+};
+const lit: Record<string, string> = { 0: 'abcdef', 1: 'bc', 2: 'abged', 3: 'abgcd', 4: 'fgbc', 5: 'afgcd', 6: 'afgedc', 7: 'abc', 8: 'abcdefg', 9: 'abcdfg' };
+const on = lit[digit];
+if (!on) throw new Error(`SevenSeg no sabe dibujar «${digit}»`);
+---
+<svg class="seven" viewBox="0 0 60 100" style={`--i:${index}`} aria-hidden="true" focusable="false">
+  {Object.entries(segments).map(([name, points]) => <polygon points={points} class={on.includes(name) ? 'on' : 'off'} />)}
+</svg>
+
+<style>
+  /* El brillo va en el <svg>: Safari ignora filter en los elementos internos de un SVG. */
+  .seven { height: clamp(46px, 13vw, 64px); width: auto; overflow: visible; filter: drop-shadow(0 0 3px var(--jc-instr-glow)); }
+  .on { fill: var(--jc-instr-led); }
+  .off { fill: var(--jc-instr-ghost); }
+  @media (forced-colors: active) {
+    .seven { filter: none; }
+    .on { fill: CanvasText; }
+    .off { fill: transparent; }
+  }
+</style>

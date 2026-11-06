@@ -12,10 +12,10 @@ const { lang } = Astro.props;
 <div class="foot page-x"><Footer lang={lang} /></div>
 
 <style>
-  .summary { padding-top: 72px; padding-bottom: 72px; max-width: calc(760px + 2 * var(--jc-page-x)); display: flex; flex-direction: column; gap: 20px; }
+  .summary { padding-top: 40px; padding-bottom: 56px; max-width: calc(var(--jc-container) + 2 * var(--jc-page-x)); display: flex; flex-direction: column; gap: 22px; }
   .foot { padding-bottom: 48px; }
   @media (max-width: 640px) {
-    .summary { padding-top: 32px; padding-bottom: 40px; }
+    .summary { padding-top: 22px; padding-bottom: 40px; gap: 18px; }
     .foot { padding-bottom: 32px; }
   }
 </style>
