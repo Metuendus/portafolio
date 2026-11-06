@@ -1,0 +1,38 @@
+# CI de cada PR y de cada push a main con el workflow reutilizable de Fundamentum.
+# astro check y build, más npm audit. El único check obligatorio es `ci-ok`.
+name: ci
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+permissions:
+  contents: read
+
+jobs:
+  web:
+    uses: Metuendus/fundamentum/.github/workflows/web-node.yml@v1.5.0
+    with:
+      comando: |
+        export ASTRO_TELEMETRY_DISABLED=1
+        npm run build
+
+  ci-ok:
+    needs: [web]
+    if: always()
+    runs-on: ubuntu-24.04
+    timeout-minutes: 2
+    steps:
+      - name: Todos los jobs pasaron o se saltaron
+        env:
+          RESULTADOS: ${{ join(needs.*.result, ' ') }}
+        run: |
+          echo "Resultados: $RESULTADOS"
+          for r in $RESULTADOS; do
+            case "$r" in success|skipped) ;; *) exit 1 ;; esac
+          done

@@ -1,0 +1,15 @@
+# Actualizaciones semanales. Las menores y parches llegan juntas en un solo PR.
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule: { interval: weekly, day: monday, timezone: America/Mexico_City }
+    open-pull-requests-limit: 5
+    groups:
+      menores: { update-types: [minor, patch] }
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule: { interval: weekly, day: monday, timezone: America/Mexico_City }
+    groups:
+      acciones: { patterns: ["*"] }
