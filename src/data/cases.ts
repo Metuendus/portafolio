@@ -11,6 +11,8 @@ export interface CaseSummary {
   shot?: 'iterum' | 'domi' | 'vocatio' | 'fundamentum';
   /** Landing pública de la app (ahí están el ejemplo y el acceso). */
   app?: string;
+  /** Repositorio público del proyecto, si existe. */
+  repo?: string;
   org: Org;
   status?: Status;
   name: Record<Lang, string>;
@@ -61,7 +63,7 @@ export const cases: CaseSummary[] = [
   { id: 'einstein', org: 'epa', status: 'prod', name: { es: 'Einstein', en: 'Einstein' }, hook: { es: 'Un cerebro para darle contexto a cualquier agente', en: 'A brain that gives context to any agent' } , cover: { v: 'RAG', l: { es: 'búsqueda con citas y conector MCP para Claude', en: 'cited search and an MCP connector for Claude' } } },
   { id: 'vocatio', org: 'own', shot: 'vocatio', app: 'https://vocatio.josecarloscorona.dev/demo', status: 'wip', name: { es: 'Vocatio', en: 'Vocatio' }, hook: { es: 'Busca vacantes y adapta tu CV a cada una sin inventar: ningún bullet sin fuente', en: 'Finds openings and tailors your CV to each one without making things up: no bullet without a source' } , cover: { v: 'MX', l: { es: 'vacantes, CV y correo para profesionistas en México', en: 'jobs, CVs and email for professionals in Mexico' } }, image: { src: { es: '/capturas/vocatio.jpg', en: '/capturas/vocatio.jpg' }, width: 1440, height: 900, alt: { es: 'Vocatio con datos de muestra: un CV adaptado a una vacante, con la fuente de cada cambio en el Expediente.', en: 'Vocatio with sample data: a CV tailored to an opening, with each change’s source in the record.' } } },
   { id: 'prompts', org: 'epa', status: 'prod', name: { es: 'Librería de Prompts', en: 'Prompt Library' }, hook: { es: 'Cada script, prompt y automatización de la agencia en un solo lugar, con su uso a la vista', en: 'Every script, prompt and automation at the agency in one place, with its usage in plain sight' } , cover: { v: '38', l: { es: 'personas la usaron en los últimos 30 días', en: 'people used it in the last 30 days' } } },
-  { id: 'fundamentum', org: 'own', shot: 'fundamentum', name: { es: 'Fundamentum', en: 'Fundamentum' }, hook: { es: 'Un chasis unificado para crear apps agénticas', en: 'A unified chassis for building agentic apps' } , cover: { v: '3', l: { es: 'apps sobre el mismo chasis', en: 'apps on the same chassis' } } },
+  { id: 'fundamentum', org: 'own', shot: 'fundamentum', repo: 'https://github.com/Metuendus/fundamentum', name: { es: 'Fundamentum', en: 'Fundamentum' }, hook: { es: 'Un chasis unificado para crear apps agénticas', en: 'A unified chassis for building agentic apps' } , cover: { v: '3', l: { es: 'apps sobre el mismo chasis', en: 'apps on the same chassis' } } },
 ];
 
 export const details: Record<string, CaseDetail> = {

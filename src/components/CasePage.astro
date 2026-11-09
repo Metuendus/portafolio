@@ -33,8 +33,9 @@ const nativo = videos[id]?.[lang];
         {c.stack.map((s) => <span class="chip chip--stack chip--lg">{s}</span>)}
       </div>
       <div class="role"><span class="tag">{L.role}</span><p class="role-t">{c.role}</p><p class="role-n">{c.roleNote.replace(/(\d) %/g, '$1 %')}</p></div>
-      {summary.app && <div class="app-links">
-        <a class="btn btn--primary" href={summary.app} target="_blank" rel="noopener">{ui[lang].apps.open}<Icon name="external" size={16} /><span class="sr-only">{ui[lang].newTab}</span></a>
+      {(summary.app || summary.repo) && <div class="app-links">
+        {summary.app && <a class="btn btn--primary" href={summary.app} target="_blank" rel="noopener">{ui[lang].apps.open}<Icon name="external" size={16} /><span class="sr-only">{ui[lang].newTab}</span></a>}
+        {summary.repo && <a class="btn btn--secondary" href={summary.repo} target="_blank" rel="noopener">{ui[lang].apps.code}<Icon name="external" size={16} /><span class="sr-only">{ui[lang].newTab}</span></a>}
       </div>}
     </div>
     {(nativo || c.videoId || showMissing) && <div class="video-block">
@@ -170,7 +171,7 @@ const nativo = videos[id]?.[lang];
 </article>
 
 <style>
-  .app-links { display: flex; margin-top: 24px; }
+  .app-links { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px; }
   .top { padding-top: 56px; padding-bottom: 96px; display: flex; flex-direction: column; gap: 48px; }
   .intro { display: flex; flex-direction: column; gap: 24px; max-width: 960px; }
   .crumbs { font-size: 13px; }

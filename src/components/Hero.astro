@@ -16,7 +16,7 @@ const h = t.hero;
     <a class="btn btn--secondary btn--lg" href={projectsPath(lang)}>{h.cta1}</a>
     <a class="btn btn--secondary btn--lg" href={contact.cv[lang]} download><Icon name="download" />{cvLabel[lang]}</a>
   </div>
-
+  <p class="looking">{t.looking}</p>
 </section>
 
 <style>
@@ -28,6 +28,7 @@ const h = t.hero;
   }
   .sub { margin-top: 32px; max-width: 720px; font: 400 20px/1.55 var(--jc-font-sans); color: var(--jc-text-2); }
   .ctas { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 44px; }
+  .looking { margin-top: 20px; font: 400 15px/1.5 var(--jc-font-sans); color: var(--jc-text-2); }
 
   @media (max-width: 640px) {
     .hero { padding-top: 32px; padding-bottom: 48px; }

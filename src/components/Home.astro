@@ -6,17 +6,18 @@ import OrgChip from './OrgChip.astro';
 import CopyButton from './CopyButton.astro';
 import CaseCover from './CaseCover.astro';
 import Footer from './Footer.astro';
-import { ui, casePath, projectsPath, aboutPath, showMissing, contact, cvLabel, type Lang } from '../i18n/ui';
+import { ui, casePath, projectsPath, aboutPath, profilePath, showMissing, contact, cvLabel, type Lang } from '../i18n/ui';
 import { cases, hasPage } from '../data/cases';
-import { fronts, numbers, timeline, countByFront, examplesByFront } from '../data/fronts';
+import { fronts, numbers, timeline, authorship, countByFront, examplesByFront, type Credit } from '../data/fronts';
 
 interface Props { lang: Lang }
 const { lang } = Astro.props;
 const t = ui[lang];
 const L = t.caseL;
 const contactId = lang === 'es' ? 'contacto' : 'contact';
-const featured = ['iterum', 'mcp', 'dash', 'domi'].map((id) => cases.find((c) => c.id === id)!);
+const featured = ['mcp', 'prompts', 'dash', 'iterum'].map((id) => cases.find((c) => c.id === id)!);
 const about = aboutPath(lang);
+const creditHref = (c: Credit) => (c.case ? casePath(lang, c.case) : c.profile ? profilePath(lang) : c.href);
 const wave = [18, 34, 52, 30, 68, 44, 86, 58, 100, 72, 40, 62, 92, 54, 28, 70, 96, 48, 66, 36, 80, 50, 24, 42, 16];
 ---
 <Hero lang={lang} />
@@ -33,6 +34,34 @@ const wave = [18, 34, 52, 30, 68, 44, 86, 58, 100, 72, 40, 62, 92, 54, 28, 70, 9
       </div>
     ))}
   </dl>
+</section>
+
+<section class="block page-x" aria-labelledby="built-title">
+  <div class="head">
+    <h2 id="built-title">{t.builtTitle}</h2>
+    <p class="lede">{t.builtIntro}</p>
+  </div>
+  <div class="split">
+    {authorship.map((g) => (
+      <div>
+        <h3>{g.title[lang]}</h3>
+        <ul class="who">
+          {g.items.map((c) => {
+            const href = creditHref(c);
+            const out = !!c.href;
+            return (
+              <li>
+                {href
+                  ? <a class="w-name" href={href} target={out ? '_blank' : undefined} rel={out ? 'noopener' : undefined}>{c.name[lang]}{out && <span class="sr-only">{t.newTab}</span>}</a>
+                  : <span class="w-name">{c.name[lang]}</span>}
+                <span class="w-note">{c.note[lang].replace(/(\d) %/g, '$1\u00a0%')}</span>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+    ))}
+  </div>
 </section>
 
 <section class="block block--cases page-x" aria-labelledby="cases-title">
@@ -150,13 +179,23 @@ const wave = [18, 34, 52, 30, 68, 44, 86, 58, 100, 72, 40, 62, 92, 54, 28, 70, 9
   h2 { font: 600 var(--jc-fs-h1)/1.1 var(--jc-font-sans); letter-spacing: var(--jc-ls-h1); }
 
   .numbers { padding-top: 64px; padding-bottom: 64px; background: var(--jc-surface); display: flex; flex-direction: column; gap: 32px; }
-  .nums { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid var(--jc-hairline-strong); }
+  .nums { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-top: 1px solid var(--jc-hairline-strong); }
   .num { padding: 28px 24px 0 0; margin-right: 24px; border-right: 1px solid var(--jc-hairline); display: flex; flex-direction: column; gap: 8px; }
   .num:last-child { border-right: 0; margin-right: 0; }
   .num dd { margin: 0; }
   .num-v { order: -1; font: 600 var(--jc-fs-display)/1 var(--jc-font-sans); letter-spacing: var(--jc-ls-display); }
   .num-l { font-size: 15px; line-height: 1.45; color: var(--jc-text-2); }
   .num-s { font: 400 12px/1.4 var(--jc-font-mono); color: var(--jc-text-3); }
+
+  .lede { max-width: 60ch; font-size: 17px; line-height: 1.6; color: var(--jc-text-2); }
+  .split { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 48px; border-top: 2px solid var(--jc-ink); }
+  .split h3 { padding-top: 32px; font: 600 28px/1.15 var(--jc-font-sans); letter-spacing: -.6px; }
+  .who { list-style: none; padding: 0; margin-top: 16px; }
+  .who li { padding: 14px 0; border-top: 1px solid var(--jc-hairline); display: flex; flex-direction: column; gap: 4px; }
+  .w-name { align-self: flex-start; font: 600 17px/1.35 var(--jc-font-sans); color: var(--jc-ink); }
+  a.w-name { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; }
+  a.w-name:hover { text-decoration-thickness: 2px; }
+  .w-note { font-size: 15px; line-height: 1.5; color: var(--jc-text-2); }
 
   .principles { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 48px; border-top: 2px solid var(--jc-ink); }
   .principles li { padding-top: 32px; display: flex; flex-direction: column; gap: 16px; }
@@ -244,6 +283,8 @@ const wave = [18, 34, 52, 30, 68, 44, 86, 58, 100, 72, 40, 62, 92, 54, 28, 70, 9
     .body { padding: 16px 8px 8px; }
     .hook { font-size: 26px; }
     .num { padding-bottom: 24px; }
+    .nums { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .num:nth-child(2n) { border-right: 0; margin-right: 0; }
   }
   @media (max-width: 900px) {
     .nums { grid-template-columns: minmax(0, 1fr); }
@@ -251,6 +292,8 @@ const wave = [18, 34, 52, 30, 68, 44, 86, 58, 100, 72, 40, 62, 92, 54, 28, 70, 9
     .num:last-child { border-bottom: 0; }
     .doppel { grid-template-columns: minmax(0, 1fr); gap: 32px; }
     .wave { height: 96px; }
+    .split { grid-template-columns: minmax(0, 1fr); }
+    .split h3 { font-size: 22px; letter-spacing: -.4px; }
     .principles { grid-template-columns: minmax(0, 1fr); gap: 0; border-top: 0; }
     .principles li { padding: 16px 0; gap: 6px; border-bottom: 1px solid var(--jc-hairline); }
     .principles h3 { font-size: 22px; line-height: 1.2; letter-spacing: -.4px; }

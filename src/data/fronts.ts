@@ -58,8 +58,36 @@ export const examplesByFront = (f: Front, lang: Lang) =>
 /** Cifras con fuente para «En números» y la tarjeta de 30 segundos. */
 export const numbers: { v: string; proof?: string; l: Record<Lang, string>; source: Record<Lang, string> }[] = [
   { v: '47', proof: 'osaka-usuarios', l: { es: 'usuarios activos de Osaka, el servidor MCP de medios; casi todos lo usan vía MCP', en: 'active users of Osaka, the media MCP server; most use it through MCP' }, source: { es: 'panel de administración, oct 2026', en: 'admin dashboard, Oct 2026' } },
-  { v: '~30 min', l: { es: 'para el análisis diario de SKU en un cliente de EPA; antes tomaba un día completo', en: 'for daily SKU analysis at one EPA client, down from a full day' }, source: { es: 'estimación propia, proyecto de SKU, 2026', en: 'my own estimate, SKU project, 2026' } },
   { v: '38', proof: 'prompts-usuarios', l: { es: 'personas usaron la Librería de Prompts en los últimos 30 días, con 44 recursos publicados', en: 'people used the Prompt Library in the last 30 days, with 44 published resources' }, source: { es: 'panel de administración, nov 2026', en: 'admin dashboard, Nov 2026' } },
+  { v: '484', l: { es: 'conversaciones reales de Osaka revisadas en un diagnóstico que lideré, para encontrar dónde fallaban las respuestas y por qué', en: 'real Osaka conversations reviewed in a diagnosis I led, to find where answers failed and why' }, source: { es: 'panel de administración de Osaka, oct 2026', en: 'Osaka admin dashboard, Oct 2026' } },
+  { v: '14/16', l: { es: 'notas reales que Hopper clasificó igual que yo en su primera prueba; las otras 2 eran ambiguas', en: 'real notes Hopper classified the way I would in its first test; the other 2 were ambiguous' }, source: { es: 'prueba propia con 16 notas reales', en: 'my own test on 16 real notes' } },
+];
+
+/** Quién escribió el código. `case` enlaza a su caso; `profile`, al perfil ampliado. No entra al corpus: repite hechos de los casos. */
+export interface Credit { name: Record<Lang, string>; note: Record<Lang, string>; case?: string; profile?: boolean; href?: string }
+export const authorship: { id: 'built' | 'led'; title: Record<Lang, string>; items: Credit[] }[] = [
+  {
+    id: 'built',
+    title: { es: 'Lo construí yo', en: 'I built it' },
+    items: [
+      { case: 'prompts', name: { es: 'Librería de Prompts', en: 'Prompt Library' }, note: { es: 'Diseño, código y despliegue. 38 personas la usaron en los últimos 30 días.', en: 'Design, code and deployment. 38 people used it in the last 30 days.' } },
+      { case: 'dash', name: { es: 'Hopper', en: 'Hopper' }, note: { es: 'Mío de punta a punta: 149 reportes de 9 personas.', en: 'Mine end to end: 149 reports from 9 people.' } },
+      { case: 'mcp', name: { es: 'Osaka, primera versión', en: 'Osaka, first version' }, note: { es: 'La hice solo en 2025. En la actual aporté el proveedor de DV360 y la autenticación del MCP.', en: 'I built it alone in 2025. In the current one I contributed the DV360 provider and MCP authentication.' } },
+      { case: 'fundamentum', name: { es: 'Fundamentum y mis apps con agentes', en: 'Fundamentum and my agent apps' }, note: { es: 'El chasis y las apps que corren sobre él, como Iterum, Domi y Vocatio.', en: 'The chassis and the apps that run on it, such as Iterum, Domi and Vocatio.' } },
+      { profile: true, name: { es: 'Dos RAG: la demo de GEO y Doppel', en: 'Two RAG systems: the GEO demo and Doppel' }, note: { es: 'Uno entregaba citas en una demo en vivo ante 30 personas; el otro responde con voz en Google Meet.', en: 'One returned citations in a live demo for 30 people; the other answers by voice in Google Meet.' } },
+      { href: 'https://github.com/Metuendus/portafolio/tree/main/agente', name: { es: 'El evaluador de encaje de este sitio', en: 'This site’s fit evaluator' }, note: { es: 'Dos llamadas a un modelo, comprobaciones por código y costo medido en cada corrida.', en: 'Two model calls, code checks and cost measured on every run.' } },
+    ],
+  },
+  {
+    id: 'led',
+    title: { es: 'Lo dirigí', en: 'I led it' },
+    items: [
+      { case: 'mcp', name: { es: 'Osaka en producción', en: 'Osaka in production' }, note: { es: 'Product owner: diseñé buena parte de la app y decidí qué features entraban. Un desarrollador de mi equipo escribió cerca del 80 % del código.', en: 'Product owner: I designed much of the app and decided which features went in. A developer on my team wrote about 80% of the code.' } },
+      { case: 'einstein', name: { es: 'Einstein', en: 'Einstein' }, note: { es: 'Product owner: definí arquitectura, permisos y roadmap. Lo construyó un desarrollador de mi equipo.', en: 'Product owner: I set the architecture, permissions and roadmap. A developer on my team built it.' } },
+      { profile: true, name: { es: 'Migración de Osaka a PassportHub', en: 'Migrating Osaka to PassportHub' }, note: { es: 'La lideré con el equipo de desarrollo: 5 personas, conmigo.', en: 'I led it with the development team: 5 people, including me.' } },
+      { profile: true, name: { es: 'Consultoría para un cliente regional', en: 'Consulting project for a regional client' }, note: { es: 'Lideré un equipo de varias áreas: CRO, medición y dirección general.', en: 'I led a cross-functional team: CRO, measurement and the CEO’s office.' } },
+    ],
+  },
 ];
 
 export const timeline: { year: string; proof?: string; t: Record<Lang, string>; mark?: 'origin' | 'now' }[] = [
