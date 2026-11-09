@@ -19,7 +19,7 @@ interface Traza {
 }
 
 // Grabadas por agente/agente_encaje/grabar.py. Nunca se editan a mano.
-const ORDEN = ['applied-ai', 'trampa', 'ml-research', 'adopcion'];
+const ORDEN = ['trampa', 'applied-ai', 'adopcion', 'ml-research'];
 const archivos = import.meta.glob<Traza>('../data/trazas/*.json', { eager: true, import: 'default' });
 const trazas = ORDEN.flatMap((id) => archivos[`../data/trazas/${id}.${lang}.json`] ?? []);
 
@@ -44,7 +44,7 @@ const [abre, cierra] = lang === 'es' ? ['«', '»'] : ['“', '”'];
 const prueba = (id: string): string | null => {
   if (id === 'mcp.cifra0') return 'osaka-usuarios';
   const [origen] = id.split('.');
-  return ({ mcp: 'mcp', domi: 'domi', dash: 'dash', prompts: 'prompts-usuarios', puesto0: 'puesto0', puesto2: 'puesto2' } as Record<string, string>)[origen!] ?? null;
+  return ({ mcp: 'mcp', dash: 'dash', prompts: 'prompts-usuarios', puesto0: 'puesto0', puesto2: 'puesto2' } as Record<string, string>)[origen!] ?? null;
 };
 const destinos = (r: Traza['requisitos'][number]) => {
   const vistos = new Map<string, { href: string; dest: string | null; fuente: string; cita: string }>();

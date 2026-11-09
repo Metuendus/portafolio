@@ -65,8 +65,8 @@ export const secciones: Seccion[] = [
         titulo: { es: 'La investigación que terminó en Osaka', en: 'The research that became Osaka' },
         dato: { es: 'Equipo de varias áreas', en: 'Cross-functional team' },
         texto: {
-          es: ['Lideré la investigación original del servidor MCP que hoy es Osaka, con personas de distintas áreas de datos.'],
-          en: ['I led the original research on the MCP server that is now Osaka, with people from different data teams.'],
+          es: ['Lideré la investigación original del servidor MCP que hoy es Osaka, con personas de distintas áreas de datos. Después programé solo la primera versión, en 2025.'],
+          en: ['I led the original research on the MCP server that is now Osaka, with people from different data teams. I then wrote the first version by myself, in 2025.'],
         },
       },
     ],

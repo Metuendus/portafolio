@@ -45,6 +45,7 @@ const frontName = (id: string) => fronts.find((f) => f.id === id)!.name[lang];
               <div class="c-links">
                 {linked ? <a class="c-read stretch" href={casePath(lang, c.id)}>{t.readCase}<Icon name="arrow" /></a> : <span class="soon tag">{t.soon}</span>}
                 {c.app && <a class="c-read app-open" href={c.app} target="_blank" rel="noopener">{t.apps.open}<Icon name="external" size={16} /><span class="sr-only">{t.newTab}</span></a>}
+                {c.repo && <a class="c-read app-open" href={c.repo} target="_blank" rel="noopener">{t.apps.code}<Icon name="external" size={16} /><span class="sr-only">{t.newTab}</span></a>}
               </div>
             </div>
           </div>

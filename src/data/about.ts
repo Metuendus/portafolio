@@ -73,7 +73,7 @@ export const stages: Stage[] = [
     wins: {
       es: [
         'Osaka, el servidor MCP de medios: hice la primera versión en 2025 y hoy soy product owner de la de producción, un asistente agéntico sobre Meta, Google Ads, GA4, TikTok, Bing y DV360 en Cloud Run, con 47 usuarios activos.',
-        'Librería de Prompts: la diseñé y la construí (Next.js, Firestore, Cloud Run) y se abrió a las 170 personas de EPA. En los últimos 30 días la usaron 38 personas, con 0 USD al mes de operación.',
+        'Librería de Prompts: la diseñé y la construí (Next.js, Firestore, Cloud Run) y se abrió a las 170 personas que tenía entonces EPA. En los últimos 30 días la usaron 38 personas, con 0 USD al mes de operación.',
         'Product owner de Einstein, la base de conocimiento con RAG y conector MCP de la agencia.',
         'Hopper: un portal de QA para dashboards. Cada bug me costaba una llamada; ahora la IA hace el triage y la clasificación, y abre un issue priorizado en GitHub listo para el fix.',
         'Dashboard y ETL de SKU para clientes de EPA, co-desarrollado: en un cliente, el análisis diario pasó de un día completo a unos 30 minutos, según mi estimación.',
@@ -82,7 +82,7 @@ export const stages: Stage[] = [
       ],
       en: [
         'Osaka, the media MCP server: I built the first version in 2025 and now I’m product owner of the production one, an agentic assistant over Meta, Google Ads, GA4, TikTok, Bing and DV360 on Cloud Run, with 47 active users.',
-        'Prompt Library: I designed and built it (Next.js, Firestore, Cloud Run) and it opened to all 170 people at EPA. In the last 30 days 38 people used it, at 0 USD a month to run.',
+        'Prompt Library: I designed and built it (Next.js, Firestore, Cloud Run) and it opened to the 170 people EPA had at the time. In the last 30 days 38 people used it, at 0 USD a month to run.',
         'Product owner of Einstein, the agency’s RAG knowledge base with an MCP connector.',
         'Hopper: a QA portal for dashboards. Every bug used to cost me a call; now AI does the triage and classification and opens a prioritized GitHub issue, ready for the fix.',
         'SKU dashboard and ETL for EPA clients, co-developed: for one client, daily analysis went from a full day to about 30 minutes, by my estimate.',

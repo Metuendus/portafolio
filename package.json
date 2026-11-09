@@ -7,7 +7,8 @@
     "dev": "astro dev",
     "build": "astro check && astro build && node scripts/verificar-trazas.mjs",
     "preview": "astro preview",
-    "check": "astro check"
+    "check": "astro check",
+    "cv": "node scripts/cv.mjs"
   },
   "dependencies": {
     "astro": "7.4.5"

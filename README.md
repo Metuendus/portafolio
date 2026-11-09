@@ -22,6 +22,7 @@ npm install
 npm run dev                      # http://localhost:4321, modo borrador (muestra los «(falta)»)
 npm run build                    # astro check + build a dist/, modo producción (los oculta)
 PUBLIC_BORRADOR=1 npm run build  # build con los «(falta)» visibles
+npm run cv                       # regenera public/cv/*.pdf desde cv/cv-<idioma>.md (necesita Chrome)
 ```
 
 Node ≥ 22.22. Astro fijado en 7.4.1 (7.4.2 pide Node ≥ 22.23.4).
