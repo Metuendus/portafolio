@@ -50,4 +50,4 @@ Por diversión hago apps con agentes. Algunas, como **Iterum** (viajes), **Domi*
 
 - **Licenciatura en Administración**, UNAM, Facultad de Contaduría y Administración, titulado en 2016
 - **Certificaciones:** Google Launching into ML y Prompt Design in Vertex AI (2024); DataCamp Data Analyst with Python (2022)
-- **Idiomas:** español nativo; inglés intermedio alto (B2)
+- **Idiomas:** español nativo; inglés intermedio alto (B2), de uso diario en lectura y escritura

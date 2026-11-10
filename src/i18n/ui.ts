@@ -51,7 +51,8 @@ export const ui = {
     copy: { email: 'Copiar correo', link: 'Copiar enlace', done: 'Copiado', failed: 'Copia a mano:' },
     doppel: {
       title: 'Y también hice un agente que entra a Google Meet con mi voz.',
-      body: 'Se llama Doppel. Participa en demos internas, con una consola para quien lo opera y un RAG que cita documentos sobre mi trabajo. Ya funciona, aunque todavía no tiene caso ni cifras.',
+      chip: 'Funciona con voz',
+      body: 'Se llama Doppel. Participa en demos internas, con una consola para quien lo opera y un RAG que cita documentos sobre mi trabajo. Funciona con audio; el video, que era el plan original, quedó fuera. Todavía no tiene caso ni cifras.',
       more: 'Ver mis productos propios',
     },
     notFound: {
@@ -213,7 +214,8 @@ export const ui = {
     copy: { email: 'Copy email', link: 'Copy link', done: 'Copied', failed: 'Copy by hand:' },
     doppel: {
       title: 'I also built an agent that joins Google Meet with my voice.',
-      body: 'It’s called Doppel. It takes part in internal demos, with a console for whoever runs it and a RAG that cites documents about my work. It works, though there’s no case or numbers yet.',
+      chip: 'Works with voice',
+      body: 'It’s called Doppel. It takes part in internal demos, with a console for whoever runs it and a RAG that cites documents about my work. It works with audio; video, the original plan, was left out. There’s no case or numbers yet.',
       more: 'See my own products',
     },
     notFound: {
