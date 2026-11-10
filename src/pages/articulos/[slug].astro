@@ -1,0 +1,13 @@
+---
+import Base from '../../layouts/Base.astro';
+import ArticlePage from '../../components/ArticlePage.astro';
+import { published, articlePath } from '../../data/escritos';
+
+export function getStaticPaths() {
+  return published.map((article) => ({ params: { slug: article.slug.es }, props: { article } }));
+}
+const { article } = Astro.props;
+---
+<Base lang="es" title={`${article.title.es} · José Carlos Corona`} description={article.dek.es} altHref={articlePath('en', article)} current="writing">
+  <ArticlePage lang="es" article={article} />
+</Base>

@@ -1,4 +1,4 @@
-# Portafolio · Escritos · Dominio
+# Portafolio · Artículos · Dominio
 
 ## Entidades
 
@@ -40,5 +40,5 @@ Un archivo por artículo y por idioma en el repositorio.
 Un artículo publicado no se retira en silencio: si se corrige un dato, se pone `actualizado` y la
 corrección se dice en el texto.
 
-Regla de navegación: «Escritos» aparece cuando hay al menos un artículo `publicado`. Como todo
+Regla de navegación: «Artículos» aparece cuando hay al menos un artículo `publicado`. Como todo
 artículo se publica en los dos idiomas, aparece en ambos a la vez.

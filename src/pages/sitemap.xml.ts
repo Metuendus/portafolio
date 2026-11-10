@@ -1,5 +1,6 @@
 import type { APIRoute } from 'astro';
 import { cases, hasPage } from '../data/cases';
+import { published, articlePath, hasWriting } from '../data/escritos';
 
 const pair = (es: string, en: string) => [
   { loc: es, es, en },
@@ -15,6 +16,8 @@ export const GET: APIRoute = ({ site }) => {
     ...pair('/sobre-mi/', '/en/about/'),
     ...pair('/perfil/', '/en/profile/'),
     ...cases.filter((c) => hasPage(c.id)).flatMap((c) => pair(`/proyectos/${c.id}/`, `/en/projects/${c.id}/`)),
+    ...(hasWriting ? pair('/articulos/', '/en/articles/') : []),
+    ...published.flatMap((a) => pair(articlePath('es', a), articlePath('en', a))),
   ];
   const body = pages.map((p) => `  <url>
     <loc>${abs(p.loc)}</loc>

@@ -1,0 +1,84 @@
+---
+import Icon from './Icon.astro';
+import Footer from './Footer.astro';
+import { projectsPath, type Lang } from '../i18n/ui';
+import { published, articlePath, fecha, wt } from '../data/escritos';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = wt[lang];
+---
+<section class="writing page-x" aria-labelledby="writing-title">
+  <div class="head">
+    {published.length > 0 && <span class="tag">{t.count(published.length)}</span>}
+    <h1 id="writing-title">{t.section}</h1>
+  </div>
+  {published.length === 0 ? (
+    <div class="empty">
+      <p class="soon">{t.soon}</p>
+      <p class="soon-t">{t.soonText}</p>
+      <a class="see" href={projectsPath(lang)}>{t.seeProjects}<Icon name="arrow" size={16} /></a>
+    </div>
+  ) : (
+    <ul class="list">
+      {published.map((a) => (
+        <li>
+          <a class="row" href={articlePath(lang, a)}>
+            <span class="meta"><time datetime={a.date}>{fecha(a.date, lang)}</time><span class="rel-m"> · {t.relatedTo} {a.related.title[lang]}</span></span>
+            <span class="body">
+              <span class="title">{a.title[lang]}</span>
+              <span class="dek">{a.dek[lang]}</span>
+              <span class="rel">{t.relatedTo} {a.related.title[lang]}</span>
+            </span>
+            <Icon name="arrow" size={20} class="go" />
+          </a>
+        </li>
+      ))}
+    </ul>
+  )}
+</section>
+
+<div class="foot page-x"><Footer lang={lang} /></div>
+
+<style>
+  .writing { padding-top: 80px; padding-bottom: 120px; display: grid; grid-template-columns: 280px minmax(0, 1fr); gap: 64px; min-height: 560px; }
+  .head { display: flex; flex-direction: column; gap: 10px; }
+  h1 { font: 600 var(--jc-fs-display)/1.05 var(--jc-font-sans); letter-spacing: var(--jc-ls-display); }
+
+  .empty { display: flex; flex-direction: column; gap: 20px; padding-top: 24px; border-top: 2px solid var(--jc-ink); max-width: 720px; align-self: start; }
+  .soon { font: 600 64px/1 var(--jc-font-sans); letter-spacing: -2.2px; }
+  .soon-t { font-size: 19px; line-height: 1.6; color: var(--jc-text-2); }
+  .see { display: inline-flex; align-items: center; gap: 6px; height: 44px; align-self: flex-start; font: 600 15px/1 var(--jc-font-sans); color: var(--jc-ink); text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 1px; }
+  .see:hover { text-decoration-thickness: 2px; }
+
+  .list { list-style: none; padding: 0; border-top: 2px solid var(--jc-ink); align-self: start; }
+  .row {
+    display: grid; grid-template-columns: 140px minmax(0, 1fr) 24px; gap: 32px; align-items: baseline; padding: 32px 0;
+    border-bottom: 1px solid var(--jc-hairline); color: var(--jc-ink); text-decoration: none;
+    transition: background-color var(--jc-dur-fast) var(--jc-ease);
+  }
+  .row:hover { background: var(--jc-surface); }
+  .meta { font: 400 13px/1.4 var(--jc-font-mono); color: var(--jc-text-3); }
+  .rel-m { display: none; }
+  .body { display: flex; flex-direction: column; gap: 10px; }
+  .title { font: 600 28px/1.2 var(--jc-font-sans); letter-spacing: -.6px; text-wrap: pretty; }
+  .dek { font-size: 17px; line-height: 1.55; color: var(--jc-text-2); text-wrap: pretty; }
+  .rel { font: 400 12px/1.4 var(--jc-font-mono); color: var(--jc-text-3); }
+  .row :global(.go) { color: var(--jc-accent); align-self: center; }
+
+  .foot { padding-bottom: 48px; }
+
+  @media (max-width: 900px) {
+    .writing { grid-template-columns: minmax(0, 1fr); gap: 16px; padding-top: 32px; padding-bottom: 64px; min-height: 0; }
+    .empty { padding-top: 20px; gap: 14px; }
+    .soon { font-size: 40px; letter-spacing: -1.2px; }
+    .soon-t { font-size: 16px; line-height: 1.55; }
+    .see { height: 48px; align-self: stretch; justify-content: center; border: 1px solid var(--jc-ink); border-radius: var(--jc-radius-pill); text-decoration: none; }
+    .row { display: flex; flex-direction: column; gap: 8px; padding: 20px 0; }
+    .meta { font-size: 11px; }
+    .rel-m { display: inline; }
+    .rel, .row :global(.go) { display: none; }
+    .title { font-size: 21px; line-height: 1.25; letter-spacing: -.4px; }
+    .dek { font-size: 15px; line-height: 1.5; }
+  }
+</style>

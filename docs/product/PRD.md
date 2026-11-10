@@ -1,9 +1,9 @@
-# Portafolio · Escritos · PRD
+# Portafolio · Artículos · PRD
 
 La sección de artículos de josecarloscorona.dev: textos largos sobre cómo construyo y evalúo
 sistemas de IA, para quien quiere ver cómo pienso antes de escribirme.
 
-Este PRD cubre solo «Escritos». El resto del sitio ya está en producción y su especificación es
+Este PRD cubre solo «Artículos». El resto del sitio ya está en producción y su especificación es
 `design/design_handoff_portafolio/README.md`.
 
 ## Problema
@@ -11,7 +11,7 @@ Este PRD cubre solo «Escritos». El resto del sitio ya está en producción y s
 Los casos del portafolio cuentan qué construí y con qué resultado, pero no hay lugar para explicar
 un experimento o una decisión con detalle. Un responsable de contratación técnico que quiere saber
 cómo razono sobre evaluaciones o seguridad solo encuentra hoy una sección grabada y el código. La
-navegación ya reserva «Escritos», pero está oculta porque no hay contenido.
+navegación ya reserva «Artículos», pero está oculta porque no hay contenido.
 
 ## Usuario
 
@@ -33,7 +33,7 @@ como tal y qué hice yo frente a qué hicieron otros.
 2. Página para leer un artículo (pantalla 4i, sin diseño).
 3. Cada artículo se publica siempre en español y en inglés, con el mismo cambio de idioma del
    resto del sitio.
-4. «Escritos» visible en la navegación cuando hay al menos un artículo publicado.
+4. «Artículos» visible en la navegación cuando hay al menos un artículo publicado.
 5. Metadatos para compartir: título, bajada e imagen Open Graph por artículo (formato 4h).
 6. Primer artículo: «Escribí una vacante con una orden escondida para la IA».
 
@@ -67,9 +67,10 @@ Las métricas 2 a 4 dependen de instalar analítica, que hoy el sitio no tiene.
 
 ## Decisiones abiertas
 
+Resueltas en el handoff de 4i: el artículo muestra tiempo de lectura y, por ahora, no enlaza al
+anterior ni al siguiente.
+
 | # | Decisión | Quién | Para cuándo |
 | --- | --- | --- | --- |
 | 1 | ¿La página de inicio muestra el artículo más reciente? | José Carlos | Después del primer artículo |
 | 2 | ¿RSS en una segunda fase? | José Carlos | Sin fecha |
-| 3 | ¿El artículo muestra tiempo de lectura? | Diseño | En el brief |
-| 4 | ¿Al final se enlaza al artículo anterior y al siguiente, o solo se vuelve a la lista? | Diseño | En el brief |
