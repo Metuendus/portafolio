@@ -31,8 +31,8 @@ Pantalla nueva, sin diseño. Rutas: `/escritos/<slug>/` y `/en/writing/<slug>/`.
 
 - **Propósito:** leer un artículo completo con comodidad y poder comprobar lo que afirma.
 - **Datos que muestra:**
-  - Encabezado: fecha de publicación, fecha de actualización si existe, título y bajada.
-    ⚠️ Por decidir: tiempo de lectura.
+  - Encabezado: fecha de publicación, fecha de actualización si existe, tiempo de lectura (se
+    omite por debajo de 2 minutos), título y bajada.
   - Cuerpo, con estos tipos de bloque:
     - Párrafo y subtítulo.
     - Lista numerada y lista simple. Ejemplo: los cuatro pasos del diseño del evaluador.
@@ -47,12 +47,13 @@ Pantalla nueva, sin diseño. Rutas: `/escritos/<slug>/` y `/en/writing/<slug>/`.
   - Procedencia de los datos: de qué corrida, caso o repositorio salen las cifras, con fecha y
     enlace. Ejemplo: «Datos de la corrida grabada el 6 nov 2026 · ver el registro (JSON) · ver el
     código».
-  - Límites: un bloque para lo que el artículo no demuestra. Ejemplo: «Resistió cuatro ataques;
-    eso no dice nada del siguiente».
+  - Hallazgo y límites: dos bloques gemelos, uno para lo que el artículo encontró y otro para lo
+    que no demuestra. Ejemplo de límites: «Resistió cuatro ataques. Eso no dice nada del
+    siguiente».
   - Relacionado: el caso o la sección del sitio de la que parte el artículo.
 - **Acciones:** volver a la lista; abrir el relacionado; abrir las fuentes (registro, código);
   copiar el enlace del artículo; cambiar de idioma; escribirme por correo al final.
-  ⚠️ Por decidir: enlaces a artículo anterior y siguiente.
+  Sin enlaces a artículo anterior y siguiente; se reabre cuando haya seis artículos o más.
 - **Estados:** vacío: no aplica · cargando: solo imágenes y video, con los estados de `4g` ·
   error: una dirección que no existe muestra el 404 de `4d`; una imagen que falla conserva su
   proporción y muestra el texto alternativo, como en `4g` · éxito: artículo completo.

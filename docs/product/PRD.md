@@ -67,9 +67,10 @@ Las métricas 2 a 4 dependen de instalar analítica, que hoy el sitio no tiene.
 
 ## Decisiones abiertas
 
+Resueltas en el handoff de 4i: el artículo muestra tiempo de lectura y, por ahora, no enlaza al
+anterior ni al siguiente.
+
 | # | Decisión | Quién | Para cuándo |
 | --- | --- | --- | --- |
 | 1 | ¿La página de inicio muestra el artículo más reciente? | José Carlos | Después del primer artículo |
 | 2 | ¿RSS en una segunda fase? | José Carlos | Sin fecha |
-| 3 | ¿El artículo muestra tiempo de lectura? | Diseño | En el brief |
-| 4 | ¿Al final se enlaza al artículo anterior y al siguiente, o solo se vuelve a la lista? | Diseño | En el brief |

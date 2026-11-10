@@ -1,0 +1,8 @@
+---
+import Base from '../../layouts/Base.astro';
+import Writing from '../../components/Writing.astro';
+import { wt } from '../../data/escritos';
+---
+<Base lang="es" title="Escritos · José Carlos Corona" description={wt.es.listDescription} altHref="/en/writing/" current="writing">
+  <Writing lang="es" />
+</Base>

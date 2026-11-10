@@ -1,3 +1,5 @@
+import { hasWriting } from '../data/escritos';
+
 export type Lang = 'es' | 'en';
 
 export const ui = {
@@ -351,5 +353,5 @@ export const contact = {
 
 export const cvLabel: Record<Lang, string> = { es: 'CV en PDF', en: 'CV (PDF)' };
 
-/** Escritos aún no tiene contenido: solo aparece en borrador. */
-export const navItems = (lang: Lang) => ui[lang].nav.filter((l) => l.key !== 'writing' || showMissing);
+/** Escritos aparece cuando hay al menos un artículo publicado; sin artículos, solo en borrador. */
+export const navItems = (lang: Lang) => ui[lang].nav.filter((l) => l.key !== 'writing' || hasWriting || showMissing);
