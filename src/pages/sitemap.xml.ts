@@ -16,7 +16,7 @@ export const GET: APIRoute = ({ site }) => {
     ...pair('/sobre-mi/', '/en/about/'),
     ...pair('/perfil/', '/en/profile/'),
     ...cases.filter((c) => hasPage(c.id)).flatMap((c) => pair(`/proyectos/${c.id}/`, `/en/projects/${c.id}/`)),
-    ...(hasWriting ? pair('/escritos/', '/en/writing/') : []),
+    ...(hasWriting ? pair('/articulos/', '/en/articles/') : []),
     ...published.flatMap((a) => pair(articlePath('es', a), articlePath('en', a))),
   ];
   const body = pages.map((p) => `  <url>

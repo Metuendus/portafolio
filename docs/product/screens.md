@@ -1,15 +1,15 @@
-# Portafolio · Escritos · Pantallas
+# Portafolio · Artículos · Pantallas
 
 Viewport principal: escritorio 1440. Secundario: móvil 375. Los ids siguen la numeración del
 handoff (`4a` a `4h` ya existen); `4i` es nueva.
 
 ## Navegación
 
-Barra superior del sitio: Proyectos · Escritos · Sobre mí · Contacto. «Escritos» lleva a `4c`
-(`/escritos/`, `/en/writing/`) y solo aparece cuando hay al menos un artículo publicado. Cada fila
+Barra superior del sitio: Proyectos · Resumen · Artículos · Sobre mí · Contacto. «Artículos» lleva a `4c`
+(`/articulos/`, `/en/articles/`) y solo aparece cuando hay al menos un artículo publicado. Cada fila
 de `4c` lleva a `4i`. El cambio de idioma y de tema son los del resto del sitio.
 
-## 4c · Lista de escritos
+## 4c · Lista de artículos
 
 Ya diseñada en `design/design_handoff_portafolio/JC Secundarias.dc.html#4c`. Se documenta aquí
 para que el flujo quede completo; no se rediseña.
@@ -27,7 +27,7 @@ para que el flujo quede completo; no se rediseña.
 
 ## 4i · Artículo
 
-Pantalla nueva, sin diseño. Rutas: `/escritos/<slug>/` y `/en/writing/<slug>/`.
+Pantalla nueva, sin diseño. Rutas: `/articulos/<slug>/` y `/en/articles/<slug>/`.
 
 - **Propósito:** leer un artículo completo con comodidad y poder comprobar lo que afirma.
 - **Datos que muestra:**

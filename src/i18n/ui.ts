@@ -7,7 +7,7 @@ export const ui = {
     nav: [
       { label: 'Proyectos', href: '/proyectos/', key: 'projects' },
       { label: 'Resumen', href: '/resumen/', key: 'summary' },
-      { label: 'Escritos', href: '/escritos/', key: 'writing' },
+      { label: 'Artículos', href: '/articulos/', key: 'writing' },
       { label: 'Sobre mí', href: '/sobre-mi/', key: 'about' },
       { label: 'Contacto', href: '/#contacto', key: 'contact' },
     ],
@@ -170,7 +170,7 @@ export const ui = {
     nav: [
       { label: 'Projects', href: '/en/projects/', key: 'projects' },
       { label: 'Summary', href: '/en/summary/', key: 'summary' },
-      { label: 'Writing', href: '/en/writing/', key: 'writing' },
+      { label: 'Articles', href: '/en/articles/', key: 'writing' },
       { label: 'About', href: '/en/about/', key: 'about' },
       { label: 'Contact', href: '/en/#contact', key: 'contact' },
     ],
@@ -353,5 +353,5 @@ export const contact = {
 
 export const cvLabel: Record<Lang, string> = { es: 'CV en PDF', en: 'CV (PDF)' };
 
-/** Escritos aparece cuando hay al menos un artículo publicado; sin artículos, solo en borrador. */
+/** Artículos aparece cuando hay al menos un artículo publicado; sin artículos, solo en borrador. */
 export const navItems = (lang: Lang) => ui[lang].nav.filter((l) => l.key !== 'writing' || hasWriting || showMissing);

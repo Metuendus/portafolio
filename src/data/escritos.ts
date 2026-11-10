@@ -39,7 +39,7 @@ const REQUISITO = `{
   "evidencia": []
 }`;
 
-const captura = { light: '/capturas/escritos/trampa-claro.jpg', dark: '/capturas/escritos/trampa-oscuro.jpg', width: 1712, height: 1139 };
+const captura = { light: '/capturas/articulos/trampa-claro.jpg', dark: '/capturas/articulos/trampa-oscuro.jpg', width: 1712, height: 1139 };
 
 // Las cifras salen de src/data/trazas/trampa.es.json (grabada el 2026-11-06) y de agente/registro.jsonl.
 // Si se vuelve a grabar la trampa, hay que revisar el costo, el tiempo y el conteo de corridas.
@@ -157,7 +157,7 @@ export const articles: Article[] = [
 export const published = articles.filter((a) => a.published).sort((a, b) => b.date.localeCompare(a.date));
 export const hasWriting = published.length > 0;
 
-export const writingPath = (lang: Lang) => (lang === 'es' ? '/escritos/' : '/en/writing/');
+export const writingPath = (lang: Lang) => (lang === 'es' ? '/articulos/' : '/en/articles/');
 export const articlePath = (lang: Lang, a: Article) => `${writingPath(lang)}${a.slug[lang]}/`;
 
 const MESES = ['ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sep', 'oct', 'nov', 'dic'];
@@ -182,15 +182,15 @@ export const minutos = (a: Article, lang: Lang) => {
 
 export const wt = {
   es: {
-    section: 'Escritos',
+    section: 'Artículos',
     listDescription: 'Lo que escribo sobre cómo construyo y evalúo sistemas de IA.',
     count: (n: number) => (n === 1 ? '1 artículo' : `${n} artículos`),
     soon: 'Pronto.',
     soonText: 'Escribo sobre lo que aprendo construyendo. Mientras tanto, los casos cuentan lo mismo con más detalle.',
     seeProjects: 'Ver proyectos',
     relatedTo: 'Relacionado:',
-    back: 'Escritos',
-    backAll: 'Todos los escritos',
+    back: 'Artículos',
+    backAll: 'Todos los artículos',
     meta: 'Datos del artículo',
     published: 'PUBLICADO',
     updated: 'ACTUALIZADO',
@@ -217,15 +217,15 @@ export const wt = {
     mailM: 'Escribir un correo',
   },
   en: {
-    section: 'Writing',
+    section: 'Articles',
     listDescription: 'What I write about how I build and evaluate AI systems.',
     count: (n: number) => (n === 1 ? '1 article' : `${n} articles`),
     soon: 'Soon.',
     soonText: 'I write about what I learn building. Meanwhile, the cases tell the same story in more detail.',
     seeProjects: 'See projects',
     relatedTo: 'Related:',
-    back: 'Writing',
-    backAll: 'All writing',
+    back: 'Articles',
+    backAll: 'All articles',
     meta: 'Article details',
     published: 'PUBLISHED',
     updated: 'UPDATED',

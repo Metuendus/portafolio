@@ -1,4 +1,4 @@
-# Escritos: lista (4c) y artículo (4i)
+# Artículos: lista (4c) y artículo (4i)
 
 Especificación: `design/design_handoff_portafolio/README.md` (secciones «Escritos · 4i Artículo» y
 «Artículo · 4i (ES / EN)»), `JC Artículo.dc.html`, `JC Secundarias.dc.html#4c` y `docs/product/`.
@@ -9,8 +9,8 @@ Especificación: `design/design_handoff_portafolio/README.md` (secciones «Escri
    sección.
 2. `src/components/Writing.astro`: lista 4c, con su estado vacío.
 3. `src/components/ArticlePage.astro`: artículo 4i con todos los bloques del handoff.
-4. Rutas `/escritos/`, `/escritos/<slug>/`, `/en/writing/` y `/en/writing/<slug>/`.
-5. «Escritos» en la navegación cuando hay un artículo publicado, y las páginas en el mapa del sitio.
+4. Rutas `/articulos/`, `/articulos/<slug>/`, `/en/articles/` y `/en/articles/<slug>/`.
+5. «Artículos» en la navegación cuando hay un artículo publicado, y las páginas en el mapa del sitio.
 6. Primer artículo: la vacante con una orden escondida.
 
 ## Desviaciones del handoff, acordadas
