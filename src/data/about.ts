@@ -20,7 +20,7 @@ export const aboutCopy = {
       'Ese gusto por el camino difícil también me costó. Llegué a juntas con matrices de correlación que el cliente no sabía leer, y tuve que aprender a explicar los datos en su idioma. Años después, cuando salió ChatGPT, lo usé primero para algo que no había podido resolver con modelos de NLP: los copies. Luego vi que también servía para programar, y desde entonces me dedico a eso.',
       'Hoy soy AI & Automation Lead en EPA.Digital, una agencia de unas 200 personas. He liderado equipos de desarrollo, CRO y medición en proyectos específicos y soy product owner de productos internos como Osaka, Einstein y la Librería de Prompts. Por gusto, después del trabajo, hago apps con agentes; algunas están en este portafolio.',
       'Mis apps las hago en Claude Code y Claude Design. La parte que más disfruto es el diseño: rebotar ideas para decidir qué entra y qué no, siempre con dos pilares, la IA como núcleo y la experiencia de uso. Ahí aprendí algo que en EPA no: sacar una app de principio a fin sin coordinar con otro equipo, siendo yo el primer usuario, y después probarla con usuarios beta.',
-      'Lo que sigo trabajando: el orden al implementar (por eso hice Fundamentum), hablar menos rápido cuando explico ideas largas y el inglés, que está en B2 y sigo practicando en clases.',
+      'Lo que sigo trabajando: el orden al implementar (por eso hice Fundamentum), hablar menos rápido cuando explico ideas largas y hablar inglés: lo leo y lo escribo a diario en el trabajo, pero casi no he tenido que presentar en él.',
       'Fuera del trabajo me gusta viajar, por México y fuera. Viví un tiempo en Baja California Sur y soy fan de los viajes por carretera y off-road. Veo mucha serie de HBO, como Succession y The Wire, Los Simpson y toda la ciencia ficción que pueda.',
     ],
     storyTitle: 'Cómo llegué aquí',
@@ -45,7 +45,7 @@ export const aboutCopy = {
       'That taste for the hard way cost me too. I showed up to client meetings with correlation matrices nobody could read, and had to learn to explain data in the client’s terms. Years later, when ChatGPT came out, I first used it for something I’d failed to solve with NLP models: ad copy. Then I saw it could also write code, and that’s what I’ve done since.',
       'Today I’m AI & Automation Lead at EPA.Digital, an agency of about 200 people. I’ve led development, CRO and measurement teams on specific projects and I’m product owner of internal products such as Osaka, Einstein and the Prompt Library. For fun, after work, I build agent apps; a few are in this portfolio.',
       'I build my apps in Claude Code and Claude Design. The part I enjoy most is design: bouncing ideas around to decide what goes in and what doesn’t, always on two pillars, AI at the core and the user experience. That’s where I learned something EPA didn’t teach me: shipping an app end to end without coordinating with another team, as its first user, and then testing it with beta users.',
-      'What I’m still working on: order when I build (that’s why I made Fundamentum), slowing down when I explain long ideas, and my English, which is at B2 and still improving in classes.',
+      'What I’m still working on: order when I build (that’s why I made Fundamentum), slowing down when I explain long ideas, and spoken English: I read and write it daily at work, but I’ve rarely had to present in it.',
       'Outside work I like to travel, around Mexico and abroad. I lived in Baja California Sur for a while and I’m a big fan of road trips and off-road driving. I watch a lot of HBO, like Succession and The Wire, The Simpsons, and all the science fiction I can.',
     ],
     storyTitle: 'How I got here',
@@ -159,6 +159,6 @@ export const education = {
   ],
   langs: [
     { es: 'Español · nativo', en: 'Spanish · native' },
-    { es: 'Inglés · intermedio alto (B2), en clases', en: 'English · upper intermediate (B2), taking classes' },
+    { es: 'Inglés · intermedio alto (B2): lo leo y escribo a diario; hablarlo es lo que practico', en: 'English · upper intermediate (B2): I read and write it daily; speaking is what I practice' },
   ],
 };

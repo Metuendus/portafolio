@@ -50,4 +50,4 @@ I build agent apps for fun. Some, such as **Iterum** (travel), **Domi** (apartme
 
 - **B.A. in Business Administration**, UNAM (National Autonomous University of Mexico), School of Accounting and Administration, graduated 2016
 - **Certifications:** Google Launching into ML and Prompt Design in Vertex AI (2024); DataCamp Data Analyst with Python (2022)
-- **Languages:** Spanish (native); English (upper intermediate, B2)
+- **Languages:** Spanish (native); English (upper intermediate, B2; daily use in reading and writing)
