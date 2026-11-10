@@ -23,3 +23,10 @@
 La sección se llama «Artículos» (`/articulos/`, `/en/articles/`). El handoff de Claude Design y el
 brief siguen diciendo «Escritos» y «Writing» porque son el registro de lo que se diseñó; donde
 digan eso, léase «Artículos» y «Articles».
+
+## Tres artículos más (10 nov 2026)
+
+- «Cómo revisamos 484 conversaciones…», «Poner orden cuando todo el equipo programa con IA» y «Lo
+  que aprendí de un producto que nadie usó», en los dos idiomas.
+- La franja de procedencia pasa a ser opcional: solo aparece si el artículo cita una fuente de
+  datos, y el commit solo si existe.
