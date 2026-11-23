@@ -16,7 +16,7 @@ permissions:
 
 jobs:
   web:
-    uses: Metuendus/fundamentum/.github/workflows/web-node.yml@v1.5.0
+    uses: Metuendus/fundamentum/.github/workflows/web-node.yml@v1.6.0
     with:
       comando: |
         export ASTRO_TELEMETRY_DISABLED=1
