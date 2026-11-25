@@ -11,8 +11,8 @@
       "periodo": "corte 2026-11-25",
       "fuente": "Firestore del MCP (usuarios con acceso), consulta del 2026-11-25; coincide con la captura de «Administrar usuarios» del 2026-10-29",
       "confianza": "alta",
-      "publicable": true,
-      "nota": "Es acceso, no uso. No llamarlo «usuarios activos»."
+      "publicable": false,
+      "nota": "Es acceso, no uso. Por decisión del 2026-11-25 no se publica."
     },
     {
       "id": "osaka.uso_30d",
@@ -23,7 +23,7 @@
       "periodo": "2026-10-26 a 2026-11-25",
       "fuente": "Firestore del MCP (tokens de sesión)",
       "confianza": "alta para el conteo; incluye cuentas de desarrollo",
-      "publicable": "pendiente",
+      "publicable": false,
       "nota": "Mide inicios de sesión, no preguntas. Áreas: Performance, Datos, Cuentas y Dirección."
     },
     {
@@ -79,7 +79,7 @@
       "periodo": "2026-10-26 a 2026-11-25",
       "fuente": "logs de Cloud Run (POST /mcp)",
       "confianza": "alta para el conteo; incluye reintentos y posible automatización",
-      "publicable": "pendiente",
+      "publicable": false,
       "nota": "97 % desde conectores de Claude. 49 % en horario laboral. No equivale a personas ni a preguntas."
     },
     {
@@ -91,7 +91,7 @@
       "periodo": "30 días al 2026-11-25",
       "fuente": "logs de Cloud Run",
       "confianza": "alta",
-      "publicable": "pendiente",
+      "publicable": true,
       "nota": "22 % de respuestas 400 sin causa registrada."
     },
     {
@@ -103,7 +103,7 @@
       "periodo": "2026-01-22 a 2026-11-25",
       "fuente": "Firestore (conversations, rateLimits)",
       "confianza": "alta",
-      "publicable": "pendiente",
+      "publicable": false,
       "nota": "Patrón de prueba sin hábito. La hipótesis de que el uso migró al MCP no está probada."
     },
     {
@@ -127,8 +127,16 @@
       "periodo": "corte 2026-11-25",
       "fuente": "Firestore",
       "confianza": "alta",
-      "publicable": "pendiente",
+      "publicable": false,
       "nota": "Ninguna inscripción registrada."
+    }
+  ],
+  "decisiones": [
+    {
+      "caso": "mcp",
+      "fecha": "2026-11-25",
+      "decision": "Osaka se cuenta sin cifras de uso ni de adopción (ni 47, 7, 9 ni 32). Se cuenta por alcance (6 plataformas, MCP en producción para Claude), rol y el diagnóstico de calidad. La redacción tiene que brillar por lo concreto.",
+      "fuente": "José Carlos en el hilo"
     }
   ]
 }
