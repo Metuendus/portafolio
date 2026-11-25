@@ -1,0 +1,23 @@
+# Configuración de los evals. Todo se puede cambiar sin tocar código.
+
+# Qué se evalúa
+inventarios:
+  - ../content/inventory.json
+  - ../content/privado/inventory-perfil.json   # se omite si no existe
+alcance: [reescribir]        # alcances del inventario que entran
+idiomas: [es]                # el inglés se regenera del español aprobado
+
+# Umbral de aprobación: un texto pasa si cumple las tres condiciones
+umbral:
+  patrones_graves_max: 0     # Eval 1: coincidencias graves permitidas
+  ai_smell_max: 2            # Eval 2: 1 (humano) a 5 (IA evidente)
+  evidencia_min: 4           # Eval 3: 1 a 5; solo aplica si el bloque tiene logros o cifras
+  evidencia_agregado: promedio   # cómo se junta la nota de varios logros: promedio | minimo
+
+# Jueces (Claude vía Vertex AI, por Fundamentum)
+jueces:
+  proyecto: travel-planner-509322
+  modelo: claude-sonnet-5-5  # claude-opus-5-5 para una pasada más estricta (el doble de precio)
+  temperatura: 0
+  concurrencia: 4
+  reintentos_json: 1         # si la respuesta no es JSON válido, se pide de nuevo una vez

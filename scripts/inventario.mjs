@@ -32,6 +32,8 @@ const NO_VISIBLE = new Set(['id', 'key', 'href', 'case', 'front', 'year', 'statu
 // Etiquetas de interfaz: se inventarían, pero no pasan por el pipeline.
 const MICROCOPY_UI = /^(nav|navLabel|langLabel|theme|menu|home|footer|clawdSays|readCase|soon|org|status|copy|newTab|apps|video|caseL|notFound|replay\.(legend|states|cites|model|code|vacancy|steps|results|play|pause|again|skip|ticks|follow|back|fast|rawJson|script|corpus|log|attacksCost|recording|verify|how|evals|moreAgents)|projectsPage\.(title|filterLabel|all|cases|others|showMore|showLess|noLine|exp)|quick\.(open|title|stackLabel|winsLabel|close|asPage|more|stack|wins\.\d+\.(t|s))|casesTag|casesTitle|chassisTag|chassisSub|chassisVideo|doorCount|allWork|featuredTitle)\b/;
 
+// Títulos cortos que sí llevan voz (eslóganes posibles): entran aunque tengan menos de 6 palabras.
+const TITULOS = /^(\w+Title|principles\.\d+\.t|hero\.h1)$/;
 const items = [];
 const lenguaje = (segs) => segs.find((s) => s === 'es' || s === 'en');
 const sinLang = (segs) => segs.filter((s) => s !== 'es' && s !== 'en');
@@ -83,7 +85,7 @@ for (const lang of ['es', 'en']) walk(ui.ui[lang], [lang], (segs, t) => {
   const c = sinLang(segs).join('.');
   const [pagina, url, tipo] = pagUi(c);
   agregar({ modulo: 'i18n/ui.ts', segs, texto: t, pagina, url, seccion: c.split('.')[0], tipo,
-    alcance: MICROCOPY_UI.test(c) || tipo === 'ui' ? 'microcopy' : undefined });
+    alcance: MICROCOPY_UI.test(c) || tipo === 'ui' ? 'microcopy' : TITULOS.test(c) ? 'reescribir' : undefined });
 });
 
 // 2. cases.ts: tarjetas (Inicio y Proyectos) y páginas de caso
@@ -122,7 +124,7 @@ walk(fronts.timeline, ['timeline'], (segs, t) => agregar({ modulo: 'data/fronts.
 // 5. about.ts
 const SOBRE = { es: '/sobre-mi/', en: '/en/about/' };
 walk(about.aboutCopy, ['aboutCopy'], (segs, t) => agregar({ modulo: 'data/about.ts', segs, texto: t, pagina: 'Sobre mí', url: SOBRE,
-  seccion: sinLang(segs)[1], tipo: 'perfil' }));
+  seccion: sinLang(segs)[1], tipo: 'perfil', alcance: sinLang(segs)[1] === 'h1' ? 'reescribir' : undefined }));
 walk(about.stages, ['stages'], (segs, t) => agregar({ modulo: 'data/about.ts', segs, texto: t, pagina: 'Sobre mí · experiencia', url: SOBRE,
   seccion: `puesto ${segs[1]} · ${segs[2]}`, tipo: 'perfil', alcance: ['role', 'dates'].includes(segs[2]) ? 'microcopy' : undefined }));
 walk(about.skills, ['skills'], (segs, t) => agregar({ modulo: 'data/about.ts', segs, texto: t, pagina: 'Sobre mí · habilidades', url: SOBRE,
@@ -133,7 +135,7 @@ walk(about.education, ['education'], (segs, t) => agregar({ modulo: 'data/about.
 // 6. perfil.ts
 const PERF = { es: '/perfil/', en: '/en/profile/' };
 walk(perfil.perfilCopy, ['perfilCopy'], (segs, t) => agregar({ modulo: 'data/perfil.ts', segs, texto: t, pagina: 'Perfil ampliado', url: PERF,
-  seccion: sinLang(segs)[1], tipo: 'perfil' }));
+  seccion: sinLang(segs)[1], tipo: 'perfil', alcance: sinLang(segs)[1] === 'h1' ? 'reescribir' : undefined }));
 walk(perfil.secciones, ['secciones'], (segs, t) => agregar({ modulo: 'data/perfil.ts', segs, texto: t, pagina: 'Perfil ampliado', url: PERF,
   seccion: `${segs[1]} · ${segs[3] ?? segs[2]}`, tipo: 'perfil', alcance: segs[2] === 'titulo' || segs[4] === 'titulo' ? 'microcopy' : undefined }));
 
@@ -144,7 +146,7 @@ for (const a of escritos.articles) {
   const { body, ...meta } = a;
   walk(meta, ['articles', a.id], (segs, t) => agregar({ modulo: 'data/escritos.ts', segs, texto: t, pagina, url,
     seccion: sinLang(segs).slice(2).join('.'), tipo: 'articulo',
-    alcance: segs.includes('sources') || segs.includes('cta') || segs.includes('place') ? 'microcopy' : undefined }));
+    alcance: segs.includes('sources') || segs.includes('cta') || segs.includes('place') ? 'microcopy' : segs[2] === 'title' ? 'reescribir' : undefined }));
   for (const lang of ['es', 'en']) {
     let h2 = '(inicio)';
     body[lang].forEach((b, i) => {

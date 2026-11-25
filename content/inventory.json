@@ -4,8 +4,8 @@
   "total": 1848,
   "resumen": {
     "ui · microcopy": 182,
-    "perfil · reescribir": 255,
-    "perfil · microcopy": 321,
+    "perfil · reescribir": 270,
+    "perfil · microcopy": 306,
     "proyecto · microcopy": 508,
     "proyecto · reescribir": 295,
     "proyecto · cita": 4,
@@ -1454,7 +1454,7 @@
       "seccion": "numbersTitle",
       "tipo": "perfil",
       "idioma": "es",
-      "alcance": "microcopy",
+      "alcance": "reescribir",
       "palabras": 5,
       "texto": "Cifras con fuente, no adjetivos",
       "fuente": "src/i18n/ui.ts"
@@ -1493,7 +1493,7 @@
       "seccion": "doorsTitle",
       "tipo": "perfil",
       "idioma": "es",
-      "alcance": "microcopy",
+      "alcance": "reescribir",
       "palabras": 5,
       "texto": "Todo lo demás, por área",
       "fuente": "src/i18n/ui.ts"
@@ -1662,7 +1662,7 @@
       "seccion": "principles",
       "tipo": "perfil",
       "idioma": "es",
-      "alcance": "microcopy",
+      "alcance": "reescribir",
       "palabras": 4,
       "texto": "Planear antes de programar",
       "fuente": "src/i18n/ui.ts"
@@ -1688,7 +1688,7 @@
       "seccion": "principles",
       "tipo": "perfil",
       "idioma": "es",
-      "alcance": "microcopy",
+      "alcance": "reescribir",
       "palabras": 3,
       "texto": "Proponer, no imponer",
       "fuente": "src/i18n/ui.ts"
@@ -1714,7 +1714,7 @@
       "seccion": "principles",
       "tipo": "perfil",
       "idioma": "es",
-      "alcance": "microcopy",
+      "alcance": "reescribir",
       "palabras": 4,
       "texto": "Toda cifra con fuente",
       "fuente": "src/i18n/ui.ts"
@@ -1740,7 +1740,7 @@
       "seccion": "principles",
       "tipo": "perfil",
       "idioma": "es",
-      "alcance": "microcopy",
+      "alcance": "reescribir",
       "palabras": 4,
       "texto": "No todo es LLM",
       "fuente": "src/i18n/ui.ts"
@@ -1805,7 +1805,7 @@
       "seccion": "chassisTitle",
       "tipo": "perfil",
       "idioma": "es",
-      "alcance": "microcopy",
+      "alcance": "reescribir",
       "palabras": 5,
       "texto": "Un chasis para tres apps",
       "fuente": "src/i18n/ui.ts"
@@ -1857,7 +1857,7 @@
       "seccion": "closeTitle",
       "tipo": "perfil",
       "idioma": "es",
-      "alcance": "microcopy",
+      "alcance": "reescribir",
       "palabras": 5,
       "texto": "Soy José Carlos Corona. Hablemos.",
       "fuente": "src/i18n/ui.ts"
@@ -3703,7 +3703,7 @@
       "seccion": "numbersTitle",
       "tipo": "perfil",
       "idioma": "en",
-      "alcance": "microcopy",
+      "alcance": "reescribir",
       "palabras": 5,
       "texto": "Numbers with sources, not adjectives",
       "fuente": "src/i18n/ui.ts"
@@ -3742,7 +3742,7 @@
       "seccion": "doorsTitle",
       "tipo": "perfil",
       "idioma": "en",
-      "alcance": "microcopy",
+      "alcance": "reescribir",
       "palabras": 4,
       "texto": "Everything else, by area",
       "fuente": "src/i18n/ui.ts"
@@ -3911,7 +3911,7 @@
       "seccion": "principles",
       "tipo": "perfil",
       "idioma": "en",
-      "alcance": "microcopy",
+      "alcance": "reescribir",
       "palabras": 3,
       "texto": "Plan before coding",
       "fuente": "src/i18n/ui.ts"
@@ -3937,7 +3937,7 @@
       "seccion": "principles",
       "tipo": "perfil",
       "idioma": "en",
-      "alcance": "microcopy",
+      "alcance": "reescribir",
       "palabras": 3,
       "texto": "Propose, don’t impose",
       "fuente": "src/i18n/ui.ts"
@@ -3963,7 +3963,7 @@
       "seccion": "principles",
       "tipo": "perfil",
       "idioma": "en",
-      "alcance": "microcopy",
+      "alcance": "reescribir",
       "palabras": 5,
       "texto": "Every figure has a source",
       "fuente": "src/i18n/ui.ts"
@@ -3989,7 +3989,7 @@
       "seccion": "principles",
       "tipo": "perfil",
       "idioma": "en",
-      "alcance": "microcopy",
+      "alcance": "reescribir",
       "palabras": 5,
       "texto": "Not everything is an LLM",
       "fuente": "src/i18n/ui.ts"
@@ -4054,7 +4054,7 @@
       "seccion": "chassisTitle",
       "tipo": "perfil",
       "idioma": "en",
-      "alcance": "microcopy",
+      "alcance": "reescribir",
       "palabras": 5,
       "texto": "One chassis for three apps",
       "fuente": "src/i18n/ui.ts"

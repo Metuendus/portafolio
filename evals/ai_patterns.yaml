@@ -1,0 +1,236 @@
+# Eval 1 · Patrones típicos de texto generado por IA.
+#
+# Cada regla:
+#   id            nombre corto y estable (sale en el reporte)
+#   descripcion   qué detecta y por qué suena a IA
+#   severidad     grave | media | leve. Solo «grave» reprueba un texto (ver config.yaml)
+#   idioma        es | en | ambos
+#   patrones      expresiones regulares de Python (sin distinguir mayúsculas)
+#   sin_evidencia true: la coincidencia se ignora si la misma oración trae una cifra
+#                 (p. ej. «escalable» con «de 2 a 15 instancias» sí tiene evidencia)
+#   minimo        para reglas de conteo: cuántas coincidencias en un mismo texto hacen falta para marcar
+#   excepciones   ids del inventario (sin el sufijo de idioma) que esta regla no marca
+#
+# Reglas especiales con `tipo`:
+#   densidad      cuenta palabras de `lexico` por oración y marca si el promedio pasa `umbral`
+#   triada        enumeraciones «A, B y C»; marca si hay `minimo` o más en un mismo texto
+
+reglas:
+  # ── Estructuras ────────────────────────────────────────────────────────────
+  - id: no-solo-sino
+    descripcion: "«No solo X, sino Y»: contraste inflado que la IA usa para sonar profunda."
+    severidad: grave
+    idioma: es
+    patrones:
+      - '\bno (solo|sólo|solamente|únicamente)\b[^.;]{1,80}\b(sino|también)\b'
+
+  - id: not-only-but
+    descripcion: "«Not only X, but Y»."
+    severidad: grave
+    idioma: en
+    patrones:
+      - '\bnot (only|just|merely)\b[^.;]{1,80}\bbut( also)?\b'
+
+  - id: no-es-x-es-y
+    descripcion: "«No es X, es Y» / «No se trata de X, se trata de Y»: antítesis de eslogan."
+    severidad: grave
+    idioma: es
+    patrones:
+      - '\bno (es|son|era|fue) [^.;:]{1,60}[,;:] (es|son|era|fue)\b'
+      - '\bno se trata de [^.;]{1,60}[,;] se trata de\b'
+      - '\bno (es|son) [^.;]{1,50}\bsino\b'
+
+  - id: isnt-x-its-y
+    descripcion: "«It isn't X, it's Y» / «It's not about X, it's about Y»."
+    severidad: grave
+    idioma: en
+    patrones:
+      - "\\b(it|this|that) (isn['’]t|is not|wasn['’]t|was not) [^.;:]{1,60}[,;:] (it|this|that)['’]?s?\\b"
+      - "\\bit['’]s not about [^.;]{1,60}[,;] it['’]s about\\b"
+
+  - id: antitesis-corta
+    descripcion: "«X, no Y» como eslogan o título («Proponer, no imponer», «Cifras con fuente, no adjetivos»)."
+    severidad: media
+    idioma: ambos
+    patrones:
+      - '^[^.,;:]{3,50}, (no|not|nunca|never) [^.,;:]{2,30}\.?$'
+
+  - id: remate-dos-puntos
+    descripcion: "Frase que prepara y remata con dos puntos («Lo hice yo: 47 usuarios»). Una vez está bien; repetida es tic."
+    severidad: leve
+    idioma: ambos
+    patrones:
+      - '[^\s:]{2,}: (?=[a-záéíóúñ0-9«“])'
+    minimo: 2
+
+  - id: guion-largo
+    descripcion: "Guion largo como muletilla para insertar incisos."
+    severidad: grave
+    idioma: ambos
+    patrones:
+      - '—'
+      - '(?<![\d→]) – (?!(hoy|presente|present|\d))'   # no marca rangos de fechas («sep 2024 – hoy»)
+
+  - id: triada
+    descripcion: "Enumeraciones de tres elementos repetidas en el mismo texto («rápido, claro y medible»)."
+    tipo: triada
+    severidad: media
+    idioma: ambos
+    minimo: 2
+
+  # ── Frases vacías ──────────────────────────────────────────────────────────
+  - id: frase-vacia
+    descripcion: "Fórmulas de relleno típicas de texto generado."
+    severidad: grave
+    idioma: es
+    patrones:
+      - '\baprovechar el poder\b'
+      - '\bel poder de la (ia|inteligencia artificial|tecnología|data|información)\b'
+      - '\ben el panorama actual\b'
+      - '\b(en|dentro de) (el|un) mundo (cada vez más|en constante)\b'
+      - '\btransformar (la manera|la forma|el modo) (en que|de)\b'
+      - '\bde punta a punta\b'
+      - '\bde principio a fin\b'
+      - '\bsin fricci(ón|ones)\b'
+      - '\bllevar(lo|la|los|las)? al siguiente nivel\b'
+      - '\b(un|una) antes y (un )?después\b'
+      - '\bcambio de paradigma\b'
+      - '\bsinergia\w*\b'
+      - '\bsoluciones? (integral|innovadora|disruptiva)\w*\b'
+      - '\b(en|a) la vanguardia\b'
+      - '\bvalor agregado\b'
+      - '\bmarca(r|ndo|ron)? la diferencia\b'
+
+  - id: empty-phrase
+    descripcion: "English filler phrases."
+    severidad: grave
+    idioma: en
+    patrones:
+      - '\bharness(ing)? the power\b'
+      - '\bin today[''’]s (landscape|world|fast-paced)\b'
+      - '\bever-(evolving|changing)\b'
+      - '\btransform(s|ing)? the way\b'
+      - '\bend[- ]to[- ]end\b'
+      - '\bseamless(ly)?\b'
+      - '\bfrictionless\b'
+      - '\bnext level\b'
+      - '\bgame[- ]chang(er|ing)\b'
+      - '\bparadigm shift\b'
+      - '\bsynerg\w*\b'
+      - '\bcutting[- ]edge\b'
+      - '\bstate[- ]of[- ]the[- ]art\b'
+      - '\bdelve\b'
+      - '\btapestry\b'
+
+  - id: verbo-inflado
+    descripcion: "Verbos de venta: impulsar, potenciar, aprovechar, revolucionar, optimizar sin decir qué."
+    severidad: grave
+    idioma: es
+    sin_evidencia: true
+    patrones:
+      - '\bimpuls(ar|a|é|ó|amos|ando|ado)\b'
+      - '\bpotenci(ar|a|é|ó|amos|ando|ado)\b'
+      - '\baprovech(ar|a|é|ó|amos|ando)\b'
+      - '\brevolucion(ar|a|ó|é)\b'
+      - '\bempoder(ar|a|ó)\b'
+      - '\bdesbloque(ar|a|ó)\b'
+      - '\belev(ar|a|ó) (la|el|tu|su)\b'
+
+  - id: inflated-verb
+    descripcion: "Sales verbs without a concrete object."
+    severidad: grave
+    idioma: en
+    sin_evidencia: true
+    patrones:
+      - '\b(leverag|empower|supercharg|revolutioniz|unlock|elevat|streamlin|spearhead)(e|es|ed|ing)\b'
+      - '\bdrive(s|n)? (growth|impact|value|innovation)\b'
+
+  - id: adjetivo-sin-evidencia
+    descripcion: "Adjetivos de ingeniería sin cifra que los respalde: robusto, escalable, eficiente, innovador."
+    severidad: grave
+    idioma: es
+    sin_evidencia: true
+    patrones:
+      - '\brobust[oa]s?\b'
+      - '\bescalables?\b'
+      - '\binnovador(a|es|as)?\b'
+      - '\bde (alto|gran) impacto\b'
+      - '\bde clase mundial\b'
+      - '\bpotentes?\b'
+      - '\bpoderos[oa]s?\b'
+
+  - id: adjective-no-evidence
+    descripcion: "Engineering adjectives with no figure to back them."
+    severidad: grave
+    idioma: en
+    sin_evidencia: true
+    patrones:
+      - '\brobust\b'
+      - '\bscalable\b'
+      - '\binnovative\b'
+      - '\bhigh[- ]impact\b'
+      - '\bworld[- ]class\b'
+      - '\bpowerful\b'
+
+  - id: enfasis-actually
+    descripcion: "Énfasis defensivo («que sí usan», «realmente», «de verdad»): suena a eslogan."
+    severidad: media
+    idioma: ambos
+    patrones:
+      - '\bque (los equipos |la gente |las personas )?(sí) \w+'
+      - '\brealmente\b'
+      - '\bde verdad\b'
+      - '\b(actually|truly|genuinely|really)\b'
+
+  # ── Aperturas, cierres y tono ──────────────────────────────────────────────
+  - id: apertura-generica
+    descripcion: "Aperturas genéricas que no dicen nada del caso."
+    severidad: grave
+    idioma: ambos
+    patrones:
+      - '^(en la era de|en un mundo|hoy en día|en los últimos años|en el contexto actual)\b'
+      - '^(imagina|¿alguna vez)\b'
+      - "^(in (the|an|today['’]s) (era|age|world)|imagine|have you ever|nowadays)\\b"
+
+  - id: cierre-generico
+    descripcion: "Cierres de manual: resumen, moraleja o invitación vacía."
+    severidad: media
+    idioma: ambos
+    patrones:
+      - '\b(en resumen|en conclusión|en definitiva|al final del día|a fin de cuentas)\b'
+      - '\b(in summary|in conclusion|at the end of the day|ultimately)\b'
+      - '\bel (futuro|límite) (es|son) (hoy|ahora|el cielo)\b'
+
+  - id: pregunta-retorica
+    descripcion: "Pregunta retórica para enganchar. En artículos o en un CTA real puede estar bien: revísala."
+    severidad: media
+    idioma: ambos
+    patrones:
+      - '¿[^?]{3,120}\?'
+      - '(^|[.!]\s)(what if|why does|how do you)\b[^?]{3,120}\?'
+
+  - id: motivacional
+    descripcion: "Frases motivacionales o de LinkedIn."
+    severidad: grave
+    idioma: ambos
+    patrones:
+      - '\b(la magia (sucede|ocurre)|el cielo es el límite|sal de tu zona de confort|nunca dejes de aprender)\b'
+      - '\b(the magic happens|sky is the limit|never stop learning|passion(ate)? about)\b'
+      - '\bme apasiona\b'
+
+  # ── Densidad de adjetivos y adverbios ──────────────────────────────────────
+  - id: densidad-adjetivos
+    descripcion: "Promedio de adjetivos o adverbios de valoración por oración mayor al umbral."
+    tipo: densidad
+    severidad: leve
+    idioma: ambos
+    umbral: 1.5
+    lexico:
+      # Adverbios en -mente / -ly se cuentan solos; esta lista suma adjetivos de valoración.
+      es: [clave, crucial, crítico, crítica, esencial, fundamental, increíble, potente, poderoso, poderosa,
+           eficiente, eficaz, efectivo, efectiva, sólido, sólida, ágil, intuitivo, intuitiva, inteligente,
+           moderno, moderna, completo, completa, integral, innovador, innovadora, único, única, enorme,
+           significativo, significativa, real, reales, verdadero, verdadera, profundo, profunda, valioso, valiosa]
+      en: [key, crucial, critical, essential, fundamental, incredible, powerful, efficient, effective, solid,
+           agile, intuitive, smart, modern, comprehensive, holistic, innovative, unique, huge, significant,
+           real, "true", deep, valuable, meaningful, impactful]
