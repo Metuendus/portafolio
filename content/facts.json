@@ -19,12 +19,12 @@
       "caso": "mcp",
       "afirmacion": "Personas con sesión en el MCP en los últimos 30 días",
       "valor": 7,
-      "universo": "47 con acceso",
+      "universo": "unas 200 personas en la agencia; 9 con sesión alguna vez desde 2026-03-26",
       "periodo": "2026-10-26 a 2026-11-25",
       "fuente": "Firestore del MCP (tokens de sesión)",
       "confianza": "alta para el conteo; incluye cuentas de desarrollo",
       "publicable": "pendiente",
-      "nota": "Mide inicios de sesión, no preguntas. Puede haber otros accesos sin registro."
+      "nota": "Mide inicios de sesión, no preguntas. Áreas: Performance, Datos, Cuentas y Dirección."
     },
     {
       "id": "osaka.produccion_nueva",
@@ -35,8 +35,8 @@
       "periodo": "hasta 2026-11-25",
       "fuente": "Firestore de producción (conversaciones de Osaka)",
       "confianza": "alta",
-      "publicable": "pendiente",
-      "nota": null
+      "publicable": false,
+      "nota": "Sin clientes reales todavía; probablemente uso interno o de prueba. No publicar."
     },
     {
       "id": "osaka.diagnostico",
@@ -48,7 +48,7 @@
       "fuente": "E1 del perfil profesional (§7.1); el corpus no está en las colecciones actuales",
       "confianza": "media",
       "publicable": true,
-      "nota": "La proporción con fallas y la causa raíz son privadas (§18)."
+      "nota": "El corpus no se encontró en Firestore el 2026-11-25; se sostiene solo por E1. La proporción con fallas y la causa raíz son privadas (§18)."
     },
     {
       "id": "osaka.linea_base_tiempo",
@@ -69,6 +69,66 @@
       "confianza": null,
       "publicable": false,
       "nota": "sin dato"
+    },
+    {
+      "id": "osaka.mcp_peticiones_30d",
+      "caso": "mcp",
+      "afirmacion": "Peticiones al servidor MCP en 30 días",
+      "valor": 9829,
+      "universo": null,
+      "periodo": "2026-10-26 a 2026-11-25",
+      "fuente": "logs de Cloud Run (POST /mcp)",
+      "confianza": "alta para el conteo; incluye reintentos y posible automatización",
+      "publicable": "pendiente",
+      "nota": "97 % desde conectores de Claude. 49 % en horario laboral. No equivale a personas ni a preguntas."
+    },
+    {
+      "id": "osaka.mcp_latencia",
+      "caso": "mcp",
+      "afirmacion": "Latencia de las respuestas correctas del MCP",
+      "valor": "mediana 70 ms, p95 3.7 s",
+      "universo": null,
+      "periodo": "30 días al 2026-11-25",
+      "fuente": "logs de Cloud Run",
+      "confianza": "alta",
+      "publicable": "pendiente",
+      "nota": "22 % de respuestas 400 sin causa registrada."
+    },
+    {
+      "id": "osaka.chat_legado",
+      "caso": "mcp",
+      "afirmacion": "Uso del chat web propio",
+      "valor": "30 personas; 14 de 29 lo usaron un solo día; pico abril–junio y caída desde julio",
+      "universo": null,
+      "periodo": "2026-01-22 a 2026-11-25",
+      "fuente": "Firestore (conversations, rateLimits)",
+      "confianza": "alta",
+      "publicable": "pendiente",
+      "nota": "Patrón de prueba sin hábito. La hipótesis de que el uso migró al MCP no está probada."
+    },
+    {
+      "id": "osaka.fallas_muestra",
+      "caso": "mcp",
+      "afirmacion": "Fallas vistas en una muestra de 18 conversaciones reales",
+      "valor": "desglose de nivel equivocado, sin respuesta, datos vacíos, datos inventados, texto técnico visible, error del proveedor",
+      "universo": "18 de 164 legibles",
+      "periodo": "2026-01 a 2026-10",
+      "fuente": "Firestore (conversations)",
+      "confianza": "media; sin proporciones válidas",
+      "publicable": true,
+      "nota": "Publicable como tipos de falla, nunca como porcentaje."
+    },
+    {
+      "id": "osaka.skills",
+      "caso": "mcp",
+      "afirmacion": "Skills en la tienda de agentes",
+      "valor": "72 (50 activas)",
+      "universo": null,
+      "periodo": "corte 2026-11-25",
+      "fuente": "Firestore",
+      "confianza": "alta",
+      "publicable": "pendiente",
+      "nota": "Ninguna inscripción registrada."
     }
   ]
 }
