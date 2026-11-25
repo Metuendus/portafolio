@@ -84,6 +84,35 @@ class LlamadorAdk:
         return await llamar(agente, partes, usuario="evals", app=APP)
 
 
+def huella(juez: str, partes: list[str]) -> str:
+    """Identifica una petición al juez por su contenido (sin el aviso de reintento)."""
+    return hashlib.sha256(f"{juez}|{partes[0]}|{partes[1]}".encode()).hexdigest()[:24]
+
+
+@dataclass
+class LlamadorArchivo:
+    """El juez es Claude en la sesión de trabajo: sus juicios llegan en un JSONL con
+    `{"huella": ..., "respuesta": "<JSON del juez>"}`, exportado antes con `--exportar`.
+    Pasan por la misma validación y comprobación de citas que los de Vertex."""
+
+    ruta: Path
+    modelo: str = "claude-sesion"
+
+    def __post_init__(self) -> None:
+        self.respuestas: dict[str, str] = {}
+        for linea in self.ruta.read_text().splitlines():
+            if linea.strip():
+                d = json.loads(linea)
+                r = d["respuesta"]
+                self.respuestas[d["huella"]] = r if isinstance(r, str) else json.dumps(r, ensure_ascii=False)
+
+    async def __call__(self, juez: str, instruccion: str, partes: list[str]) -> Llamada:
+        h = huella(juez, partes)
+        if h not in self.respuestas:
+            raise KeyError(f"sin juicio en {self.ruta.name}")
+        return Llamada(texto=self.respuestas[h], modelo=self.modelo)
+
+
 def plano(texto: str) -> str:
     """Compara frases sin que importen mayúsculas, espacios ni comillas tipográficas."""
     limpio = unicodedata.normalize("NFKC", texto)

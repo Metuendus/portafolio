@@ -534,7 +534,8 @@
       "alcance": "reescribir",
       "palabras": 16,
       "texto": "Hice la primera versión y hoy soy product owner: 47 usuarios activos, casi todos vía MCP.",
-      "fuente": "src/i18n/ui.ts"
+      "fuente": "src/i18n/ui.ts",
+      "contexto": "Logro: Osaka, servidor MCP de medios · fuente: panel de administración, oct 2026"
     },
     {
       "id": "i18n/ui.ts:quick.wins.0.s:es",
@@ -573,7 +574,8 @@
       "alcance": "reescribir",
       "palabras": 30,
       "texto": "La diseñé y la construí; se abrió a toda EPA. En los últimos 30 días la usaron 38 personas, con 44 recursos publicados y 0 USD al mes de operación.",
-      "fuente": "src/i18n/ui.ts"
+      "fuente": "src/i18n/ui.ts",
+      "contexto": "Logro: Librería de Prompts de la agencia · fuente: panel de administración, nov 2026"
     },
     {
       "id": "i18n/ui.ts:quick.wins.1.s:es",
@@ -612,7 +614,8 @@
       "alcance": "reescribir",
       "palabras": 17,
       "texto": "En un cliente, el análisis diario de SKU pasó de un día completo a unos 30 minutos.",
-      "fuente": "src/i18n/ui.ts"
+      "fuente": "src/i18n/ui.ts",
+      "contexto": "Logro: Dashboard y ETL de SKU para clientes de EPA · fuente: estimación propia, proyecto de SKU, 2026"
     },
     {
       "id": "i18n/ui.ts:quick.wins.2.s:es",
@@ -2783,7 +2786,8 @@
       "alcance": "reescribir",
       "palabras": 19,
       "texto": "I built the first version and now I’m its product owner: 47 active users, most of them through MCP.",
-      "fuente": "src/i18n/ui.ts"
+      "fuente": "src/i18n/ui.ts",
+      "contexto": "Logro: Osaka, media MCP server · fuente: admin dashboard, Oct 2026"
     },
     {
       "id": "i18n/ui.ts:quick.wins.0.s:en",
@@ -2822,7 +2826,8 @@
       "alcance": "reescribir",
       "palabras": 31,
       "texto": "I designed and built it; it opened to all of EPA. In the last 30 days 38 people used it, with 44 published resources and 0 USD a month to run.",
-      "fuente": "src/i18n/ui.ts"
+      "fuente": "src/i18n/ui.ts",
+      "contexto": "Logro: The agency’s Prompt Library · fuente: admin dashboard, Nov 2026"
     },
     {
       "id": "i18n/ui.ts:quick.wins.1.s:en",
@@ -2861,7 +2866,8 @@
       "alcance": "reescribir",
       "palabras": 15,
       "texto": "For one client, daily SKU analysis went from a full day to about 30 minutes.",
-      "fuente": "src/i18n/ui.ts"
+      "fuente": "src/i18n/ui.ts",
+      "contexto": "Logro: SKU dashboard and ETL for EPA clients · fuente: my own estimate, SKU project, 2026"
     },
     {
       "id": "i18n/ui.ts:quick.wins.2.s:en",
@@ -4577,7 +4583,8 @@
       "alcance": "reescribir",
       "palabras": 7,
       "texto": "conversaciones reales revisadas para medir la calidad",
-      "fuente": "src/data/cases.ts"
+      "fuente": "src/data/cases.ts",
+      "contexto": "Cifra en grande de la portada: 484"
     },
     {
       "id": "data/cases.ts:cases.mcp.cover.l:en",
@@ -4590,7 +4597,8 @@
       "alcance": "reescribir",
       "palabras": 6,
       "texto": "real conversations reviewed to measure quality",
-      "fuente": "src/data/cases.ts"
+      "fuente": "src/data/cases.ts",
+      "contexto": "Cifra en grande de la portada: 484"
     },
     {
       "id": "data/cases.ts:cases.mcp.image.alt:es",
@@ -4681,7 +4689,8 @@
       "alcance": "reescribir",
       "palabras": 6,
       "texto": "lugares sin verificar en un itinerario",
-      "fuente": "src/data/cases.ts"
+      "fuente": "src/data/cases.ts",
+      "contexto": "Cifra en grande de la portada: 0"
     },
     {
       "id": "data/cases.ts:cases.iterum.cover.l:en",
@@ -4694,7 +4703,8 @@
       "alcance": "microcopy",
       "palabras": 5,
       "texto": "unverified places in an itinerary",
-      "fuente": "src/data/cases.ts"
+      "fuente": "src/data/cases.ts",
+      "contexto": "Cifra en grande de la portada: 0"
     },
     {
       "id": "data/cases.ts:cases.iterum.image.alt:es",
@@ -4785,7 +4795,8 @@
       "alcance": "reescribir",
       "palabras": 6,
       "texto": "reportes de 9 personas en Hopper",
-      "fuente": "src/data/cases.ts"
+      "fuente": "src/data/cases.ts",
+      "contexto": "Cifra en grande de la portada: 149"
     },
     {
       "id": "data/cases.ts:cases.dash.cover.l:en",
@@ -4798,7 +4809,8 @@
       "alcance": "reescribir",
       "palabras": 6,
       "texto": "reports from 9 people in Hopper",
-      "fuente": "src/data/cases.ts"
+      "fuente": "src/data/cases.ts",
+      "contexto": "Cifra en grande de la portada: 149"
     },
     {
       "id": "data/cases.ts:cases.dash.image.alt:es",
@@ -4889,7 +4901,8 @@
       "alcance": "microcopy",
       "palabras": 1,
       "texto": "CDMX",
-      "fuente": "src/data/cases.ts"
+      "fuente": "src/data/cases.ts",
+      "contexto": "Cifra en grande de la portada: CDMX"
     },
     {
       "id": "data/cases.ts:cases.domi.cover.l:es",
@@ -4902,7 +4915,8 @@
       "alcance": "reescribir",
       "palabras": 12,
       "texto": "cada zona medida con datos abiertos de la FGJ y el DENUE",
-      "fuente": "src/data/cases.ts"
+      "fuente": "src/data/cases.ts",
+      "contexto": "Cifra en grande de la portada: CDMX"
     },
     {
       "id": "data/cases.ts:cases.domi.cover.l:en",
@@ -4915,7 +4929,8 @@
       "alcance": "reescribir",
       "palabras": 9,
       "texto": "every area measured with open FGJ and DENUE data",
-      "fuente": "src/data/cases.ts"
+      "fuente": "src/data/cases.ts",
+      "contexto": "Cifra en grande de la portada: CDMX"
     },
     {
       "id": "data/cases.ts:cases.domi.image.alt:es",
@@ -5006,7 +5021,8 @@
       "alcance": "microcopy",
       "palabras": 1,
       "texto": "RAG",
-      "fuente": "src/data/cases.ts"
+      "fuente": "src/data/cases.ts",
+      "contexto": "Cifra en grande de la portada: RAG"
     },
     {
       "id": "data/cases.ts:cases.einstein.cover.l:es",
@@ -5019,7 +5035,8 @@
       "alcance": "reescribir",
       "palabras": 8,
       "texto": "búsqueda con citas y conector MCP para Claude",
-      "fuente": "src/data/cases.ts"
+      "fuente": "src/data/cases.ts",
+      "contexto": "Cifra en grande de la portada: RAG"
     },
     {
       "id": "data/cases.ts:cases.einstein.cover.l:en",
@@ -5032,7 +5049,8 @@
       "alcance": "reescribir",
       "palabras": 8,
       "texto": "cited search and an MCP connector for Claude",
-      "fuente": "src/data/cases.ts"
+      "fuente": "src/data/cases.ts",
+      "contexto": "Cifra en grande de la portada: RAG"
     },
     {
       "id": "data/cases.ts:cases.vocatio.name:es",
@@ -5097,7 +5115,8 @@
       "alcance": "microcopy",
       "palabras": 1,
       "texto": "MX",
-      "fuente": "src/data/cases.ts"
+      "fuente": "src/data/cases.ts",
+      "contexto": "Cifra en grande de la portada: MX"
     },
     {
       "id": "data/cases.ts:cases.vocatio.cover.l:es",
@@ -5110,7 +5129,8 @@
       "alcance": "reescribir",
       "palabras": 8,
       "texto": "vacantes, CV y correo para profesionistas en México",
-      "fuente": "src/data/cases.ts"
+      "fuente": "src/data/cases.ts",
+      "contexto": "Cifra en grande de la portada: MX"
     },
     {
       "id": "data/cases.ts:cases.vocatio.cover.l:en",
@@ -5123,7 +5143,8 @@
       "alcance": "reescribir",
       "palabras": 8,
       "texto": "jobs, CVs and email for professionals in Mexico",
-      "fuente": "src/data/cases.ts"
+      "fuente": "src/data/cases.ts",
+      "contexto": "Cifra en grande de la portada: MX"
     },
     {
       "id": "data/cases.ts:cases.vocatio.image.alt:es",
@@ -5214,7 +5235,8 @@
       "alcance": "reescribir",
       "palabras": 8,
       "texto": "personas la usaron en los últimos 30 días",
-      "fuente": "src/data/cases.ts"
+      "fuente": "src/data/cases.ts",
+      "contexto": "Cifra en grande de la portada: 38"
     },
     {
       "id": "data/cases.ts:cases.prompts.cover.l:en",
@@ -5227,7 +5249,8 @@
       "alcance": "reescribir",
       "palabras": 8,
       "texto": "people used it in the last 30 days",
-      "fuente": "src/data/cases.ts"
+      "fuente": "src/data/cases.ts",
+      "contexto": "Cifra en grande de la portada: 38"
     },
     {
       "id": "data/cases.ts:cases.fundamentum.name:es",
@@ -5292,7 +5315,8 @@
       "alcance": "microcopy",
       "palabras": 5,
       "texto": "apps sobre el mismo chasis",
-      "fuente": "src/data/cases.ts"
+      "fuente": "src/data/cases.ts",
+      "contexto": "Cifra en grande de la portada: 3"
     },
     {
       "id": "data/cases.ts:cases.fundamentum.cover.l:en",
@@ -5305,7 +5329,8 @@
       "alcance": "microcopy",
       "palabras": 5,
       "texto": "apps on the same chassis",
-      "fuente": "src/data/cases.ts"
+      "fuente": "src/data/cases.ts",
+      "contexto": "Cifra en grande de la portada: 3"
     },
     {
       "id": "data/cases-more.ts:details.mcp.short:es",
@@ -15184,7 +15209,8 @@
       "alcance": "reescribir",
       "palabras": 15,
       "texto": "usuarios activos de Osaka, el servidor MCP de medios; casi todos lo usan vía MCP",
-      "fuente": "src/data/fronts.ts"
+      "fuente": "src/data/fronts.ts",
+      "contexto": "Cifra en grande: 47 · fuente: panel de administración, oct 2026"
     },
     {
       "id": "data/fronts.ts:numbers.0.l:en",
@@ -15197,7 +15223,8 @@
       "alcance": "reescribir",
       "palabras": 13,
       "texto": "active users of Osaka, the media MCP server; most use it through MCP",
-      "fuente": "src/data/fronts.ts"
+      "fuente": "src/data/fronts.ts",
+      "contexto": "Cifra en grande: 47 · fuente: admin dashboard, Oct 2026"
     },
     {
       "id": "data/fronts.ts:numbers.0.source:es",
@@ -15210,7 +15237,8 @@
       "alcance": "microcopy",
       "palabras": 5,
       "texto": "panel de administración, oct 2026",
-      "fuente": "src/data/fronts.ts"
+      "fuente": "src/data/fronts.ts",
+      "contexto": "Cifra en grande: 47 · fuente: panel de administración, oct 2026"
     },
     {
       "id": "data/fronts.ts:numbers.0.source:en",
@@ -15223,7 +15251,8 @@
       "alcance": "microcopy",
       "palabras": 4,
       "texto": "admin dashboard, Oct 2026",
-      "fuente": "src/data/fronts.ts"
+      "fuente": "src/data/fronts.ts",
+      "contexto": "Cifra en grande: 47 · fuente: admin dashboard, Oct 2026"
     },
     {
       "id": "data/fronts.ts:numbers.1.l:es",
@@ -15236,7 +15265,8 @@
       "alcance": "reescribir",
       "palabras": 15,
       "texto": "personas usaron la Librería de Prompts en los últimos 30 días, con 44 recursos publicados",
-      "fuente": "src/data/fronts.ts"
+      "fuente": "src/data/fronts.ts",
+      "contexto": "Cifra en grande: 38 · fuente: panel de administración, nov 2026"
     },
     {
       "id": "data/fronts.ts:numbers.1.l:en",
@@ -15249,7 +15279,8 @@
       "alcance": "reescribir",
       "palabras": 14,
       "texto": "people used the Prompt Library in the last 30 days, with 44 published resources",
-      "fuente": "src/data/fronts.ts"
+      "fuente": "src/data/fronts.ts",
+      "contexto": "Cifra en grande: 38 · fuente: admin dashboard, Nov 2026"
     },
     {
       "id": "data/fronts.ts:numbers.1.source:es",
@@ -15262,7 +15293,8 @@
       "alcance": "microcopy",
       "palabras": 5,
       "texto": "panel de administración, nov 2026",
-      "fuente": "src/data/fronts.ts"
+      "fuente": "src/data/fronts.ts",
+      "contexto": "Cifra en grande: 38 · fuente: panel de administración, nov 2026"
     },
     {
       "id": "data/fronts.ts:numbers.1.source:en",
@@ -15275,7 +15307,8 @@
       "alcance": "microcopy",
       "palabras": 4,
       "texto": "admin dashboard, Nov 2026",
-      "fuente": "src/data/fronts.ts"
+      "fuente": "src/data/fronts.ts",
+      "contexto": "Cifra en grande: 38 · fuente: admin dashboard, Nov 2026"
     },
     {
       "id": "data/fronts.ts:numbers.2.l:es",
@@ -15288,7 +15321,8 @@
       "alcance": "reescribir",
       "palabras": 19,
       "texto": "conversaciones reales de Osaka revisadas en un diagnóstico que lideré, para encontrar dónde fallaban las respuestas y por qué",
-      "fuente": "src/data/fronts.ts"
+      "fuente": "src/data/fronts.ts",
+      "contexto": "Cifra en grande: 484 · fuente: panel de administración de Osaka, oct 2026"
     },
     {
       "id": "data/fronts.ts:numbers.2.l:en",
@@ -15301,7 +15335,8 @@
       "alcance": "reescribir",
       "palabras": 16,
       "texto": "real Osaka conversations reviewed in a diagnosis I led, to find where answers failed and why",
-      "fuente": "src/data/fronts.ts"
+      "fuente": "src/data/fronts.ts",
+      "contexto": "Cifra en grande: 484 · fuente: Osaka admin dashboard, Oct 2026"
     },
     {
       "id": "data/fronts.ts:numbers.2.source:es",
@@ -15314,7 +15349,8 @@
       "alcance": "microcopy",
       "palabras": 7,
       "texto": "panel de administración de Osaka, oct 2026",
-      "fuente": "src/data/fronts.ts"
+      "fuente": "src/data/fronts.ts",
+      "contexto": "Cifra en grande: 484 · fuente: panel de administración de Osaka, oct 2026"
     },
     {
       "id": "data/fronts.ts:numbers.2.source:en",
@@ -15327,7 +15363,8 @@
       "alcance": "microcopy",
       "palabras": 5,
       "texto": "Osaka admin dashboard, Oct 2026",
-      "fuente": "src/data/fronts.ts"
+      "fuente": "src/data/fronts.ts",
+      "contexto": "Cifra en grande: 484 · fuente: Osaka admin dashboard, Oct 2026"
     },
     {
       "id": "data/fronts.ts:numbers.3.l:es",
@@ -15340,7 +15377,8 @@
       "alcance": "reescribir",
       "palabras": 17,
       "texto": "notas reales que Hopper clasificó igual que yo en su primera prueba; las otras 2 eran ambiguas",
-      "fuente": "src/data/fronts.ts"
+      "fuente": "src/data/fronts.ts",
+      "contexto": "Cifra en grande: 14/16 · fuente: prueba propia con 16 notas reales"
     },
     {
       "id": "data/fronts.ts:numbers.3.l:en",
@@ -15353,7 +15391,8 @@
       "alcance": "reescribir",
       "palabras": 17,
       "texto": "real notes Hopper classified the way I would in its first test; the other 2 were ambiguous",
-      "fuente": "src/data/fronts.ts"
+      "fuente": "src/data/fronts.ts",
+      "contexto": "Cifra en grande: 14/16 · fuente: my own test on 16 real notes"
     },
     {
       "id": "data/fronts.ts:numbers.3.source:es",
@@ -15366,7 +15405,8 @@
       "alcance": "microcopy",
       "palabras": 6,
       "texto": "prueba propia con 16 notas reales",
-      "fuente": "src/data/fronts.ts"
+      "fuente": "src/data/fronts.ts",
+      "contexto": "Cifra en grande: 14/16 · fuente: prueba propia con 16 notas reales"
     },
     {
       "id": "data/fronts.ts:numbers.3.source:en",
@@ -15379,7 +15419,8 @@
       "alcance": "microcopy",
       "palabras": 7,
       "texto": "my own test on 16 real notes",
-      "fuente": "src/data/fronts.ts"
+      "fuente": "src/data/fronts.ts",
+      "contexto": "Cifra en grande: 14/16 · fuente: my own test on 16 real notes"
     },
     {
       "id": "data/fronts.ts:authorship.built.title:es",
@@ -15444,7 +15485,8 @@
       "alcance": "reescribir",
       "palabras": 13,
       "texto": "Diseño, código y despliegue. 38 personas la usaron en los últimos 30 días.",
-      "fuente": "src/data/fronts.ts"
+      "fuente": "src/data/fronts.ts",
+      "contexto": "Lo construí yo: Librería de Prompts"
     },
     {
       "id": "data/fronts.ts:authorship.built.items.0.note:en",
@@ -15457,7 +15499,8 @@
       "alcance": "reescribir",
       "palabras": 13,
       "texto": "Design, code and deployment. 38 people used it in the last 30 days.",
-      "fuente": "src/data/fronts.ts"
+      "fuente": "src/data/fronts.ts",
+      "contexto": "I built it: Prompt Library"
     },
     {
       "id": "data/fronts.ts:authorship.built.items.1.name:es",
@@ -15496,7 +15539,8 @@
       "alcance": "reescribir",
       "palabras": 10,
       "texto": "Mío de punta a punta: 149 reportes de 9 personas.",
-      "fuente": "src/data/fronts.ts"
+      "fuente": "src/data/fronts.ts",
+      "contexto": "Lo construí yo: Hopper"
     },
     {
       "id": "data/fronts.ts:authorship.built.items.1.note:en",
@@ -15509,7 +15553,8 @@
       "alcance": "reescribir",
       "palabras": 9,
       "texto": "Mine end to end: 149 reports from 9 people.",
-      "fuente": "src/data/fronts.ts"
+      "fuente": "src/data/fronts.ts",
+      "contexto": "I built it: Hopper"
     },
     {
       "id": "data/fronts.ts:authorship.built.items.2.name:es",
@@ -15548,7 +15593,8 @@
       "alcance": "reescribir",
       "palabras": 18,
       "texto": "La hice solo en 2025. En la actual aporté el proveedor de DV360 y la autenticación del MCP.",
-      "fuente": "src/data/fronts.ts"
+      "fuente": "src/data/fronts.ts",
+      "contexto": "Lo construí yo: Osaka, primera versión"
     },
     {
       "id": "data/fronts.ts:authorship.built.items.2.note:en",
@@ -15561,7 +15607,8 @@
       "alcance": "reescribir",
       "palabras": 18,
       "texto": "I built it alone in 2025. In the current one I contributed the DV360 provider and MCP authentication.",
-      "fuente": "src/data/fronts.ts"
+      "fuente": "src/data/fronts.ts",
+      "contexto": "I built it: Osaka, first version"
     },
     {
       "id": "data/fronts.ts:authorship.built.items.3.name:es",
@@ -15600,7 +15647,8 @@
       "alcance": "reescribir",
       "palabras": 14,
       "texto": "El chasis y las apps que corren sobre él, como Iterum, Domi y Vocatio.",
-      "fuente": "src/data/fronts.ts"
+      "fuente": "src/data/fronts.ts",
+      "contexto": "Lo construí yo: Fundamentum y mis apps con agentes"
     },
     {
       "id": "data/fronts.ts:authorship.built.items.3.note:en",
@@ -15613,7 +15661,8 @@
       "alcance": "reescribir",
       "palabras": 15,
       "texto": "The chassis and the apps that run on it, such as Iterum, Domi and Vocatio.",
-      "fuente": "src/data/fronts.ts"
+      "fuente": "src/data/fronts.ts",
+      "contexto": "I built it: Fundamentum and my agent apps"
     },
     {
       "id": "data/fronts.ts:authorship.built.items.4.name:es",
@@ -15652,7 +15701,8 @@
       "alcance": "reescribir",
       "palabras": 19,
       "texto": "Uno entregaba citas en una demo en vivo ante 30 personas; el otro responde con voz en Google Meet.",
-      "fuente": "src/data/fronts.ts"
+      "fuente": "src/data/fronts.ts",
+      "contexto": "Lo construí yo: Dos RAG: la demo de GEO y Doppel"
     },
     {
       "id": "data/fronts.ts:authorship.built.items.4.note:en",
@@ -15665,7 +15715,8 @@
       "alcance": "reescribir",
       "palabras": 18,
       "texto": "One returned citations in a live demo for 30 people; the other answers by voice in Google Meet.",
-      "fuente": "src/data/fronts.ts"
+      "fuente": "src/data/fronts.ts",
+      "contexto": "I built it: Two RAG systems: the GEO demo and Doppel"
     },
     {
       "id": "data/fronts.ts:authorship.built.items.5.name:es",
@@ -15704,7 +15755,8 @@
       "alcance": "reescribir",
       "palabras": 14,
       "texto": "Dos llamadas a un modelo, comprobaciones por código y costo medido en cada corrida.",
-      "fuente": "src/data/fronts.ts"
+      "fuente": "src/data/fronts.ts",
+      "contexto": "Lo construí yo: El evaluador de encaje de este sitio"
     },
     {
       "id": "data/fronts.ts:authorship.built.items.5.note:en",
@@ -15717,7 +15769,8 @@
       "alcance": "reescribir",
       "palabras": 11,
       "texto": "Two model calls, code checks and cost measured on every run.",
-      "fuente": "src/data/fronts.ts"
+      "fuente": "src/data/fronts.ts",
+      "contexto": "I built it: This site’s fit evaluator"
     },
     {
       "id": "data/fronts.ts:authorship.led.title:es",
@@ -15782,7 +15835,8 @@
       "alcance": "reescribir",
       "palabras": 25,
       "texto": "Product owner: diseñé buena parte de la app y decidí qué features entraban. Un desarrollador de mi equipo escribió cerca del 80 % del código.",
-      "fuente": "src/data/fronts.ts"
+      "fuente": "src/data/fronts.ts",
+      "contexto": "Lo dirigí: Osaka en producción"
     },
     {
       "id": "data/fronts.ts:authorship.led.items.0.note:en",
@@ -15795,7 +15849,8 @@
       "alcance": "reescribir",
       "palabras": 25,
       "texto": "Product owner: I designed much of the app and decided which features went in. A developer on my team wrote about 80% of the code.",
-      "fuente": "src/data/fronts.ts"
+      "fuente": "src/data/fronts.ts",
+      "contexto": "I led it: Osaka in production"
     },
     {
       "id": "data/fronts.ts:authorship.led.items.1.name:es",
@@ -15834,7 +15889,8 @@
       "alcance": "reescribir",
       "palabras": 14,
       "texto": "Product owner: definí arquitectura, permisos y roadmap. Lo construyó un desarrollador de mi equipo.",
-      "fuente": "src/data/fronts.ts"
+      "fuente": "src/data/fronts.ts",
+      "contexto": "Lo dirigí: Einstein"
     },
     {
       "id": "data/fronts.ts:authorship.led.items.1.note:en",
@@ -15847,7 +15903,8 @@
       "alcance": "reescribir",
       "palabras": 16,
       "texto": "Product owner: I set the architecture, permissions and roadmap. A developer on my team built it.",
-      "fuente": "src/data/fronts.ts"
+      "fuente": "src/data/fronts.ts",
+      "contexto": "I led it: Einstein"
     },
     {
       "id": "data/fronts.ts:authorship.led.items.2.name:es",
@@ -15886,7 +15943,8 @@
       "alcance": "reescribir",
       "palabras": 10,
       "texto": "La lideré con el equipo de desarrollo: 5 personas, conmigo.",
-      "fuente": "src/data/fronts.ts"
+      "fuente": "src/data/fronts.ts",
+      "contexto": "Lo dirigí: Migración de Osaka a PassportHub"
     },
     {
       "id": "data/fronts.ts:authorship.led.items.2.note:en",
@@ -15899,7 +15957,8 @@
       "alcance": "reescribir",
       "palabras": 11,
       "texto": "I led it with the development team: 5 people, including me.",
-      "fuente": "src/data/fronts.ts"
+      "fuente": "src/data/fronts.ts",
+      "contexto": "I led it: Migrating Osaka to PassportHub"
     },
     {
       "id": "data/fronts.ts:authorship.led.items.3.name:es",
@@ -15938,7 +15997,8 @@
       "alcance": "reescribir",
       "palabras": 11,
       "texto": "Lideré un equipo de varias áreas: CRO, medición y dirección general.",
-      "fuente": "src/data/fronts.ts"
+      "fuente": "src/data/fronts.ts",
+      "contexto": "Lo dirigí: Consultoría para un cliente regional"
     },
     {
       "id": "data/fronts.ts:authorship.led.items.3.note:en",
@@ -15951,7 +16011,8 @@
       "alcance": "reescribir",
       "palabras": 11,
       "texto": "I led a cross-functional team: CRO, measurement and the CEO’s office.",
-      "fuente": "src/data/fronts.ts"
+      "fuente": "src/data/fronts.ts",
+      "contexto": "I led it: Consulting project for a regional client"
     },
     {
       "id": "data/fronts.ts:timeline.0.t:es",

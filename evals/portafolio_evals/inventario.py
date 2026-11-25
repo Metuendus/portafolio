@@ -28,6 +28,7 @@ class Texto:
     fuente: str
     alcance: str
     url: str | None = None
+    contexto: str | None = None
 
     @property
     def clave(self) -> str:
@@ -45,7 +46,9 @@ class Bloque:
 
     @property
     def contenido(self) -> str:
-        return "\n".join(t.texto for t in self.textos)
+        """Los textos del bloque, con su contexto (la cifra en grande, el nombre del logro) delante, una vez."""
+        contextos = list(dict.fromkeys(f"[{t.contexto}]" for t in self.textos if t.contexto))
+        return "\n".join([*contextos, *(t.texto for t in self.textos)])
 
 
 def cargar(rutas: list[Path], alcance: list[str], idiomas: list[str]) -> list[Texto]:
@@ -66,6 +69,7 @@ def cargar(rutas: list[Path], alcance: list[str], idiomas: list[str]) -> list[Te
                         fuente=x["fuente"],
                         alcance=x["alcance"],
                         url=x.get("url"),
+                        contexto=x.get("contexto"),
                     )
                 )
     return textos

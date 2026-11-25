@@ -47,7 +47,7 @@ function walk(v, segs, emit) {
 }
 
 const palabras = (t) => t.trim().split(/\s+/).filter(Boolean).length;
-function agregar({ modulo, segs, texto, pagina, url, seccion, tipo, alcance, nota }) {
+function agregar({ modulo, segs, texto, pagina, url, seccion, tipo, alcance, nota, contexto }) {
   if (!/\p{L}/u.test(texto)) return;
   const lang = lenguaje(segs) ?? 'es';
   const clave = sinLang(segs).join('.');
@@ -64,6 +64,7 @@ function agregar({ modulo, segs, texto, pagina, url, seccion, tipo, alcance, not
     texto,
     fuente: `src/${modulo}`,
     ...(nota ? { nota } : {}),
+    ...(contexto ? { contexto } : {}),
   });
 }
 
@@ -84,7 +85,9 @@ const pagUi = (c) =>
 for (const lang of ['es', 'en']) walk(ui.ui[lang], [lang], (segs, t) => {
   const c = sinLang(segs).join('.');
   const [pagina, url, tipo] = pagUi(c);
+  const win = c.match(/^quick\.wins\.(\d+)\.d$/);
   agregar({ modulo: 'i18n/ui.ts', segs, texto: t, pagina, url, seccion: c.split('.')[0], tipo,
+    contexto: win ? `Logro: ${ui.ui[lang].quick.wins[+win[1]].t} · fuente: ${ui.ui[lang].quick.wins[+win[1]].s}` : undefined,
     alcance: MICROCOPY_UI.test(c) || tipo === 'ui' ? 'microcopy' : TITULOS.test(c) ? 'reescribir' : undefined });
 });
 
@@ -93,6 +96,7 @@ walk(cases.cases, ['cases'], (segs, t) => {
   const campo = sinLang(segs).slice(2);
   agregar({ modulo: 'data/cases.ts', segs, texto: t, pagina: 'Inicio y Proyectos · tarjeta', url: PROY,
     seccion: `tarjeta ${segs[1]} · ${campo.join('.')}`, tipo: 'proyecto',
+    contexto: campo[0] === 'cover' ? `Cifra en grande de la portada: ${cases.cases.find((c) => c.id === segs[1]).cover.v}` : undefined,
     alcance: campo.includes('alt') || campo[0] === 'name' ? 'microcopy' : undefined });
 });
 const fuenteCases = readFileSync(join(raiz, 'src/data/cases.ts'), 'utf8');
@@ -115,9 +119,11 @@ walk(fronts.fronts, ['fronts'], (segs, t) => agregar({ modulo: 'data/fronts.ts',
 walk(fronts.more, ['more'], (segs, t) => agregar({ modulo: 'data/fronts.ts', segs, texto: t, pagina: 'Proyectos · otros proyectos', url: PROY,
   seccion: `otro ${segs[1]}`, tipo: 'proyecto', alcance: segs[2] === 'name' ? 'microcopy' : undefined }));
 walk(fronts.numbers, ['numbers'], (segs, t) => agregar({ modulo: 'data/fronts.ts', segs, texto: t, pagina: 'Inicio · cifras', url: U,
-  seccion: `cifra ${segs[1]}`, tipo: 'perfil', alcance: segs[2] === 'source' ? 'microcopy' : undefined }));
+  seccion: `cifra ${segs[1]}`, tipo: 'perfil', alcance: segs[2] === 'source' ? 'microcopy' : undefined,
+  contexto: `Cifra en grande: ${fronts.numbers[+segs[1]].v} · fuente: ${fronts.numbers[+segs[1]].source[lenguaje(segs)]}` }));
 walk(fronts.authorship, ['authorship'], (segs, t) => agregar({ modulo: 'data/fronts.ts', segs, texto: t, pagina: 'Inicio · construí y dirigí', url: U,
-  seccion: segs[1], tipo: 'perfil', alcance: segs.includes('name') || segs[2] === 'title' ? 'microcopy' : undefined }));
+  seccion: segs[1], tipo: 'perfil',
+  contexto: segs[4] === 'note' ? `${fronts.authorship.find((a) => a.id === segs[1]).title[lenguaje(segs)]}: ${fronts.authorship.find((a) => a.id === segs[1]).items[+segs[3]].name[lenguaje(segs)]}` : undefined, alcance: segs.includes('name') || segs[2] === 'title' ? 'microcopy' : undefined }));
 walk(fronts.timeline, ['timeline'], (segs, t) => agregar({ modulo: 'data/fronts.ts', segs, texto: t, pagina: 'Inicio · trayectoria', url: U,
   seccion: 'trayectoria', tipo: 'perfil' }));
 
