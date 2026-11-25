@@ -258,6 +258,12 @@
       "fecha": "2026-11-25",
       "decision": "Osaka se cuenta sin cifras de uso ni de adopción (ni 47, 7, 9 ni 32). Se cuenta por alcance (6 plataformas, MCP en producción para Claude), rol y el diagnóstico de calidad. La redacción tiene que brillar por lo concreto.",
       "fuente": "José Carlos en el hilo"
+    },
+    {
+      "caso": "todos",
+      "fecha": "2026-11-25",
+      "decision": "El perfil no se apuntala en cifras. Se cuenta por lo que construyó, cómo lo decidió y cómo midió la calidad. Solo entran cifras sólidas y verificadas (p. ej. libreria.personas_total, hopper.clasificador, osaka.diagnostico) y nunca como argumento principal. Las correcciones de cifras esperan a la Fase 5.",
+      "fuente": "José Carlos en el hilo"
     }
   ]
 }
