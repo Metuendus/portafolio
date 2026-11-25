@@ -175,6 +175,40 @@ for (const lang of ['es', 'en']) {
   });
 }
 
+// 9. Perfil profesional (fuente de verdad para aplicaciones). Vive fuera del repo y trae nombres de clientes y
+// colegas, así que su inventario va a content/privado/ (ignorado por git). Solo entran las secciones reutilizables.
+const PERFIL = process.env.PERFIL_MD ?? '/mnt/project-files/portafolio/perfil-profesional.md';
+const perfilItems = [];
+let perfilLeido = false;
+try {
+  const lineas = readFileSync(PERFIL, 'utf8').split('\n');
+  perfilLeido = true;
+  const ENTRA = new Set(['2', '3', '6', '7', '8']);
+  let sec = null, sub = '', enFm = false;
+  lineas.forEach((l, n) => {
+    const s = l.trim();
+    if (n === 0 && s === '---') return (enFm = true);
+    if (enFm) { if (s === '---') enFm = false; return; }
+    const h2 = s.match(/^## (\d+)\. (.+)/);
+    if (h2) { sec = h2[1]; sub = h2[2]; return; }
+    if (s.startsWith('### ')) { sub = s.slice(4); return; }
+    if (!sec || !ENTRA.has(sec) || !s || s === '---' || s.startsWith('#')) return;
+    let t = s, alcance = 'reescribir', nota;
+    if (s.startsWith('|')) {
+      const celdas = s.split('|').map((c) => c.trim());
+      if (sec !== '8' || /^-+$/.test(celdas[1]) || celdas[1] === 'Proyecto') return;
+      t = `${celdas[1].replace(/\*/g, '')}: ${celdas[3]}`;
+    } else t = s.replace(/^(-|\d+\.)\s+/, '');
+    if (/^\*\*(Repos|No afirmar)|^\*\*Lo que el portafolio afirma|^- \*\*No afirmar/.test(t)) { alcance = 'interno'; nota = 'Regla interna para agentes; no se reescribe.'; }
+    if (!/\p{L}/u.test(t)) return;
+    const idioma = /^English/.test(sub) ? 'en' : 'es';
+    perfilItems.push({ id: `perfil-profesional.md:L${n + 1}:${idioma}`, par: null, pagina: 'Perfil profesional (aplicaciones)', url: null,
+      seccion: `§${sec} · ${sub}`, tipo: 'perfil', idioma, alcance: alcance === 'reescribir' && palabras(t) < 6 ? 'microcopy' : alcance,
+      palabras: palabras(t), texto: t, fuente: PERFIL, linea: n + 1,
+      ...(nota ? { nota } : { nota: 'Conserva las marcas de evidencia (E1, E2, E3) y los nombres internos: es un documento para agentes.' }) });
+  });
+} catch { console.warn(`Sin perfil en ${PERFIL}: se omite.`); }
+
 const vistos = new Set();
 const final = items.filter((x) => (vistos.has(x.id) ? false : vistos.add(x.id)));
 const resumen = {};
@@ -190,4 +224,12 @@ writeFileSync(join(raiz, 'content/inventory.json'), JSON.stringify({
   resumen,
   textos: final,
 }, null, 2) + '\n');
+if (perfilLeido) {
+  mkdirSync(join(raiz, 'content/privado'), { recursive: true });
+  writeFileSync(join(raiz, 'content/privado/inventory-perfil.json'), JSON.stringify({
+    generado: new Date().toISOString().slice(0, 10),
+    nota: 'Perfil profesional, secciones §2, §3, §6, §7 y §8. Privado: trae clientes y colegas con nombre. No se sube al repo.',
+    total: perfilItems.length, textos: perfilItems }, null, 2) + '\n');
+  console.log('perfil', perfilItems.length, 'textos ->', 'content/privado/inventory-perfil.json');
+}
 console.log(final.length, resumen);
