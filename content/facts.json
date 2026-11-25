@@ -1,0 +1,74 @@
+{
+  "descripcion": "Única fuente de datos para la reescritura (Fase 4). Solo entra lo que José Carlos confirmó o lo que viene de una fuente verificada. Sin nombres de clientes ni de personas.",
+  "actualizado": "2026-11-25",
+  "hechos": [
+    {
+      "id": "osaka.acceso",
+      "caso": "mcp",
+      "afirmacion": "Personas con acceso vigente a Osaka",
+      "valor": 47,
+      "universo": null,
+      "periodo": "corte 2026-11-25",
+      "fuente": "Firestore del MCP (usuarios con acceso), consulta del 2026-11-25; coincide con la captura de «Administrar usuarios» del 2026-10-29",
+      "confianza": "alta",
+      "publicable": true,
+      "nota": "Es acceso, no uso. No llamarlo «usuarios activos»."
+    },
+    {
+      "id": "osaka.uso_30d",
+      "caso": "mcp",
+      "afirmacion": "Personas con sesión en el MCP en los últimos 30 días",
+      "valor": 7,
+      "universo": "47 con acceso",
+      "periodo": "2026-10-26 a 2026-11-25",
+      "fuente": "Firestore del MCP (tokens de sesión)",
+      "confianza": "alta para el conteo; incluye cuentas de desarrollo",
+      "publicable": "pendiente",
+      "nota": "Mide inicios de sesión, no preguntas. Puede haber otros accesos sin registro."
+    },
+    {
+      "id": "osaka.produccion_nueva",
+      "caso": "mcp",
+      "afirmacion": "Personas con conversaciones en la versión nueva de Osaka en producción",
+      "valor": 6,
+      "universo": "2 compañías",
+      "periodo": "hasta 2026-11-25",
+      "fuente": "Firestore de producción (conversaciones de Osaka)",
+      "confianza": "alta",
+      "publicable": "pendiente",
+      "nota": null
+    },
+    {
+      "id": "osaka.diagnostico",
+      "caso": "mcp",
+      "afirmacion": "Conversaciones reales revisadas en el diagnóstico de calidad",
+      "valor": 484,
+      "universo": null,
+      "periodo": "2026 (versión Kyoto)",
+      "fuente": "E1 del perfil profesional (§7.1); el corpus no está en las colecciones actuales",
+      "confianza": "media",
+      "publicable": true,
+      "nota": "La proporción con fallas y la causa raíz son privadas (§18)."
+    },
+    {
+      "id": "osaka.linea_base_tiempo",
+      "caso": "mcp",
+      "afirmacion": "Tiempo para responder una pregunta de presupuesto antes de Osaka",
+      "valor": null,
+      "fuente": "sin fuente",
+      "confianza": null,
+      "publicable": false,
+      "nota": "sin dato"
+    },
+    {
+      "id": "osaka.decision",
+      "caso": "mcp",
+      "afirmacion": "Una decisión concreta tomada con Osaka",
+      "valor": null,
+      "fuente": "sin fuente",
+      "confianza": null,
+      "publicable": false,
+      "nota": "sin dato"
+    }
+  ]
+}
