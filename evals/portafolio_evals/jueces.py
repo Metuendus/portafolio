@@ -24,8 +24,8 @@ APP = "portafolio_evals"
 PROMPTS = Path(__file__).resolve().parent.parent / "prompts"
 IDIOMA = {"es": "español", "en": "English"}
 Puntaje = conint(ge=1, le=5)
-Elemento = Literal["linea_base", "escala", "rol", "resultado", "periodo"]
-ELEMENTOS: tuple[str, ...] = ("linea_base", "escala", "rol", "resultado", "periodo")
+Elemento = Literal["rol", "concreto", "decision", "verificacion", "contexto"]
+ELEMENTOS: tuple[str, ...] = ("rol", "concreto", "decision", "verificacion", "contexto")
 
 
 class FraseProblema(BaseModel):
@@ -43,11 +43,12 @@ class JuicioReclutador(BaseModel):
 
 class Logro(BaseModel):
     logro: str
-    linea_base: bool
-    escala: bool
     rol: bool
-    resultado: bool
-    periodo: bool
+    concreto: bool
+    decision: bool
+    verificacion: bool
+    contexto: bool
+    afirma_sin_prueba: bool = False
     faltan: list[Elemento] = Field(default_factory=list)
     calificacion: Puntaje
     nota: str

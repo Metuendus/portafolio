@@ -139,11 +139,11 @@ def test_el_juez_descarta_frases_que_no_existen():
 
 def test_el_juez_de_evidencia_recalcula_lo_que_falta():
     resp = json.dumps(
-        {"logros": [{"logro": "Hoy 47 personas lo usan", "linea_base": False, "escala": True, "rol": False,
-                     "resultado": False, "periodo": True, "faltan": [], "calificacion": 2, "nota": "Cifra suelta."}]}
+        {"logros": [{"logro": "Hoy 47 personas lo usan", "rol": False, "concreto": True, "decision": False,
+                     "verificacion": False, "contexto": True, "faltan": [], "calificacion": 2, "nota": "Cifra suelta."}]}
     )
     r = asyncio.run(jueces.juzgar("evidencia", BLOQUE, Guion(resp), "claude-sonnet-5-5"))
-    assert r.juicio["logros"][0]["faltan"] == ["linea_base", "rol", "resultado"]
+    assert r.juicio["logros"][0]["faltan"] == ["rol", "decision", "verificacion"]
 
 
 def test_json_invalido_se_reintenta_una_vez():

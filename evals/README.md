@@ -8,7 +8,7 @@ modelo se califica a sí mismo.
 | --- | --- | --- |
 | 1 · Patrones de IA | Antítesis de eslogan, guiones largos, frases vacías, tríadas, remates con dos puntos, densidad de adjetivos | Código y reglas en [`ai_patterns.yaml`](ai_patterns.yaml), por texto |
 | 2 · Reclutador escéptico | `ai_smell`, `especificidad`, `credibilidad` (1 a 5), frases problema y veredicto | Claude, prompt en [`prompts/juez_reclutador.md`](prompts/juez_reclutador.md), por bloque |
-| 3 · Fuerza de la evidencia | Por logro: línea base, escala, rol, resultado y periodo; nota de 1 a 5 | Claude, prompt en [`prompts/juez_evidencia.md`](prompts/juez_evidencia.md), por bloque |
+| 3 · Fuerza de la evidencia | Por logro: rol, qué en concreto, decisión, cómo se verificó y contexto; nota de 1 a 5. Exige cifra solo si el texto afirma impacto | Claude, prompt en [`prompts/juez_evidencia.md`](prompts/juez_evidencia.md), por bloque |
 
 Un **bloque** junta los textos que un reclutador lee juntos: el título y el cuerpo del problema de un caso,
 una decisión con su antes y su después, o una sección de un artículo.
