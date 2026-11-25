@@ -129,6 +129,127 @@
       "confianza": "alta",
       "publicable": false,
       "nota": "Ninguna inscripción registrada."
+    },
+    {
+      "id": "libreria.apertura",
+      "caso": "prompts",
+      "afirmacion": "Abrió a toda la agencia",
+      "valor": "noviembre de 2025 (primer recurso aprobado 2025-11-20)",
+      "periodo": "2025-11",
+      "fuente": "git del repo y Firestore (analytics, items)",
+      "confianza": "alta",
+      "publicable": true,
+      "nota": null
+    },
+    {
+      "id": "libreria.personas_total",
+      "caso": "prompts",
+      "afirmacion": "Personas distintas que la han usado desde que abrió",
+      "valor": 190,
+      "universo": "agencia de unas 200 personas",
+      "periodo": "2025-11-12 a 2026-11-25",
+      "fuente": "Firestore (analytics), sin la cuenta del autor",
+      "confianza": "alta",
+      "publicable": true,
+      "nota": "Cualquier evento (entrar, ver, copiar). Incluye personas que ya salieron de la agencia."
+    },
+    {
+      "id": "libreria.personas_30d",
+      "caso": "prompts",
+      "afirmacion": "Personas en los últimos 30 días",
+      "valor": "39 entraron; 12 usaron o copiaron un recurso",
+      "periodo": "2026-10-26 a 2026-11-25",
+      "fuente": "Firestore (analytics)",
+      "confianza": "alta",
+      "publicable": "pendiente",
+      "nota": "El sitio dice 38. Uso mensual de 29 a 91 personas, con pico en febrero."
+    },
+    {
+      "id": "libreria.recursos",
+      "caso": "prompts",
+      "afirmacion": "Recursos publicados",
+      "valor": "44 (33 automatizaciones y 11 prompts; 0 casos)",
+      "periodo": "corte 2026-11-25",
+      "fuente": "Firestore (items)",
+      "confianza": "alta",
+      "publicable": true,
+      "nota": "El sitio dice «entre prompts, automatizaciones y casos»: no hay casos publicados. Hay 32 rechazados en revisión."
+    },
+    {
+      "id": "libreria.costo",
+      "caso": "prompts",
+      "afirmacion": "Costo de operación",
+      "valor": "54 a 73 MXN al mes",
+      "periodo": "desde 2026-08",
+      "fuente": "exportación de facturación de GCP",
+      "confianza": "alta",
+      "publicable": true,
+      "nota": "«0 USD al mes» es falso. Decir «menos de 4 USD al mes»."
+    },
+    {
+      "id": "hopper.reportes",
+      "caso": "dash",
+      "afirmacion": "Reportes recibidos en Hopper",
+      "valor": "9 reportes de 2 personas en el piloto",
+      "universo": "1 proyecto conectado",
+      "periodo": "2026-08-24 a 2026-09-09",
+      "fuente": "Firestore (HopperReports, HopperProjects) y GitHub",
+      "confianza": "alta",
+      "publicable": "pendiente",
+      "nota": "«149 reportes de 9 personas» no aparece en ninguna fuente."
+    },
+    {
+      "id": "hopper.clasificador",
+      "caso": "dash",
+      "afirmacion": "Prueba del clasificador",
+      "valor": "14 de 16 notas reales clasificadas igual que la clasificación esperada, por un agente que no veía las respuestas",
+      "periodo": "2026-08-21",
+      "fuente": "hopper/docs/taxonomia.md",
+      "confianza": "alta",
+      "publicable": true,
+      "nota": "Las 2 sin coincidencia estaban marcadas como ambiguas. No decir «igual que yo»."
+    },
+    {
+      "id": "hopper.linea_base",
+      "caso": "dash",
+      "afirmacion": "Cómo se reportaban los bugs antes de Hopper",
+      "valor": "una llamada por cada ronda de feedback y una matriz de Excel con notas de texto libre, casi vacía",
+      "periodo": "2026",
+      "fuente": "README y docs de Hopper",
+      "confianza": "media (cualitativa)",
+      "publicable": true,
+      "nota": "Sin medición de tiempos."
+    },
+    {
+      "id": "sku.tiempo",
+      "caso": "dash",
+      "afirmacion": "Análisis diario de SKU",
+      "valor": "de un día completo a unos 30 minutos",
+      "periodo": "2026",
+      "fuente": "estimación propia; sin medición en logs ni docs",
+      "confianza": "baja",
+      "publicable": true,
+      "nota": "Siempre como estimación propia. El ETL tarda una mediana de 32 s; la descarga del Excel de Meta sigue siendo manual. Co-desarrollado."
+    },
+    {
+      "id": "einstein.uso",
+      "caso": "einstein",
+      "afirmacion": "Uso de Einstein",
+      "valor": null,
+      "fuente": "sin acceso (backend en una VM de otro proyecto)",
+      "confianza": null,
+      "publicable": false,
+      "nota": "sin dato"
+    },
+    {
+      "id": "einstein.okr",
+      "caso": "einstein",
+      "afirmacion": "Einstein es uno de los OKR de EPA",
+      "valor": null,
+      "fuente": "dicho por José Carlos (2026-10-29); sin documento en los repos",
+      "confianza": "media",
+      "publicable": "pendiente",
+      "nota": null
     }
   ],
   "decisiones": [
